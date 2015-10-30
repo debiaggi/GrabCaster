@@ -1,0 +1,322 @@
+﻿// --------------------------------------------------------------------------------------------------
+// <copyright file = "LogMessage.cs" company="Nino Crudele">
+//   Copyright (c) 2013 - 2015 Nino Crudele. All Rights Reserved.
+// </copyright>
+// <summary>
+//    Author: Nino Crudele
+//    Blog: http://ninocrudele.me
+//    
+//    By accessing GrabCaster code here, you are agreeing to the following licensing terms.
+//    If you do not agree to these terms, do not access the GrabCaster code.
+//    Your license to the GrabCaster source and/or binaries is governed by the 
+//    Reciprocal Public License 1.5 (RPL1.5) license as described here: 
+//    http://www.opensource.org/licenses/rpl1.5.txt
+//  </summary>
+// --------------------------------------------------------------------------------------------------
+namespace GrabCaster.Framework.Engine.OffRamp
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Reflection;
+    using System.Text;
+
+    using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Bubbling;
+    using GrabCaster.Framework.Engine;
+    using GrabCaster.Framework.Engine.OffRamp.Azure;
+    using GrabCaster.Framework.Log;
+    using GrabCaster.Framework.Serialization;
+    using GrabCaster.Framework.Storage;
+
+    using Microsoft.ServiceBus.Messaging;
+
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Internal messaging Queue
+    /// </summary>
+    public sealed class OffRampEngine : LockSlimQueueEngine<object>
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OffRampEngine"/> class.
+        /// </summary>
+        /// <param name="capLimit">
+        /// TODO The cap limit.
+        /// </param>
+        /// <param name="timeLimit">
+        /// TODO The time limit.
+        /// </param>
+        public OffRampEngine(int capLimit, int timeLimit)
+        {
+            this.CapLimit = capLimit;
+            this.TimeLimit = timeLimit;
+            this.InitTimer();
+        }
+    }
+
+    /// <summary>
+    /// Last line of receiving and first before the message ingestor
+    /// </summary>
+    public static class OffRampEngineSending
+    {
+
+        private static OffRampEngine offRampEngine;
+
+        /// <summary>
+        /// Initialize the onramp engine the OffRampPatternComponent variable is for the next version
+        /// </summary>
+        /// <param name="offRampPatternComponent">
+        /// The Off Ramp Pattern Component.
+        /// </param>
+        /// <returns>
+        /// The <see cref="bool"/>.
+        /// </returns>
+        public static bool Init(string offRampPatternComponent)
+        {
+            offRampEngine = new OffRampEngine(
+                Configuration.ThrottlingOffRampIncomingRateNumber(), 
+                Configuration.ThrottlingOffRampIncomingRateSeconds());
+            offRampEngine.OnPublish += OffRampEngineOnPublish;
+
+            LogEngine.WriteLog(
+                Configuration.EngineName, 
+                "Start Off Ramp Engine.", 
+                Constant.ErrorEventIdHighCritical, 
+                Constant.TaskCategoriesError, 
+                null, 
+                EventLogEntryType.Information);
+            var canStart = EventUpStream.CreateEventUpStream();
+            return canStart;
+        }
+
+        /// <summary>
+        /// TODO The send message on ramp.
+        /// </summary>
+        /// <param name="bubblingTriggerConfiguration">
+        /// TODO The bubbling trigger configuration.
+        /// </param>
+        /// <param name="ehMessageType">
+        /// TODO The eh message type.
+        /// </param>
+        /// <param name="channelId">
+        /// TODO The channel id.
+        /// </param>
+        /// <param name="pointId">
+        /// TODO The point id.
+        /// </param>
+        /// <param name="properties">
+        /// TODO The properties.
+        /// </param>
+        public static void SendMessageOnRamp(
+            object bubblingTriggerConfiguration, 
+            Configuration.MessageDataProperty ehMessageType, 
+            string channelId, 
+            string pointId, 
+            Dictionary<string, object> properties)
+        {
+            try
+            {
+                // Meter and measuring purpose
+                var stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                // Create EH data message
+                var serializedMessage = SerializationEngine.ObjectToByteArray(bubblingTriggerConfiguration);
+                var messageId = Guid.NewGuid().ToString();
+                EventData data = null;
+
+                // IF > 256kb then persist
+                if (serializedMessage.Length > 256000)
+                {
+                    data = new EventData(Encoding.UTF8.GetBytes(messageId));
+                    PersistentProvider.PersistEventToBlob(serializedMessage, messageId);
+                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), true);
+                }
+                else
+                {
+                    data = new EventData(serializedMessage);
+                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
+                }
+
+                // Load custome Properties
+                if (properties != null)
+                {
+                    foreach (var prop in properties)
+                    {
+                        data.Properties.Add(prop.Key, prop.Value);
+                    }
+                }
+
+                data.Properties.Add(Configuration.MessageDataProperty.MessageId.ToString(), messageId);
+
+                // Set main security subscription
+                data.Properties.Add(Configuration.GrabCasterMessageTypeName, Configuration.GrabCasterMessageTypeValue);
+
+                // Message context
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.Message.ToString(), 
+                    Configuration.MessageDataProperty.Message.ToString());
+                data.Properties.Add(Configuration.MessageDataProperty.MessageType.ToString(), ehMessageType.ToString());
+                data.Properties.Add(Configuration.MessageDataProperty.SenderId.ToString(), Configuration.PointId());
+                data.Properties.Add(Configuration.MessageDataProperty.SenderName.ToString(), Configuration.PointName());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.SenderDescriprion.ToString(), 
+                    Configuration.PointDescription());
+                data.Properties.Add(Configuration.MessageDataProperty.ChannelId.ToString(), Configuration.ChannelId());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.ChannelName.ToString(), 
+                    Configuration.ChannelName());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.ChannelDescription.ToString(), 
+                    Configuration.ChannelDescription());
+                data.Properties.Add(Configuration.MessageDataProperty.ReceiverChannelId.ToString(), channelId);
+                data.Properties.Add(Configuration.MessageDataProperty.ReceiverPointId.ToString(), pointId);
+
+                stopWatch.Stop();
+                var ts = stopWatch.Elapsed;
+                data.Properties.Add(Configuration.MessageDataProperty.OperationTime.ToString(), ts.Milliseconds);
+
+                lock (offRampEngine)
+                {
+                    if (ehMessageType == Configuration.MessageDataProperty.Event
+                        || ehMessageType == Configuration.MessageDataProperty.Trigger)
+                    {
+                        var bubblingEvent = (BubblingEvent)bubblingTriggerConfiguration;
+                        if (Configuration.LoggingVerbose())
+                        {
+                            var serializedEvents = JsonConvert.SerializeObject(
+                                bubblingEvent.Events, 
+                                Formatting.Indented, 
+                                new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                            LogEngine.ConsoleWriteLine(
+                                $"Sent Message Type {ehMessageType}sent - Endpoints: {serializedEvents}", 
+                                ConsoleColor.Green);
+                        }
+                        else
+                        {
+                            LogEngine.ConsoleWriteLine($"Sent Message Type {ehMessageType}", ConsoleColor.Green);
+                        }
+                    }
+                    else
+                    {
+                        LogEngine.ConsoleWriteLine(
+                            $"Sent Message Type {ehMessageType}", 
+                            ConsoleColor.Green);
+                    }
+                }
+
+                offRampEngine.Enqueue(data);
+            }
+            catch (Exception ex)
+            {
+                LogEngine.WriteLog(
+                    Configuration.EngineName, 
+                    $"Error in {MethodBase.GetCurrentMethod().Name}", 
+                    Constant.ErrorEventIdHighCriticalEventHubs, 
+                    Constant.TaskCategoriesEventHubs, 
+                    ex, 
+                    EventLogEntryType.Error);
+            }
+        }
+
+        /// <summary>
+        /// Send a message service as Sync received or sync available in json format
+        ///     e un messaggio di servizio, tipo, sync disponibile eccetera, non e importantissimo
+        /// </summary>
+        /// <param name="ehMessageType">
+        /// The EH Message Type.
+        /// </param>
+        /// <param name="channelId">
+        /// The Channel ID.
+        /// </param>
+        /// <param name="pointId">
+        /// The Point ID.
+        /// </param>
+        /// <param name="idComponent">
+        /// The ID Component.
+        /// </param>
+        /// <param name="subscriberId">
+        /// The subscriber ID.
+        /// </param>
+        public static void SendNullMessageOnRamp(
+            Configuration.MessageDataProperty ehMessageType, 
+            string channelId, 
+            string pointId, 
+            string idComponent, 
+            string subscriberId)
+        {
+            try
+            {
+                // Meter and measuring purpose
+                var stopWatch = new Stopwatch();
+                stopWatch.Start();
+                var data = new EventData(Encoding.UTF8.GetBytes(string.Empty));
+                data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
+
+                // Set main security subscription
+                data.Properties.Add(Configuration.GrabCasterMessageTypeName, Configuration.GrabCasterMessageTypeValue);
+
+                data.Properties.Add(Configuration.MessageDataProperty.MessageId.ToString(), Guid.NewGuid().ToString());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.Message.ToString(), 
+                    Configuration.MessageDataProperty.Message.ToString());
+                data.Properties.Add(Configuration.MessageDataProperty.SubscriberId.ToString(), subscriberId);
+                data.Properties.Add(Configuration.MessageDataProperty.MessageType.ToString(), ehMessageType.ToString());
+                data.Properties.Add(Configuration.MessageDataProperty.SenderId.ToString(), Configuration.PointId());
+                data.Properties.Add(Configuration.MessageDataProperty.SenderName.ToString(), Configuration.PointName());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.SenderDescriprion.ToString(), 
+                    Configuration.PointDescription());
+                data.Properties.Add(Configuration.MessageDataProperty.ChannelId.ToString(), Configuration.ChannelId());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.ChannelName.ToString(), 
+                    Configuration.ChannelName());
+                data.Properties.Add(
+                    Configuration.MessageDataProperty.ChannelDescription.ToString(), 
+                    Configuration.ChannelDescription());
+                data.Properties.Add(Configuration.MessageDataProperty.ReceiverChannelId.ToString(), channelId);
+                data.Properties.Add(Configuration.MessageDataProperty.ReceiverPointId.ToString(), pointId);
+                data.Properties.Add(Configuration.MessageDataProperty.IdComponent.ToString(), idComponent);
+
+                stopWatch.Stop();
+                var ts = stopWatch.Elapsed;
+                data.Properties.Add(Configuration.MessageDataProperty.OperationTime.ToString(), ts.Milliseconds);
+
+                // Queue the data
+                lock (offRampEngine)
+                {
+                    offRampEngine.Enqueue(data);
+                }
+
+                LogEngine.ConsoleWriteLine(
+                    $"Sent Message Type: {ehMessageType} - To ChannelID: {channelId} PointID: {pointId}", 
+                    ConsoleColor.DarkMagenta);
+            }
+            catch (Exception ex)
+            {
+                LogEngine.WriteLog(
+                    Configuration.EngineName, 
+                    $"Error in {MethodBase.GetCurrentMethod().Name}", 
+                    Constant.ErrorEventIdHighCriticalEventHubs, 
+                    Constant.TaskCategoriesEventHubs, 
+                    ex, 
+                    EventLogEntryType.Error);
+            }
+        }
+
+        /// <summary>
+        /// TODO The off ramp engine on publish.
+        /// </summary>
+        /// <param name="objects">
+        /// TODO The objects.
+        /// </param>
+        private static void OffRampEngineOnPublish(List<object> objects)
+        {
+            foreach (var message in objects)
+            {
+                EventUpStream.SendMessage(message);
+            }
+        }
+    }
+}
