@@ -1,17 +1,23 @@
 ﻿// --------------------------------------------------------------------------------------------------
-// <copyright file = "LogMessage.cs" company="Nino Crudele">
+// <copyright file = "LogEngine.cs" company="Nino Crudele">
 //   Copyright (c) 2013 - 2015 Nino Crudele. All Rights Reserved.
 // </copyright>
 // <summary>
-//    Author: Nino Crudele
+//    Copyright (c) 2013 - 2015 Nino Crudele
 //    Blog: http://ninocrudele.me
-//    
-//    By accessing GrabCaster code here, you are agreeing to the following licensing terms.
-//    If you do not agree to these terms, do not access the GrabCaster code.
-//    Your license to the GrabCaster source and/or binaries is governed by the 
-//    Reciprocal Public License 1.5 (RPL1.5) license as described here: 
-//    http://www.opensource.org/licenses/rpl1.5.txt
-//  </summary>
+// 
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
+// 
+//        http://www.apache.org/licenses/LICENSE-2.0
+// 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License. 
+// </summary>
 // --------------------------------------------------------------------------------------------------
 namespace GrabCaster.Framework.Log
 {
@@ -60,9 +66,9 @@ namespace GrabCaster.Framework.Log
 
         public static LogQueueAbstractMessage QueueAbstractMessage;
 
-        public static bool Enabled = false;
+        public static bool Enabled;
 
-        public static bool Verbose = false;
+        public static bool Verbose;
 
         public static bool ConsoleOut = true;
 
@@ -187,6 +193,7 @@ namespace GrabCaster.Framework.Log
                     logMessage.ExceptionObject = "";
                 }
 
+                // ReSharper disable once SpecifyACultureInStringConversionExplicitly
                 logMessage.DateTime = DateTime.Now.ToString();
                 logMessage.EventId = eventId;
                 logMessage.MessageId = Guid.NewGuid().ToString();
@@ -195,7 +202,7 @@ namespace GrabCaster.Framework.Log
                 logMessage.ChannelId = Configuration.ChannelId();
                 logMessage.ChannelName = Configuration.ChannelName();
                 logMessage.TaskCategory = taskCategory;
-                string exceptionText = logMessage.ExceptionObject != "" ? "\r-->Exception:" + logMessage.ExceptionObject : "";
+                var exceptionText = logMessage.ExceptionObject != "" ? "\r-->Exception:" + logMessage.ExceptionObject : "";
                 logMessage.Message =
                     $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-EventID:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
 
@@ -321,6 +328,7 @@ namespace GrabCaster.Framework.Log
 
                 if (Configuration.LoggingVerbose())
                 {
+                    // ReSharper disable once SpecifyACultureInStringConversionExplicitly
                     logMessage.DateTime = DateTime.Now.ToString();
                     logMessage.EventId = 0;
                     logMessage.MessageId = Guid.NewGuid().ToString();
@@ -332,6 +340,7 @@ namespace GrabCaster.Framework.Log
 
                     //Send the verbose also to the SLI component
                     ParametersRet[0] = logMessage;
+                    // ReSharper disable once UseNullPropagation
                     if (methodLogInfoWrite != null)
                     {
                         methodLogInfoWrite.Invoke(classInstance, ParametersRet);

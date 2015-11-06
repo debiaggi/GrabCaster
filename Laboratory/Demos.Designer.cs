@@ -1,4 +1,4 @@
-﻿namespace Lab
+﻿namespace Laboratory
 {
     using System.ComponentModel;
     using System.Windows.Forms;
@@ -16,9 +16,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -48,7 +48,7 @@
             this.buttonPowerJson.TabIndex = 0;
             this.buttonPowerJson.Text = "Write in Event Vierwer";
             this.buttonPowerJson.UseVisualStyleBackColor = true;
-            this.buttonPowerJson.Click += new System.EventHandler(this.buttonPowerJson_Click);
+            this.buttonPowerJson.Click += new System.EventHandler(this.ButtonPowerJsonClick);
             // 
             // label1
             // 
@@ -92,7 +92,7 @@
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Type";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Click += new System.EventHandler(this.Label2Click);
             // 
             // labellastrun
             // 
@@ -117,7 +117,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Demos";
             this.Text = "BizTalk_London_Summit";
-            this.Load += new System.EventHandler(this.Demos_Load);
+            this.Load += new System.EventHandler(this.DemosLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 
