@@ -90,6 +90,8 @@
     <Compile Include="Attributes\EventAttributes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\EventsUpStreamAttribute.cs" />
+    <Compile Include="Attributes\EventsDownStreamAttribute.cs" />
     <Compile Include="Attributes\LogAttribute.cs" />
     <Compile Include="Bubbling\BaseAction.cs" />
     <Compile Include="Bubbling\AssemblyEvent.cs" />
@@ -104,6 +106,8 @@
     <Compile Include="Channels\Channel.cs" />
     <Compile Include="Channels\IChannel.cs" />
     <Compile Include="Log\IlogEngine.cs" />
+    <Compile Include="Messaging\IEventsDownstream.cs" />
+    <Compile Include="Messaging\IEventsUpStream.cs" />
     <Compile Include="Serialization\Serialization.cs" />
     <Compile Include="Shell\ConsoleSyncEventList.cs" />
     <Compile Include="Shell\SyncPointFile.cs" />

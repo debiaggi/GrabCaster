@@ -123,14 +123,12 @@
     <Compile Include="CoreEngine.cs" />
     <Compile Include="CoreServiceStates.cs" />
     <Compile Include="IRESTEventsEngine.cs" />
+    <Compile Include="OnRamp\MessageIngestor.cs" />
     <Compile Include="SyncConfigurationFile.cs" />
     <Compile Include="SyncProvider.cs" />
-    <Compile Include="OffRamp\Azure\LockSlimEventUpStream.cs" />
     <Compile Include="LockSlimQueueEngine.cs" />
     <Compile Include="OffRamp\OffRampEngine.cs" />
     <Compile Include="OnRamp\OnRampEngine.cs" />
-    <Compile Include="OnRamp\Azure\Sync\DirectEventsDownstream.cs" />
-    <Compile Include="OnRamp\Azure\MessageIngestor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RESTEventsEngine.cs" />
   </ItemGroup>
@@ -163,20 +161,16 @@
       <Project>{ac98c92e-9d9b-4b31-9fe3-7980c856c2f7}</Project>
       <Name>GrabCaster.Framework.Storage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GrabCaster.Framework.Dcp.Azure\GrabCaster.Framework.Dcp.Azure.csproj">
+      <Project>{057070de-506e-4f47-b6c1-1526b8d05c9e}</Project>
+      <Name>GrabCaster.Framework.Dcp.Azure</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OffRamp\Amazon\" />
-    <Folder Include="OffRamp\Google\" />
-    <Folder Include="OffRamp\NserviceBus\" />
-    <Folder Include="OnRamp\Amazon\" />
-    <Folder Include="OnRamp\Azure\Async\" />
-    <Folder Include="OnRamp\Google\" />
-    <Folder Include="OnRamp\NServiceBus\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

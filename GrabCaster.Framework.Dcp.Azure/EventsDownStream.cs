@@ -19,7 +19,7 @@
 //    limitations under the License. 
 // </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.Engine.OnRamp.Azure.Sync
+namespace GrabCaster.Framework.Dcp.Azure
 {
     using System;
     using System.Diagnostics;
@@ -27,7 +27,9 @@ namespace GrabCaster.Framework.Engine.OnRamp.Azure.Sync
     using System.Threading;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Globals;
+    using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Log;
 
     using Microsoft.ServiceBus;
@@ -37,16 +39,13 @@ namespace GrabCaster.Framework.Engine.OnRamp.Azure.Sync
     ///     Main Downstream events receiving
     ///     It execute the main DownStream Instance
     /// </summary>
-    public class DirectEventsDownstream : IDisposable
+    [EventsDownStreamContract("{B8ECF14B-2A9E-41C9-9E85-D8EA2D5C4E22}", "EventsDownStream", "Event Hubs EventsDownStream")]
+    public class DirectEventsDownstream : IEventsDownstream
     {
         private static SetEventOnRampMessageReceived SetEventOnRampMessageReceived { get; set; }
 
-        public void Dispose()
-        {
-            //Ignored
-        }
 
-        public static void Run(SetEventOnRampMessageReceived setEventOnRampMessageReceived)
+        public void Run(SetEventOnRampMessageReceived setEventOnRampMessageReceived)
         {
             try
             {
