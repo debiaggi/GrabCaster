@@ -138,7 +138,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{BE223403-A73
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory", "Laboratory\GrabCaster.Laboratory.csproj", "{D31CDBDC-75F7-4D0C-A258-F448200B025E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Dcp.Azure", "GrabCaster.Framework.Dcp.Azure\GrabCaster.Framework.Dcp.Azure.csproj", "{057070DE-506E-4F47-B6C1-1526B8D05C9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Dcp.Azure", "Framework.Dcp.Azure\GrabCaster.Framework.Dcp.Azure.csproj", "{057070DE-506E-4F47-B6C1-1526B8D05C9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
