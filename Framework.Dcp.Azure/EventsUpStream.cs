@@ -19,14 +19,20 @@
 //    limitations under the License. 
 // </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.Engine.OffRamp.Azure
+namespace GrabCaster.Framework.Dcp.Azure
 {
     using System;
     using System.Diagnostics;
     using System.Reflection;
+    using System.Text;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Common;
+    using GrabCaster.Framework.Contracts.Attributes;
+    using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Log;
+    using GrabCaster.Framework.Serialization;
+    using GrabCaster.Framework.Storage;
 
     using Microsoft.ServiceBus;
     using Microsoft.ServiceBus.Messaging;
@@ -34,7 +40,8 @@ namespace GrabCaster.Framework.Engine.OffRamp.Azure
     /// <summary>
     ///     Send messages to EH
     /// </summary>
-    public static class EventUpStream
+    [EventsUpStreamContract("{6FAEA018-C21B-423E-B860-3F8BAC0BC637}", "EventUpStream", "Event Hubs EventUpStream")]
+    public class EventsUpStream: IEventsUpStream
     {
         //EH variable
 
@@ -43,8 +50,8 @@ namespace GrabCaster.Framework.Engine.OffRamp.Azure
         private static string eventHubName = "";
 
         private static EventHubClient eventHubClient;
-
-        public static bool CreateEventUpStream()
+        
+        public bool CreateEventUpStream()
         {
             try
             {
@@ -81,10 +88,26 @@ namespace GrabCaster.Framework.Engine.OffRamp.Azure
         ///     invio importantissimo perche spedisce eventi e oggetti in array bytela dimensione e strategica
         /// </summary>
         /// <param name="message"></param>
-        public static void SendMessage(object message)
+        public void SendMessage(object message)
         {
             try
             {
+                EventData data = (EventData)message;
+                // Create EH data message
+                byte[] byteMessage = (byte[])message;
+                // IF > 256kb then persist
+                var messageId = data.Properties[Configuration.MessageDataProperty.MessageId.ToString()].ToString();
+                if (byteMessage.Length > 256000)
+                {
+                    data = new EventData(Encoding.UTF8.GetBytes(messageId));
+                    PersistentProvider.PersistEventToBlob(byteMessage, messageId);
+                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), true);
+                }
+                else
+                {
+                    data = new EventData(byteMessage);
+                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
+                }
                 eventHubClient.Send((EventData)message);
             }
             catch (Exception ex)

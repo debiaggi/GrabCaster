@@ -19,7 +19,7 @@
 //    limitations under the License. 
 // </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.Engine.OnRamp.Azure
+namespace GrabCaster.Framework.Engine.OnRamp
 {
     using System;
     using System.Collections.Generic;

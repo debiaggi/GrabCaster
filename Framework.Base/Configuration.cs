@@ -253,7 +253,24 @@ namespace GrabCaster.Framework.Base
 
             File.WriteAllText(configurationFile, configurationStorageContent);
         }
+      
+        /// <summary>
+        ///     Event Down Stream component used to receive messages (EventHubs/File/.)
+        /// </summary>
+        /// <returns></returns>
+        public static string EventsDownStreamComponent()
+        {
+            return ConfigurationStorage.EventsDownStreamComponent;
+        }
 
+        /// <summary>
+        ///     Event Up Stream component used to send messages (EventHubs/File/.)
+        /// </summary>
+        /// <returns></returns>
+        public static string EventsUpStreamComponent()
+        {
+            return ConfigurationStorage.EventsUpStreamComponent;
+        }
         /// <summary>
         ///     Log pattern to use (EventHubs/File/.)
         /// </summary>
@@ -667,6 +684,11 @@ namespace GrabCaster.Framework.Base
     {
         [DataMember]
         public bool LoggingVerbose { get; set; }
+
+        [DataMember]
+        public string EventsDownStreamComponent { get; set; }
+        [DataMember]
+        public string EventsUpStreamComponent { get; set; }
 
         [DataMember]
         public string LoggingComponent { get; set; }

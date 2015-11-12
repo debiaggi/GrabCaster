@@ -123,14 +123,12 @@
     <Compile Include="CoreEngine.cs" />
     <Compile Include="CoreServiceStates.cs" />
     <Compile Include="IRESTEventsEngine.cs" />
+    <Compile Include="OnRamp\MessageIngestor.cs" />
     <Compile Include="SyncConfigurationFile.cs" />
     <Compile Include="SyncProvider.cs" />
-    <Compile Include="OffRamp\Azure\LockSlimEventUpStream.cs" />
     <Compile Include="LockSlimQueueEngine.cs" />
     <Compile Include="OffRamp\OffRampEngine.cs" />
     <Compile Include="OnRamp\OnRampEngine.cs" />
-    <Compile Include="OnRamp\Azure\Sync\DirectEventsDownstream.cs" />
-    <Compile Include="OnRamp\Azure\MessageIngestor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RESTEventsEngine.cs" />
   </ItemGroup>
@@ -168,15 +166,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="OffRamp\Amazon\" />
-    <Folder Include="OffRamp\Google\" />
-    <Folder Include="OffRamp\NserviceBus\" />
-    <Folder Include="OnRamp\Amazon\" />
-    <Folder Include="OnRamp\Azure\Async\" />
-    <Folder Include="OnRamp\Google\" />
-    <Folder Include="OnRamp\NServiceBus\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

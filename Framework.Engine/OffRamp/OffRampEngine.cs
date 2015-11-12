@@ -1,39 +1,37 @@
-﻿// --------------------------------------------------------------------------------------------------
-// <copyright file = "OffRampEngine.cs" company="Nino Crudele">
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="OffRampEngine.cs" company="Nino Crudele">
 //   Copyright (c) 2013 - 2015 Nino Crudele. All Rights Reserved.
 // </copyright>
 // <summary>
-//    Copyright (c) 2013 - 2015 Nino Crudele
-//    Blog: http://ninocrudele.me
-// 
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-// 
-//        http://www.apache.org/licenses/LICENSE-2.0
-// 
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License. 
+//   Copyright (c) 2013 - 2015 Nino Crudele
+//   Blog: http://ninocrudele.me
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//   http://www.apache.org/licenses/LICENSE-2.0
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
 // </summary>
-// --------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+
 namespace GrabCaster.Framework.Engine.OffRamp
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Bubbling;
-    using GrabCaster.Framework.Engine;
-    using GrabCaster.Framework.Engine.OffRamp.Azure;
     using GrabCaster.Framework.Log;
     using GrabCaster.Framework.Serialization;
-    using GrabCaster.Framework.Storage;
 
     using Microsoft.ServiceBus.Messaging;
 
@@ -66,8 +64,30 @@ namespace GrabCaster.Framework.Engine.OffRamp
     /// </summary>
     public static class OffRampEngineSending
     {
-
+        /// <summary>
+        /// The off ramp engine.
+        /// </summary>
         private static OffRampEngine offRampEngine;
+
+        /// <summary>
+        /// The method create event up stream.
+        /// </summary>
+        private static MethodInfo methodCreateEventUpStream;
+
+        /// <summary>
+        /// The method send message.
+        /// </summary>
+        private static MethodInfo methodSendMessage;
+
+        /// <summary>
+        /// The class instance.
+        /// </summary>
+        private static object classInstance;
+
+        /// <summary>
+        /// The parameters ret.
+        /// </summary>
+        private static readonly object[] ParametersRet = { null };
 
         /// <summary>
         /// Initialize the onramp engine the OffRampPatternComponent variable is for the next version
@@ -80,20 +100,65 @@ namespace GrabCaster.Framework.Engine.OffRamp
         /// </returns>
         public static bool Init(string offRampPatternComponent)
         {
-            offRampEngine = new OffRampEngine(
-                Configuration.ThrottlingOffRampIncomingRateNumber(), 
-                Configuration.ThrottlingOffRampIncomingRateSeconds());
-            offRampEngine.OnPublish += OffRampEngineOnPublish;
+            try
+            {
+                LogEngine.ConsoleWriteLine("Check Abstract Logging Engine.", ConsoleColor.Yellow);
 
-            LogEngine.WriteLog(
-                Configuration.EngineName, 
-                "Start Off Ramp Engine.", 
-                Constant.ErrorEventIdHighCritical, 
-                Constant.TaskCategoriesError, 
-                null, 
-                EventLogEntryType.Information);
-            var canStart = EventUpStream.CreateEventUpStream();
-            return canStart;
+                // Load event up stream external component
+                var eventsUpStreamComponent = Path.Combine(
+                    Configuration.DirectoryOperativeRootExeName(), 
+                    Configuration.EventsUpStreamComponent());
+
+                // Create the reflection method cached 
+                var assembly = Assembly.LoadFrom(eventsUpStreamComponent);
+
+                // Main class logging
+                var assemblyClass = (from t in assembly.GetTypes()
+                                     let attributes = t.GetCustomAttributes(typeof(EventsUpStreamContract), true)
+                                     where t.IsClass && attributes != null && attributes.Length > 0
+                                     select t).First();
+
+                var classAttributes = assemblyClass.GetCustomAttributes(typeof(EventsUpStreamContract), true);
+
+                if (classAttributes.Length > 0)
+                {
+                    Debug.WriteLine("EventsUpStreamContract - methodCreateEventUpStream caller");
+                    methodCreateEventUpStream = assemblyClass.GetMethod("CreateEventUpStream");
+                    Debug.WriteLine("EventsUpStreamContract - methodSendMessage caller");
+                    methodSendMessage = assemblyClass.GetMethod("SendMessage");
+                }
+
+                classInstance = Activator.CreateInstance(assemblyClass, null);
+
+                offRampEngine = new OffRampEngine(
+                    Configuration.ThrottlingOffRampIncomingRateNumber(), 
+                    Configuration.ThrottlingOffRampIncomingRateSeconds());
+                offRampEngine.OnPublish += OffRampEngineOnPublish;
+
+                LogEngine.WriteLog(
+                    Configuration.EngineName, 
+                    "Start Off Ramp Engine.", 
+                    Constant.ErrorEventIdHighCritical, 
+                    Constant.TaskCategoriesError, 
+                    null, 
+                    EventLogEntryType.Information);
+
+                // Inizialize the MSPC
+                LogEngine.ConsoleWriteLine("Initialize Abstract Event Up Stream Engine.", ConsoleColor.Yellow);
+                methodCreateEventUpStream.Invoke(classInstance, null);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogEngine.WriteLog(
+                    Configuration.EngineName, 
+                    $"Error in {MethodBase.GetCurrentMethod().Name}", 
+                    Constant.ErrorEventIdHighCritical, 
+                    Constant.TaskCategoriesError, 
+                    ex, 
+                    EventLogEntryType.Error);
+                return false;
+            }
         }
 
         /// <summary>
@@ -131,19 +196,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 var serializedMessage = SerializationEngine.ObjectToByteArray(bubblingTriggerConfiguration);
                 var messageId = Guid.NewGuid().ToString();
                 EventData data = null;
-
-                // IF > 256kb then persist
-                if (serializedMessage.Length > 256000)
-                {
-                    data = new EventData(Encoding.UTF8.GetBytes(messageId));
-                    PersistentProvider.PersistEventToBlob(serializedMessage, messageId);
-                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), true);
-                }
-                else
-                {
-                    data = new EventData(serializedMessage);
-                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
-                }
+                data = new EventData(serializedMessage);
 
                 // Load custome Properties
                 if (properties != null)
@@ -206,9 +259,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                     }
                     else
                     {
-                        LogEngine.ConsoleWriteLine(
-                            $"Sent Message Type {ehMessageType}", 
-                            ConsoleColor.Green);
+                        LogEngine.ConsoleWriteLine($"Sent Message Type {ehMessageType}", ConsoleColor.Green);
                     }
                 }
 
@@ -321,7 +372,9 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             foreach (var message in objects)
             {
-                EventUpStream.SendMessage(message);
+                // Send message to MSPC 
+                ParametersRet[0] = message;
+                methodSendMessage.Invoke(classInstance, ParametersRet);
             }
         }
     }
