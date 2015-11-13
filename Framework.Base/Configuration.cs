@@ -253,7 +253,16 @@ namespace GrabCaster.Framework.Base
 
             File.WriteAllText(configurationFile, configurationStorageContent);
         }
-      
+
+        public static bool SecondaryPersistProviderEnabled()
+        {
+            return ConfigurationStorage.SecondaryPersistProviderEnabled;
+        }
+        public static int SecondaryPersistProviderByteSize()
+        {
+            return ConfigurationStorage.SecondaryPersistProviderByteSize;
+        }
+
         /// <summary>
         ///     Event Down Stream component used to receive messages (EventHubs/File/.)
         /// </summary>
@@ -261,6 +270,12 @@ namespace GrabCaster.Framework.Base
         public static string EventsDownStreamComponent()
         {
             return ConfigurationStorage.EventsDownStreamComponent;
+        }
+
+        
+        public static string PersistentProviderComponent()
+        {
+            return ConfigurationStorage.PersistentProviderComponent;
         }
 
         /// <summary>
@@ -684,7 +699,13 @@ namespace GrabCaster.Framework.Base
     {
         [DataMember]
         public bool LoggingVerbose { get; set; }
+        [DataMember]
+        public bool SecondaryPersistProviderEnabled { get; set; }
+        [DataMember]
+        public int SecondaryPersistProviderByteSize { get; set; }
 
+        [DataMember]
+        public string PersistentProviderComponent { get; set; }
         [DataMember]
         public string EventsDownStreamComponent { get; set; }
         [DataMember]

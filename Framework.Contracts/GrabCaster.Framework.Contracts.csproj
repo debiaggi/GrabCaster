@@ -90,6 +90,7 @@
     <Compile Include="Attributes\EventAttributes.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Attributes\DevicePersistentProviderAttribute.cs" />
     <Compile Include="Attributes\EventsUpStreamAttribute.cs" />
     <Compile Include="Attributes\EventsDownStreamAttribute.cs" />
     <Compile Include="Attributes\LogAttribute.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Shell\SyncPointMessage.cs" />
     <Compile Include="Globals\Globals.cs" />
     <Compile Include="Log\LogMessage.cs" />
+    <Compile Include="Storage\IDevicePersistentProvider.cs" />
     <Compile Include="Triggers\ITrigger.cs" />
     <Compile Include="Attributes\TriggerAttributes.cs" />
     <Compile Include="Points\Point.cs" />

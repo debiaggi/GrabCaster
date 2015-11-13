@@ -74,11 +74,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Common
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Serialization", "Framework.Serialization\GrabCaster.Framework.Serialization.csproj", "{AFEE871C-778B-4A26-9609-609D922D9653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Storage", "Framework.Storage\GrabCaster.Framework.Storage.csproj", "{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionNotes", "SolutionNotes", "{E581B883-CC09-4E5C-8737-DC61ABCEFDB4}"
 	ProjectSection(SolutionItems) = preProject
 		Copyright.txt = Copyright.txt
+		Da aggiornare.txt = Da aggiornare.txt
 		SolutionNotes\Demo London.txt = SolutionNotes\Demo London.txt
 		SolutionNotes\KillService.txt = SolutionNotes\KillService.txt
 		SolutionNotes\Modifiche storico.txt = SolutionNotes\Modifiche storico.txt
@@ -139,6 +138,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory", "Laboratory\GrabCaster.Laboratory.csproj", "{D31CDBDC-75F7-4D0C-A258-F448200B025E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Dcp.Azure", "Framework.Dcp.Azure\GrabCaster.Framework.Dcp.Azure.csproj", "{057070DE-506E-4F47-B6C1-1526B8D05C9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Dpp.Azure", "Framework.Dpp.Azure\GrabCaster.Framework.Dpp.Azure.csproj", "{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Storage", "Framework.Storage\GrabCaster.Framework.Storage.csproj", "{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -404,14 +407,6 @@ Global
 		{AFEE871C-778B-4A26-9609-609D922D9653}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFEE871C-778B-4A26-9609-609D922D9653}.Release|x86.ActiveCfg = Release|Any CPU
 		{AFEE871C-778B-4A26-9609-609D922D9653}.Release|x86.Build.0 = Release|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|x86.Build.0 = Debug|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|x86.ActiveCfg = Release|Any CPU
-		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|x86.Build.0 = Release|Any CPU
 		{2A45237C-5AD6-46DB-9D58-B66A604C4874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A45237C-5AD6-46DB-9D58-B66A604C4874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A45237C-5AD6-46DB-9D58-B66A604C4874}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -466,6 +461,22 @@ Global
 		{057070DE-506E-4F47-B6C1-1526B8D05C9E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{057070DE-506E-4F47-B6C1-1526B8D05C9E}.Release|x86.ActiveCfg = Release|Any CPU
 		{057070DE-506E-4F47-B6C1-1526B8D05C9E}.Release|x86.Build.0 = Release|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF4ABF98-6970-4B98-A9F1-0038B2A40CC8}.Release|x86.Build.0 = Release|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Debug|x86.Build.0 = Debug|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|x86.ActiveCfg = Release|Any CPU
+		{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

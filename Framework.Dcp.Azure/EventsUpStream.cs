@@ -32,8 +32,6 @@ namespace GrabCaster.Framework.Dcp.Azure
     using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Log;
     using GrabCaster.Framework.Serialization;
-    using GrabCaster.Framework.Storage;
-
     using Microsoft.ServiceBus;
     using Microsoft.ServiceBus.Messaging;
 
@@ -92,22 +90,6 @@ namespace GrabCaster.Framework.Dcp.Azure
         {
             try
             {
-                EventData data = (EventData)message;
-                // Create EH data message
-                byte[] byteMessage = (byte[])message;
-                // IF > 256kb then persist
-                var messageId = data.Properties[Configuration.MessageDataProperty.MessageId.ToString()].ToString();
-                if (byteMessage.Length > 256000)
-                {
-                    data = new EventData(Encoding.UTF8.GetBytes(messageId));
-                    PersistentProvider.PersistEventToBlob(byteMessage, messageId);
-                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), true);
-                }
-                else
-                {
-                    data = new EventData(byteMessage);
-                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
-                }
                 eventHubClient.Send((EventData)message);
             }
             catch (Exception ex)

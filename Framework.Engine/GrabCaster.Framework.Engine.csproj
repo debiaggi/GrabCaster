@@ -158,7 +158,7 @@
       <Name>GrabCaster.Framework.Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Storage\GrabCaster.Framework.Storage.csproj">
-      <Project>{ac98c92e-9d9b-4b31-9fe3-7980c856c2f7}</Project>
+      <Project>{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}</Project>
       <Name>GrabCaster.Framework.Storage</Name>
     </ProjectReference>
   </ItemGroup>

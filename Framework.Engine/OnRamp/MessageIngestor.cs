@@ -24,11 +24,13 @@ namespace GrabCaster.Framework.Engine.OnRamp
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
 
     using GrabCaster.Framework.Base;
     using GrabCaster.Framework.Common;
+    using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Bubbling;
     using GrabCaster.Framework.Engine;
     using GrabCaster.Framework.Log;
@@ -36,6 +38,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
     using GrabCaster.Framework.Storage;
 
     using Microsoft.ServiceBus.Messaging;
+    using Microsoft.WindowsAzure.Storage.Blob;
 
     using Newtonsoft.Json;
 
@@ -44,6 +47,61 @@ namespace GrabCaster.Framework.Engine.OnRamp
     /// </summary>
     internal static class MessageIngestor
     {
+        private static object classInstanceDpp;
+        private static bool secondaryPersistProviderEnabled;
+        private static int secondaryPersistProviderByteSize;
+        private static MethodInfo methodPersistEventFromBlob;
+        private static MethodInfo methodPersistMessage;
+        private static readonly object[] ParametersPersistEventFromBlob = { null };
+
+        public static void Init()
+        {
+            try
+            {
+
+                secondaryPersistProviderEnabled = Configuration.SecondaryPersistProviderEnabled();
+                secondaryPersistProviderByteSize = Configuration.SecondaryPersistProviderByteSize();
+
+                // Load the abrstracte persistent provider
+                var devicePersistentProviderComponent = Path.Combine(
+                                    Configuration.DirectoryOperativeRootExeName(),
+                                    Configuration.PersistentProviderComponent());
+
+                // Create the reflection method cached 
+                var assemblyPersist = Assembly.LoadFrom(devicePersistentProviderComponent);
+
+                // Main class logging
+                var assemblyClassDpp = (from t in assemblyPersist.GetTypes()
+                                        let attributes = t.GetCustomAttributes(typeof(DevicePersistentProviderContract), true)
+                                        where t.IsClass && attributes != null && attributes.Length > 0
+                                        select t).First();
+
+                var classAttributeDpp = assemblyClassDpp.GetCustomAttributes(typeof(DevicePersistentProviderContract), true);
+
+                if (classAttributeDpp.Length > 0)
+                {
+                    Debug.WriteLine("DevicePersistentProviderContract - methodPersistEvent caller");
+                    methodPersistEventFromBlob = assemblyClassDpp.GetMethod("PersistEventFromBlob");
+                    Debug.WriteLine("DevicePersistentProviderContract - PersistMessage caller");
+                    methodPersistMessage = assemblyClassDpp.GetMethod("PersistMessage");
+                    
+                }
+
+                classInstanceDpp = Activator.CreateInstance(assemblyClassDpp, null);
+
+            }
+            catch (Exception ex)
+            {
+
+                LogEngine.WriteLog(
+                    Configuration.EngineName,
+                    $"Error in {MethodBase.GetCurrentMethod().Name}",
+                    Constant.ErrorEventIdHighCriticalEventHubs,
+                    Constant.TaskCategoriesEventHubs,
+                    ex,
+                    EventLogEntryType.Error);
+            }
+        }
         public static void IngestMessagge(object message)
         {
             string senderId;
@@ -99,10 +157,13 @@ namespace GrabCaster.Framework.Engine.OnRamp
             // Check if >256, the restore or not
             if ((bool)Common.GetMessageContextPropertyValue(eventData, Configuration.MessageDataProperty.Persisting))
             {
-                eventDataByte =
-                    PersistentProvider.PersistEventFromBlob(
-                        Common.GetMessageContextPropertyValue(eventData, Configuration.MessageDataProperty.MessageId)
-                            .ToString());
+                //eventDataByte =
+                //    PersistentProvider.PersistEventFromBlob(
+                //        Common.GetMessageContextPropertyValue(eventData, Configuration.MessageDataProperty.MessageId)
+                //            .ToString());
+                ParametersPersistEventFromBlob[0] = Common.GetMessageContextPropertyValue(eventData, Configuration.MessageDataProperty.MessageId).ToString();
+                var ret = methodPersistEventFromBlob.Invoke(classInstanceDpp, ParametersPersistEventFromBlob);
+                eventDataByte = (byte[])ret;
             }
             else
             {
@@ -115,6 +176,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
             {
                 var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
                 PersistentProvider.PersistMessage(eventBubbling, PersistentProvider.CommunicationDiretion.OffRamp);
+
                 if (Configuration.LoggingVerbose())
                 {
                     var serializedEvents = JsonConvert.SerializeObject(

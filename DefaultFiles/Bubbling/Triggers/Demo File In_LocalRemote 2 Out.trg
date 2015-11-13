@@ -28,12 +28,12 @@
 	"Description": "Write file to the GrabCaster Demo OUT remote local folder",
 	"Channels": [
         {
-          "ChannelId": "{047B6D1E-A991-4CB1-ACAB-E83C3BDC0098}",
+          "ChannelId": "*",
           "ChannelName": "Channel Name",
           "ChannelDescription": "Channel Description",
           "Points": [
             {
-              "PointId": "{B0A46E60-443C-4E8A-A6ED-7F2CB34CF9E6}",
+              "PointId": "*",
               "Name": "Point Name",
               "Description": "Point Description"
             }

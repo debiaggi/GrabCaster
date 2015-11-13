@@ -22,9 +22,23 @@
 namespace GrabCaster.Framework.Common
 {
     using GrabCaster.Framework.Base;
-
     using Microsoft.ServiceBus.Messaging;
 
+    /// <summary>
+    /// The communication diretion.
+    /// </summary>
+    public enum CommunicationDiretion
+    {
+        /// <summary>
+        /// The off ramp.
+        /// </summary>
+        OffRamp,
+
+        /// <summary>
+        /// The on ramp.
+        /// </summary>
+        OnRamp
+    }
     /// <summary>
     /// The common.
     /// </summary>

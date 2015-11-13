@@ -18,6 +18,16 @@ cd..
 xcopy "Batch Files\Create new Clone.cmd" Framework\bin\Debug\*  /y
 xcopy "Batch Files\Create new Clone.cmd" Framework\bin\Release\*  /y
 copy Framework.Log.EventHubs\bin\Debug\GrabCaster.Framework.Log.EventHubs.dll Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Log.EventHubs\bin\Debug\GrabCaster.Framework.Log.EventHubs.pdb Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Log.EventHubs\bin\Release\GrabCaster.Framework.Log.EventHubs.dll Framework\bin\Release\Root_GrabCaster\* /y
+
+copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.dll Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.pdb Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Dcp.Azure\bin\Release\GrabCaster.Framework.Dcp.Azure.dll Framework\bin\Release\Root_GrabCaster\* /y
+
+copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.dll Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.pdb Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Dpp.Azure\bin\Release\GrabCaster.Framework.Dpp.Azure.dll Framework\bin\Release\Root_GrabCaster\* /y
+
 cd %~dp0
 

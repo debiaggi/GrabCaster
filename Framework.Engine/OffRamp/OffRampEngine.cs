@@ -30,9 +30,9 @@ namespace GrabCaster.Framework.Engine.OffRamp
     using GrabCaster.Framework.Base;
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Bubbling;
+    using GrabCaster.Framework.Contracts.Storage;
     using GrabCaster.Framework.Log;
     using GrabCaster.Framework.Serialization;
-
     using Microsoft.ServiceBus.Messaging;
 
     using Newtonsoft.Json;
@@ -84,10 +84,20 @@ namespace GrabCaster.Framework.Engine.OffRamp
         /// </summary>
         private static object classInstance;
 
+        private static object classInstanceDpp;
+        private static bool secondaryPersistProviderEnabled;
+        private static int secondaryPersistProviderByteSize;
+        private static MethodInfo methodPersistEventToBlob;
+        
         /// <summary>
         /// The parameters ret.
         /// </summary>
-        private static readonly object[] ParametersRet = { null };
+        private static readonly object[] ParametersSendMessage = { null };
+
+        /// <summary>
+        /// The parameters ret.
+        /// </summary>
+        private static readonly object[] ParametersCreateEventUpStream = { null };
 
         /// <summary>
         /// Initialize the onramp engine the OffRampPatternComponent variable is for the next version
@@ -102,7 +112,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             try
             {
-                LogEngine.ConsoleWriteLine("Check Abstract Logging Engine.", ConsoleColor.Yellow);
+                LogEngine.ConsoleWriteLine("Initialize Abstract Event Up Stream Engine.", ConsoleColor.Yellow);
 
                 // Load event up stream external component
                 var eventsUpStreamComponent = Path.Combine(
@@ -143,9 +153,37 @@ namespace GrabCaster.Framework.Engine.OffRamp
                     null, 
                     EventLogEntryType.Information);
 
-                // Inizialize the MSPC
-                LogEngine.ConsoleWriteLine("Initialize Abstract Event Up Stream Engine.", ConsoleColor.Yellow);
+                // Inizialize the Dpp
+                LogEngine.ConsoleWriteLine("Initialize Abstract Storage Provider Engine.", ConsoleColor.Yellow);
                 methodCreateEventUpStream.Invoke(classInstance, null);
+
+                secondaryPersistProviderEnabled= Configuration.SecondaryPersistProviderEnabled();
+                secondaryPersistProviderByteSize = Configuration.SecondaryPersistProviderByteSize();
+
+                // Load the abrstracte persistent provider
+                var devicePersistentProviderComponent = Path.Combine(
+                                    Configuration.DirectoryOperativeRootExeName(),
+                                    Configuration.PersistentProviderComponent());
+
+                // Create the reflection method cached 
+                var assemblyPersist = Assembly.LoadFrom(devicePersistentProviderComponent);
+
+                // Main class logging
+                var assemblyClassDpp = (from t in assemblyPersist.GetTypes()
+                                     let attributes = t.GetCustomAttributes(typeof(DevicePersistentProviderContract), true)
+                                     where t.IsClass && attributes != null && attributes.Length > 0
+                                     select t).First();
+
+                var classAttributeDpp = assemblyClassDpp.GetCustomAttributes(typeof(DevicePersistentProviderContract), true);
+
+                if (classAttributeDpp.Length > 0)
+                {
+                    Debug.WriteLine("DevicePersistentProviderContract - methodPersistEvent caller");
+                    methodPersistEventToBlob = assemblyClassDpp.GetMethod("PersistEventToBlob");
+                }
+
+                classInstanceDpp = Activator.CreateInstance(assemblyClassDpp, null);
+
                 return true;
             }
             catch (Exception ex)
@@ -196,8 +234,21 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 var serializedMessage = SerializationEngine.ObjectToByteArray(bubblingTriggerConfiguration);
                 var messageId = Guid.NewGuid().ToString();
                 EventData data = null;
-                data = new EventData(serializedMessage);
 
+                // IF > 256kb then persist
+                if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
+                {
+                    data = new EventData(Encoding.UTF8.GetBytes(messageId));
+                    ParametersCreateEventUpStream[0] = serializedMessage;
+                    ParametersCreateEventUpStream[1] = messageId;
+                    methodPersistEventToBlob.Invoke(classInstance, ParametersSendMessage);
+                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), true);
+                }
+                else
+                {
+                    data = new EventData(serializedMessage);
+                    data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
+                }
                 // Load custome Properties
                 if (properties != null)
                 {
@@ -373,8 +424,8 @@ namespace GrabCaster.Framework.Engine.OffRamp
             foreach (var message in objects)
             {
                 // Send message to MSPC 
-                ParametersRet[0] = message;
-                methodSendMessage.Invoke(classInstance, ParametersRet);
+                ParametersSendMessage[0] = message;
+                methodSendMessage.Invoke(classInstance, ParametersSendMessage);
             }
         }
     }
