@@ -51,7 +51,6 @@ namespace GrabCaster.Framework.Engine.OnRamp
         private static bool secondaryPersistProviderEnabled;
         private static int secondaryPersistProviderByteSize;
         private static MethodInfo methodPersistEventFromBlob;
-        private static MethodInfo methodPersistMessage;
         private static readonly object[] ParametersPersistEventFromBlob = { null };
 
         public static void Init()
@@ -81,10 +80,8 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 if (classAttributeDpp.Length > 0)
                 {
                     Debug.WriteLine("DevicePersistentProviderContract - methodPersistEvent caller");
-                    methodPersistEventFromBlob = assemblyClassDpp.GetMethod("PersistEventFromBlob");
-                    Debug.WriteLine("DevicePersistentProviderContract - PersistMessage caller");
-                    methodPersistMessage = assemblyClassDpp.GetMethod("PersistMessage");
-                    
+                    methodPersistEventFromBlob = assemblyClassDpp.GetMethod("PersistEventFromStorage");
+                   
                 }
 
                 classInstanceDpp = Activator.CreateInstance(assemblyClassDpp, null);

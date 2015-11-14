@@ -112,9 +112,6 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.ConsoleWriteLine("Initialize Engine.", ConsoleColor.Cyan);
                 EventsEngine.InitializeEventEngine();
 
-                //Init Message ingestor
-                MessageIngestor.Init();
-
                 //Create the two sends layers
                 // in EventsEngine
                 if (!Configuration.DisableDeviceProviderInterface())

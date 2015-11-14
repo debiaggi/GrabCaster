@@ -97,7 +97,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
         /// <summary>
         /// The parameters ret.
         /// </summary>
-        private static readonly object[] ParametersCreateEventUpStream = { null };
+        private static readonly object[] ParametersCreateEventUpStream = { null,null };
 
         /// <summary>
         /// Initialize the onramp engine the OffRampPatternComponent variable is for the next version
@@ -179,7 +179,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 if (classAttributeDpp.Length > 0)
                 {
                     Debug.WriteLine("DevicePersistentProviderContract - methodPersistEvent caller");
-                    methodPersistEventToBlob = assemblyClassDpp.GetMethod("PersistEventToBlob");
+                    methodPersistEventToBlob = assemblyClassDpp.GetMethod("PersistEventToStorage");
                 }
 
                 classInstanceDpp = Activator.CreateInstance(assemblyClassDpp, null);
@@ -241,7 +241,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                     data = new EventData(Encoding.UTF8.GetBytes(messageId));
                     ParametersCreateEventUpStream[0] = serializedMessage;
                     ParametersCreateEventUpStream[1] = messageId;
-                    methodPersistEventToBlob.Invoke(classInstance, ParametersSendMessage);
+                    methodPersistEventToBlob.Invoke(classInstanceDpp, ParametersCreateEventUpStream);
                     data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), true);
                 }
                 else
