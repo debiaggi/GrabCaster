@@ -25,6 +25,10 @@ copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.dll Framework\
 copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.pdb Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Dcp.Azure\bin\Release\GrabCaster.Framework.Dcp.Azure.dll Framework\bin\Release\Root_GrabCaster\* /y
 
+copy Framework.Dcp.Redis\bin\Debug\GrabCaster.Framework.Dcp.Redis.dll Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Dcp.Redis\bin\Debug\GrabCaster.Framework.Dcp.Redis.pdb Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Dcp.Redis\bin\Release\GrabCaster.Framework.Dcp.Redis.dll Framework\bin\Release\Root_GrabCaster\* /y
+
 copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.dll Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.pdb Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Dpp.Azure\bin\Release\GrabCaster.Framework.Dpp.Azure.dll Framework\bin\Release\Root_GrabCaster\* /y

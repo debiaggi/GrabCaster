@@ -101,6 +101,24 @@ namespace GrabCaster.Framework.Engine.OnRamp
         }
         public static void IngestMessagge(object message)
         {
+            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("localhost");
+            // ^^^ store and re-use this!!!
+            // ConnectionMultiplexer redis = ConnectionMultiplexer.Connect("server1:6379,server2:6379");
+
+            ISubscriber sub = redis.GetSubscriber();
+
+            sub.Subscribe("messages", (channel, message) => {
+
+                byte[] byteArray = (byte[])message;
+
+
+                var o = GrabCaster.Framework.Serialization.SerializationEngine.ByteArrayToObject(byteArray);
+                ClassLibrary1.GrabCasterMessage gcm = (GrabCasterMessage)o;
+
+                File.WriteAllBytes("c:\\2.png", gcm.Body);
+                Console.WriteLine("done!");
+            });
+
             string senderId;
             string senderDescription;
             byte[] eventDataByte = null;

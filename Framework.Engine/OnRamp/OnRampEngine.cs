@@ -118,7 +118,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
             // Load event up stream external component
             var eventsUpStreamComponent = Path.Combine(
                 Configuration.DirectoryOperativeRootExeName(), 
-                Configuration.EventsDownStreamComponent());
+                Configuration.EventsStreamComponent());
 
             // Create the reflection method cached 
             var assembly = Assembly.LoadFrom(eventsUpStreamComponent);

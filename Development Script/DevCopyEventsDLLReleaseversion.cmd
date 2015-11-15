@@ -12,7 +12,6 @@ copy Events\FileEvent\bin\Release\GrabCaster.SDK.FileEvent.dll Framework\bin\Rel
 copy Events\MessageBoxEvent\bin\Release\GrabCaster.SDK.MessageBoxEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 copy Events\NOPEvent\bin\Release\GrabCaster.SDK.NopEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 copy Events\PowershellEvent\bin\Release\GrabCaster.SDK.PowerShellEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
-copy Events\RunProcessEvent\bin\Release\GrabCaster.SDK.RunProcessEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 copy Events\TwilioEvent\bin\Release\GrabCaster.SDK.TwilioEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 copy Events\ChatEvent\bin\Release\GrabCaster.SDK.ChatEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 cd %~dp0

@@ -263,16 +263,6 @@ namespace GrabCaster.Framework.Base
             return ConfigurationStorage.SecondaryPersistProviderByteSize;
         }
 
-        /// <summary>
-        ///     Event Down Stream component used to receive messages (EventHubs/File/.)
-        /// </summary>
-        /// <returns></returns>
-        public static string EventsDownStreamComponent()
-        {
-            return ConfigurationStorage.EventsDownStreamComponent;
-        }
-
-        
         public static string PersistentProviderComponent()
         {
             return ConfigurationStorage.PersistentProviderComponent;
@@ -282,9 +272,9 @@ namespace GrabCaster.Framework.Base
         ///     Event Up Stream component used to send messages (EventHubs/File/.)
         /// </summary>
         /// <returns></returns>
-        public static string EventsUpStreamComponent()
+        public static string EventsStreamComponent()
         {
-            return ConfigurationStorage.EventsUpStreamComponent;
+            return ConfigurationStorage.EventsStreamComponent;
         }
         /// <summary>
         ///     Log pattern to use (EventHubs/File/.)
@@ -445,6 +435,10 @@ namespace GrabCaster.Framework.Base
             return ConfigurationStorage.AzureNameSpaceConnectionString;
         }
 
+        public static string RedisConnectionString()
+        {
+            return ConfigurationStorage.RedisConnectionString;
+        }
         /// <summary>
         ///     EH group name used by service
         /// </summary>
@@ -707,9 +701,7 @@ namespace GrabCaster.Framework.Base
         [DataMember]
         public string PersistentProviderComponent { get; set; }
         [DataMember]
-        public string EventsDownStreamComponent { get; set; }
-        [DataMember]
-        public string EventsUpStreamComponent { get; set; }
+        public string EventsStreamComponent { get; set; }
 
         [DataMember]
         public string LoggingComponent { get; set; }
@@ -743,6 +735,9 @@ namespace GrabCaster.Framework.Base
         //Main Azure connection string
         [DataMember]
         public string AzureNameSpaceConnectionString { get; set; }
+
+        [DataMember]
+        public string RedisConnectionString { get; set; }
 
         /// <summary>
         ///     EventHub name used by station

@@ -117,7 +117,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 // Load event up stream external component
                 var eventsUpStreamComponent = Path.Combine(
                     Configuration.DirectoryOperativeRootExeName(), 
-                    Configuration.EventsUpStreamComponent());
+                    Configuration.EventsStreamComponent());
 
                 // Create the reflection method cached 
                 var assembly = Assembly.LoadFrom(eventsUpStreamComponent);
@@ -226,6 +226,24 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             try
             {
+
+                byte[] byteArray = File.ReadAllBytes("c:\\1.png");
+
+                ClassLibrary1.GrabCasterMessage gcm = new GrabCasterMessage(byteArray);
+
+                gcm.Properties.Add("a1", "s1");
+                gcm.Properties.Add("a2", "s2");
+                gcm.Properties.Add("a3", "s3");
+
+                byte[] byteArrayBytes = GrabCaster.Framework.Serialization.SerializationEngine.ObjectToByteArray(gcm);
+
+
+                RedisValue redisValue = byteArrayBytes;
+
+                sub.Publish("messages", redisValue);
+
+
+
                 // Meter and measuring purpose
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();

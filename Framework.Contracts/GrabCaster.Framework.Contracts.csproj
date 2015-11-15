@@ -107,6 +107,8 @@
     <Compile Include="Channels\Channel.cs" />
     <Compile Include="Channels\IChannel.cs" />
     <Compile Include="Log\IlogEngine.cs" />
+    <Compile Include="Messaging\IGrabCasterMessage.cs" />
+    <Compile Include="Messaging\GrabCasterMessage.cs" />
     <Compile Include="Messaging\IEventsDownstream.cs" />
     <Compile Include="Messaging\IEventsUpStream.cs" />
     <Compile Include="Serialization\Serialization.cs" />
