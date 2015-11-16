@@ -40,15 +40,10 @@
 
         }
 
-        public void SendMessage(object message)
+        public void SendMessage(SkeletonMessage message)
         {
-            EventData eventData = (EventData)message;
-            byte[] byteArray = eventData.GetBytes();
-
-            EventData eventData2 = new EventData(byteArray);
-
-            RedisValue redisValue = byteArray;
-            this.subscriber.Publish("*", redisValue);
+            byte[] byteArrayBytes = message.SerializeMessage();
+            this.subscriber.Publish("*", byteArrayBytes);
         }
     }
 }

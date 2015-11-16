@@ -19,7 +19,7 @@
 //    limitations under the License. 
 // </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.Serialization
+namespace GrabCaster.Framework.Serialization.Xml
 {
     using System;
     using System.Collections.Generic;

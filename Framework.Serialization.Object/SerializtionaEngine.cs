@@ -19,7 +19,7 @@
 //    limitations under the License. 
 // </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.Serialization
+namespace GrabCaster.Framework.Serialization.Object
 {
     using System.IO;
     using System.Runtime.Serialization.Formatters.Binary;

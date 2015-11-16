@@ -30,9 +30,9 @@ namespace GrabCaster.Framework.Engine.OffRamp
     using GrabCaster.Framework.Base;
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Bubbling;
-    using GrabCaster.Framework.Contracts.Storage;
+    using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Log;
-    using GrabCaster.Framework.Serialization;
+    using GrabCaster.Framework.Serialization.Object;
     using Microsoft.ServiceBus.Messaging;
 
     using Newtonsoft.Json;
@@ -226,24 +226,6 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             try
             {
-
-                byte[] byteArray = File.ReadAllBytes("c:\\1.png");
-
-                ClassLibrary1.GrabCasterMessage gcm = new GrabCasterMessage(byteArray);
-
-                gcm.Properties.Add("a1", "s1");
-                gcm.Properties.Add("a2", "s2");
-                gcm.Properties.Add("a3", "s3");
-
-                byte[] byteArrayBytes = GrabCaster.Framework.Serialization.SerializationEngine.ObjectToByteArray(gcm);
-
-
-                RedisValue redisValue = byteArrayBytes;
-
-                sub.Publish("messages", redisValue);
-
-
-
                 // Meter and measuring purpose
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
@@ -251,12 +233,12 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 // Create EH data message
                 var serializedMessage = SerializationEngine.ObjectToByteArray(bubblingTriggerConfiguration);
                 var messageId = Guid.NewGuid().ToString();
-                EventData data = null;
+                SkeletonMessage data = new SkeletonMessage(null);
 
                 // IF > 256kb then persist
                 if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
                 {
-                    data = new EventData(Encoding.UTF8.GetBytes(messageId));
+                    data.Body = Encoding.UTF8.GetBytes(messageId);
                     ParametersCreateEventUpStream[0] = serializedMessage;
                     ParametersCreateEventUpStream[1] = messageId;
                     methodPersistEventToBlob.Invoke(classInstanceDpp, ParametersCreateEventUpStream);
@@ -264,7 +246,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 }
                 else
                 {
-                    data = new EventData(serializedMessage);
+                    data.Body = serializedMessage;
                     data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
                 }
                 // Load custome Properties
@@ -377,7 +359,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 // Meter and measuring purpose
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
-                var data = new EventData(Encoding.UTF8.GetBytes(string.Empty));
+                var data = new SkeletonMessage(Encoding.UTF8.GetBytes(string.Empty));
                 data.Properties.Add(Configuration.MessageDataProperty.Persisting.ToString(), false);
 
                 // Set main security subscription

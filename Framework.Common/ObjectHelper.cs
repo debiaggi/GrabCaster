@@ -22,6 +22,7 @@
 namespace GrabCaster.Framework.Common
 {
     using GrabCaster.Framework.Serialization;
+    using GrabCaster.Framework.Serialization.Object;
 
     /// <summary>
     /// The object helper.

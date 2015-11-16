@@ -92,9 +92,13 @@
       <Project>{14ba110c-7065-4099-bde5-313f984b913d}</Project>
       <Name>GrabCaster.Framework.Base</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Serialization\GrabCaster.Framework.Serialization.csproj">
-      <Project>{afee871c-778b-4a26-9609-609d922d9653}</Project>
-      <Name>GrabCaster.Framework.Serialization</Name>
+    <ProjectReference Include="..\Framework.Contracts\GrabCaster.Framework.Contracts.csproj">
+      <Project>{48b1dc31-f74d-41d2-aa27-7a76f2e198b6}</Project>
+      <Name>GrabCaster.Framework.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
+      <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
+      <Name>GrabCaster.Framework.Serialization.Object</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

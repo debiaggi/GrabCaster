@@ -31,7 +31,6 @@ namespace GrabCaster.Framework.Dcp.Azure
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Log;
-    using GrabCaster.Framework.Serialization;
     using Microsoft.ServiceBus;
     using Microsoft.ServiceBus.Messaging;
 
@@ -86,11 +85,13 @@ namespace GrabCaster.Framework.Dcp.Azure
         ///     invio importantissimo perche spedisce eventi e oggetti in array bytela dimensione e strategica
         /// </summary>
         /// <param name="message"></param>
-        public void SendMessage(object message)
+        public void SendMessage(SkeletonMessage message)
         {
             try
             {
-                eventHubClient.Send((EventData)message);
+                byte[] byteArrayBytes = message.SerializeMessage();
+                EventData evtData = new EventData(byteArrayBytes);
+                eventHubClient.Send(evtData);
             }
             catch (Exception ex)
             {

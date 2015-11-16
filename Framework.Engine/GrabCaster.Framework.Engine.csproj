@@ -153,9 +153,13 @@
       <Project>{893f7dcf-98c1-45d1-9154-1a5a361d4eca}</Project>
       <Name>GrabCaster.Framework.PerfCounters</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Serialization\GrabCaster.Framework.Serialization.csproj">
+    <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
+      <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
+      <Name>GrabCaster.Framework.Serialization.Object</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Serialization.Xml\GrabCaster.Framework.Serialization.Xml.csproj">
       <Project>{afee871c-778b-4a26-9609-609d922d9653}</Project>
-      <Name>GrabCaster.Framework.Serialization</Name>
+      <Name>GrabCaster.Framework.Serialization.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Storage\GrabCaster.Framework.Storage.csproj">
       <Project>{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}</Project>

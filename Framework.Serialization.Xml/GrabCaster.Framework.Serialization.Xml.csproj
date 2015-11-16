@@ -7,8 +7,8 @@
     <ProjectGuid>{AFEE871C-778B-4A26-9609-609D922D9653}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GrabCaster.Framework.Serialization</RootNamespace>
-    <AssemblyName>GrabCaster.Framework.Serialization</AssemblyName>
+    <RootNamespace>GrabCaster.Framework.Serialization.Xml</RootNamespace>
+    <AssemblyName>GrabCaster.Framework.Serialization.Xml</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -51,19 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SerializtionaEngine.cs" />
     <Compile Include="SerializationHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Contracts\GrabCaster.Framework.Contracts.csproj">
       <Project>{48b1dc31-f74d-41d2-aa27-7a76f2e198b6}</Project>
       <Name>GrabCaster.Framework.Contracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

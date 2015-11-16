@@ -107,8 +107,8 @@
     <Compile Include="Channels\Channel.cs" />
     <Compile Include="Channels\IChannel.cs" />
     <Compile Include="Log\IlogEngine.cs" />
-    <Compile Include="Messaging\IGrabCasterMessage.cs" />
-    <Compile Include="Messaging\GrabCasterMessage.cs" />
+    <Compile Include="Messaging\ISkeletonMessage.cs" />
+    <Compile Include="Messaging\SkeletonMessage.cs" />
     <Compile Include="Messaging\IEventsDownstream.cs" />
     <Compile Include="Messaging\IEventsUpStream.cs" />
     <Compile Include="Serialization\Serialization.cs" />
@@ -135,6 +135,10 @@
     <ProjectReference Include="..\Framework.Base\GrabCaster.Framework.Base.csproj">
       <Project>{14ba110c-7065-4099-bde5-313f984b913d}</Project>
       <Name>GrabCaster.Framework.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
+      <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
+      <Name>GrabCaster.Framework.Serialization.Object</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

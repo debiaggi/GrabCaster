@@ -28,6 +28,6 @@ namespace GrabCaster.Framework.Contracts.Messaging
         /// <param name="message">
         /// The message.
         /// </param>
-        void SendMessage(object message);
+        void SendMessage(SkeletonMessage message);
     }
 }

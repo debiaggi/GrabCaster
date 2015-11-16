@@ -23,6 +23,7 @@ namespace GrabCaster.Framework.Contracts.Globals
 {
     using GrabCaster.Framework.Contracts.Bubbling;
     using GrabCaster.Framework.Contracts.Events;
+    using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Contracts.Triggers;
 
     /// <summary>
@@ -53,7 +54,7 @@ namespace GrabCaster.Framework.Contracts.Globals
     /// <param name="message">
     /// The message.
     /// </param>
-    public delegate void SetEventOnRampMessageReceived(object message);
+    public delegate void SetEventOnRampMessageReceived(SkeletonMessage message);
 
     /// <summary>
     /// Global Off Ramp Delegate used by on ramp sender.

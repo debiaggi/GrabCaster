@@ -56,8 +56,8 @@ namespace GrabCaster.Framework.Dcp.Redis
 
                 sub.Subscribe("*", (channel, message) => {
                     byte[] byteArray = (byte[])message;
-                    EventData e = new EventData(byteArray);
-                    setEventOnRampMessageReceived(e);
+                    SkeletonMessage skeletonMessage = new SkeletonMessage(byteArray);
+                    setEventOnRampMessageReceived(skeletonMessage);
                 });
                 Thread.Sleep(Timeout.Infinite);
             }

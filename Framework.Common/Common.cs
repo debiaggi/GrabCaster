@@ -22,6 +22,8 @@
 namespace GrabCaster.Framework.Common
 {
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Messaging;
+
     using Microsoft.ServiceBus.Messaging;
 
     /// <summary>
@@ -56,13 +58,13 @@ namespace GrabCaster.Framework.Common
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public static object GetMessageContextPropertyValue(
-            EventData eventData, 
+        public static object adsdGetMessageContextPropertyValue(
+            ISkeletonMessage skeletonMessage, 
             Configuration.MessageDataProperty messageDataProperty)
         {
             try
             {
-                return eventData.Properties[messageDataProperty.ToString()];
+                return skeletonMessage.Properties[messageDataProperty.ToString()];
             }
             catch
             {

@@ -168,7 +168,8 @@ namespace GrabCaster.Framework.Dcp.Azure
                     var message = receiver?.Receive();
                     if (message != null)
                     {
-                        SetEventOnRampMessageReceived(message);
+                        SkeletonMessage skeletonMessage = new SkeletonMessage(message.GetBytes());
+                        SetEventOnRampMessageReceived(skeletonMessage);
                     }
                 }
             }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary1
+namespace GrabCaster.Framework.Contracts.Messaging
 {
-    public interface IGrabCasterMessage
+    public interface ISkeletonMessage
     {
         IDictionary<string, object> Properties { get; set; }
 

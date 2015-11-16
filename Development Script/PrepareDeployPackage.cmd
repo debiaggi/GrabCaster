@@ -38,6 +38,17 @@ xcopy DefaultFiles\PersistentStorage Setup\bin\Debug\Deploy\PersistentStorage\* 
 copy Framework.Log.EventHubs\bin\Debug\GrabCaster.Framework.Log.EventHubs.dll Setup\bin\Debug\Deploy\Root_GrabCaster\* /y
 copy Framework.Log.EventHubs\bin\Release\GrabCaster.Framework.Log.EventHubs.dll Setup\bin\Release\Deploy\Root_GrabCaster\* /y
 
+
+copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.dll Setup\bin\Debug\Deploy\Root_GrabCaster\* /y
+copy Framework.Dcp.Azure\bin\Release\GrabCaster.Framework.Dcp.Azure.dll Setup\bin\Release\Deploy\Root_GrabCaster\* /y
+
+copy Framework.Dcp.Redis\bin\Debug\GrabCaster.Framework.Dcp.Redis.dll Setup\bin\Debug\Deploy\Root_GrabCaster\* /y
+copy Framework.Dcp.Redis\bin\Release\GrabCaster.Framework.Dcp.Redis.dll Setup\bin\Release\Deploy\Root_GrabCaster\* /y
+
+copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.dll Setup\bin\Debug\Deploy\Root_GrabCaster\* /y
+copy Framework.Dpp.Azure\bin\Release\GrabCaster.Framework.Dpp.Azure.dll Setup\bin\Release\Deploy\Root_GrabCaster\* /y
+
+
 cd %~dp0
 echo Deployment pachage ready to go.
 

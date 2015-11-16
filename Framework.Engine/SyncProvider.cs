@@ -37,7 +37,7 @@ namespace GrabCaster.Framework.Engine
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Log;
     using GrabCaster.Framework.Serialization;
-
+    using GrabCaster.Framework.Serialization.Xml;
     using Newtonsoft.Json;
 
     using Formatting = Newtonsoft.Json.Formatting;
