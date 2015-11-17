@@ -88,7 +88,7 @@ namespace GrabCaster.Framework.Log
         {
             try
             {
-                Enabled = Configuration.LoggingStateEnabled();
+                Enabled = Configuration.LoggingEngineEnabled();
                 Verbose = Configuration.LoggingVerbose();
                 //Load logging external component
                 var loggingComponent = Path.Combine(

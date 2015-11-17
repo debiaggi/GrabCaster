@@ -89,7 +89,7 @@ namespace GrabCaster.Framework.Dcp.Azure
         {
             try
             {
-                byte[] byteArrayBytes = message.SerializeMessage();
+                byte[] byteArrayBytes = SkeletonMessage.SerializeMessage(message);
                 EventData evtData = new EventData(byteArrayBytes);
                 eventHubClient.Send(evtData);
             }

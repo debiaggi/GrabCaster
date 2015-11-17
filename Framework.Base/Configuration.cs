@@ -544,9 +544,9 @@ namespace GrabCaster.Framework.Base
         ///     Enable log
         /// </summary>
         /// <returns></returns>
-        public static bool LoggingStateEnabled()
+        public static bool LoggingEngineEnabled()
         {
-            return ConfigurationStorage.LoggingStateEnabled;
+            return ConfigurationStorage.LoggingEngineEnabled;
         }
 
         /// <summary>
@@ -822,7 +822,7 @@ namespace GrabCaster.Framework.Base
         /// </summary>
         /// <returns></returns>
         [DataMember]
-        public bool LoggingStateEnabled { get; set; }
+        public bool LoggingEngineEnabled { get; set; }
 
         /// <summary>
         ///     Global Trigger polling time (Milliseconds)

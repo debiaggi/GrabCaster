@@ -95,7 +95,7 @@ namespace GrabCaster.Framework.Engine
                 var current = AppDomain.CurrentDomain;
                 current.AssemblyResolve += HandleAssemblyResolve;
 
-                LogEngine.Enabled = Configuration.LoggingStateEnabled();
+                LogEngine.Enabled = Configuration.LoggingEngineEnabled();
                 LogEngine.ConsoleWriteLine("Load Engine configuration.", ConsoleColor.White);
 
                 //****************************Check for updates

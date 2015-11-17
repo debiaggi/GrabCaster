@@ -70,7 +70,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                                           TransportType.Amqp
                                   };
 
-                //If not exit it create one
+                //If not exit it create one, drop brachets because Azure rules
                 var eventHubConsumerGroup =
                     string.Concat(Configuration.EngineName, "_", Configuration.ChannelId())
                         .Replace("{", "")
@@ -78,7 +78,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                         .Replace("-", "");
                 var nsManager = NamespaceManager.CreateFromConnectionString(builder.ToString());
                 LogEngine.ConsoleWriteLine(
-                    $"Initializing GROUP NAME {eventHubConsumerGroup}",
+                    $"Initializing Group Name {eventHubConsumerGroup}",
                     ConsoleColor.White);
 
                 LogEngine.ConsoleWriteLine("Start DirectRegisterEventReceiving.", ConsoleColor.White);
@@ -168,7 +168,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                     var message = receiver?.Receive();
                     if (message != null)
                     {
-                        SkeletonMessage skeletonMessage = new SkeletonMessage(message.GetBytes());
+                        SkeletonMessage skeletonMessage = SkeletonMessage.DeserializeMessage(message.GetBytes());
                         SetEventOnRampMessageReceived(skeletonMessage);
                     }
                 }

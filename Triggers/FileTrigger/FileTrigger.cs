@@ -97,17 +97,18 @@ namespace GrabCaster.SDK.FileTrigger
                     var reg = new Regex(this.RegexFilePattern);
                     if (Directory.GetFiles(this.InputDirectory, "*.txt").Where(path => reg.IsMatch(path)).ToList().Any())
                     {
-                        var file =
-                            Directory.GetFiles(this.InputDirectory, "*.txt")
-                                .Where(path => reg.IsMatch(path))
-                                .ToList()
-                                .First();
-                        var data = File.ReadAllBytes(file);
-                        PersistentProvider.PersistMessage(context);
-                        File.Delete(Path.ChangeExtension(file, this.DoneExtensionName));
-                        File.Move(file, Path.ChangeExtension(file, this.DoneExtensionName));
-                        this.DataContext = data;
-                        setEventActionTrigger(this, context);
+                        var files =
+                            Directory.GetFiles(this.InputDirectory, "*.txt").Where(path => reg.IsMatch(path)).ToList();
+                        foreach (var file in files)
+                        {
+                            var data = File.ReadAllBytes(file);
+                            PersistentProvider.PersistMessage(context);
+                            File.Delete(Path.ChangeExtension(file, this.DoneExtensionName));
+                            File.Move(file, Path.ChangeExtension(file, this.DoneExtensionName));
+                            this.DataContext = data;
+                            setEventActionTrigger(this, context);
+                        }
+
                     }
 
                     Thread.Sleep(this.PollingTime);

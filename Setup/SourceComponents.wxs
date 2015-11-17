@@ -41,11 +41,17 @@
             <Component Id="cmp1C675D13C4E9398655C308C42CFB1A49" Guid="*">
                 <File Id="fil666B54DE24AFE45CCA0869F22EE56722" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Log.pdb" />
             </Component>
-            <Component Id="cmp73C075D1B7C2056B6859D95E825DBECD" Guid="*">
-                <File Id="fil56A100DA731C6AD5C816ACF323C49833" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Serialization.dll" />
+            <Component Id="cmp2D4AF9650AE91A55456ABD7B3E8BA8F8" Guid="*">
+                <File Id="fil6DD31BF4679A92252A2C0610CAFAAAF8" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Serialization.Object.dll" />
             </Component>
-            <Component Id="cmp3A5A71637B24971BC859074CF5BE1348" Guid="*">
-                <File Id="fil8C5CCB2DEC53E617A5D04E93CB34E85F" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Serialization.pdb" />
+            <Component Id="cmp00E65D73AC2FF0EBB9F0605EC0850FD4" Guid="*">
+                <File Id="filF87865AFEA657D165E6DA8ED615E13C5" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Serialization.Object.pdb" />
+            </Component>
+            <Component Id="cmpD4B2C0595149341C5EDD8248A571F103" Guid="*">
+                <File Id="fil64E012AC216AC26CA999E4D5CF717C14" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Serialization.Xml.dll" />
+            </Component>
+            <Component Id="cmp432EFD560EB469F1D25B67D84423515A" Guid="*">
+                <File Id="fil97B63C178F57EB81202AAA3B35B8B7A8" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Serialization.Xml.pdb" />
             </Component>
             <Component Id="cmpF5FF9AD522D24DF45D606AA6957CC418" Guid="*">
                 <File Id="fil050A825D9AF44D695693E227F8B4D956" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Storage.dll" />
@@ -104,6 +110,9 @@
             <Component Id="cmpDE8441C6632EA7485D1D4120A2ECCFBC" Guid="*">
                 <File Id="fil4427D0A9CC5933D484616AFE26F619ED" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAzure.Storage.dll" />
             </Component>
+            <Component Id="cmp412348C80DE4B276CD42DAA49CF7F7DD" Guid="*">
+                <File Id="fil86283A0BF16A5BAE10630835E97541AA" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAzure.Storage.pdb" />
+            </Component>
             <Component Id="cmp7D2E15AE0D7F25504D918345D8A28D0E" Guid="*">
                 <File Id="fil53548E73490C142F0F09DFA1F84D69BE" KeyPath="yes" Source="$(var.SourcePath)\Newtonsoft.Json.dll" />
             </Component>
@@ -118,6 +127,12 @@
             </Component>
             <Component Id="cmp41DF4CA3DC4AE8ACC5B3B742FC3C8DF3" Guid="*">
                 <File Id="filF32115F2414C6B0546D089BE711C9608" KeyPath="yes" Source="$(var.SourcePath)\Roslyn.Compilers.dll" />
+            </Component>
+            <Component Id="cmpC25CEDD739B6914B250B47D02A9D98B6" Guid="*">
+                <File Id="filC5BBDB0FFEFCDC098588B3FFE7D614C7" KeyPath="yes" Source="$(var.SourcePath)\StackExchange.Redis.dll" />
+            </Component>
+            <Component Id="cmp33271ECC939DAE7C8CB4BC3337B3ED75" Guid="*">
+                <File Id="fil558BBB992EFB2D60842232FB65920082" KeyPath="yes" Source="$(var.SourcePath)\StackExchange.Redis.pdb" />
             </Component>
             <Component Id="cmp4170962584735901A34B6A3EBD2E3341" Guid="*">
                 <File Id="filC7C1E2E463F19EA4F4FC23D6232B792D" KeyPath="yes" Source="$(var.SourcePath)\System.Collections.Immutable.dll" />
@@ -236,6 +251,15 @@
                 </Directory>
             </Directory>
             <Directory Id="dir3AA1F22BD0D3AB3906990407CF290E3A" Name="Root_GrabCaster">
+                <Component Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" Guid="*">
+                    <File Id="fil78EB362DA34B10BBBE0EBE795538C8B6" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\GrabCaster.Framework.Dcp.Azure.dll" />
+                </Component>
+                <Component Id="cmpC5158289DC6BBDAA47FE54339681FF98" Guid="*">
+                    <File Id="fil1BE05302522A681865CBC6C3555D04BE" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\GrabCaster.Framework.Dcp.Redis.dll" />
+                </Component>
+                <Component Id="cmp01B17B199619965D97DAE9DAFFFD4042" Guid="*">
+                    <File Id="fil01B0149AD65FFF838817FE7987787CB9" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\GrabCaster.Framework.Dpp.Azure.dll" />
+                </Component>
                 <Component Id="cmpDFDD44701EED36E02F0A5239DB029F25" Guid="*">
                     <File Id="fil91F0652D045718C5BA41CECF8ABD8B6D" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\GrabCaster.Framework.Log.EventHubs.dll" />
                 </Component>
@@ -244,8 +268,8 @@
                         <Component Id="cmpBB72416D6BFE165411AED52A956497AD" Guid="*">
                             <File Id="filFBEB8CD134A035039A0BC084E6EDAB48" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Events\Demo AzureBlob.off" />
                         </Component>
-                        <Component Id="cmp6B521D9A7C3D2F2067A95B26BD875B86" Guid="*">
-                            <File Id="filA05EA07CCCD92862C44CD1B92183E182" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Events\Demo Chat.evn" />
+                        <Component Id="cmp2DF212CDE6616212A085D3E0862C9C7B" Guid="*">
+                            <File Id="fil4C460FACF6C6D28C096A012D1A764C3C" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Events\Demo Chat.off" />
                         </Component>
                         <Component Id="cmp313AC90D846EBAE19D35933717F87994" Guid="*">
                             <File Id="filFEBFC92D157FC2F32CED69D31E80BAF9" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Events\Demo CSharp.off" />
@@ -306,8 +330,8 @@
                         <Component Id="cmp9479F64F6B11315DC56F3D3DE2C27E50" Guid="*">
                             <File Id="fil5C2D4A648A3B0C87C81711A75361599A" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Triggers\Demo File In_LocalRemoteSingle 2 Out All Channels single Point.off" />
                         </Component>
-                        <Component Id="cmpC74180070A2471001D67519652C6B6F9" Guid="*">
-                            <File Id="fil14033A5E9456D7832B8851A9099F4A2B" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Triggers\Demo Notepad Chat.trg" />
+                        <Component Id="cmpC55373C55042AE4131954B8ECADA9924" Guid="*">
+                            <File Id="filE76D307FE288F13D64FA12D63DC5998A" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Triggers\Demo Notepad Chat.off" />
                         </Component>
                         <Component Id="cmp15A009E0B8631F9DBC8B17F4DF03E1EE" Guid="*">
                             <File Id="filD0646E3E62BBDC5D889F978B17187FC6" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Bubbling\Triggers\Demo PowerShell EventViewer 2 Local Notepad.off" />
@@ -435,8 +459,10 @@
             <ComponentRef Id="cmp41E60A4F28898E1B4135EC67539764DB" />
             <ComponentRef Id="cmpDE21D957017A1A71EE8F136B83EC37C5" />
             <ComponentRef Id="cmp1C675D13C4E9398655C308C42CFB1A49" />
-            <ComponentRef Id="cmp73C075D1B7C2056B6859D95E825DBECD" />
-            <ComponentRef Id="cmp3A5A71637B24971BC859074CF5BE1348" />
+            <ComponentRef Id="cmp2D4AF9650AE91A55456ABD7B3E8BA8F8" />
+            <ComponentRef Id="cmp00E65D73AC2FF0EBB9F0605EC0850FD4" />
+            <ComponentRef Id="cmpD4B2C0595149341C5EDD8248A571F103" />
+            <ComponentRef Id="cmp432EFD560EB469F1D25B67D84423515A" />
             <ComponentRef Id="cmpF5FF9AD522D24DF45D606AA6957CC418" />
             <ComponentRef Id="cmp0A272C269873B42D57FC3E9F6A0C5366" />
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
@@ -456,11 +482,14 @@
             <ComponentRef Id="cmp55826525D8A83C653AF2361B1FD57478" />
             <ComponentRef Id="cmpC3A492BC3022419519CAA57894548489" />
             <ComponentRef Id="cmpDE8441C6632EA7485D1D4120A2ECCFBC" />
+            <ComponentRef Id="cmp412348C80DE4B276CD42DAA49CF7F7DD" />
             <ComponentRef Id="cmp7D2E15AE0D7F25504D918345D8A28D0E" />
             <ComponentRef Id="cmp1B8F0BF803C3197C87D25DF7A57294A5" />
             <ComponentRef Id="cmp081661FEE03D98D766E01B0A2EE0BF53" />
             <ComponentRef Id="cmp61070C95980EB86FEBA6DC86BAAA225D" />
             <ComponentRef Id="cmp41DF4CA3DC4AE8ACC5B3B742FC3C8DF3" />
+            <ComponentRef Id="cmpC25CEDD739B6914B250B47D02A9D98B6" />
+            <ComponentRef Id="cmp33271ECC939DAE7C8CB4BC3337B3ED75" />
             <ComponentRef Id="cmp4170962584735901A34B6A3EBD2E3341" />
             <ComponentRef Id="cmp83C88D81694783DDF3FB3DC55084298C" />
             <ComponentRef Id="cmpF39CF0AD4AD3B8278B5CC56F407DDF1D" />
@@ -493,9 +522,12 @@
             <ComponentRef Id="cmp583F3BE74E1675B7F37764045C3F278B" />
             <ComponentRef Id="cmp39C7133F4437F9619A4A3F3466F0C298" />
             <ComponentRef Id="cmp6405DAECE45786C1A5470B0B6306253F" />
+            <ComponentRef Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" />
+            <ComponentRef Id="cmpC5158289DC6BBDAA47FE54339681FF98" />
+            <ComponentRef Id="cmp01B17B199619965D97DAE9DAFFFD4042" />
             <ComponentRef Id="cmpDFDD44701EED36E02F0A5239DB029F25" />
             <ComponentRef Id="cmpBB72416D6BFE165411AED52A956497AD" />
-            <ComponentRef Id="cmp6B521D9A7C3D2F2067A95B26BD875B86" />
+            <ComponentRef Id="cmp2DF212CDE6616212A085D3E0862C9C7B" />
             <ComponentRef Id="cmp313AC90D846EBAE19D35933717F87994" />
             <ComponentRef Id="cmp9CD4987CDFCA251CE0A9D0F87ADC54BA" />
             <ComponentRef Id="cmp8DA97D9B17E800525B12F6799DF61ECD" />
@@ -515,7 +547,7 @@
             <ComponentRef Id="cmpAB6DFF6643D9334A9D1EF6412E97963A" />
             <ComponentRef Id="cmp3A3A3A5CFE6A5175A07CDF61A40A48E9" />
             <ComponentRef Id="cmp9479F64F6B11315DC56F3D3DE2C27E50" />
-            <ComponentRef Id="cmpC74180070A2471001D67519652C6B6F9" />
+            <ComponentRef Id="cmpC55373C55042AE4131954B8ECADA9924" />
             <ComponentRef Id="cmp15A009E0B8631F9DBC8B17F4DF03E1EE" />
             <ComponentRef Id="cmp94AB93F185CD7C84DB43ED6AD480718F" />
             <ComponentRef Id="cmpA050CE80A7D38C43E44324F158D52B58" />

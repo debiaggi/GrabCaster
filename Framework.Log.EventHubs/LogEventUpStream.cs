@@ -58,7 +58,7 @@ namespace GrabCaster.Framework.Log.EventHubs
                 Debug.WriteLine($"LogEventUpStream - azureNameSpaceConnectionString={azureNameSpaceConnectionString}");
                 Debug.WriteLine($"LogEventUpStream - eventHubName={eventHubName}");
 
-                ////[TODO]ServiceBusEnvironment.SystemConnectivity.Mode = ConnectivityMode.Http;
+                // TODO ServiceBusEnvironment.SystemConnectivity.Mode = ConnectivityMode.Https;
 
                 var builder = new ServiceBusConnectionStringBuilder(azureNameSpaceConnectionString)
                 {

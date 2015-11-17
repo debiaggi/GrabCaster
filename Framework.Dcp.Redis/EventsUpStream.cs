@@ -42,7 +42,7 @@
 
         public void SendMessage(SkeletonMessage message)
         {
-            byte[] byteArrayBytes = message.SerializeMessage();
+            byte[] byteArrayBytes = SkeletonMessage.SerializeMessage(message);
             this.subscriber.Publish("*", byteArrayBytes);
         }
     }
