@@ -18,8 +18,8 @@ xcopy DefaultFiles\Demo\File2File\TestFile.txt Setup\bin\Debug\Deploy\*  /y
 xcopy DefaultFiles\License.txt Setup\bin\Debug\Deploy\*  /y
 xcopy "Batch Files\Create new Clone.cmd" Setup\bin\Debug\Deploy\*  /y
 xcopy "Documentation\GrabCaster v1.0- Technical Manual.pdf" Setup\bin\Debug\Deploy\*  /y
-xcopy Lab\bin\Debug\Laboratory.exe Setup\bin\Debug\Deploy\Demo\*  /y
-xcopy Lab\bin\Release\Laboratory.exe Setup\bin\Release\Deploy\Demo\*  /y
+xcopy Laboratory\bin\Debug\Laboratory.exe Setup\bin\Debug\Deploy\Demo\*  /y
+xcopy Laboratory\bin\Release\Laboratory.exe Setup\bin\Release\Deploy\Demo\*  /y
 xcopy Framework\bin\Debug\*.dll Setup\bin\Debug\Deploy\*  /y
 xcopy Framework\bin\Debug\*.pdb Setup\bin\Debug\Deploy\*  /y
 copy DefaultFiles\DeployDefault.cfg Setup\bin\Debug\Deploy\GrabCaster.cfg  /y

@@ -222,6 +222,9 @@
                 <Component Id="cmp194683952B90A53F1516B561DD799AB3" Guid="*">
                     <File Id="filBC2147557AABFCC5CBA688EDDE2BC5D9" KeyPath="yes" Source="$(var.SourcePath)\Demo\GetFile.ps1" />
                 </Component>
+                <Component Id="cmp0974B2DD229DC8F88EC8DD13B17AEDA3" Guid="*">
+                    <File Id="fil7B07BFB435C1EB5DEA7A6B9179A84D41" KeyPath="yes" Source="$(var.SourcePath)\Demo\Laboratory.exe" />
+                </Component>
                 <Directory Id="dir8645CB29ECF5380F210D01B540E90C25" Name="File2File">
                     <Component Id="cmpBB63CFD233BA1DE92DD6A65A252C9760" Guid="*">
                         <File Id="fil66B98CE0D1C2CCED5A4B18F28AA000F2" KeyPath="yes" Source="$(var.SourcePath)\Demo\File2File\TestFile.txt" />
@@ -537,6 +540,7 @@
             <ComponentRef Id="cmp0EC3A9855925DF94C869F3F2205D739C" />
             <ComponentRef Id="cmpBB8752D3E0CB1BA28806F5F56E9BEAD4" />
             <ComponentRef Id="cmp194683952B90A53F1516B561DD799AB3" />
+            <ComponentRef Id="cmp0974B2DD229DC8F88EC8DD13B17AEDA3" />
             <ComponentRef Id="cmpBB63CFD233BA1DE92DD6A65A252C9760" />
             <ComponentRef Id="cmp03DE8D94B65F5C26D5D54B35E63DAFE1" />
             <ComponentRef Id="cmpE723F3A215F69AA47475D2B5A3C51FE7" />
