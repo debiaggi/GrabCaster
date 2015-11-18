@@ -68,6 +68,21 @@
             <Component Id="cmp9D4F8AEA18EDF0E7AED3E741E097FD36" Guid="*">
                 <File Id="fil10A5E38A9AC302C6635F966CF5EB4147" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Azure.KeyVault.Core.dll" />
             </Component>
+            <Component Id="cmp33416C1CAA701B7B965765FBB4F75954" Guid="*">
+                <File Id="fil9A59C67D1502E11661F24F513AF4C796" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Build.dll" />
+            </Component>
+            <Component Id="cmpAB143892D4035C414EC0EC14B1357FD7" Guid="*">
+                <File Id="filF570E0D630D54E09FB2F4DAA9EB66BC8" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Build.Engine.dll" />
+            </Component>
+            <Component Id="cmpE8411CF767B17487E94A289352183877" Guid="*">
+                <File Id="fil5A47FC8CCD72F0130146BD1973DE16B8" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Build.Framework.dll" />
+            </Component>
+            <Component Id="cmp29833BBB994C08F770AF25CAE2848D14" Guid="*">
+                <File Id="fil109423B15F33CD78DCEE7511DA28BF54" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Build.Tasks.Core.dll" />
+            </Component>
+            <Component Id="cmp312616D445C3D9D102B5FA55D8938BE1" Guid="*">
+                <File Id="fil7BBDD3672BFA4D99FB30E7D5D8311D11" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Build.Utilities.Core.dll" />
+            </Component>
             <Component Id="cmp110000E03AFD18A55F8C8739C1F74C61" Guid="*">
                 <File Id="fil97FBF7A2070A6FEA41EDFBBBDBF32B8A" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.CodeAnalysis.CSharp.dll" />
             </Component>
@@ -82,6 +97,9 @@
             </Component>
             <Component Id="cmp959F6451B60C712BBB918A9663FD5892" Guid="*">
                 <File Id="fil40570D509D9A9A04056BE4D6FCCA5B77" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll" />
+            </Component>
+            <Component Id="cmp5A47CAE4FDAACB5DBA9EA8886CD6B30E" Guid="*">
+                <File Id="fil834160E3CB00E04931219CE35C522336" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.CodeAnalysis.Workspaces.Desktop.dll" />
             </Component>
             <Component Id="cmp6DEFFE46DC6D0505BDA3904FB67FE50D" Guid="*">
                 <File Id="filD3B09BD5687BAC288E9C3A382CD34820" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.CodeAnalysis.Workspaces.dll" />
@@ -468,11 +486,17 @@
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
             <ComponentRef Id="cmpB196EB4C55C07FD3F70C4514542D7E10" />
             <ComponentRef Id="cmp9D4F8AEA18EDF0E7AED3E741E097FD36" />
+            <ComponentRef Id="cmp33416C1CAA701B7B965765FBB4F75954" />
+            <ComponentRef Id="cmpAB143892D4035C414EC0EC14B1357FD7" />
+            <ComponentRef Id="cmpE8411CF767B17487E94A289352183877" />
+            <ComponentRef Id="cmp29833BBB994C08F770AF25CAE2848D14" />
+            <ComponentRef Id="cmp312616D445C3D9D102B5FA55D8938BE1" />
             <ComponentRef Id="cmp110000E03AFD18A55F8C8739C1F74C61" />
             <ComponentRef Id="cmp7E0C3F0D8FC5A83484881436CF9B53E8" />
             <ComponentRef Id="cmpB473F08E5C81DE5732FDC01D775246A2" />
             <ComponentRef Id="cmp236B673A04D4B785FB89DDFE7966CDD5" />
             <ComponentRef Id="cmp959F6451B60C712BBB918A9663FD5892" />
+            <ComponentRef Id="cmp5A47CAE4FDAACB5DBA9EA8886CD6B30E" />
             <ComponentRef Id="cmp6DEFFE46DC6D0505BDA3904FB67FE50D" />
             <ComponentRef Id="cmp6A672E318BA13D0753BE57344E862461" />
             <ComponentRef Id="cmpCBB118B4703C0F5E8B3F6AC53B6B5AA3" />
