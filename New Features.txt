@@ -1,0 +1,5 @@
+Sincronizzare i dati, sorgente e destinazione usando auto mapper, mi immagino di implementare un trasformation service che usa automapper e 
+i trigger e venti che integrano i db, praticamente sei in grado di sincronizzare tabelle e vari in modo semplice e veloce.
+
+DB <> trigger <> automapper <> GC <> automaper <> event <> DB
+
