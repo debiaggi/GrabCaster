@@ -3,32 +3,32 @@ cd..
 mkdir Framework\bin\Debug\Root_GrabCaster\Events
 
 REM COPY DLL
-copy Events\AzureBlobEvent\bin\Debug\GrabCaster.SDK.AzureBlobEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\AzureQueueEvent\bin\Debug\GrabCaster.SDK.AzureQueueEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\AzureTopicEvent\bin\Debug\GrabCaster.SDK.AzureTopicEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\BULKSQLServerEvent\bin\Debug\GrabCaster.SDK.BulksqlServerEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\CSharpEvent\bin\Debug\GrabCaster.SDK.CSharpEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\DialogBoxEvent\bin\Debug\GrabCaster.SDK.DialogBoxEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\EventHubEvent\bin\Debug\GrabCaster.SDK.EventHubEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\FileEvent\bin\Debug\GrabCaster.SDK.FileEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\MessageBoxEvent\bin\Debug\GrabCaster.SDK.MessageBoxEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\NOPEvent\bin\Debug\GrabCaster.SDK.NopEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\PowershellEvent\bin\Debug\GrabCaster.SDK.PowerShellEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\TwilioEvent\bin\Debug\GrabCaster.SDK.TwilioEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\ChatEvent\bin\Debug\GrabCaster.SDK.ChatEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\AzureBlobEvent\bin\Debug\GrabCaster.Framework.AzureBlobEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\AzureQueueEvent\bin\Debug\GrabCaster.Framework.AzureQueueEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\AzureTopicEvent\bin\Debug\GrabCaster.Framework.AzureTopicEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\BULKSQLServerEvent\bin\Debug\GrabCaster.Framework.BulksqlServerEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\CSharpEvent\bin\Debug\GrabCaster.Framework.CSharpEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\DialogBoxEvent\bin\Debug\GrabCaster.Framework.DialogBoxEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\EventHubEvent\bin\Debug\GrabCaster.Framework.EventHubEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\FileEvent\bin\Debug\GrabCaster.Framework.FileEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\MessageBoxEvent\bin\Debug\GrabCaster.Framework.MessageBoxEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\NOPEvent\bin\Debug\GrabCaster.Framework.NopEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\PowershellEvent\bin\Debug\GrabCaster.Framework.PowerShellEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\TwilioEvent\bin\Debug\GrabCaster.Framework.TwilioEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\ChatEvent\bin\Debug\GrabCaster.Framework.ChatEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
 
 REM COPY PDB
-copy Events\AzureBlobEvent\bin\Debug\GrabCaster.SDK.AzureBlobEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\AzureQueueEvent\bin\Debug\GrabCaster.SDK.AzureQueueEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\AzureTopicEvent\bin\Debug\GrabCaster.SDK.AzureTopicEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\BULKSQLServerEvent\bin\Debug\GrabCaster.SDK.BulksqlServerEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\CSharpEvent\bin\Debug\GrabCaster.SDK.CSharpEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\DialogBoxEvent\bin\Debug\GrabCaster.SDK.DialogBoxEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\EventHubEvent\bin\Debug\GrabCaster.SDK.EventHubEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\FileEvent\bin\Debug\GrabCaster.SDK.FileEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\MessageBoxEvent\bin\Debug\GrabCaster.SDK.MessageBoxEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\NOPEvent\bin\Debug\GrabCaster.SDK.NopEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\PowershellEvent\bin\Debug\GrabCaster.SDK.PowerShellEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\TwilioEvent\bin\Debug\GrabCaster.SDK.TwilioEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
-copy Events\ChatEvent\bin\Debug\GrabCaster.SDK.ChatEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\AzureBlobEvent\bin\Debug\GrabCaster.Framework.AzureBlobEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\AzureQueueEvent\bin\Debug\GrabCaster.Framework.AzureQueueEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\AzureTopicEvent\bin\Debug\GrabCaster.Framework.AzureTopicEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\BULKSQLServerEvent\bin\Debug\GrabCaster.Framework.BulksqlServerEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\CSharpEvent\bin\Debug\GrabCaster.Framework.CSharpEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\DialogBoxEvent\bin\Debug\GrabCaster.Framework.DialogBoxEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\EventHubEvent\bin\Debug\GrabCaster.Framework.EventHubEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\FileEvent\bin\Debug\GrabCaster.Framework.FileEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\MessageBoxEvent\bin\Debug\GrabCaster.Framework.MessageBoxEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\NOPEvent\bin\Debug\GrabCaster.Framework.NopEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\PowershellEvent\bin\Debug\GrabCaster.Framework.PowerShellEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\TwilioEvent\bin\Debug\GrabCaster.Framework.TwilioEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+copy Events\ChatEvent\bin\Debug\GrabCaster.Framework.ChatEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
 cd %~dp0

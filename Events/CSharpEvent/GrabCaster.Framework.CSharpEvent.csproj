@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{963E5489-5AE4-41B9-A11F-18B0E6E85C52}</ProjectGuid>
+    <ProjectGuid>{8CD4E3E1-5BC7-4EC7-8107-A1DA81F0AD43}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GrabCaster.SDK.NopEvent</RootNamespace>
-    <AssemblyName>GrabCaster.SDK.NopEvent</AssemblyName>
+    <RootNamespace>GrabCaster.Framework.CSharpEvent</RootNamespace>
+    <AssemblyName>GrabCaster.Framework.CSharpEvent</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Roslyn.Compilers">
+      <HintPath>..\..\Lib\Roslyn.Compilers.dll</HintPath>
+    </Reference>
+    <Reference Include="Roslyn.Compilers.CSharp">
+      <HintPath>..\..\Lib\Roslyn.Compilers.CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NopEvent.cs" />
+    <Compile Include="CSharpEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

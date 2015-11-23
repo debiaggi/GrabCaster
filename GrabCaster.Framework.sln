@@ -14,57 +14,57 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Contra
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Events", "Events", "{93BEE38A-3878-4B53-B4D7-AF27F17F3632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.AzureBlobEvent", "Events\AzureBlobEvent\GrabCaster.SDK.AzureBlobEvent.csproj", "{8AE36B4B-E58D-4F4B-966E-76E36F7030F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.AzureBlobEvent", "Events\AzureBlobEvent\GrabCaster.Framework.AzureBlobEvent.csproj", "{8AE36B4B-E58D-4F4B-966E-76E36F7030F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.AzureQueueEvent", "Events\AzureQueueEvent\GrabCaster.SDK.AzureQueueEvent.csproj", "{FD7A04A2-CD9E-433B-8587-C6FA79092B35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.AzureQueueEvent", "Events\AzureQueueEvent\GrabCaster.Framework.AzureQueueEvent.csproj", "{FD7A04A2-CD9E-433B-8587-C6FA79092B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.AzureTopicEvent", "Events\AzureTopicEvent\GrabCaster.SDK.AzureTopicEvent.csproj", "{81B0014C-CA15-4F0E-958B-B4A1FB0854AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.AzureTopicEvent", "Events\AzureTopicEvent\GrabCaster.Framework.AzureTopicEvent.csproj", "{81B0014C-CA15-4F0E-958B-B4A1FB0854AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.BulksqlServerEvent", "Events\BULKSQLServerEvent\GrabCaster.SDK.BulksqlServerEvent.csproj", "{D046B7EF-B8A1-47FA-A985-E1E2EF1454B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.BulksqlServerEvent", "Events\BULKSQLServerEvent\GrabCaster.Framework.BulksqlServerEvent.csproj", "{D046B7EF-B8A1-47FA-A985-E1E2EF1454B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.CSharpEvent", "Events\CSharpEvent\GrabCaster.SDK.CSharpEvent.csproj", "{8CD4E3E1-5BC7-4EC7-8107-A1DA81F0AD43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.CSharpEvent", "Events\CSharpEvent\GrabCaster.Framework.CSharpEvent.csproj", "{8CD4E3E1-5BC7-4EC7-8107-A1DA81F0AD43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.DialogBoxEvent", "Events\DialogBoxEvent\GrabCaster.SDK.DialogBoxEvent.csproj", "{519B1281-3F67-4723-919E-4738AEB8E139}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.DialogBoxEvent", "Events\DialogBoxEvent\GrabCaster.Framework.DialogBoxEvent.csproj", "{519B1281-3F67-4723-919E-4738AEB8E139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.EventHubEvent", "Events\EventHubEvent\GrabCaster.SDK.EventHubEvent.csproj", "{FDEA48AA-9BBC-406A-89A7-105234C719B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EventHubEvent", "Events\EventHubEvent\GrabCaster.Framework.EventHubEvent.csproj", "{FDEA48AA-9BBC-406A-89A7-105234C719B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.FileEvent", "Events\FileEvent\GrabCaster.SDK.FileEvent.csproj", "{928AA092-5C55-4A2A-A81D-666D105E6D7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.FileEvent", "Events\FileEvent\GrabCaster.Framework.FileEvent.csproj", "{928AA092-5C55-4A2A-A81D-666D105E6D7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.MessageBoxEvent", "Events\MessageBoxEvent\GrabCaster.SDK.MessageBoxEvent.csproj", "{72BAC541-AEEA-436E-A8BE-2BC233CC3970}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.MessageBoxEvent", "Events\MessageBoxEvent\GrabCaster.Framework.MessageBoxEvent.csproj", "{72BAC541-AEEA-436E-A8BE-2BC233CC3970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.NopEvent", "Events\NOPEvent\GrabCaster.SDK.NopEvent.csproj", "{963E5489-5AE4-41B9-A11F-18B0E6E85C52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.NopEvent", "Events\NOPEvent\GrabCaster.Framework.NopEvent.csproj", "{963E5489-5AE4-41B9-A11F-18B0E6E85C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.PowershellEvent", "Events\PowershellEvent\GrabCaster.SDK.PowershellEvent.csproj", "{678C2BA6-3283-48DA-A281-239A5A0A4085}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.PowershellEvent", "Events\PowershellEvent\GrabCaster.Framework.PowershellEvent.csproj", "{678C2BA6-3283-48DA-A281-239A5A0A4085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.TwilioEvent", "Events\TwilioEvent\GrabCaster.SDK.TwilioEvent.csproj", "{530718A0-0ED4-456C-968D-5A60933AE7A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.TwilioEvent", "Events\TwilioEvent\GrabCaster.Framework.TwilioEvent.csproj", "{530718A0-0ED4-456C-968D-5A60933AE7A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Triggers", "Triggers", "{A2E7CCE3-2499-4928-8D5B-1E83C1EFE08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.AzureBlobTrigger", "Triggers\AzureBlobTrigger\GrabCaster.SDK.AzureBlobTrigger.csproj", "{2B784344-7969-4274-BE97-079C5F5360E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.AzureBlobTrigger", "Triggers\AzureBlobTrigger\GrabCaster.Framework.AzureBlobTrigger.csproj", "{2B784344-7969-4274-BE97-079C5F5360E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.AzureQueueTrigger", "Triggers\AzureQueueTrigger\GrabCaster.SDK.AzureQueueTrigger.csproj", "{4EDDA24D-DC45-4E2B-B6E8-1DB2BFD78F07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.AzureQueueTrigger", "Triggers\AzureQueueTrigger\GrabCaster.Framework.AzureQueueTrigger.csproj", "{4EDDA24D-DC45-4E2B-B6E8-1DB2BFD78F07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.AzureTopicTrigger", "Triggers\AzureTopicTrigger\GrabCaster.SDK.AzureTopicTrigger.csproj", "{BFCDAEF5-83A3-4961-B251-9D2157681367}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.AzureTopicTrigger", "Triggers\AzureTopicTrigger\GrabCaster.Framework.AzureTopicTrigger.csproj", "{BFCDAEF5-83A3-4961-B251-9D2157681367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.CSharpTrigger", "Triggers\CSharpTrigger\GrabCaster.SDK.CSharpTrigger.csproj", "{C0356162-07D7-4569-AEDA-5D04295F3F7A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.CSharpTrigger", "Triggers\CSharpTrigger\GrabCaster.Framework.CSharpTrigger.csproj", "{C0356162-07D7-4569-AEDA-5D04295F3F7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.PowerShellTrigger", "Triggers\PowershellTrigger\GrabCaster.SDK.PowerShellTrigger.csproj", "{7FC0D75D-CF8A-4A47-9A1B-9721C237A124}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.PowerShellTrigger", "Triggers\PowershellTrigger\GrabCaster.Framework.PowerShellTrigger.csproj", "{7FC0D75D-CF8A-4A47-9A1B-9721C237A124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.FileTrigger", "Triggers\FileTrigger\GrabCaster.SDK.FileTrigger.csproj", "{2EC74913-B9FA-421E-8B1E-37F42442F368}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.FileTrigger", "Triggers\FileTrigger\GrabCaster.Framework.FileTrigger.csproj", "{2EC74913-B9FA-421E-8B1E-37F42442F368}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.NopTrigger", "Triggers\NOPTrigger\GrabCaster.SDK.NopTrigger.csproj", "{39B25B3F-B31C-4767-BCE3-246BF9A223BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.NopTrigger", "Triggers\NOPTrigger\GrabCaster.Framework.NopTrigger.csproj", "{39B25B3F-B31C-4767-BCE3-246BF9A223BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.RfidTrigger", "Triggers\RfidTrigger\GrabCaster.SDK.RfidTrigger.csproj", "{0CC65516-E9A6-4516-829C-8EA6369AC962}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.RfidTrigger", "Triggers\RfidTrigger\GrabCaster.Framework.RfidTrigger.csproj", "{0CC65516-E9A6-4516-829C-8EA6369AC962}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.BulksqlServerTrigger", "Triggers\BULKSQLServerTrigger\GrabCaster.SDK.BulksqlServerTrigger.csproj", "{884F4897-D442-45E1-993C-28DB19B1CBA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.BulksqlServerTrigger", "Triggers\BULKSQLServerTrigger\GrabCaster.Framework.BulksqlServerTrigger.csproj", "{884F4897-D442-45E1-993C-28DB19B1CBA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.SqlServerTrigger", "Triggers\SQLServerTrigger\GrabCaster.SDK.SqlServerTrigger.csproj", "{39D23574-E6A1-4E0E-A7DD-E2FF150826F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.SqlServerTrigger", "Triggers\SQLServerTrigger\GrabCaster.Framework.SqlServerTrigger.csproj", "{39D23574-E6A1-4E0E-A7DD-E2FF150826F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.EventViewerTrigger", "Triggers\EventViewerTrigger\GrabCaster.SDK.EventViewerTrigger.csproj", "{CBB033E7-5EA1-4D48-86B0-B111998CA711}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EventViewerTrigger", "Triggers\EventViewerTrigger\GrabCaster.Framework.EventViewerTrigger.csproj", "{CBB033E7-5EA1-4D48-86B0-B111998CA711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.EtwTrigger", "Triggers\ETW\GrabCaster.SDK.EtwTrigger.csproj", "{F10B069C-8C2D-4EF6-B196-98AD8F712959}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EtwTrigger", "Triggers\ETW\GrabCaster.Framework.EtwTrigger.csproj", "{F10B069C-8C2D-4EF6-B196-98AD8F712959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.EventHubsTrigger", "Triggers\EventHubsTrigger\GrabCaster.SDK.EventHubsTrigger.csproj", "{1C25FA46-E6CC-4D58-A89C-221C7185EE65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EventHubsTrigger", "Triggers\EventHubsTrigger\GrabCaster.Framework.EventHubsTrigger.csproj", "{1C25FA46-E6CC-4D58-A89C-221C7185EE65}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Engine", "Framework.Engine\GrabCaster.Framework.Engine.csproj", "{94DA84F7-5E3E-4F1E-A183-07611FD6E302}"
 EndProject
@@ -128,11 +128,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\GrabCaster v1.0- Technical Manual.docx = Documentation\GrabCaster v1.0- Technical Manual.docx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.ChatTrigger", "Triggers\ChatTrigger\GrabCaster.SDK.ChatTrigger.csproj", "{4AD31E16-4857-4015-84AF-E1FC51B1F718}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.ChatTrigger", "Triggers\ChatTrigger\GrabCaster.Framework.ChatTrigger.csproj", "{4AD31E16-4857-4015-84AF-E1FC51B1F718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.SDK.ChatEvent", "Events\ChatEvent\GrabCaster.SDK.ChatEvent.csproj", "{B76D16C5-4924-4E53-B273-84147543B365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.ChatEvent", "Events\ChatEvent\GrabCaster.Framework.ChatEvent.csproj", "{B76D16C5-4924-4E53-B273-84147543B365}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{BE223403-A736-4B78-96D2-C64A4D1D3830}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bubbling", "Bubbling", "{BE223403-A736-4B78-96D2-C64A4D1D3830}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory", "Laboratory\GrabCaster.Laboratory.csproj", "{D31CDBDC-75F7-4D0C-A258-F448200B025E}"
 EndProject
