@@ -5,5 +5,5 @@ Your license to the GrabCaster source and/or binaries is governed by the Recipro
 
 http://www.opensource.org/licenses/rpl1.5.txt
 
-If you do not wish to release the source of software you build using GrabCaster you may contact the author here:
-http://grabcaster.com/grabcaster-contact/
+For any question you can contact the author here:
+http://grabcaster.com/grabcaster-contact/ or http://ninocrudele.me
