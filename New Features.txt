@@ -3,3 +3,5 @@ i trigger e venti che integrano i db, praticamente sei in grado di sincronizzare
 
 DB <> trigger <> automapper <> GC <> automaper <> event <> DB
 
+
+REST asking HELP and show the REST commands available
