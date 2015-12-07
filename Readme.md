@@ -20,7 +20,7 @@ To prepare a new GrabBaster msi package build the Setup project in the GrabCaste
 
 # Licenses
 
-## Microsoft Roslyn is used in GrabCaster.Framework.Engine component.
+### Microsoft Roslyn is used in GrabCaster.Framework.Engine component.
 
 Microsoft Roslyn is licensed under the Apache license as described here http://www.apache.org/licenses/
 Microsoft Roslyn binaries are linked into the GrabCaster Framework distribution allowed under the license terms found here https://github.com/dotnet/roslyn/blob/master/License.txt.
