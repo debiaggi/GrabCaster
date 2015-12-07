@@ -9,9 +9,9 @@ GrabCaster includes the building blocks developers need to integrate successful,
 GrabCaster connects any kind of technology, custom programs, operating system stacks, it works with any existing line of business applications such as Enterprise Resource Planning (ERP) systems, Warehouse Management Systems (WMS), hardware devices and more specialized vertical software. This flexibility allows it to work seamlessly and in almost all cases automatically with minimal implementation required.
 More information at http://grabcaster.io
 
-# Building
+# Prepare the development environment
 Clone the repository.  
-To build GrabCaster open GrabCaster.sln in Visual Studio.  
+Open GrabCaster.sln in Visual Studio and build the solution.  
 Execute the cmd script PrepareDevEnvironment.cmd under the Develoment Script solution folder.  
 Now the development environment is ready to run in debug mode.  
 
