@@ -94,6 +94,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Common\GrabCaster.Framework.Common.csproj">
+      <Project>{cf8282b8-4b29-4a41-8dbc-51a2fc45d223}</Project>
+      <Name>GrabCaster.Framework.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

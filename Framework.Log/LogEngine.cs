@@ -26,6 +26,7 @@ namespace GrabCaster.Framework.Log
     using System.Reflection;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Common;
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Log;
 
@@ -183,7 +184,7 @@ namespace GrabCaster.Framework.Log
                 if (exception != null)
                 {
                     logMessage.ExceptionObject =
-                        $"-HResult: {exception.HResult}\r -Error Message: {exception.Message}\r -InnerExcetion: {exception.InnerException}\r -Source: {exception.Source}\r -StackTrace: {exception.StackTrace}";
+                        $"-HResult: {exception.HResult}\r -Error Message: {exception.Message +""}\r -InnerExcetion: {exception.InnerException}\r -Source: {exception.Source}\r -StackTrace: {exception.StackTrace}";
                 }
                 else
                 {
@@ -203,35 +204,19 @@ namespace GrabCaster.Framework.Log
                 logMessage.Message =
                     $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-EventID:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
 
-                lock (QueueAbstractMessage)
+                if (QueueAbstractMessage != null)
                 {
-                    QueueAbstractMessage.Enqueue(logMessage);
+                    lock (QueueAbstractMessage)
+                    {
+                        QueueAbstractMessage.Enqueue(logMessage);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 //Last error point
-                DirectEventViewerLog(ex);
+                Methods.DirectEventViewerLog(ex);
             }
-        }
-
-        /// <summary>
-        /// The last error point
-        /// </summary>
-        public static void DirectEventViewerLog(Exception ex)
-        {
-            string msg =
-                $"Critical error, possible causes. \r1) The current Windows user has not the grants. \r2) The GrabCaster configuration files are not correct.\rError message-{ex.Message}";
-            Debug.WriteLine(msg);
-            EventLog.WriteEntry("GrabCaster", msg, EventLogEntryType.Error, 0);
-        }
-
-        /// <summary>
-        /// The last error point
-        /// </summary>
-        public static void DirectEventViewerLog(string message)
-        {
-            EventLog.WriteEntry("GrabCaster", message, EventLogEntryType.Information, 0);
         }
 
         public static void DebugWriteLine(string message)
@@ -254,7 +239,7 @@ namespace GrabCaster.Framework.Log
             }
         }
 
-        private static void QueueAbstractMessageOnPublish(List<LogMessage> logMessages)
+        public static void QueueAbstractMessageOnPublish(List<LogMessage> logMessages)
         {
             foreach (var logMessage in logMessages)
             {
@@ -296,7 +281,7 @@ namespace GrabCaster.Framework.Log
             }
         }
 
-        private static void QueueConsoleMessageOnPublish(List<ConsoleMessage> consoleMessages)
+        public static void QueueConsoleMessageOnPublish(List<ConsoleMessage> consoleMessages)
         {
             foreach (var consoleMessage in consoleMessages)
             {
@@ -315,7 +300,7 @@ namespace GrabCaster.Framework.Log
             {
                 if (Verbose)
                 {
-                    DirectEventViewerLog(message);
+                    Methods.DirectEventViewerLog(message);
                 }
 
                 var logMessage = new LogMessage();

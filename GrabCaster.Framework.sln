@@ -84,7 +84,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionNotes", "SolutionNo
 		References.txt = References.txt
 		SolutionNotes\repetear code.txt = SolutionNotes\repetear code.txt
 		SolutionNotes\SystemWatcherLabCode.txt = SolutionNotes\SystemWatcherLabCode.txt
-		TODO before the release.txt = TODO before the release.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Develoment Script", "Develoment Script", "{98BA9CA1-ED78-4C67-9336-46B64EAE98DB}"

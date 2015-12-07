@@ -85,20 +85,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="ObjectHelper.cs" />
     <Compile Include="XMLHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Framework.Base\GrabCaster.Framework.Base.csproj">
-      <Project>{14ba110c-7065-4099-bde5-313f984b913d}</Project>
-      <Name>GrabCaster.Framework.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Framework.Contracts\GrabCaster.Framework.Contracts.csproj">
-      <Project>{48b1dc31-f74d-41d2-aa27-7a76f2e198b6}</Project>
-      <Name>GrabCaster.Framework.Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
       <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
       <Name>GrabCaster.Framework.Serialization.Object</Name>

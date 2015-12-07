@@ -25,6 +25,7 @@ namespace GrabCaster.Framework.Base
     using System.Text;
     using Microsoft.ServiceBus;
     using Newtonsoft.Json;
+    using GrabCaster.Framework.Common;
 
     public enum EhReceivePatternType
     {
@@ -211,16 +212,11 @@ namespace GrabCaster.Framework.Base
         //Methods
         public static void LoadConfiguration()
         {
-
+            //Get Exe name
             var filename = 
                 Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName).Replace(".vshost", "");
-            var rootDirConf = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                string.Concat(DirectoryNameConfigurationRoot, "_", filename));
-            if (!Directory.Exists(rootDirConf))
-            {
-                throw new NotImplementedException($"Missing the Configuration Directory {rootDirConf}.");
-            }
+
+            //Get the configuration file
             var configurationFile = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 string.Concat(filename.Replace(".vshost", ""), ConfigurationFileExtension));
@@ -229,12 +225,40 @@ namespace GrabCaster.Framework.Base
                 JsonConvert.DeserializeObject<ConfigurationStorage>(
                     Encoding.UTF8.GetString(File.ReadAllBytes(configurationFile)));
 
-            ConfigurationStorage.DirectoryOperativeRootExeName = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
+            string BaseDirectory;
+            //Check Cluster configuration
+            if (Configuration.Clustered())
+            {
+                BaseDirectory = Configuration.ClusterBaseFolder();
+                if (!Directory.Exists(BaseDirectory))
+                {
+                    Methods.DirectEventViewerLog($"Missing the Cluster Base Folder Directory {BaseDirectory}.");
+                    throw new NotImplementedException($"Missing the Cluster Base Folder Directory {BaseDirectory}.");
+                }
+            }
+            else
+            {
+                BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            }
+
+            var rootDirConf = Path.Combine(
+                BaseDirectory,
                 string.Concat(DirectoryNameConfigurationRoot, "_", filename));
-            ConfigurationStorage.DirectoryServiceExecutable = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (!Directory.Exists(rootDirConf))
+            {
+                Methods.DirectEventViewerLog($"Missing the Configuration Directory {rootDirConf}.");
+                throw new NotImplementedException($"Missing the Configuration Directory {rootDirConf}.");
+            }
+
+            //AppDomain.CurrentDomain.BaseDirectory
+            ConfigurationStorage.DirectoryOperativeRootExeName = Path.Combine(
+                BaseDirectory,
+                string.Concat(DirectoryNameConfigurationRoot, "_", filename));
+            ConfigurationStorage.DirectoryServiceExecutable = BaseDirectory;
             if (PointName() == "[point name]")
             {
+                Methods.DirectEventViewerLog("The configuration file need to be configured.");
                 throw new Exception("The configuration file need to be configured.");
             }
         }
@@ -249,6 +273,14 @@ namespace GrabCaster.Framework.Base
             var configurationStorageContent = JsonConvert.SerializeObject(configurationStorage);
 
             File.WriteAllText(configurationFile, configurationStorageContent);
+        }
+        public static bool Clustered()
+        {
+            return ConfigurationStorage.Clustered;
+        }
+        public static string ClusterBaseFolder()
+        {
+            return ConfigurationStorage.ClusterBaseFolder;
         }
 
         public static bool SecondaryPersistProviderEnabled()
@@ -690,6 +722,10 @@ namespace GrabCaster.Framework.Base
     {
         [DataMember]
         public bool LoggingVerbose { get; set; }
+        [DataMember]
+        public bool Clustered { get; set; }
+        [DataMember]
+        public string ClusterBaseFolder { get; set; }
         [DataMember]
         public bool SecondaryPersistProviderEnabled { get; set; }
         [DataMember]

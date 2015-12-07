@@ -21,11 +21,13 @@ namespace GrabCaster.Framework
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using System.ServiceProcess;
     using System.Windows.Forms;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Common;
     using GrabCaster.Framework.Engine;
     using GrabCaster.Framework.Log;
     using GrabCaster.Framework.NTService;
@@ -90,7 +92,7 @@ namespace GrabCaster.Framework
                         Console.Title = Configuration.PointName();
                         Console.SetWindowPosition(0, 0);
                         Console.Clear();
-                        Console.ForegroundColor= ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine(@"[M] Run GrabCaster in MS-DOS Console mode.");
                         Console.WriteLine(@"[I] Install GrabCaster Windows NT Service.");
                         Console.WriteLine(@"[U] Uninstall GrabCaster Windows NT Service.");
@@ -177,6 +179,7 @@ namespace GrabCaster.Framework
             }
             catch (NotImplementedException ex)
             {
+                Methods.DirectEventViewerLog(ex);
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     "Error in " + MethodBase.GetCurrentMethod().Name,
@@ -187,10 +190,21 @@ namespace GrabCaster.Framework
             }
             catch (Exception ex)
             {
-                LogEngine.DirectEventViewerLog(ex);
-
+                Methods.DirectEventViewerLog(ex);
                 Environment.Exit(0);
             } // try/catch
+            finally
+            {
+                //Spool log queues
+                if (LogEngine.QueueAbstractMessage != null)
+                {
+                    LogEngine.QueueAbstractMessageOnPublish(LogEngine.QueueAbstractMessage.ToArray().ToList());
+                }
+                if (LogEngine.QueueConsoleMessage != null)
+                {
+                    LogEngine.QueueConsoleMessageOnPublish(LogEngine.QueueConsoleMessage.ToArray().ToList());
+                }
+            }
         } // Main
 
         private static string AskInputLine(string message)
