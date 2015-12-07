@@ -65,6 +65,9 @@
             <Component Id="cmpB196EB4C55C07FD3F70C4514542D7E10" Guid="*">
                 <File Id="fil88C61C64F4548189C0F695178795F57D" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.vshost.exe" />
             </Component>
+            <Component Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" Guid="*">
+                <File Id="fil5FE9D3795346A00B46DD63B6F45E51CD" KeyPath="yes" Source="$(var.SourcePath)\LICENSE.txt" />
+            </Component>
             <Component Id="cmp9D4F8AEA18EDF0E7AED3E741E097FD36" Guid="*">
                 <File Id="fil10A5E38A9AC302C6635F966CF5EB4147" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Azure.KeyVault.Core.dll" />
             </Component>
@@ -270,6 +273,11 @@
                         </Component>
                     </Directory>
                 </Directory>
+            </Directory>
+            <Directory Id="dir16732E347DFC8B6E07311C6AE43BCEB0" Name="Documentation">
+                <Component Id="cmp4F43A08EDDA73CA4F7EABA693DA809A3" Guid="*">
+                    <File Id="fil69E735574FFAF04FB8107BD157E5A056" KeyPath="yes" Source="$(var.SourcePath)\Documentation\GrabCaster v1.0- Technical Manual.pdf" />
+                </Component>
             </Directory>
             <Directory Id="dir3AA1F22BD0D3AB3906990407CF290E3A" Name="Root_GrabCaster">
                 <Component Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" Guid="*">
@@ -488,6 +496,7 @@
             <ComponentRef Id="cmp0A272C269873B42D57FC3E9F6A0C5366" />
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
             <ComponentRef Id="cmpB196EB4C55C07FD3F70C4514542D7E10" />
+            <ComponentRef Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" />
             <ComponentRef Id="cmp9D4F8AEA18EDF0E7AED3E741E097FD36" />
             <ComponentRef Id="cmp33416C1CAA701B7B965765FBB4F75954" />
             <ComponentRef Id="cmpAB143892D4035C414EC0EC14B1357FD7" />
@@ -550,6 +559,7 @@
             <ComponentRef Id="cmp583F3BE74E1675B7F37764045C3F278B" />
             <ComponentRef Id="cmp39C7133F4437F9619A4A3F3466F0C298" />
             <ComponentRef Id="cmp6405DAECE45786C1A5470B0B6306253F" />
+            <ComponentRef Id="cmp4F43A08EDDA73CA4F7EABA693DA809A3" />
             <ComponentRef Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" />
             <ComponentRef Id="cmpC5158289DC6BBDAA47FE54339681FF98" />
             <ComponentRef Id="cmp01B17B199619965D97DAE9DAFFFD4042" />

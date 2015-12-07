@@ -101,14 +101,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Develoment Script", "Develo
 		Development Script\DevDefaultConfigurationFile2DebugReleaseDirs.cmd = Development Script\DevDefaultConfigurationFile2DebugReleaseDirs.cmd
 		Development Script\PrepareDeployPackage.cmd = Development Script\PrepareDeployPackage.cmd
 		Development Script\PrepareDevEnvironment.cmd = Development Script\PrepareDevEnvironment.cmd
-		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{90D2C72F-4DCD-47E2-A834-406C616D0790}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "License", "License", "{6D08C51F-3F8E-477D-AB3B-AC9E8C687C61}"
 	ProjectSection(SolutionItems) = preProject
-		License.txt = License.txt
+		DefaultFiles\LICENSE.txt = DefaultFiles\LICENSE.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{A81DA39C-325F-4B87-AF28-BA22F73630AC}"
