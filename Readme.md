@@ -10,10 +10,10 @@ GrabCaster connects any kind of technology, custom programs, operating system st
 More information at http://grabcaster.io
 
 # Building
-Clone the repository.
-To build GrabCaster open GrabCaster.sln in Visual Studio.
-Execute the cmd script PrepareDevEnvironment.cmd under the Develoment Script solution folder.
-Now the development environment is ready to run in debug mode.
+Clone the repository.  
+To build GrabCaster open GrabCaster.sln in Visual Studio.  
+Execute the cmd script PrepareDevEnvironment.cmd under the Develoment Script solution folder.  
+Now the development environment is ready to run in debug mode.  
 
 # Running
 To run GrabCaster from Visual Studio build the solution, execute the script PrepareDevEnvironment.cmd in the Development Script folder.
