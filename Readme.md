@@ -1,7 +1,7 @@
 # GrabCaster
 
-Author: Nino Crudele (@ninocrudele)
-Blog: http://ninocrudele.me
+Author: Nino Crudele (@ninocrudele)  
+Blog: http://ninocrudele.me  
 
 GrabCaster is designed to allow end users, developers and IT users to integrate information and data into a variety of applications and systems, simply and easily.
 GrabCaster eliminates all existing barriers by providing a new dynamic and easy way to integrate technologies and software.
