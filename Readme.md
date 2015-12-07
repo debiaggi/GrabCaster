@@ -27,3 +27,5 @@ Microsoft Roslyn binaries are linked into the GrabCaster Framework distribution 
 
 #### StackExchange.Redis is used in GrabCaster.Framework.Dcp.Redis component
 
+StackExchange.Redis is licensed under the MIT license as described here https://opensource.org/licenses/MIT
+StackExchange.Redis binaries are linked into the GrabCaster Framework distribution allowed under the license terms found here https://github.com/StackExchange/StackExchange.Redis/blob/master/LICENSE.
