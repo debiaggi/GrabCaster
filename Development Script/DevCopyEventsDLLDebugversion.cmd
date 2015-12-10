@@ -16,6 +16,7 @@ copy Events\NOPEvent\bin\Debug\GrabCaster.Framework.NopEvent.dll Framework\bin\D
 copy Events\PowershellEvent\bin\Debug\GrabCaster.Framework.PowerShellEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
 copy Events\TwilioEvent\bin\Debug\GrabCaster.Framework.TwilioEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
 copy Events\ChatEvent\bin\Debug\GrabCaster.Framework.ChatEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
+xcopy Events\EmbeddedEvent\bin\Debug\GrabCaster.Framework.EmbeddedEvent.dll Framework\bin\Debug\Root_GrabCaster\Events\* /y
 
 REM COPY PDB
 copy Events\AzureBlobEvent\bin\Debug\GrabCaster.Framework.AzureBlobEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
@@ -31,4 +32,5 @@ copy Events\NOPEvent\bin\Debug\GrabCaster.Framework.NopEvent.PDB Framework\bin\D
 copy Events\PowershellEvent\bin\Debug\GrabCaster.Framework.PowerShellEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
 copy Events\TwilioEvent\bin\Debug\GrabCaster.Framework.TwilioEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
 copy Events\ChatEvent\bin\Debug\GrabCaster.Framework.ChatEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
+xcopy Events\EmbeddedEvent\bin\Debug\GrabCaster.Framework.EmbeddedEvent.PDB Framework\bin\Debug\Root_GrabCaster\Events\* /y
 cd %~dp0

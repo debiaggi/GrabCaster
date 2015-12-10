@@ -80,6 +80,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionNotes", "SolutionNo
 		SolutionNotes\KillService.txt = SolutionNotes\KillService.txt
 		SolutionNotes\Modifiche storico.txt = SolutionNotes\Modifiche storico.txt
 		New Features.txt = New Features.txt
+		New issues.txt = New issues.txt
 		Readme.md = Readme.md
 		References.txt = References.txt
 		SolutionNotes\repetear code.txt = SolutionNotes\repetear code.txt
@@ -145,6 +146,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Serialization.Object", "Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj", "{8AC04993-E722-47F5-AC8E-7C448C752852}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Serialization.Xml", "Framework.Serialization.Xml\GrabCaster.Framework.Serialization.Xml.csproj", "{AFEE871C-778B-4A26-9609-609D922D9653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Library", "Framework.Library\GrabCaster.Framework.Library.csproj", "{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.Console", "Laboratory.Console\GrabCaster.Laboratory.Console.csproj", "{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EmbeddedEvent", "Events\EmbeddedEvent\GrabCaster.Framework.EmbeddedEvent.csproj", "{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -496,6 +503,30 @@ Global
 		{AFEE871C-778B-4A26-9609-609D922D9653}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFEE871C-778B-4A26-9609-609D922D9653}.Release|x86.ActiveCfg = Release|Any CPU
 		{AFEE871C-778B-4A26-9609-609D922D9653}.Release|x86.Build.0 = Release|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Debug|x86.Build.0 = Debug|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|x86.ActiveCfg = Release|Any CPU
+		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|x86.Build.0 = Release|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|x86.Build.0 = Debug|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|x86.Build.0 = Release|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|x86.Build.0 = Debug|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Release|x86.ActiveCfg = Release|Any CPU
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -532,5 +563,6 @@ Global
 		{87FA5D66-EE9F-4200-AD36-16E53CFF5A00} = {90D2C72F-4DCD-47E2-A834-406C616D0790}
 		{4AD31E16-4857-4015-84AF-E1FC51B1F718} = {A2E7CCE3-2499-4928-8D5B-1E83C1EFE08F}
 		{B76D16C5-4924-4E53-B273-84147543B365} = {93BEE38A-3878-4B53-B4D7-AF27F17F3632}
+		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA} = {93BEE38A-3878-4B53-B4D7-AF27F17F3632}
 	EndGlobalSection
 EndGlobal

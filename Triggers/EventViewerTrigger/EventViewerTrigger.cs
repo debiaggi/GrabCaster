@@ -34,7 +34,7 @@ namespace GrabCaster.Framework.EventViewerTrigger
     /// <summary>
     /// The event viewer trigger.
     /// </summary>
-    [TriggerContract("{843008B6-F4E1-4A29-8082-BDC111EA0E99}", "Event Viwer Trigger", "Intercept Event Viewer Message",
+    [TriggerContract("{843008B6-F4E1-4A29-8082-BDC111EA0E99}", "Event Viewer Trigger", "Intercept Event Viewer Message",
         false, true, false)]
     public class EventViewerTrigger : ITriggerType
     {

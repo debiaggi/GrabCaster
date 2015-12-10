@@ -54,7 +54,7 @@ namespace GrabCaster.Framework.Engine
     /// <summary>
     ///     This is engine class containing the most important methods
     /// </summary>
-    internal static class EventsEngine
+    public static class EventsEngine
     {
         // Global Action Triggers
         /// <summary>
@@ -147,7 +147,7 @@ namespace GrabCaster.Framework.Engine
         /// <summary>
         ///     Trigger Delegate initialization
         /// </summary>
-        public static void InitializeEventEngine()
+        public static void InitializeEventEngine(SetEventActionEvent delegateActionEventEmbedded)
         {
             // Start Web API interface
             LogEngine.ConsoleWriteLine(
@@ -161,7 +161,17 @@ namespace GrabCaster.Framework.Engine
             LogEngine.ConsoleWriteLine("Hub Web API Interface Running.", ConsoleColor.Yellow);
 
             delegateActionTrigger = ActionTriggerReceived;
-            delegateActionEvent = ActionEventReceived;
+            if (delegateActionEventEmbedded != null)
+            {
+                //
+                delegateActionEvent = delegateActionEventEmbedded;
+
+            }
+            else
+            {
+                delegateActionEvent = ActionEventReceived;
+
+            }
         }
 
         /// <summary>
@@ -171,7 +181,7 @@ namespace GrabCaster.Framework.Engine
         /// </param>
         /// <param name="context">
         /// </param>
-        private static void ActionTriggerReceived(ITriggerType trigger, EventActionContext context)
+        public static void ActionTriggerReceived(ITriggerType trigger, EventActionContext context)
         {
             if (context == null)
             {
@@ -1484,14 +1494,16 @@ namespace GrabCaster.Framework.Engine
                                                                       == bubblingEvent.IdComponent
                                                                   select evnt).First();
                                     var eventConfiguration = eventConfigurationBase;
-
-                                    foreach (var eventProperty in eventConfiguration.Event.EventProperties)
+                                    if (eventConfiguration.Event.EventProperties != null)
                                     {
-                                        var propertyToOverride =
-                                            (from prop in bubblingEvent.Properties
-                                             where prop.Name == eventProperty.Name
-                                             select prop).First();
-                                        propertyToOverride.Value = eventProperty.Value;
+                                        foreach (var eventProperty in eventConfiguration.Event.EventProperties)
+                                        {
+                                            var propertyToOverride =
+                                                (from prop in bubblingEvent.Properties
+                                                 where prop.Name == eventProperty.Name
+                                                 select prop).First();
+                                            propertyToOverride.Value = eventProperty.Value;
+                                        }
                                     }
                                 }
 
@@ -1560,7 +1572,7 @@ namespace GrabCaster.Framework.Engine
                     $"Warning! in {MethodBase.GetCurrentMethod().Name} - Try to execute a not available event for trigger {bubblingEventConfiguration.Name} and IdComponent {bubblingEventConfiguration.IdComponent}", 
                     Constant.ErrorEventIdHighCritical, 
                     Constant.TaskCategoriesError, 
-                    null, 
+                    ex, 
                     EventLogEntryType.Error);
             }
         }

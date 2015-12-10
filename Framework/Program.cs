@@ -110,7 +110,7 @@ namespace GrabCaster.Framework
                                 LogEngine.ConsoleWriteLine(
                                     "--GrabCaster Sevice Initialization--Start Engine.",
                                     ConsoleColor.Green);
-                                CoreEngine.StartEventEngine();
+                                CoreEngine.StartEventEngine(null);
                                 Console.ReadLine();
                                 break;
                             case ConsoleKey.I:
@@ -140,7 +140,7 @@ namespace GrabCaster.Framework
                             LogEngine.ConsoleWriteLine(
                                 "--GrabCaster Sevice Initialization--Start Engine.",
                                 ConsoleColor.Green);
-                            CoreEngine.StartEventEngine();
+                            CoreEngine.StartEventEngine(null);
                             Console.ReadLine();
                         }
                         else if (args.Length == 2 && args[0] == "-ntinstall".ToLower())

@@ -48,7 +48,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.ConsoleWriteLine("Initialization--Start Engine.", ConsoleColor.Green);
                 LogEngine.Init();
                 Debug.WriteLine("LogEventUpStream - StartEventEngine.");
-                CoreEngine.StartEventEngine();
+                CoreEngine.StartEventEngine(null);
             }
             catch (Exception ex)
             {

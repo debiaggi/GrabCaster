@@ -14,4 +14,5 @@ copy Events\NOPEvent\bin\Release\GrabCaster.Framework.NopEvent.dll Framework\bin
 copy Events\PowershellEvent\bin\Release\GrabCaster.Framework.PowerShellEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 copy Events\TwilioEvent\bin\Release\GrabCaster.Framework.TwilioEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 copy Events\ChatEvent\bin\Release\GrabCaster.Framework.ChatEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
+xcopy Events\EmbeddedEvent\bin\Release\GrabCaster.Framework.EmbeddedEvent.dll Framework\bin\Release\Root_GrabCaster\Events\* /y
 cd %~dp0

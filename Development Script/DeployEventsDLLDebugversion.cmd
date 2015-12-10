@@ -14,4 +14,5 @@ xcopy Events\PowershellEvent\bin\Debug\GrabCaster.Framework.PowerShellEvent.dll 
 xcopy Events\RunProcessEvent\bin\Debug\GrabCaster.Framework.RunProcessEvent.dll Setup\bin\Debug\Deploy\Root_GrabCaster\Events\* /y
 xcopy Events\TwilioEvent\bin\Debug\GrabCaster.Framework.TwilioEvent.dll Setup\bin\Debug\Deploy\Root_GrabCaster\Events\* /y
 xcopy Events\ChatEvent\bin\Debug\GrabCaster.Framework.ChatEvent.dll Setup\bin\Debug\Deploy\Root_GrabCaster\Events\* /y
+xcopy Events\EmbeddedEvent\bin\Debug\GrabCaster.Framework.EmbeddedEvent.dll Setup\bin\Debug\Deploy\Root_GrabCaster\Events\* /y
 cd %~dp0

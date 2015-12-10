@@ -28,6 +28,7 @@ namespace GrabCaster.Framework.Engine
     using System.Threading;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Globals;
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Engine.OnRamp;
     using GrabCaster.Framework.Log;
@@ -86,7 +87,7 @@ namespace GrabCaster.Framework.Engine
         ///     Execute polling
         /// </summary>
         /// restart
-        public static void StartEventEngine()
+        public static void StartEventEngine(SetEventActionEvent delegateActionEventEmbedded)
         {
             try
             {
@@ -109,7 +110,7 @@ namespace GrabCaster.Framework.Engine
                 ServiceStates.RestartNeeded = false;
 
                 LogEngine.ConsoleWriteLine("Initialize Engine.", ConsoleColor.Cyan);
-                EventsEngine.InitializeEventEngine();
+                EventsEngine.InitializeEventEngine(delegateActionEventEmbedded);
 
                 //Init Message ingestor
                 MessageIngestor.Init();
