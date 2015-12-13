@@ -153,7 +153,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.Conso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EmbeddedEvent", "Events\EmbeddedEvent\GrabCaster.Framework.EmbeddedEvent.csproj", "{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.ConsoleEmbedded", "..\GrabCaster.Laboratory.ConsoleEmbedded\GrabCaster.Laboratory.ConsoleEmbedded.csproj", "{1494E12D-AD36-49D5-A0E8-E1531C793C13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.ConsoleEmbedded", "Laboratory.ConsoleEmbedded\GrabCaster.Laboratory.ConsoleEmbedded.csproj", "{1494E12D-AD36-49D5-A0E8-E1531C793C13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

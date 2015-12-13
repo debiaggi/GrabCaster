@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------
-// <copyright file = "PropertyBag.cs" company="Nino Crudele">
+// <copyright file = "Program.cs" company="Nino Crudele">
 //   Copyright (c) 2015 Nino Crudele. All Rights Reserved.
 // </copyright>
 // <summary>
@@ -25,49 +25,58 @@
 //    http://www.opensource.org/licenses/rpl1.5.txt
 //  </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.ETW
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    /// <summary>
-    /// The property bag.
-    /// </summary>
-    [Serializable]
-    public sealed class PropertyBag : Dictionary<string, object>
+namespace GrabCaster.Laboratory.ConsoleEmbedded
+{
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Collections.Concurrent;
+    using System.Threading;
+    using GrabCaster.Framework.Contracts.Events;
+    using GrabCaster.Framework.Contracts.Globals;
+    using GrabCaster.Framework.Library;
+    class Program
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyBag"/> class.
+        /// The set event action event embedded.
         /// </summary>
-        public PropertyBag()
-            : base(StringComparer.OrdinalIgnoreCase)
-        {
-        }
+        private static Embedded.SetEventActionEventEmbedded setEventActionEventEmbedded;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyBag"/> class.
+        /// The main.
         /// </summary>
-        /// <param name="capacity">
-        /// The capacity.
+        /// <param name="args">
+        /// The args.
         /// </param>
-        public PropertyBag(int capacity)
-            : base(capacity, StringComparer.Ordinal)
+        static void Main(string[] args)
         {
+            setEventActionEventEmbedded = EventReceivedFromEmbedded;
+            Embedded.setEventActionEventEmbedded = setEventActionEventEmbedded;
+            Console.WriteLine("Start GrabCaster Embedded Library");
+            GrabCaster.Framework.Library.Embedded.StartEngine();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PropertyBag"/> class.
+        /// The event received from embedded.
         /// </summary>
-        /// <param name="info">
-        /// The info.
+        /// <param name="eventType">
+        /// The event type.
         /// </param>
         /// <param name="context">
         /// The context.
         /// </param>
-        private PropertyBag(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+        private static void EventReceivedFromEmbedded(IEventType eventType, EventActionContext context)
         {
+            string stringValue = Encoding.UTF8.GetString(eventType.DataContext);
+            Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
+            Console.WriteLine(stringValue);
+ 
+
         }
     }
 }
