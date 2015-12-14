@@ -52,7 +52,8 @@ The key points are:
 * If you are a private industry contributor, you are welcome to download and build the source code, use it in the projects you deploy to your clients, and use it in your software. Just note that if you create derivative works, you must contribute those back to the project, and if you distribute (whether for a fee or not) the software, you must do so under the RPL.
 
 Note that it is entirely possible to build components that interoperate with the GrabCaster but are not themselves derivative works.
-For instance, a software vendor may build a Trigger or Event to interface to its proprietary system, and expose that interface to other GrabCaster components such as new integration stack or the federated query intermediaries or for example creating any kind of UI ot tool.
+For instance, a software vendor may build a Trigger or Event to interface to its proprietary system, and expose that interface to other GrabCaster components such as new integration stack or the federated query intermediaries or for example creating any kind of UI or tool.
+
 As long as this adapter, application, component or extension does not involve modification to existing GrabCaster internal framework, RPL-licensed GrabCaser source code, it would most likely not be considered a derivative work and can be licensed under any terms the vendor chooses.
 
 It is considered GrabCaster Framework any file under the GrabCaster.FrameWork namespace.
