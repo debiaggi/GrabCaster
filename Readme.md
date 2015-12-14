@@ -56,7 +56,7 @@ For instance, a software vendor may build a Trigger or Event to interface to its
 
 As long as this adapter, application, component or extension does not involve modification to existing GrabCaster internal framework, RPL-licensed GrabCaser source code, it would most likely not be considered a derivative work and can be licensed under any terms the vendor chooses.
 
-It is considered GrabCaster Framework any file under the GrabCaster.FrameWork namespace.
+It is considered GrabCaster Framework any file under the GrabCaster.Framework namespace.
 
 The Reciprocal Public License 1.5 (RPL1.5) license is described here: 
 http://www.opensource.org/licenses/rpl1.5.txt
