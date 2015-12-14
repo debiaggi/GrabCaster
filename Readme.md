@@ -45,11 +45,11 @@ If you push additional changes to your fork during this process, the changes bec
 When you clone the GrabCaster/main repository from GitHub, the author is licensing the software to you and/or your organization, under the Reciprocal Public License, version 1.5. Like any license, the RPL states the terms and conditions under which you are authorized to use and modify the software. 
 The key points are:
 
-1) There is no cost to license the software or the source code, it is available to you to download.
-2) You can build it and deploy it as many times as you like.
-3) You can redistribute it, in executable or source-code form, to anyone you like, as long as you do so also under the RPL.
-4) You are free to modify the source code, either for your own purposes or to provide to others. However, the license requires that you contribute these modifications (in legal terms, derivative works) back to the community by creating a pull request in GitHub.
-5) If you are a private industry contributor, you are welcome to download and build the source code, use it in the projects you deploy to your clients, and use it in your software. Just note that if you create derivative works, you must contribute those back to the project, and if you distribute (whether for a fee or not) the software, you must do so under the RPL.
+* There is no cost to license the software or the source code, it is available to you to download.
+* You can build it and deploy it as many times as you like.
+* You can redistribute it, in executable or source-code form, to anyone you like, as long as you do so also under the RPL.
+* You are free to modify the source code, either for your own purposes or to provide to others. However, the license requires that you contribute these modifications (in legal terms, derivative works) back to the community by creating a pull request in GitHub.
+* If you are a private industry contributor, you are welcome to download and build the source code, use it in the projects you deploy to your clients, and use it in your software. Just note that if you create derivative works, you must contribute those back to the project, and if you distribute (whether for a fee or not) the software, you must do so under the RPL.
 
 Note that it is entirely possible to build components that interoperate with the GrabCaster but are not themselves derivative works.
 For instance, a software vendor may build a Trigger or Event to interface to its proprietary system, and expose that interface to other GrabCaster components such as new integration stack or the federated query intermediaries or for example creating any kind of UI ot tool.
