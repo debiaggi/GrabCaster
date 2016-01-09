@@ -1,3 +1,25 @@
+UI
+Crea una form MDI e internamente hai un menu button in alto e un classico menu.
+Botoone plus e apri una form con una listbox che ti propone questa lista:
+
+All - Tutti
+Local - quello locale
+Punto 1
+Punto 1
+Punto X
+La lista va anche in multiselezione, tu selezioni e aggiungi i GrabCater point all treeviview
+
+
+La treeview ha una button bar per : ricerca, salva, chiudi
+
+La finestradei grabcasterp point ha, una treeview in alto e un property window in basso.
+Puoi aprire altre treeviews e organizzarle nela finestra MDI.
+
+Per creare un nuovo trigger o evento fai tasto destro e new trigger o new evento, si apre una finestra con una listbox che ti offre i tipi di trigger o eventi che e' possibile creare..
+Quando un trigger e' creato puoi associare levento o locale o di un altro point semplicemente facendo drag and dro dellevento sul trigger
+
+
+
 Sincronizzare i dati, sorgente e destinazione usando auto mapper, mi immagino di implementare un trasformation service che usa automapper e 
 i trigger e venti che integrano i db, praticamente sei in grado di sincronizzare tabelle e vari in modo semplice e veloce.
 
