@@ -237,9 +237,17 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 // Meter and measuring purpose
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
-
+                byte[] serializedMessage = null;
                 // Create EH data message
-                var serializedMessage = SerializationEngine.ObjectToByteArray(bubblingTriggerConfiguration);
+                if (ehMessageType != Configuration.MessageDataProperty.ByteArray)
+                {
+                    serializedMessage = SerializationEngine.ObjectToByteArray(bubblingTriggerConfiguration);
+                }
+                else
+                {
+                    serializedMessage = (byte[]) bubblingTriggerConfiguration;
+                }
+
                 var messageId = Guid.NewGuid().ToString();
                 SkeletonMessage data = new SkeletonMessage(null);
 
@@ -321,7 +329,6 @@ namespace GrabCaster.Framework.Engine.OffRamp
                         LogEngine.ConsoleWriteLine($"Sent Message Type {ehMessageType}", ConsoleColor.Green);
                     }
                 }
-
                 offRampEngine.Enqueue(data);
             }
             catch (Exception ex)

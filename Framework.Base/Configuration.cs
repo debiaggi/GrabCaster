@@ -70,6 +70,8 @@ namespace GrabCaster.Framework.Base
         {
             SubscriberId,
 
+            ByteArray,
+
             Data,
 
             ReceiverChannelId,

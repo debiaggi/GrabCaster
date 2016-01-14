@@ -52,6 +52,7 @@ namespace GrabCaster.Framework.Base
         /// </summary>
         public static string TaskCategoriesConsole { get; } = "Console";
 
+        public static string EmbeddedEventId { get; } = "{A31209D7-C989-4E5D-93DA-BD341D843870}";
         /// <summary>
         /// The task category for event hubs.
         /// </summary>

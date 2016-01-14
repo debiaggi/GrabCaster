@@ -233,12 +233,34 @@ namespace GrabCaster.Framework.Engine
                     var eventsCloned = ObjectHelper.CloneObject(remoteEvents);
                     var bubblingEventClone = (BubblingEvent)ObjectHelper.CloneObject(context.BubblingConfiguration);
                     bubblingEventClone.Events = (List<Event>)eventsCloned;
-                    OffRampEngineSending.SendMessageOnRamp(
-                        bubblingEventClone, 
-                        Configuration.MessageDataProperty.Event, 
-                        string.Empty, 
-                        string.Empty, 
-                        null);
+
+                    byte[] message = null;
+                    Configuration.MessageDataProperty messageType = Configuration.MessageDataProperty.Event;
+
+                    if (remoteEvents.Count == 1
+                        && remoteEvents[0].IdComponent == GrabCaster.Framework.Base.Constant.EmbeddedEventId)
+                    {
+                        messageType = Configuration.MessageDataProperty.ByteArray;
+                        message = trigger.DataContext;
+                        
+                        OffRampEngineSending.SendMessageOnRamp(
+                            message,
+                            messageType,
+                            string.Empty,
+                            string.Empty,
+                            null);
+                    }
+                    else
+                    {
+                        OffRampEngineSending.SendMessageOnRamp(
+                            bubblingEventClone,
+                            messageType,
+                            string.Empty,
+                            string.Empty,
+                            null);
+                    }
+
+
                 }
             }
         }

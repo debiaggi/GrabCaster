@@ -155,6 +155,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Embedd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.ConsoleEmbedded", "Laboratory.ConsoleEmbedded\GrabCaster.Laboratory.ConsoleEmbedded.csproj", "{1494E12D-AD36-49D5-A0E8-E1531C793C13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.Azure", "GrabCaster.Laboratory.Azure\GrabCaster.Laboratory.Azure.csproj", "{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -537,6 +539,14 @@ Global
 		{1494E12D-AD36-49D5-A0E8-E1531C793C13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1494E12D-AD36-49D5-A0E8-E1531C793C13}.Release|x86.ActiveCfg = Release|Any CPU
 		{1494E12D-AD36-49D5-A0E8-E1531C793C13}.Release|x86.Build.0 = Release|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Debug|x86.Build.0 = Debug|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
