@@ -1,0 +1,14 @@
+﻿{
+    "$schema": "http://json-schema.org/schemas/2014-11-01/apiapp.json#",
+    "id": "GrabCasterPointAPIApp",
+    "namespace": "grabcaster.io",
+    "gateway": "2016-01-08",
+    "version": "1.0.0",
+    "title": "GrabCasterPointAPIApp",
+    "summary": "Logic App GrabCaster Point",
+    "author": "Nino Crudele",
+    "endpoints": {
+        "apiDefinition": "/swagger/docs/v1",
+        "status": null
+    }
+}

@@ -33,6 +33,7 @@ namespace GrabCaster.Framework
     using System.Linq;
     using System.Reflection;
     using System.ServiceProcess;
+    using System.Threading;
     using System.Windows.Forms;
 
     using GrabCaster.Framework.Base;

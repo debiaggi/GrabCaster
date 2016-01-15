@@ -33,6 +33,7 @@ namespace GrabCaster.Framework.Log
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Threading;
 
     using GrabCaster.Framework.Base;
     using GrabCaster.Framework.Common;
@@ -161,6 +162,7 @@ namespace GrabCaster.Framework.Log
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
+                Thread.Sleep(Configuration.WaitTimeBeforeRestarting());
                 Environment.Exit(0);
             }
         }

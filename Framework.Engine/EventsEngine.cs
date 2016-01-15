@@ -938,6 +938,7 @@ namespace GrabCaster.Framework.Engine
                             Constant.TaskCategoriesError, 
                             ex, 
                             EventLogEntryType.Error);
+                        Thread.Sleep(Configuration.WaitTimeBeforeRestarting());
                         Environment.Exit(0);
                     }
                 }
@@ -1147,6 +1148,7 @@ namespace GrabCaster.Framework.Engine
                             Constant.TaskCategoriesError, 
                             ex, 
                             EventLogEntryType.Error);
+                        Thread.Sleep(Configuration.WaitTimeBeforeRestarting());
                         Environment.Exit(0);
                     }
                 }

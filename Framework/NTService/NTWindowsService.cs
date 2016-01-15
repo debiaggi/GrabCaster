@@ -66,6 +66,7 @@ namespace GrabCaster.Framework.NTService
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
+                Thread.Sleep(Configuration.WaitTimeBeforeRestarting());
                 Environment.Exit(0);
             }
         }
@@ -111,6 +112,7 @@ namespace GrabCaster.Framework.NTService
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
+                Thread.Sleep(Configuration.WaitTimeBeforeRestarting());
                 Environment.Exit(0);
             }
         }
