@@ -64,11 +64,11 @@ namespace Laboratory
                 {
                     EventLog.CreateEventSource(this.comboBoxsource.Text, "Application");
                 }
-
+                string message = $"{Environment.MachineName}: {textBoxMessage.Text} {DateTime.Now.ToString()}";
                 EventLog.WriteEntry(
                     this.comboBoxsource.Text,
                     // ReSharper disable once SpecifyACultureInStringConversionExplicitly
-                    "New message in the eventviewer " + DateTime.Now.ToString(),
+                    message,
                     EventLogEntryType.Error);
             }
 

@@ -37,6 +37,8 @@
             this.comboBoxsource = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labellastrun = new System.Windows.Forms.Label();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonPowerJson
@@ -86,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 39);
+            this.label2.Location = new System.Drawing.Point(8, 39);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
@@ -103,11 +105,30 @@
             this.labellastrun.TabIndex = 6;
             this.labellastrun.Text = " ";
             // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.Location = new System.Drawing.Point(77, 63);
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.Size = new System.Drawing.Size(302, 20);
+            this.textBoxMessage.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 66);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Text";
+            // 
             // Demos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 254);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.labellastrun);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxsource);
@@ -131,5 +152,7 @@
         private ComboBox comboBoxsource;
         private Label label2;
         private Label labellastrun;
+        private TextBox textBoxMessage;
+        private Label label3;
     }
 }

@@ -1,24 +1,18 @@
 {
   "Trigger": {
-    "IdComponent": "{3C62B951-C353-4899-8670-C6687B6EAEFC}",
-    "Name": "FileTrigger Remote To Out",
-    "Description": "Get file from disc",
-    "TriggerProperties": [{
-			"Name": "RegexFilePattern",
-			"Value": ".(txt|a)"
-		},
-		{
-			"Name": "DoneExtensionName",
-			"Value": "done"
-		},
-		{
-			"Name": "PollingTime",
-			"Value": "5000"
-		},
-		{
-			"Name": "InputDirectory",
-			"Value": "C:\\Program Files (x86)\\GrabCaster\\Demo\\File2File\\In_LocalRemote"
-		}]
+		"IdComponent": "{7920EE0F-CAC8-4ABB-82C2-1C69351EDD28}",
+		"Name": "SQL Server Trigger",
+		"Description": "SQL Server Trigger",
+	"TriggerProperties": [
+	{
+		"Name": "SqlQuery",
+		"Value": "SELECT *  FROM TableDemo where flag <> 0 for xml auto;update TableDemo set flag=0"
+	},
+	{
+		"Name": "ConnectionString",
+		"Value": "Data Source=.;Initial Catalog=Demo;Integrated Security=True"
+	}
+	]
 	},
   "Events": [
     {
