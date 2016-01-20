@@ -21,6 +21,7 @@
     <SccProvider>
     </SccProvider>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
     <PublishUrl>ftp://ftp.ITriggerT.com/ITriggerT/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
@@ -39,7 +40,6 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,10 +64,10 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>CD27F44B79215087AEBCDCAC656EE7C47F87A9D2</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FD0A5A7B61E4457B80657E885F0E051AA45EE343</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>JiTGate.Framework_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>GrabCaster.Framework_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -80,6 +80,12 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icoRGB.fw.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>GrabCaster.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Azure.KeyVault.Core">
@@ -236,6 +242,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="GrabCaster.Framework_TemporaryKey.pfx" />
+    <None Include="GrabCaster.snk" />
     <None Include="JiTGate.Framework_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
