@@ -205,6 +205,8 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
         private void EventReceivedFromEmbedded(IEventType eventType, EventActionContext context)
         {
             string stringValue = Encoding.UTF8.GetString(eventType.DataContext);
+            System.Diagnostics.Debug.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
+
             PrepareMessageAndSubmit(eventType, context);
             Trace.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
             Trace.WriteLine(stringValue);
@@ -223,7 +225,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             }
             return true;
         }
-
+        List<BatchMessage> batchMessages = new List<BatchMessage>();
         //  The algorithm implemented here splits the list of files according to the
         //  batch tuning parameters (number of bytes and number of files) because the
         //  list is randomly ordered it is possible to have non-optimal batches. It would
@@ -235,17 +237,15 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             int maxBatchSize     = this.properties.MaximumBatchSize;
             int maximumNumberOfMessages = this.properties.MaximumNumberOfMessages;
 
-            List<BatchMessage> batchMessages = new List<BatchMessage>();
+            
             long bytesInBatch = 0;
             
-            Trace.WriteLine(string.Format("[DotNetFileReceiverEndpoint] Found {0} files."));
-
             // If we couldn't lock the file, just move onto the next file
             IBaseMessage msg = CreateMessage(eventType, context);
             if ( null == msg )
                 return;
-
-            //  keep a running total for the current batch
+            else
+                batchMessages.Add(new BatchMessage(msg, context.BubblingConfiguration.MessageId, BatchOperationType.Submit));            //  keep a running total for the current batch
             bytesInBatch += eventType.DataContext.Length;
 
             //  zero for the value means infinite 
