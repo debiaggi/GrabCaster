@@ -129,7 +129,7 @@
     <Compile Include="DotNetFileProperties.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DotNetFileReceiver.cs">
+    <Compile Include="GrabCasterReceiver.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DotNetFileReceiverEndpoint.cs">

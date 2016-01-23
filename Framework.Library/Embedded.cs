@@ -41,7 +41,7 @@ namespace GrabCaster.Framework.Library
     using GrabCaster.Framework.Engine;
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Log;
-
+    using System.IO;
     /// <summary>
     /// The embedded point.
     /// </summary>
@@ -169,6 +169,60 @@ namespace GrabCaster.Framework.Library
                 }
             }
         }
+
+        /// <summary>
+        /// Execute an internal trigger
+        /// </summary>
+        /// <param name="triggerId">
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        /// http://localhost:8000/GrabCaster/ExecuteTrigger?TriggerID={3C62B951-C353-4899-8670-C6687B6EAEFC}
+        public static string ExecuteTrigger(string triggerId,Stream data)
+        {
+            try
+            {
+                var executed = false;
+                try
+                {
+                    var triggerSingleInstance =
+                        (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
+                         where trigger.IdComponent == triggerId
+                         select trigger).First();
+                    //Set DataContext
+                    var bubblingTriggerConfiguration = triggerSingleInstance;
+                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
+                    executed = true;
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                try
+                {
+                    var triggerPollingInstance =
+                        (from trigger in EventsEngine.BubblingTriggerConfigurationsPolling
+                         where trigger.IdComponent == triggerId
+                         select trigger).First();
+                    var bubblingTriggerConfiguration = triggerPollingInstance;
+                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
+                    executed = true;
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                return executed ? "Trigger executed." : "Trigger not executed check the Windows event viewer.";
+            }
+            catch (Exception ex)
+            {
+                return $"Error - {ex.Message} ";
+            }
+        }
+
 
     }
 }

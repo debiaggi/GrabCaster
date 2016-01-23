@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------
-// <copyright file = "Program.cs" company="Nino Crudele">
+// <copyright file = "NopTrigger.cs" company="Nino Crudele">
 //   Copyright (c) 2015 Nino Crudele. All Rights Reserved.
 // </copyright>
 // <summary>
@@ -25,59 +25,49 @@
 //    http://www.opensource.org/licenses/rpl1.5.txt
 //  </summary>
 // --------------------------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GrabCaster.Laboratory.ConsoleEmbedded
+namespace GrabCaster.Framework.NopTrigger
 {
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Collections.Concurrent;
-    using System.Threading;
-    using GrabCaster.Framework.Contracts.Events;
+    using System.Diagnostics.CodeAnalysis;
+
+    using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Globals;
-    using GrabCaster.Framework.Library;
-    class Program
+    using GrabCaster.Framework.Contracts.Triggers;
+
+    /// <summary>
+    /// The nop trigger.
+    /// </summary>
+    [TriggerContract("{96860422-839B-40D0-8142-274EDF112F26}", "NOP Trigger", "No operation Trigger, used for test purpose.", false, true, false)]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
+    public class NopTrigger : ITriggerType
     {
         /// <summary>
-        /// The set event action event embedded.
+        /// Gets or sets the context.
         /// </summary>
-        private static Embedded.SetEventActionEventEmbedded setEventActionEventEmbedded;
+        public EventActionContext Context { get; set; }
 
         /// <summary>
-        /// The main.
+        /// Gets or sets the set event action trigger.
         /// </summary>
-        /// <param name="args">
-        /// The args.
-        /// </param>
-        static void Main(string[] args)
-        {
-            setEventActionEventEmbedded = EventReceivedFromEmbedded;
-            Embedded.setEventActionEventEmbedded = setEventActionEventEmbedded;
-            Console.WriteLine("Start GrabCaster Embedded Library");
-            GrabCaster.Framework.Library.Embedded.StartEngine();
-        }
+        public SetEventActionTrigger SetEventActionTrigger { get; set; }
 
         /// <summary>
-        /// The event received from embedded.
+        /// Gets or sets the data context.
         /// </summary>
-        /// <param name="eventType">
-        /// The event type.
+        [TriggerPropertyContract("DataContext", "Trigger Default Main Data")]
+        public byte[] DataContext { get; set; }
+
+        /// <summary>
+        /// The execute.
+        /// </summary>
+        /// <param name="setEventActionTrigger">
+        /// The set event action trigger.
         /// </param>
         /// <param name="context">
         /// The context.
         /// </param>
-        private static void EventReceivedFromEmbedded(IEventType eventType, EventActionContext context)
+        [TriggerActionContract("{4F767BB8-0071-444F-B4AD-ABF730F88B44}", "Main action", "Main action description")]
+        public void Execute(SetEventActionTrigger setEventActionTrigger, EventActionContext context)
         {
-
-            string stringValue = Encoding.UTF8.GetString(eventType.DataContext);
-            Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
-            Console.WriteLine(stringValue);
- 
-
         }
     }
 }
