@@ -167,12 +167,14 @@ namespace GrabCaster.Framework.Engine
         /// <param name="triggerId">
         /// The trigger id.
         /// </param>
+        /// <param name="configurationId"></param>
+        /// <param name="value"></param>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
         [OperationContract]
         [WebGet]
-        string ExecuteTrigger(string triggerId);
+        string ExecuteTrigger(string configurationId, string triggerId, string value);
 
         /// <summary>
         /// The refresh bubbling setting.

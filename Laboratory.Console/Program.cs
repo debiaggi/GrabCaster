@@ -31,12 +31,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrabCaster.Laboratory.Console
+namespace GrabCaster.Laboratory.ConsoleEmbeddedSend
 {
+    using GrabCaster.Framework.Library;
+
     class Program
     {
         static void Main(string[] args)
         {
+            setEventActionEventEmbedded = EventReceivedFromEmbedded;
+            Embedded.setEventActionEventEmbedded = setEventActionEventEmbedded;
+            Console.WriteLine("Start GrabCaster Embedded Library");
             GrabCaster.Framework.Library.Embedded.StartEngine();
         }
     }

@@ -1,5 +1,6 @@
 {
   "Trigger": {
+	"IdConfiguration": "",
     "IdComponent": "{782B745E-1F6F-440A-A209-E250A1EA5013}",
     "Name": "Rfid Trigger",
     "Description": "Read Rfid Tag from a Pidget device"

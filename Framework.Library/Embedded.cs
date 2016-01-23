@@ -49,11 +49,14 @@ namespace GrabCaster.Framework.Library
     {
 
         public delegate void SetEventActionEventEmbedded(IEventType _this, EventActionContext context);
+ 
+ 
         /// <summary>
         /// Used internally by the embedded
         /// </summary>
         public static SetEventActionEventEmbedded setEventActionEventEmbedded { get; set; }
 
+        public static bool engineLoaded = false;
         // Global Action Events
         /// <summary>
         /// The delegate action event.
@@ -103,7 +106,7 @@ namespace GrabCaster.Framework.Library
                 LogEngine.ConsoleWriteLine("--GrabCaster Sevice Initialization--Start Engine.", ConsoleColor.Green);
                 delegateActionEvent = delegateActionEventEmbedded;
                 CoreEngine.StartEventEngine(delegateActionEvent);
-
+                engineLoaded = true;
                 Thread.Sleep(Timeout.Infinite);
             }
             catch (NotImplementedException ex)
@@ -179,50 +182,28 @@ namespace GrabCaster.Framework.Library
         /// The <see cref="string"/>.
         /// </returns>
         /// http://localhost:8000/GrabCaster/ExecuteTrigger?TriggerID={3C62B951-C353-4899-8670-C6687B6EAEFC}
-        public static string ExecuteTrigger(string triggerId,Stream data)
+        public static bool ExecuteTrigger(string configurationId, string triggerId, byte[] data)
         {
             try
             {
-                var executed = false;
-                try
-                {
-                    var triggerSingleInstance =
-                        (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
-                         where trigger.IdComponent == triggerId
-                         select trigger).First();
-                    //Set DataContext
-                    var bubblingTriggerConfiguration = triggerSingleInstance;
-                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
-                    executed = true;
-                }
-                catch
-                {
-                    // ignored
-                }
-
-                try
-                {
-                    var triggerPollingInstance =
-                        (from trigger in EventsEngine.BubblingTriggerConfigurationsPolling
-                         where trigger.IdComponent == triggerId
-                         select trigger).First();
-                    var bubblingTriggerConfiguration = triggerPollingInstance;
-                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
-                    executed = true;
-                }
-                catch
-                {
-                    // ignored
-                }
-
-                return executed ? "Trigger executed." : "Trigger not executed check the Windows event viewer.";
+                var triggerSingleInstance = (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
+                                             where trigger.IdComponent == triggerId && trigger.IdConfiguration == configurationId
+                                             select trigger).First();
+                EventsEngine.ExecuteTriggerConfiguration(triggerSingleInstance, data);
+                return true;
             }
             catch (Exception ex)
             {
-                return $"Error - {ex.Message} ";
+                LogEngine.WriteLog(
+                    Configuration.EngineName,
+                    $"Error in {MethodBase.GetCurrentMethod().Name} - The trigger ID {triggerId} does not exist.",
+                    Constant.ErrorEventIdHighCritical,
+                    Constant.TaskCategoriesError,
+                    ex,
+                    EventLogEntryType.Error);
+                return false;
             }
         }
-
 
     }
 }

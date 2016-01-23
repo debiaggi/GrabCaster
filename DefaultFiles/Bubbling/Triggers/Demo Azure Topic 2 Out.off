@@ -1,6 +1,7 @@
 {
   "Trigger": {
 		"Description": "Simple File Demo",
+		"IdConfiguration": "",
 		"IdComponent": "{D56A660E-2BBE-4705-BA2E-E89BBE0689DB}",
 		"Name": "Receive from topic for demo ",
 	"TriggerProperties": [

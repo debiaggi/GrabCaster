@@ -1,5 +1,6 @@
 {
 	"Trigger": {
+		"IdConfiguration": "",
 		"IdComponent": "{B515A376-B91E-495C-ADEE-2AD3DC54C2B3}",
 		"Name": "Chat Trigger",
 		"Description": "Create a P2P chat bridge.",

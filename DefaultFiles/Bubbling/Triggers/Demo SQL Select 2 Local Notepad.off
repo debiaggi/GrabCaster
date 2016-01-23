@@ -1,5 +1,6 @@
 {
   "Trigger": {
+		"IdConfiguration": "",
 		"IdComponent": "{7920EE0F-CAC8-4ABB-82C2-1C69351EDD28}",
 		"Name": "SQL Server Trigger",
 		"Description": "SQL Server Trigger",

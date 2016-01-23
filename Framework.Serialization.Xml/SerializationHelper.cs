@@ -62,7 +62,8 @@ namespace GrabCaster.Framework.Serialization.Xml
             {
                 var triggerConfiguration = new TriggerConfiguration();
                 triggerConfiguration.Trigger = new Trigger(
-                    BubblingEvent.IdComponent, 
+                    BubblingEvent.IdComponent,
+                    BubblingEvent.IdConfiguration,
                     BubblingEvent.Name, 
                     BubblingEvent.Description);
                 triggerConfiguration.Trigger.TriggerProperties = new List<TriggerProperty>();

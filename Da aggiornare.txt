@@ -1,1 +1,2 @@
 documentare tutto per EventsUpStreamComponent nel config ecc
+aggiunta lo specificare idconfiguration e idcomponent nel REST per eseguire il trigger e nell embedded

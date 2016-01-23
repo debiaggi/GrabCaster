@@ -1,5 +1,6 @@
 {
   "Trigger": {
+		"IdConfiguration": "",
 		"IdComponent": "{9A989BD1-C8DE-4FC1-B4BA-02E7D8A4AD76}",
 		"Name": "BulkSQLServerTrigger Trigger",
 		"Description": "BULKSQLServerTrigger Trigger",

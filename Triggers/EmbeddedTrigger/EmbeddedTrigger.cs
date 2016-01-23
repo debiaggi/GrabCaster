@@ -25,10 +25,8 @@
 //    http://www.opensource.org/licenses/rpl1.5.txt
 //  </summary>
 // --------------------------------------------------------------------------------------------------
-namespace GrabCaster.Framework.NopTrigger
+namespace GrabCaster.Framework.EmbeddedTrigger
 {
-    using System.Diagnostics.CodeAnalysis;
-
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Globals;
     using GrabCaster.Framework.Contracts.Triggers;
@@ -36,9 +34,8 @@ namespace GrabCaster.Framework.NopTrigger
     /// <summary>
     /// The nop trigger.
     /// </summary>
-    [TriggerContract("{96860422-839B-40D0-8142-274EDF112F26}", "NOP Trigger", "No operation Trigger, used for test purpose.", false, true, false)]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
-    public class NopTrigger : ITriggerType
+    [TriggerContract("{306DE168-1CEF-4D29-B280-225B5D0D76FD}", "Embedded Trigger", "Embedded Trigger, used to send data.", false,true, true)]
+    public class EmbeddedTrigger : ITriggerType
     {
         /// <summary>
         /// Gets or sets the context.
@@ -65,9 +62,10 @@ namespace GrabCaster.Framework.NopTrigger
         /// <param name="context">
         /// The context.
         /// </param>
-        [TriggerActionContract("{4F767BB8-0071-444F-B4AD-ABF730F88B44}", "Main action", "Main action description")]
+        [TriggerActionContract("{38E44119-C8F2-4CC2-B22C-D053521777AE}", "Main action", "Main action description")]
         public void Execute(SetEventActionTrigger setEventActionTrigger, EventActionContext context)
         {
+            setEventActionTrigger(this, context);
         }
     }
 }

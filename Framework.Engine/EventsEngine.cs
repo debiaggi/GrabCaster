@@ -953,6 +953,7 @@ namespace GrabCaster.Framework.Engine
                 {
                     var bubblingEventClone = (BubblingEvent)ObjectHelper.CloneObject(bubblingEvent);
                     bubblingEventClone.IsActive = true;
+                    bubblingEventClone.IdConfiguration = triggerConfiguration.Trigger.IdConfiguration;
                     bubblingEventClone.Events = triggerConfiguration.Events;
 
                     // Set all the properties
@@ -1214,7 +1215,7 @@ namespace GrabCaster.Framework.Engine
         {
             foreach (var bubblingTriggerConfiguration in BubblingTriggerConfigurationsPolling)
             {
-                ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
+                ExecuteTriggerConfiguration(bubblingTriggerConfiguration,null);
             }
         }
 
@@ -1232,8 +1233,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.ConsoleWriteLine(
                         $"Run single instances {bubblingTriggerConfiguration.Name}", 
                         ConsoleColor.Green);
-                    var treadRun = new Thread(ExecuteTriggerConfiguration);
-                    treadRun.Start(bubblingTriggerConfiguration);
+                    var treadRun = new Thread(() => ExecuteTriggerConfiguration(bubblingTriggerConfiguration,null));
                 }
             }
         }
@@ -1245,7 +1245,7 @@ namespace GrabCaster.Framework.Engine
         /// <param name="bubblingTriggerConfiguration">
         /// The bubbling Trigger Configuration.
         /// </param>
-        public static void ExecuteTriggerConfiguration(object bubblingTriggerConfiguration)
+        public static void ExecuteTriggerConfiguration(object bubblingTriggerConfiguration,byte[] embeddedContent)
         {
             var triggerConfiguration = (BubblingEvent)bubblingTriggerConfiguration;
             try
@@ -1292,7 +1292,7 @@ namespace GrabCaster.Framework.Engine
                         // Inizialize the DataContext
                         if (propertyEvent.Name == "DataContext")
                         {
-                            propertyEvent.Value = null;
+                            propertyEvent.Value = embeddedContent;
                         }
 
                         if (propertyTriger != null)

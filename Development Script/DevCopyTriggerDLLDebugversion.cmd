@@ -17,6 +17,7 @@ copy Triggers\PowershellTrigger\bin\Debug\GrabCaster.Framework.PowerShellTrigger
 copy Triggers\RfidTrigger\bin\Debug\GrabCaster.Framework.RfidTrigger.dll Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
 copy Triggers\SQLServerTrigger\bin\Debug\GrabCaster.Framework.SqlServerTrigger.dll Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
 copy Triggers\ChatTrigger\bin\Debug\GrabCaster.Framework.ChatTrigger.dll Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
+copy Triggers\EmbeddedTrigger\bin\Debug\GrabCaster.Framework.EmbeddedTrigger.dll Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
 
 REM COPY PDB
 copy Triggers\AzureBlobTrigger\bin\Debug\GrabCaster.Framework.AzureBlobTrigger.pdb Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
@@ -33,5 +34,6 @@ copy Triggers\PowershellTrigger\bin\Debug\GrabCaster.Framework.PowerShellTrigger
 copy Triggers\RfidTrigger\bin\Debug\GrabCaster.Framework.RfidTrigger.pdb Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
 copy Triggers\SQLServerTrigger\bin\Debug\GrabCaster.Framework.SqlServerTrigger.pdb Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
 copy Triggers\ChatTrigger\bin\Debug\GrabCaster.Framework.ChatTrigger.pdb Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
+copy Triggers\EmbeddedTrigger\bin\Debug\GrabCaster.Framework.EmbeddedTrigger.pdb Framework\bin\Debug\Root_GrabCaster\Triggers\* /y
 
 cd %~dp0

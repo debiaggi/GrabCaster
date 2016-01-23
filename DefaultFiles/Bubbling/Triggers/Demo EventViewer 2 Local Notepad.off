@@ -1,5 +1,6 @@
 {
   "Trigger": {
+		"IdConfiguration": "",
 		"IdComponent": "{843008B6-F4E1-4A29-8082-BDC111EA0E99}",
 		"Name": "Event Viewer Trigger",
 		"Description": "Event Viewer Trigger",

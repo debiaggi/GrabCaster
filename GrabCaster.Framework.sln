@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework", "Framework\GrabCaster.Framework.csproj", "{5C90B335-47A3-4ADE-8B30-3AA286976A27}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -149,8 +149,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Serial
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Library", "Framework.Library\GrabCaster.Framework.Library.csproj", "{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.Console", "Laboratory.Console\GrabCaster.Laboratory.Console.csproj", "{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EmbeddedEvent", "Events\EmbeddedEvent\GrabCaster.Framework.EmbeddedEvent.csproj", "{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.ConsoleEmbedded", "Laboratory.ConsoleEmbedded\GrabCaster.Laboratory.ConsoleEmbedded.csproj", "{1494E12D-AD36-49D5-A0E8-E1531C793C13}"
@@ -165,9 +163,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCasterAdapter", "GrabCa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Samples.BizTalk.Adapter.Common", "GrabCasterAdapter\BaseAdapter\v1.0.2\Microsoft.Samples.BizTalk.Adapter.Common.csproj", "{44B780E7-6D79-4BAF-9994-28CFFA1172A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterManagement", "GrabCasterAdapter\Design Time\Adapter Management\AdapterManagement.csproj", "{2517F73A-C428-42DD-8A90-094E446ABC5E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EmbeddedTrigger", "Triggers\GrabCaster.Framework.EmbeddedTrigger\GrabCaster.Framework.EmbeddedTrigger.csproj", "{88A61EF1-BE39-473E-8985-7EBC9F55DCBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.EmbeddedTrigger", "Triggers\EmbeddedTrigger\GrabCaster.Framework.EmbeddedTrigger.csproj", "{88A61EF1-BE39-473E-8985-7EBC9F55DCBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -527,14 +523,6 @@ Global
 		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|x86.ActiveCfg = Release|Any CPU
 		{90EDF12E-2F15-4B5C-BC55-D52919B86AB7}.Release|x86.Build.0 = Release|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Debug|x86.Build.0 = Debug|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|x86.ActiveCfg = Release|Any CPU
-		{413C3CEC-4204-48EC-9512-CEA06AD4F1FB}.Release|x86.Build.0 = Release|Any CPU
 		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -583,14 +571,6 @@ Global
 		{44B780E7-6D79-4BAF-9994-28CFFA1172A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44B780E7-6D79-4BAF-9994-28CFFA1172A6}.Release|x86.ActiveCfg = Release|Any CPU
 		{44B780E7-6D79-4BAF-9994-28CFFA1172A6}.Release|x86.Build.0 = Release|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Debug|x86.Build.0 = Debug|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|x86.ActiveCfg = Release|Any CPU
-		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|x86.Build.0 = Release|Any CPU
 		{88A61EF1-BE39-473E-8985-7EBC9F55DCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88A61EF1-BE39-473E-8985-7EBC9F55DCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88A61EF1-BE39-473E-8985-7EBC9F55DCBB}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -638,7 +618,6 @@ Global
 		{81B7EADC-9555-40C3-9B1A-F3EE4FAA3BEA} = {93BEE38A-3878-4B53-B4D7-AF27F17F3632}
 		{C579C9EC-B584-4B82-94DD-E6304D61B2DD} = {53ACFE67-DF06-4065-B73C-9A8CBBCE51A2}
 		{44B780E7-6D79-4BAF-9994-28CFFA1172A6} = {53ACFE67-DF06-4065-B73C-9A8CBBCE51A2}
-		{2517F73A-C428-42DD-8A90-094E446ABC5E} = {53ACFE67-DF06-4065-B73C-9A8CBBCE51A2}
 		{88A61EF1-BE39-473E-8985-7EBC9F55DCBB} = {A2E7CCE3-2499-4928-8D5B-1E83C1EFE08F}
 	EndGlobalSection
 EndGlobal

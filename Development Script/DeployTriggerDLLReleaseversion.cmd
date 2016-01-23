@@ -14,4 +14,5 @@ xcopy Triggers\PowershellTrigger\bin\Release\GrabCaster.Framework.PowerShellTrig
 xcopy Triggers\RfidTrigger\bin\Release\GrabCaster.Framework.RfidTrigger.dll Setup\bin\Release\Deploy\Root_GrabCaster\Triggers\* /y
 xcopy Triggers\SQLServerTrigger\bin\Release\GrabCaster.Framework.SqlServerTrigger.dll Setup\bin\Release\Deploy\Root_GrabCaster\Triggers\* /y
 xcopy Triggers\ChatTrigger\bin\Release\GrabCaster.Framework.ChatTrigger.dll Setup\bin\Release\Deploy\Root_GrabCaster\Triggers\* /y
+xcopy Triggers\EmbeddedTrigger\bin\Release\GrabCaster.Framework.EmbeddedTrigger.dll Setup\bin\Release\Deploy\Root_GrabCaster\Triggers\* /y
 cd %~dp0

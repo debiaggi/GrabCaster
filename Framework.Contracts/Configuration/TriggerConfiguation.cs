@@ -93,9 +93,10 @@ namespace GrabCaster.Framework.Contracts.Configuration
         /// <param name="description">
         /// The description.
         /// </param>
-        public Trigger(string idComponent, string name, string description)
+        public Trigger(string idComponent, string idConfiguration, string name, string description)
         {
             this.IdComponent = idComponent;
+            this.IdConfiguration = idConfiguration;
             this.Name = name;
             this.Description = description;
         }
@@ -105,6 +106,13 @@ namespace GrabCaster.Framework.Contracts.Configuration
         /// </summary>
         [DataMember]
         public string IdComponent { get; set; }
+
+        /// <summary>
+        /// Get or set the id configuration
+        /// </summary>
+        [DataMember]
+        public string IdConfiguration { get; set; }
+
 
         /// <summary>
         /// Gets or sets the name.

@@ -1,5 +1,6 @@
 {
   "Trigger": {
+	"IdConfiguration": "",
     "IdComponent": "{3C62B951-C353-4899-8670-C6687B6EAEFC}",
     "Name": "FileTrigger Override To Out",
     "Description": "Get file from disc",

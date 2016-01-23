@@ -47,6 +47,7 @@ namespace GrabCaster.Laboratory.ConsoleEmbedded
         /// </summary>
         private static Embedded.SetEventActionEventEmbedded setEventActionEventEmbedded;
 
+
         /// <summary>
         /// The main.
         /// </summary>
@@ -58,9 +59,29 @@ namespace GrabCaster.Laboratory.ConsoleEmbedded
             setEventActionEventEmbedded = EventReceivedFromEmbedded;
             Embedded.setEventActionEventEmbedded = setEventActionEventEmbedded;
             Console.WriteLine("Start GrabCaster Embedded Library");
-            GrabCaster.Framework.Library.Embedded.StartEngine();
+            Thread t = new Thread(start);
+            t.Start();
+
+          
+            if (args.Count() > 0)
+            {
+                while (!GrabCaster.Framework.Library.Embedded.engineLoaded)
+                {
+                    ;
+                }
+                byte[] content = Encoding.UTF8.GetBytes("Test content string");
+
+                GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
+                    "{82208FAA-272E-48A7-BB5C-4EACDEA538D2}",
+                    "{306DE168-1CEF-4D29-B280-225B5D0D76FD}",
+                    content);
+            }
         }
 
+        static void start()
+        {
+            GrabCaster.Framework.Library.Embedded.StartEngine();
+        }
         /// <summary>
         /// The event received from embedded.
         /// </summary>

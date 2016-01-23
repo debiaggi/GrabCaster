@@ -309,23 +309,24 @@ namespace GrabCaster.Framework.Engine
         /// </summary>
         /// <param name="triggerId">
         /// </param>
+        /// <param name="configurationId"></param>
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        /// http://localhost:8000/GrabCaster/ExecuteTrigger?TriggerID={3C62B951-C353-4899-8670-C6687B6EAEFC}
-        public string ExecuteTrigger(string triggerId)
+        /// http://localhost:8000/GrabCaster/ExecuteTrigger?ConfigurationID={3C62B951-C353-4899-8670-C6687B6EAEFC}TriggerID={3C62B951-C353-4899-8670-C6687B6EAEFC}&value=text
+        public string ExecuteTrigger(string configurationId,string triggerId,string value)
         {
             try
             {
                 var executed = false;
                 try
                 {
-                    var triggerSingleInstance =
-                        (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
-                         where trigger.IdComponent == triggerId
-                         select trigger).First();
+                    var triggerSingleInstance = (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
+                                                 where trigger.IdComponent == triggerId && trigger.IdConfiguration == configurationId
+                                                 select trigger).First();
                     var bubblingTriggerConfiguration = triggerSingleInstance;
-                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
+                    byte[] content = Encoding.UTF8.GetBytes(value);
+                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration,content);
                     executed = true;
                 }
                 catch
@@ -335,12 +336,12 @@ namespace GrabCaster.Framework.Engine
 
                 try
                 {
-                    var triggerPollingInstance =
-                        (from trigger in EventsEngine.BubblingTriggerConfigurationsPolling
-                         where trigger.IdComponent == triggerId
-                         select trigger).First();
+                    var triggerPollingInstance = (from trigger in EventsEngine.BubblingTriggerConfigurationsPolling
+                                                  where trigger.IdComponent == triggerId && trigger.IdConfiguration == configurationId
+                                                  select trigger).First();
                     var bubblingTriggerConfiguration = triggerPollingInstance;
-                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration);
+                    byte[] content = Encoding.UTF8.GetBytes(value);
+                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration,content);
                     executed = true;
                 }
                 catch
