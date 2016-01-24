@@ -26,19 +26,19 @@ using Microsoft.Samples.BizTalk.Adapter.Common;
 
 namespace Microsoft.BizTalk.SDKSamples.Adapters
 {
-	internal class DotNetFileException : ApplicationException
+	internal class GrabCasterExceptions : ApplicationException
 	{
 		public static string UnhandledTransmit_Error = "The .Net File Adapter encounted an error transmitting a batch of messages.";
 
-        public DotNetFileException () { }
+        public GrabCasterExceptions () { }
 
-		public DotNetFileException (string msg) : base(msg) { }
+		public GrabCasterExceptions (string msg) : base(msg) { }
 
-		public DotNetFileException (Exception inner) : base(String.Empty, inner) { }
+		public GrabCasterExceptions (Exception inner) : base(String.Empty, inner) { }
 
-		public DotNetFileException (string msg, Exception e) : base(msg, e) { }
+		public GrabCasterExceptions (string msg, Exception e) : base(msg, e) { }
 
-		protected DotNetFileException (SerializationInfo info, StreamingContext context) : base(info, context) { }
+		protected GrabCasterExceptions (SerializationInfo info, StreamingContext context) : base(info, context) { }
 	}
 }
 

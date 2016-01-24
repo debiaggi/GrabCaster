@@ -32,20 +32,20 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
 	/// This is a singleton class for DotNetFile send adapter. All the messages, going to various
 	/// send ports of this adapter type, will go through this class.
 	/// </summary>
-	public class DotNetFileTransmitter : AsyncTransmitter
+	public class GrabCasterTransmitter : AsyncTransmitter
 	{
 		internal static string DOTNET_FILE_NAMESPACE = "http://schemas.microsoft.com/BizTalk/2003/SDK_Samples/Messaging/Transports/dotnetfile-properties";
 
-		public DotNetFileTransmitter() : base(
-			".Net FILE Transmit Adapter",
+		public GrabCasterTransmitter() : base(
+			"GrabCaster Transmit Adapter",
 			"1.0",
-			"Send files form BizTalk to disk",
-			".NetFILE",
+			"Send messages form BizTalk to GrabCaster points",
+            ".GRABCASTER",
 			new Guid("024DB758-AAF9-415e-A121-4AC245DD49EC"),
 			DOTNET_FILE_NAMESPACE,
-			typeof(DotNetFileTransmitterEndpoint),
-			GrabCasterTransmitProperties.BatchSize)
-		{
+			typeof(GrabCasterTransmitterEndpoint),
+            GrabCasterTransmitProperties.BatchSize)
+        {
 		}
 	
 		protected override void HandlerPropertyBagLoaded ()

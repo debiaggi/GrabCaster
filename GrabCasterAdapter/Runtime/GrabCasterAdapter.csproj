@@ -122,20 +122,20 @@
     <Compile Include="BatchMessage.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DotNetFileTransmitterEndpoint.cs" />
-    <Compile Include="DotNetFileExceptions.cs">
+    <Compile Include="GrabCasterTransmitterEndpoint.cs" />
+    <Compile Include="GrabCasterExceptions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DotNetFileProperties.cs">
+    <Compile Include="GrabCasterProperties.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GrabCasterReceiver.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DotNetFileReceiverEndpoint.cs">
+    <Compile Include="GrabCasterReceiverEndpoint.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DotNetFileTransmitter.cs">
+    <Compile Include="GrabCasterTransmitter.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

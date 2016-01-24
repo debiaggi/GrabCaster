@@ -155,7 +155,9 @@ namespace GrabCaster.Framework.Library
             {
                 try
                 {
-                    setEventActionEventEmbedded(eventType, context);
+                    //If embedded mode and trigger source == embeddedtrigger then not execute the internal embedded delelegate 
+                    if(context.BubblingConfiguration.AssemblyClassType != typeof(GrabCaster.Framework.EmbeddedTrigger.EmbeddedTrigger))
+                        setEventActionEventEmbedded(eventType, context);
 
                 }
                 catch (Exception ex)

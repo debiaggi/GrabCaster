@@ -37,16 +37,16 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
     /// batch and this may be an important optimization. And this is fundamentally why
     /// the Receiver is a singleton.
     /// </summary>
-    public class DotNetFileReceiver : Receiver 
+    public class GrabCasterReceiver : Receiver 
     {
-        public DotNetFileReceiver () : base(
-            ".Net FILE Receive Adapter",
+        public GrabCasterReceiver() : base(
+            "GrabCaster Receive Adapter",
             "1.0",
-            "Submits files from disk into BizTalk",
-            ".NetFILE",
+            "Submits message from GrabCaster points into BizTalk",
+            ".GRABCASTER",
             new Guid("3D4B599E-2202-4bbb-9FC6-7ACA3906E5DE"),
             "http://schemas.microsoft.com/BizTalk/2003/dotnetfile-properties",
-            typeof(DotNetFileReceiverEndpoint))
+            typeof(GrabCasterReceiverEndpoint))
         {
         }
         /// <summary>

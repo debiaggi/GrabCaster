@@ -37,13 +37,13 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
 	/// There is one instance of HttpTransmitterEndpoint class for each every static send port.
 	/// Messages will be forwarded to this class by AsyncTransmitterBatch
 	/// </summary>
-	internal class DotNetFileTransmitterEndpoint : AsyncTransmitterEndpoint
+	internal class GrabCasterTransmitterEndpoint : AsyncTransmitterEndpoint
 	{
 		private AsyncTransmitter asyncTransmitter = null;
         private string propertyNamespace;
         private static int IO_BUFFER_SIZE = 4096;
 
-        public DotNetFileTransmitterEndpoint(AsyncTransmitter asyncTransmitter) : base(asyncTransmitter)
+        public GrabCasterTransmitterEndpoint(AsyncTransmitter asyncTransmitter) : base(asyncTransmitter)
 		{
 			this.asyncTransmitter = asyncTransmitter;
 		}
@@ -63,26 +63,26 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
 
 		    // build url
             GrabCasterTransmitProperties props = new GrabCasterTransmitProperties(message, propertyNamespace);
-            string filePath = GrabCasterTransmitProperties.CreateFileName(message, props.Uri);
 
-		    // Create the new file
-			using (FileStream fileStream = new FileStream(filePath, props.FileMode))
-			{
-				// Seek to the end of the file in case we're appending to existing data
-				fileStream.Seek(0, SeekOrigin.End);
 
-				source.Seek(0, SeekOrigin.Begin);
+            byte[] content = Encoding.UTF8.GetBytes("Test content string");
 
-				// Copy the data from the msg to the file
-				byte[] buffer = new byte[IO_BUFFER_SIZE];
-				int bytesRead;
-				while(0 != (bytesRead = source.Read(buffer, 0, buffer.Length)))
-				{
-					fileStream.Write(buffer, 0, bytesRead);
-				}
-			}
+            GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
+                "{82208FAA-272E-48A7-BB5C-4EACDEA538D2}",
+                "{306DE168-1CEF-4D29-B280-225B5D0D76FD}",
+                content);
 
-			return null;
+            return null;
 		}
+
+	    private bool kEngineAvailable()
+	    {
+
+            while (!GrabCaster.Framework.Library.Embedded.engineLoaded)
+            {
+                ;
+            }
+	        return true;
+	    }
 	}
 }

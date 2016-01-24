@@ -47,13 +47,13 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
     /// This class corresponds to a Receive Location/URI.  It handles polling the
     /// given folder for new messages.
     /// </summary>
-    internal class DotNetFileReceiverEndpoint : ReceiverEndpoint
+    internal class GrabCasterReceiverEndpoint : ReceiverEndpoint
     {
         // constants
         private const string MESSAGE_BODY = "body";
-        private const string DOT_NET_FILE_PROP_REMOTEFILENAME = "FileName";
+        private const string REMOTEMESSAGEID = "RemoteMessageId";
 
-        public DotNetFileReceiverEndpoint ()
+        public GrabCasterReceiverEndpoint()
         {
         }
 
@@ -217,8 +217,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
         {
             if ((0 != this.properties.ErrorThreshold) && (this.errorCount > this.properties.ErrorThreshold))
             {
-                this.transportProxy.ReceiverShuttingdown(this.properties.Uri, new ErrorThresholdExceeded());
-                
+              
                 //Stop the timer.
                 Stop();
                 return false;
@@ -350,11 +349,10 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             message.AddPart(MESSAGE_BODY, part, true);
 
             SystemMessageContext context = new SystemMessageContext(message.Context);
-            context.InboundTransportLocation = this.properties.Uri;
             context.InboundTransportType     = this.transportType;
             
             //Write/Promote any adapter specific properties on the message context
-            message.Context.Write(DOT_NET_FILE_PROP_REMOTEFILENAME, this.propertyNamespace, "Test o minchia");
+            message.Context.Write(REMOTEMESSAGEID, this.propertyNamespace, contextItem.BubblingConfiguration.MessageId);
 
             return message;
         }

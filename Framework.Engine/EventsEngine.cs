@@ -273,7 +273,7 @@ namespace GrabCaster.Framework.Engine
         /// <param name="context">
         /// EventActionContext cosa deve essere esuito
         /// </param>
-        private static void ActionEventReceived(IEventType eventType, EventActionContext context)
+        public static void ActionEventReceived(IEventType eventType, EventActionContext context)
         {
             lock (context)
             {
