@@ -28,7 +28,7 @@
 using System;
 using System.Threading;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
     public class ControlledTermination : IDisposable
     {

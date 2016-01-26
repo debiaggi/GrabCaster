@@ -31,7 +31,7 @@ using System.Resources;
 using System.Reflection;
 using Microsoft.Win32;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
 	public class AdapterManagementBase
 	{

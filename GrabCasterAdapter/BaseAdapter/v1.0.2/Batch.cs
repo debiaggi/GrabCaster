@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 using Microsoft.BizTalk.TransportProxy.Interop;
 using Microsoft.BizTalk.Message.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
     /// <summary>
     /// This class completely wraps the calls to a transportProxy batch. It does this so it can keep

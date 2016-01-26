@@ -1,25 +1,3 @@
-//---------------------------------------------------------------------
-// File: DotNetFileReceiverEndpoint.cs
-// 
-// Summary: Implementation of an adapter framework sample adapter. 
-//
-// Sample: Adapter framework runtime adapter.
-//
-//---------------------------------------------------------------------
-// This file is part of the Microsoft BizTalk Server SDK
-//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-//
-// This source code is intended only as a supplement to Microsoft BizTalk
-// Server release and/or on-line documentation. See these other
-// materials for detailed information regarding Microsoft code samples.
-//
-// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
-// KIND, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-// PURPOSE.
-//---------------------------------------------------------------------
-
 using System;
 using System.IO;
 using System.Net;
@@ -34,10 +12,10 @@ using System.Runtime.InteropServices;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
 using Microsoft.BizTalk.TransportProxy.Interop;
-using Microsoft.Samples.BizTalk.Adapter.Common;
+using GrabCaster.Framework.BizTalk.Adapter.Common;
 
 
-namespace Microsoft.BizTalk.SDKSamples.Adapters
+namespace GrabCaster.Framework.BizTalk.Adapter
 {
     using GrabCaster.Framework.Contracts.Events;
     using GrabCaster.Framework.Contracts.Globals;
@@ -70,7 +48,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             string propertyNamespace,
             ControlledTermination control)
         {
-            Trace.WriteLine("[DotNetFileReceiverEndpoint] Open called");
+            Trace.WriteLine("[GrabCasterReceiverEndpoint] Open called");
             this.errorCount = 0;
 
             this.properties = new GrabCasterReceiveProperties();
@@ -102,7 +80,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
         /// </summary>
         public override void Update (IPropertyBag config, IPropertyBag bizTalkConfig, IPropertyBag handlerPropertyBag)
         {
-            Trace.WriteLine("[DotNetFileReceiverEndpoint] Updated called");
+            Trace.WriteLine("[GrabCasterReceiverEndpoint] Updated called");
             lock (this)
             {
                 Stop();
@@ -127,7 +105,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
 
         public override void Dispose()
         {
-            Trace.WriteLine("[DotNetFileReceiverEndpoint] Dispose called");
+            Trace.WriteLine("[GrabCasterReceiverEndpoint] Dispose called");
             //  stop the schedule
             Stop();
         }
@@ -225,13 +203,13 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             return true;
         }
         List<BatchMessage> batchMessages = new List<BatchMessage>();
-        //  The algorithm implemented here splits the list of files according to the
-        //  batch tuning parameters (number of bytes and number of files) because the
+        //  The algorithm implemented here splits the list of messages according to the
+        //  batch tuning parameters (number of bytes and number of messages) because the
         //  list is randomly ordered it is possible to have non-optimal batches. It would
         //  be a slight optimization to order by increasing size and then cut the batches.
         private void PrepareMessageAndSubmit (IEventType eventType, EventActionContext context)
         {
-            Trace.WriteLine("[DotNetFileReceiverEndpoint] PickupFilesAndSubmit called");
+            Trace.WriteLine("[GrabCasterReceiverEndpoint] PrepareMessageAndSubmit called");
             
             int maxBatchSize     = this.properties.MaximumBatchSize;
             int maximumNumberOfMessages = this.properties.MaximumNumberOfMessages;
@@ -239,7 +217,6 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             
             long bytesInBatch = 0;
             
-            // If we couldn't lock the file, just move onto the next file
             IBaseMessage msg = CreateMessage(eventType, context);
             if ( null == msg )
                 return;
@@ -270,7 +247,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             if (this.controlledTermination.TerminateCalled)
                 return;
 
-            //  end of file list - one final batch to do
+            //  end of message list - one final batch to do
             if (batchMessages.Count > 0)
                 this.SubmitMessages(batchMessages);
         }
@@ -280,17 +257,17 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
         /// </summary>
         private void SubmitMessages(List<BatchMessage> items)
         {
-            if (items == null || items.Count == 0) throw new ArgumentException("SubmitFiles was called with an empty list of Files");
+            if (items == null || items.Count == 0) throw new ArgumentException("SubmitMessages was called with an empty list of messages");
 
-            Trace.WriteLine(string.Format("[DotNetFileReceiverEndpoint] SubmitFiles called. Submitting a batch of {0} files.", items.Count));
+            Trace.WriteLine(string.Format("[GrabCasterReceiverEndpoint] SubmitMessages called. Submitting a batch of {0} messages.", items.Count));
 
-            //This class is used to track the files associated with this ReceiveBatch
+            //This class is used to track the messages associated with this ReceiveBatch
             BatchInfo batchInfo = new BatchInfo(items);
             using (ReceiveBatch batch = new ReceiveBatch(this.transportProxy, this.controlledTermination, batchInfo.OnBatchComplete, this.properties.MaximumNumberOfMessages))
             {
                 foreach (BatchMessage item in items)
                 {
-                    // submit file to batch
+                    // submit message to batch
                     batch.SubmitMessage(item.Message, item.UserData);
                 }
 
@@ -299,7 +276,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
         }
 
         /// <summary>
-        /// This class tracks a collection of files associated with a EPM Batch
+        /// This class tracks a collection of messages associated with a EPM Batch
         /// </summary>
         private class BatchInfo
         {
@@ -313,32 +290,25 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
 
             /// <summary>
             /// Called when the BizTalk Batch has been submitted.  If all the messages were submitted (good or suspended)
-            /// we delete the files from the folder
+            /// we delete the messages from the folder
             /// </summary>
             /// <param name="overallStatus"></param>
             internal void OnBatchComplete(bool overallStatus)
             {
-                Trace.WriteLine(string.Format("[DotNetFileReceiverEndpoint] OnBatchComplete called. overallStatus == {0}.", overallStatus));
+                Trace.WriteLine(string.Format("[GrabCasterReceiverEndpoint] OnBatchComplete called. overallStatus == {0}.", overallStatus));
 
                 if (overallStatus == true) //Batch completed
                 {
-                    //Delete the files
+                    //Delete the messages
                     foreach (BatchMessage batchMessage in messages)
                     {
-                        //Close the stream so we can delete this file
+                        //Close the stream so we can delete this message
                         batchMessage.Message.BodyPart.Data.Close();
                     }
                 }
             }
         }
 
-        /// <summary>
-        /// Create a BizTalk message given the name of a file on disk optionally renaming
-        /// the file while the message is being submitted into BizTalk.
-        /// </summary>
-        /// <param name="srcFilePath">The File to create the message from</param>
-        /// <param name="renamedFileName">Optional, if specified the file will be renamed to this value.</param>
-        /// <returns>The message to be submitted to BizTalk.</returns>
         private IBaseMessage CreateMessage (IEventType eventType, EventActionContext contextItem)
         {
             Stream fs;

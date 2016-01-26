@@ -1,25 +1,3 @@
-//---------------------------------------------------------------------
-// File: DotNetFileAsyncTransmitterBatch.cs
-// 
-// Summary: Implementation of an adapter framework sample adapter. 
-//
-// Sample: Adapter framework runtime adapter.
-//
-//---------------------------------------------------------------------
-// This file is part of the Microsoft BizTalk Server SDK
-//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-//
-// This source code is intended only as a supplement to Microsoft BizTalk
-// Server release and/or on-line documentation. See these other
-// materials for detailed information regarding Microsoft code samples.
-//
-// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
-// KIND, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-// PURPOSE.
-//---------------------------------------------------------------------
-
 using System;
 using System.IO;
 using System.Xml;
@@ -29,9 +7,9 @@ using System.Threading;
 using Microsoft.BizTalk.TransportProxy.Interop;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
-using Microsoft.Samples.BizTalk.Adapter.Common;
+using GrabCaster.Framework.BizTalk.Adapter.Common;
 
-namespace Microsoft.BizTalk.SDKSamples.Adapters
+namespace GrabCaster.Framework.BizTalk.Adapter
 {
 	/// <summary>
 	/// There is one instance of HttpTransmitterEndpoint class for each every static send port.
@@ -68,9 +46,13 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters
             byte[] content = Encoding.UTF8.GetBytes("Test content string");
 
             GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
-                "{82208FAA-272E-48A7-BB5C-4EACDEA538D2}",
-                "{306DE168-1CEF-4D29-B280-225B5D0D76FD}",
+                props.IdConfiguration,
+                props.IdTrigger,
                 content);
+            //GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
+            //    "{82208FAA-272E-48A7-BB5C-4EACDEA538D2}",
+            //    "{306DE168-1CEF-4D29-B280-225B5D0D76FD}",
+            //    content);
 
             return null;
 		}

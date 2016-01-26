@@ -32,7 +32,7 @@ using System.Diagnostics;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.TransportProxy.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
 	/// <summary>
 	/// Summary description for Adapter.

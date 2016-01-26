@@ -31,7 +31,7 @@ using Microsoft.BizTalk.Message.Interop;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.TransportProxy.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
     /// <summary>
     /// This is a singleton class for the send adapter. This send adapter support batched

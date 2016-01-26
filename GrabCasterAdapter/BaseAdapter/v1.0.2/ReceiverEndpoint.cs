@@ -28,7 +28,7 @@ using System;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.TransportProxy.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
 	/// <summary>
 	/// Base class for end point configurations - a home for contains various helper functions.

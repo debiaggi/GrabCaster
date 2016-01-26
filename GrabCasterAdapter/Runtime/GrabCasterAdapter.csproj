@@ -11,7 +11,7 @@
     </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime</AssemblyName>
+    <AssemblyName>GrabCaster.Framework.BizTalk.Adapter</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -19,7 +19,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>DotNetFile</RootNamespace>
+    <RootNamespace>GrabCaster.Framework.BizTalk.Adapter</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <StartupObject>
     </StartupObject>
@@ -170,10 +170,13 @@
       <Project>{90edf12e-2f15-4b5c-bc55-d52919b86ab7}</Project>
       <Name>GrabCaster.Framework.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BaseAdapter\v1.0.2\Microsoft.Samples.BizTalk.Adapter.Common.csproj">
+    <ProjectReference Include="..\BaseAdapter\v1.0.2\GrabCaster.Framework.BizTalk.Common.csproj">
       <Project>{44b780e7-6d79-4baf-9994-28cffa1172a6}</Project>
-      <Name>Microsoft.Samples.BizTalk.Adapter.Common</Name>
+      <Name>GrabCaster.Framework.BizTalk.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

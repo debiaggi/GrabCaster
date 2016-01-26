@@ -9,7 +9,7 @@ using Microsoft.BizTalk.Message.Interop;
 /// <summary>
 /// Summary description for Class1
 /// </summary>
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
     /// <summary>
     /// This class encapsulates the typical behavior we want in a Transmit Adapter running asynchronously.

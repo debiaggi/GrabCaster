@@ -1,26 +1,3 @@
-//---------------------------------------------------------------------
-// File: AdapterManagement.cs
-// 
-// Summary: Implementation of adapter framework interfaces for sample
-// adapters.
-//
-// Sample: Adapter framework adapter.
-//
-//---------------------------------------------------------------------
-// This file is part of the Microsoft BizTalk Server SDK
-//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-//
-// This source code is intended only as a supplement to Microsoft BizTalk
-// Server release and/or on-line documentation. See these other
-// materials for detailed information regarding Microsoft code samples.
-//
-// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
-// KIND, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-// PURPOSE.
-//---------------------------------------------------------------------
-
 using System;
 using System.IO;
 using System.Reflection;
@@ -32,7 +9,7 @@ using Microsoft.Win32;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Adapter.Framework;
 
-namespace Microsoft.BizTalk.SDKSamples.Adapters.Designtime 
+namespace GrabCaster.Framework.BizTalk.Adapter.Designtime 
 {
     
     /// <summary>
@@ -45,7 +22,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters.Designtime
     public class DynamicAdapterManagement : IAdapterConfig, IDynamicAdapterConfig 
 	{
         
-		private static ResourceManager resourceManager = new ResourceManager("Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Designtime.DotNetFileResource", Assembly.GetExecutingAssembly());
+		private static ResourceManager resourceManager = new ResourceManager("GrabCaster.Framework.BizTalk.Adapter.Designtime.GrabCasterResource", Assembly.GetExecutingAssembly());
 
 		/// <summary>
         /// Returns the configuration schema as a string.
@@ -164,7 +141,7 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters.Designtime
     /// </summary>
     public class StaticAdapterManagement : IAdapterConfig, IStaticAdapterConfig, IAdapterConfigValidation 
 	{
-		private static ResourceManager resourceManager = new ResourceManager("AdapterManagement.DotNetFileResource", Assembly.GetExecutingAssembly());
+		private static ResourceManager resourceManager = new ResourceManager("AdapterManagement.GrabCasterResource", Assembly.GetExecutingAssembly());
 																																				  
 		
 		protected string LocalizeSchema (string schema, ResourceManager resourceManager)
@@ -255,39 +232,6 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters.Designtime
         }
 
         /// <summary>
-        /// Validate xmlInstance against configuration.  In this example it does nothing.
-        /// </summary>
-        /// <param name="type">Type of port or location being configured</param>
-        /// <param name="xmlInstance">Instance value to be validated</param>
-        /// <returns>Validated configuration.</returns>
-        public string ValidateConfiguration(ConfigType configType,
-            string xmlInstance) 
-		{
-            string validXml = String.Empty;
-
-            switch (configType) 
-			{
-				case ConfigType.ReceiveHandler:
-					validXml = xmlInstance; 
-					break;
-
-				case ConfigType.ReceiveLocation:
-					validXml = ValidateReceiveLocation(xmlInstance); 
-					break;
-
-				case ConfigType.TransmitHandler:
-					validXml = xmlInstance; 
-					break;
-
-				case ConfigType.TransmitLocation:
-					validXml = ValidateTransmitLocation(xmlInstance); 
-					break;
-            }
-
-            return validXml;
-        }
-
-        /// <summary>
         /// Helper to get resource from manafest.  Replace with 
         /// ResourceManager.GetString if .resources or
         /// .resx files are used for managing this assemblies resources.
@@ -312,82 +256,9 @@ namespace Microsoft.BizTalk.SDKSamples.Adapters.Designtime
             return value;
         }
 
-		/// <summary>
-		/// Generate uri entry based on directory and fileMask values
-		/// </summary>
-		/// <param name="type">Type of port or location being configured</param>
-		/// <param name="xmlInstance">Instance value to be validated</param>
-		/// <returns>Validated configuration.</returns>
-		private string ValidateReceiveLocation(string xmlInstance) 
-		{
-			// Load up document
-			XmlDocument document = new XmlDocument();
-			document.LoadXml(xmlInstance);
-            
-			// Build up inner text
-			StringBuilder builder = new StringBuilder();
-            
-			XmlNode directory = document.SelectSingleNode("Config/directory");
-			if (null != directory && 0 < directory.InnerText.Length) 
-			{
-				builder.Append(directory.InnerText + @"\");
-			}
-
-			XmlNode fileMask  = document.SelectSingleNode("Config/fileMask");
-			if (null != fileMask && 0 < fileMask.InnerText.Length) 
-			{
-				builder.Append(fileMask.InnerText);
-			}
-
-			XmlNode uri = document.SelectSingleNode("Config/uri");
-			if (null == uri) 
-			{
-				uri = document.CreateElement("uri");
-				document.DocumentElement.AppendChild(uri);
-			}
-
-			uri.InnerText = builder.ToString();
-                           
-			return document.OuterXml;
-		}
-
-        /// <summary>
-        /// Generate uri entry based on directory and fileName values
-        /// </summary>
-        /// <param name="type">Type of port or location being configured</param>
-        /// <param name="xmlInstance">Instance value to be validated</param>
-        /// <returns>Validated configuration.</returns>
-        private string ValidateTransmitLocation(string xmlInstance) 
-		{
-            // Load up document
-            XmlDocument document = new XmlDocument();
-            document.LoadXml(xmlInstance);
-            
-            // Build up inner text
-            StringBuilder builder = new StringBuilder();
-            
-            XmlNode directory = document.SelectSingleNode("Config/directory");
-            if (null != directory && 0 < directory.InnerText.Length) 
-			{
-                builder.Append(directory.InnerText + @"\");
-            }
-
-            XmlNode filename  = document.SelectSingleNode("Config/fileName");
-            if (null != filename && 0 < filename.InnerText.Length) 
-			{
-                builder.Append(filename.InnerText);
-            }
-
-            XmlNode uri = document.SelectSingleNode("Config/uri");
-            if (null == uri) 
-			{
-                uri = document.CreateElement("uri");
-                document.DocumentElement.AppendChild(uri);
-            }
-            uri.InnerText = builder.ToString();
-                           
-            return document.OuterXml;
+        public string ValidateConfiguration(ConfigType configType, string configuration)
+        {
+            throw new NotImplementedException();
         }
-
-	} 
+    } 
 }

@@ -16,13 +16,13 @@ Windows Registry Editor Version 5.00
 
 "InboundEngineCLSID"="{3D4B599E-2202-4bbb-9FC6-7ACA3906E5DE}"
 "InboundTypeName"="Microsoft.BizTalk.SDKSamples.Adapters.DotNetFileReceiver"
-"InboundAssemblyPath"="C:\\Program Files\\Microsoft BizTalk Server 2013 R2\\SDK\\Samples\\AdaptersDevelopment\\FileAdapter\\Runtime\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime.dll"
+"InboundAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Runtime\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime.dll"
 "OutboundEngineCLSID"="{024DB758-AAF9-415e-A121-4AC245DD49EC}"
 "OutboundTypeName"="Microsoft.BizTalk.SDKSamples.Adapters.DotNetFileTransmitter"
-"OutboundAssemblyPath"="C:\\Program Files\\Microsoft BizTalk Server 2013 R2\\SDK\\Samples\\AdaptersDevelopment\\FileAdapter\\Runtime\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime.dll"
+"OutboundAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Runtime\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime.dll"
 
 "AdapterMgmtTypeName"="Microsoft.BizTalk.SDKSamples.Adapters.Designtime.StaticAdapterManagement"
-"AdapterMgmtAssemblyPath"="C:\\Program Files\\Microsoft BizTalk Server 2013 R2\\SDK\\Samples\\AdaptersDevelopment\\FileAdapter\\Design Time\\Adapter Management\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Designtime.dll"
+"AdapterMgmtAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Design Time\\Adapter Management\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Designtime.dll"
 
 "PropertyNameSpace"="http://schemas.microsoft.com/BizTalk/2003/SDK_Samples/Messaging/Transports/dotnetfile-properties"
 "AliasesXML"="<AdapterAliasList><AdapterAlias>DotNetFILE://</AdapterAlias></AdapterAliasList>"

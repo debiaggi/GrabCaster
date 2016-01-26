@@ -1,12 +1,12 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\CLSID\{62018D08-281A-415b-A6D3-6172E3762867}]
-@="Static DotNetFile Adapter"
+@="GrabCaster Adapter"
 "AppID"="{12A6EBAA-CF68-4B58-B36E-A5A19B22C04E}"
 
 [HKEY_CLASSES_ROOT\CLSID\{62018D08-281A-415b-A6D3-6172E3762867}\BizTalk]
 @="BizTalk"
-"TransportType"="Static DotNetFile"
+"TransportType"="GrabCaster-Messaging"
 "Constraints"=dword:00003C0b
 
 "InboundProtocol_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A281}"
@@ -15,17 +15,17 @@ Windows Registry Editor Version 5.00
 "TransmitLocation_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A282}"
 
 "InboundEngineCLSID"="{3D4B599E-2202-4bbb-9FC6-7ACA3906E5DE}"
-"InboundTypeName"="Microsoft.BizTalk.SDKSamples.Adapters.DotNetFileReceiver"
-"InboundAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Runtime\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime.dll"
+"InboundTypeName"="GrabCaster.Framework.BizTalk.Adapter.GrabCasterReceiver"
+"InboundAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Runtime\\bin\\Debug\\GrabCaster.Framework.BizTalk.Adapter.dll"
 "OutboundEngineCLSID"="{024DB758-AAF9-415e-A121-4AC245DD49EC}"
-"OutboundTypeName"="Microsoft.BizTalk.SDKSamples.Adapters.DotNetFileTransmitter"
-"OutboundAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Runtime\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Runtime.dll"
+"OutboundTypeName"="GrabCaster.Framework.BizTalk.Adapter.GrabCasterTransmitter"
+"OutboundAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Runtime\\bin\\Debug\\GrabCaster.Framework.BizTalk.Adapter.dll"
 
-"AdapterMgmtTypeName"="Microsoft.BizTalk.SDKSamples.Adapters.Designtime.StaticAdapterManagement"
-"AdapterMgmtAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Design Time\\Adapter Management\\bin\\Debug\\Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Designtime.dll"
+"AdapterMgmtTypeName"="GrabCaster.Framework.BizTalk.Adapter.Designtime.StaticAdapterManagement"
+"AdapterMgmtAssemblyPath"="C:\\Users\\Administrator\\Documents\\GrabCaster.Framework\\GrabCasterAdapter\\Design Time\\Adapter Management\\bin\\Debug\\GrabCaster.Framework.BizTalk.Adapter.Designtime.dll"
 
-"PropertyNameSpace"="http://schemas.microsoft.com/BizTalk/2003/SDK_Samples/Messaging/Transports/dotnetfile-properties"
-"AliasesXML"="<AdapterAliasList><AdapterAlias>DotNetFILE://</AdapterAlias></AdapterAliasList>"
+"PropertyNameSpace"="http://schemas.microsoft.com/BizTalk/2003/SDK_Samples/Messaging/Transports/grabcaster-properties"
+"AliasesXML"="<AdapterAliasList><AdapterAlias>GrabCaster://</AdapterAlias></AdapterAliasList>"
 "ReceiveHandlerPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
 "SendHandlerPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
 "ReceiveLocationPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"

@@ -1,26 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////
-// File: AssemblyInfo.cs
-// 
-// Summary: Standard assembly information
-//
-// Sample: Adapter framework adapter.
-//
-//---------------------------------------------------------------------
-// This file is part of the Microsoft SDK
-//
-// Copyright (c) 1999-2002 Microsoft Corporation. All rights reserved.
-//
-// This source code is intended only as a supplement to Microsoft
-// and/or on-line documentation. See these other
-// materials for detailed information regarding Microsoft code samples.
-//
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
-// KIND, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-// PURPOSE. THE ENTIRE RISK OF USE OR RESULTS IN CONNECTION WITH THE USE
-// OF THIS CODE AND INFORMATION REMAINS WITH THE USER.   
-///////////////////////////////////////////////////////////////////////////////
-
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -29,12 +6,12 @@ using System.Runtime.CompilerServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("BizTalk Server .Net File Adapter Design-time")]
-[assembly: AssemblyDescription("Sample adapter to illustrate the Adapter Framework design-time")]
+[assembly: AssemblyTitle("BizTalk Server GrabCaster Adapter Design-time")]
+[assembly: AssemblyDescription("GrabCaster adapter management design-time")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft Corporation")]
-[assembly: AssemblyProduct("Microsoft BizTalk Server")]
-[assembly: AssemblyCopyright("Copyright (C) 2001 Microsoft Corporation. All rights reserved.")]
+[assembly: AssemblyCompany("GrabCaster Ltd")]
+[assembly: AssemblyProduct("GrabCaster")]
+[assembly: AssemblyCopyright("Copyright (C) 2016 GrabCaster Ltd. All rights reserved.")]
 [assembly: AssemblyTrademark("")] 
 [assembly: AssemblyCulture("")]		
 

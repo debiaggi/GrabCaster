@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -11,7 +11,7 @@
     </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>Microsoft.BizTalk.SDKSamples.Adapters.DotNetFile.Designtime</AssemblyName>
+    <AssemblyName>GrabCaster.Framework.BizTalk.Adapter.Designtime</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -121,7 +121,9 @@
     </Compile>
     <EmbeddedResource Include="CategorySchema.xml" />
     <EmbeddedResource Include="CategorySchema2.xml" />
-    <EmbeddedResource Include="DotNetFileResource.resx" />
+    <EmbeddedResource Include="GrabCasterResource.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReceiveHandler.xsd" />
     <EmbeddedResource Include="ReceiveLocation.xsd" />
     <EmbeddedResource Include="service1.wsdl" />

@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 using Microsoft.BizTalk.TransportProxy.Interop;
 using Microsoft.BizTalk.Message.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
 	//  Anything fails in this batch we abort the lot!
 	public sealed class AbortOnFailureReceiveTxnBatch : TxnBatch

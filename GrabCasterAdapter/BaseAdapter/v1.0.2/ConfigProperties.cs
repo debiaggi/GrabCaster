@@ -28,7 +28,7 @@ using System;
 using System.Xml;
 using Microsoft.BizTalk.Component.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
     /// <summary>
 	/// Summary description for ConfigProperties.

@@ -30,7 +30,7 @@ using System.Collections.Generic;
 using Microsoft.BizTalk.TransportProxy.Interop;
 using Microsoft.BizTalk.Message.Interop;
 
-namespace Microsoft.Samples.BizTalk.Adapter.Common
+namespace GrabCaster.Framework.BizTalk.Adapter.Common
 {
     public class SyncReceiveSubmitBatch : ReceiveBatch
     {
