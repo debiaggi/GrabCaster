@@ -29,8 +29,12 @@ namespace GrabCaster.Framework.BizTalk.Adapter
     {
         // constants
         private const string MESSAGE_BODY = "body";
-        private const string REMOTEMESSAGEID = "RemoteMessageId";
-
+        private const string PROP_REMOTEMESSAGEID = "RemoteMessageId";
+        private const string PROP_IDCONFIGURATION = "idConfiguration";
+        private const string PROP_IDTRIGGER = "idTrigger";
+        private const string PROP_JSONBAG = "jsonBag";
+        private const string PROP_NAMESPACE = "https://GrabCaster.BizTalk.Schemas.GrabCasterProperties";
+        
         public GrabCasterReceiverEndpoint()
         {
         }
@@ -322,8 +326,8 @@ namespace GrabCaster.Framework.BizTalk.Adapter
             context.InboundTransportType     = this.transportType;
             
             //Write/Promote any adapter specific properties on the message context
-            message.Context.Write(REMOTEMESSAGEID, this.propertyNamespace, contextItem.BubblingConfiguration.MessageId);
-
+            message.Context.Write(PROP_REMOTEMESSAGEID, PROP_NAMESPACE, contextItem.BubblingConfiguration.MessageId);
+            
             return message;
         }
 

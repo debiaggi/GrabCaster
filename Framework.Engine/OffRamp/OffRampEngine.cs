@@ -120,6 +120,16 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             try
             {
+                if(Configuration.RunLocalOnly())
+                {
+                    LogEngine.WriteLog(Configuration.EngineName,
+                                        $"This GrabCaster point is configured for local only execution.",
+                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.TaskCategoriesError,
+                                        null,
+                                        EventLogEntryType.Warning);
+                    return true;
+                }
                 LogEngine.ConsoleWriteLine("Initialize Abstract Event Up Stream Engine.", ConsoleColor.Yellow);
 
                 // Load event up stream external component
@@ -234,6 +244,17 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             try
             {
+                if (Configuration.RunLocalOnly())
+                {
+                    LogEngine.WriteLog(Configuration.EngineName,
+                                        $"Impossible to send the message using a remote message storage provider, this GrabCaster point is configured for local only execution.",
+                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.TaskCategoriesError,
+                                        null,
+                                        EventLogEntryType.Warning);
+                    return;
+                }
+
                 // Meter and measuring purpose
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
@@ -371,6 +392,17 @@ namespace GrabCaster.Framework.Engine.OffRamp
         {
             try
             {
+                if (Configuration.RunLocalOnly())
+                {
+                    LogEngine.WriteLog(Configuration.EngineName,
+                                        $"Impossible to send the message using a remote message storage provider, this GrabCaster point is configured for local only execution.",
+                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.TaskCategoriesError,
+                                        null,
+                                        EventLogEntryType.Warning);
+                    return;
+                }
+
                 // Meter and measuring purpose
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();

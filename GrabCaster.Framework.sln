@@ -167,6 +167,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Embedd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterManagement", "GrabCasterAdapter\Design Time\Adapter Management\AdapterManagement.csproj", "{2517F73A-C428-42DD-8A90-094E446ABC5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Log.File", "Framework.Log.File\GrabCaster.Framework.Log.File.csproj", "{24D9A738-C278-4047-8A4C-43C5DA78847B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -589,6 +591,14 @@ Global
 		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|x86.ActiveCfg = Release|Any CPU
 		{2517F73A-C428-42DD-8A90-094E446ABC5E}.Release|x86.Build.0 = Release|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Debug|x86.Build.0 = Debug|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|x86.ActiveCfg = Release|Any CPU
+		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -267,11 +267,6 @@ namespace GrabCaster.Framework.Base
                 BaseDirectory,
                 string.Concat(DirectoryNameConfigurationRoot, "_", filename));
             ConfigurationStorage.DirectoryServiceExecutable = BaseDirectory;
-            if (PointName() == "[point name]")
-            {
-                Methods.DirectEventViewerLog("The configuration file need to be configured.");
-                throw new Exception("The configuration file need to be configured.");
-            }
         }
 
         public static void SaveConfgurtation(ConfigurationStorage configurationStorage)
@@ -406,6 +401,14 @@ namespace GrabCaster.Framework.Base
             return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, DirectoryNameBubbling);
         }
 
+        /// <summary>
+        ///     BUBBLING directory
+        /// </summary>
+        /// <returns></returns>
+        public static string DirectoryLog()
+        {
+            return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, "Log");
+        }
         /// <summary>
         ///     ENDPOINTS directory
         /// </summary>
@@ -718,6 +721,15 @@ namespace GrabCaster.Framework.Base
         }
 
         /// <summary>
+        /// Number of seconds in queue before writing send to log component provider
+        /// </summary>
+        /// <returns></returns>
+        public static bool RunLocalOnly()
+        {
+            return ConfigurationStorage.RunLocalOnly;
+        }
+
+        /// <summary>
         ///     Define the Event Hubs checkpoint pattern
         /// </summary>
         /// <returns></returns>
@@ -926,5 +938,8 @@ namespace GrabCaster.Framework.Base
 
         [DataMember]
         public int ThrottlingLsiLogIncomingRateSeconds { get; set; }
+        [DataMember]
+        public bool RunLocalOnly { get; set; }
+        
     }
 }

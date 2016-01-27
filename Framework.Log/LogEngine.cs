@@ -124,10 +124,10 @@ namespace GrabCaster.Framework.Log
                 }
 
                 classInstance = Activator.CreateInstance(assemblyClass, null);
-                DirectConsoleWriteLine("Initialize Abstract Logging Engine.", ConsoleColor.Yellow);
 
                 Debug.WriteLine("LogEventUpStream - Inizialize the external log");
                 methodLogInfoInit.Invoke(classInstance, null);
+                DirectConsoleWriteLine("Initialize Abstract Logging Engine.", ConsoleColor.Yellow);
 
                 Debug.WriteLine("LogEventUpStream - CreateEventSource if not exist");
                 if (!EventLog.SourceExists(EventViewerSource))

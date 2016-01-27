@@ -21,6 +21,10 @@ copy Framework.Log.EventHubs\bin\Debug\GrabCaster.Framework.Log.EventHubs.dll Fr
 copy Framework.Log.EventHubs\bin\Debug\GrabCaster.Framework.Log.EventHubs.pdb Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Log.EventHubs\bin\Release\GrabCaster.Framework.Log.EventHubs.dll Framework\bin\Release\Root_GrabCaster\* /y
 
+copy Framework.Log.File\bin\Debug\GrabCaster.Framework.Log.File.dll Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Log.File\bin\Debug\GrabCaster.Framework.Log.File.pdb Framework\bin\Debug\Root_GrabCaster\* /y
+copy Framework.Log.File\bin\Release\GrabCaster.Framework.Log.File.dll Framework\bin\Release\Root_GrabCaster\* /y
+
 copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.dll Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Dcp.Azure\bin\Debug\GrabCaster.Framework.Dcp.Azure.pdb Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Dcp.Azure\bin\Release\GrabCaster.Framework.Dcp.Azure.dll Framework\bin\Release\Root_GrabCaster\* /y

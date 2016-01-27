@@ -56,6 +56,12 @@ namespace GrabCaster.Framework.Log.EventHubs
         {
             try
             {
+                if (Configuration.RunLocalOnly())
+                {
+                    EventLog.WriteEntry("Framework.Log.EventHubs", "The remote logging storage provider is not available, this GrabCaster point is configured for local only execution.", EventLogEntryType.Warning);
+                    return true;
+                }
+
                 Debug.WriteLine("-------------- Engine LogEventUpStream --------------");
                 Debug.WriteLine("LogEventUpStream - Get Configuration settings.");
                 //Event Hub Configuration
@@ -93,6 +99,12 @@ namespace GrabCaster.Framework.Log.EventHubs
         {
             try
             {
+                if (Configuration.RunLocalOnly())
+                {
+                    EventLog.WriteEntry("Framework.Log.EventHubs", "The remote logging storage provider is not available, this GrabCaster point is configured for local only execution.", EventLogEntryType.Warning);
+                    return true;
+                }
+
                 Debug.WriteLine("LogEventUpStream - serialize log message.");
                 //Create EH data message
                 var jsonSerialized = JsonConvert.SerializeObject(logMessage);

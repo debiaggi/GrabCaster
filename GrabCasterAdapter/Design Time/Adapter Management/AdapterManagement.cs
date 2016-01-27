@@ -255,10 +255,128 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
 
             return value;
         }
-
-        public string ValidateConfiguration(ConfigType configType, string configuration)
+        /// <summary>
+        /// Validate xmlInstance against configuration.  In this example it does nothing.
+        /// </summary>
+        /// <param name="type">Type of port or location being configured</param>
+        /// <param name="xmlInstance">Instance value to be validated</param>
+        /// <returns>Validated configuration.</returns>
+        public string ValidateConfiguration(ConfigType configType,
+            string xmlInstance)
         {
-            throw new NotImplementedException();
+            string validXml = String.Empty;
+
+            switch (configType)
+            {
+                case ConfigType.ReceiveHandler:
+                    validXml = xmlInstance;
+                    break;
+
+                case ConfigType.ReceiveLocation:
+                    validXml = ValidateReceiveLocation(xmlInstance);
+                    break;
+
+                case ConfigType.TransmitHandler:
+                    validXml = xmlInstance;
+                    break;
+
+                case ConfigType.TransmitLocation:
+                    validXml = ValidateTransmitLocation(xmlInstance);
+                    break;
+            }
+
+            return validXml;
         }
-    } 
+        /// <summary>
+        /// Generate uri entry based on directory and fileMask values
+        /// </summary>
+        /// <param name="type">Type of port or location being configured</param>
+        /// <param name="xmlInstance">Instance value to be validated</param>
+        /// <returns>Validated configuration.</returns>
+        private string ValidateReceiveLocation(string xmlInstance)
+        {
+            // Load up document
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(xmlInstance);
+
+            // Build up inner text
+            StringBuilder builder = new StringBuilder();
+
+            XmlNode jsonBag = document.SelectSingleNode("Config/jsonBag");
+            if (null != jsonBag && 0 < jsonBag.InnerText.Length)
+            {
+                builder.Append(jsonBag.InnerText + @"\");
+            }
+
+            XmlNode maximumBatchSize = document.SelectSingleNode("Config/maximumBatchSize");
+            if (null != maximumBatchSize && 0 < maximumBatchSize.InnerText.Length)
+            {
+                builder.Append(maximumBatchSize.InnerText);
+            }
+            XmlNode maximumNumberOfMessages = document.SelectSingleNode("Config/maximumNumberOfMessages");
+            if (null != maximumNumberOfMessages && 0 < maximumBatchSize.InnerText.Length)
+            {
+                builder.Append(maximumNumberOfMessages.InnerText);
+            }
+            XmlNode errorThreshold = document.SelectSingleNode("Config/errorThreshold");
+            if (null != errorThreshold && 0 < errorThreshold.InnerText.Length)
+            {
+                builder.Append(errorThreshold.InnerText);
+            }
+            XmlNode uri = document.SelectSingleNode("Config/uri");
+            if (null == uri)
+            {
+                uri = document.CreateElement("uri");
+                document.DocumentElement.AppendChild(uri);
+            }
+
+            uri.InnerText = builder.ToString();
+
+            return document.OuterXml;
+        }
+
+        /// <summary>
+        /// Generate uri entry based on directory and fileName values
+        /// </summary>
+        /// <param name="type">Type of port or location being configured</param>
+        /// <param name="xmlInstance">Instance value to be validated</param>
+        /// <returns>Validated configuration.</returns>
+        private string ValidateTransmitLocation(string xmlInstance)
+        {
+            // Load up document
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(xmlInstance);
+
+            // Build up inner text
+            StringBuilder builder = new StringBuilder();
+
+            XmlNode idConfiguration = document.SelectSingleNode("Config/idConfiguration");
+            if (null != idConfiguration && 0 < idConfiguration.InnerText.Length)
+            {
+                builder.Append(idConfiguration.InnerText + @"\");
+            }
+
+            XmlNode idTrigger = document.SelectSingleNode("Config/idTrigger");
+            if (null != idTrigger && 0 < idTrigger.InnerText.Length)
+            {
+                builder.Append(idTrigger.InnerText);
+            }
+            XmlNode jsonBag = document.SelectSingleNode("Config/jsonBag");
+            if (null != jsonBag && 0 < jsonBag.InnerText.Length)
+            {
+                builder.Append(jsonBag.InnerText);
+            }
+
+            XmlNode uri = document.SelectSingleNode("Config/uri");
+            if (null == uri)
+            {
+                uri = document.CreateElement("uri");
+                document.DocumentElement.AppendChild(uri);
+            }
+            uri.InnerText = builder.ToString();
+
+            return document.OuterXml;
+        }
+
+    }
 }

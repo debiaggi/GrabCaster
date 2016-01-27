@@ -55,6 +55,17 @@ namespace GrabCaster.Framework.Storage
         {
             try
             {
+                if (Configuration.RunLocalOnly())
+                {
+                    LogEngine.WriteLog(Configuration.EngineName,
+                                        $"Impossible to use a remote storage provider, this GrabCaster point is configured for local only execution.",
+                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.TaskCategoriesError,
+                                        null,
+                                        EventLogEntryType.Warning);
+                    return;
+                }
+
                 var storageAccountName = Configuration.GroupEventHubsStorageAccountName();
                 var storageAccountKey = Configuration.GroupEventHubsStorageAccountKey();
                 var connectionString =

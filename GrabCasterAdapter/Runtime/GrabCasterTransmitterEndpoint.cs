@@ -20,6 +20,11 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 		private AsyncTransmitter asyncTransmitter = null;
         private string propertyNamespace;
         private static int IO_BUFFER_SIZE = 4096;
+        private const string PROP_REMOTEMESSAGEID = "RemoteMessageId";
+        private const string PROP_IDCONFIGURATION = "idConfiguration";
+        private const string PROP_IDTRIGGER = "idTrigger";
+        private const string PROP_JSONBAG = "jsonBag";
+        private const string PROP_NAMESPACE = "https://GrabCaster.BizTalk.Schemas.GrabCasterProperties";
 
         public GrabCasterTransmitterEndpoint(AsyncTransmitter asyncTransmitter) : base(asyncTransmitter)
 		{
@@ -44,6 +49,9 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
 
             byte[] content = Encoding.UTF8.GetBytes("Test content string");
+            var idTrigger = message.Context.Read(PROP_IDTRIGGER, PROP_NAMESPACE);
+            var idConfiguration = message.Context.Read(PROP_IDCONFIGURATION, PROP_NAMESPACE);
+            var jsonBag = message.Context.Read(PROP_JSONBAG, PROP_NAMESPACE);
 
             GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
                 props.IdConfiguration,
