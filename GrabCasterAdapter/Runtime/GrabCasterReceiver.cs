@@ -11,7 +11,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
             "GrabCaster Receive Adapter",
             "1.0",
             "Submits message from GrabCaster points into BizTalk",
-            ".GRABCASTER",
+            "GrabCaster-Messaging",
             new Guid("3D4B599E-2202-4bbb-9FC6-7ACA3906E5DE"),
             "http://schemas.microsoft.com/BizTalk/2003/grabcaster-properties",
             typeof(GrabCasterReceiverEndpoint))

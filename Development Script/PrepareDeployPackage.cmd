@@ -31,10 +31,10 @@ xcopy Framework\bin\Release\*.exe Setup\bin\Release\Deploy\*  /y
 
 xcopy DefaultFiles\BubblingDeploy Setup\bin\Debug\Deploy\Root_GrabCaster\Bubbling\ /s /y /e
 xcopy DefaultFiles\BubblingDeploy Setup\bin\Release\Deploy\Root_GrabCaster\Bubbling\ /s /y /e
-pause
+
 xcopy DefaultFiles\Log Setup\bin\Debug\Deploy\Root_GrabCaster\Log\* /s /y /e
 xcopy DefaultFiles\Log Setup\bin\Release\Deploy\Root_GrabCaster\Log\* /s /y /e
-pause
+
 xcopy DefaultFiles\Demo Setup\bin\Debug\Deploy\Demo\* /s /y /e
 xcopy DefaultFiles\PersistentStorage Setup\bin\Debug\Deploy\PersistentStorage\* /s /y /e
 

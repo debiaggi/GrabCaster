@@ -324,7 +324,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
             SystemMessageContext context = new SystemMessageContext(message.Context);
             context.InboundTransportType     = this.transportType;
-            
+            context.InboundTransportLocation = this.properties.Uri;
             //Write/Promote any adapter specific properties on the message context
             message.Context.Write(PROP_REMOTEMESSAGEID, PROP_NAMESPACE, contextItem.BubblingConfiguration.MessageId);
             

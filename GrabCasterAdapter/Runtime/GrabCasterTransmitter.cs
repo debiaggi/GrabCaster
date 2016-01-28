@@ -18,7 +18,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 			"GrabCaster Transmit Adapter",
 			"1.0",
 			"Send messages form BizTalk to GrabCaster points",
-            ".GRABCASTER",
+            "GrabCaster-Messaging",
 			new Guid("024DB758-AAF9-415e-A121-4AC245DD49EC"),
             GRABCASTER_NAMESPACE,
 			typeof(GrabCasterTransmitterEndpoint),

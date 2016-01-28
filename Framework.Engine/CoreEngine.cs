@@ -258,7 +258,23 @@ namespace GrabCaster.Framework.Engine
             var pollingTime = Configuration.EnginePollingTime();
             try
             {
-                LogEngine.ConsoleWriteLine("Start Trigger Polling Cycle", ConsoleColor.Blue);
+                if (pollingTime == 0)
+                {
+                    LogEngine.WriteLog(
+                        Configuration.EngineName,
+                        $"EnginePollingTime = 0 - Internal logging system disabled.",
+                        Constant.ErrorEventIdHighCritical,
+                        Constant.TaskCategoriesError,
+                        null,
+                        EventLogEntryType.Warning);
+                    return;
+
+                }
+                else
+                {
+                    LogEngine.ConsoleWriteLine("Start Trigger Polling Cycle", ConsoleColor.Blue);
+                }
+                
 
                 while (ServiceStates.RunPolling)
                 {

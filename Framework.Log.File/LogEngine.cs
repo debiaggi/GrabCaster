@@ -49,7 +49,7 @@ namespace GrabCaster.Framework.Log.File
         public bool InitLog()
         {
             Directory.CreateDirectory(Configuration.DirectoryLog());
-            PathFile = Path.Combine(Configuration.DirectoryLog(),$"{DateTime.Now.Month.ToString()}{DateTime.Now.Day.ToString()}{DateTime.Now.Year.ToString()}-{Guid.NewGuid().ToString()}");
+            PathFile = Path.Combine(Configuration.DirectoryLog(),$"{DateTime.Now.Month.ToString()}{DateTime.Now.Day.ToString()}{DateTime.Now.Year.ToString()}-{Guid.NewGuid().ToString()}.txt");
             logFile = File.AppendText(PathFile);
             return true;
         }
@@ -66,7 +66,9 @@ namespace GrabCaster.Framework.Log.File
         public bool WriteLog(LogMessage logMessage)
         {
             logFile.WriteLine($"{DateTime.Now.ToString()} - {logMessage.Message}");
+            //logFile.FlushAsync();
             return true;
         }
+
     }
 }

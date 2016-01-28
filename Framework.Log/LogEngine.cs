@@ -155,7 +155,14 @@ namespace GrabCaster.Framework.Log
             }
             catch (Exception ex)
             {
-                WriteLog(
+                LogEngine.EventViewerWriteLog(
+                    Configuration.EngineName,
+                    $"Error in {MethodBase.GetCurrentMethod().Name}",
+                    Constant.ErrorEventIdHighCritical,
+                    Constant.TaskCategoriesError,
+                    ex,
+                    EventLogEntryType.Error);
+                LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
                     Constant.ErrorEventIdHighCritical,
@@ -180,6 +187,59 @@ namespace GrabCaster.Framework.Log
         }
 
         public static void WriteLog(
+        string source,
+        string message,
+        int eventId,
+        string taskCategory,
+        Exception exception,
+        EventLogEntryType level)
+            {
+                Debug.WriteLine($"GrabCaster-{message}");
+                try
+                {
+                    var logMessage = new LogMessage();
+
+                    if (exception != null)
+                    {
+                        logMessage.ExceptionObject =
+                            $"-HResult: {exception.HResult}\r -Error Message: {exception.Message + ""}\r -InnerExcetion: {exception.InnerException}\r -Source: {exception.Source}\r -StackTrace: {exception.StackTrace}";
+                    }
+                    else
+                    {
+                        logMessage.ExceptionObject = "";
+                    }
+
+                    // ReSharper disable once SpecifyACultureInStringConversionExplicitly
+                    logMessage.DateTime = DateTime.Now.ToString();
+                    logMessage.EventId = eventId;
+                    logMessage.MessageId = Guid.NewGuid().ToString();
+                    logMessage.Level = level;
+                    logMessage.Source = Configuration.EngineName;
+                    logMessage.ChannelId = Configuration.ChannelId();
+                    logMessage.ChannelName = Configuration.ChannelName();
+                    logMessage.TaskCategory = taskCategory;
+                    var exceptionText = logMessage.ExceptionObject != "" ? "\r-->Exception:" + logMessage.ExceptionObject : "";
+                    logMessage.Message =
+                        $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-EventID:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
+
+                    if (QueueAbstractMessage != null)
+                    {
+                        lock (QueueAbstractMessage)
+                        {
+                            QueueAbstractMessage.Enqueue(logMessage);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Last error point
+                    Methods.DirectEventViewerLog(ex);
+                }
+            }
+
+
+
+        public static void EventViewerWriteLog(
             string source,
             string message,
             int eventId,
@@ -215,13 +275,7 @@ namespace GrabCaster.Framework.Log
                 logMessage.Message =
                     $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-EventID:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
 
-                if (QueueAbstractMessage != null)
-                {
-                    lock (QueueAbstractMessage)
-                    {
-                        QueueAbstractMessage.Enqueue(logMessage);
-                    }
-                }
+                Methods.DirectEventViewerLog(logMessage.Message);
             }
             catch (Exception ex)
             {
@@ -229,6 +283,8 @@ namespace GrabCaster.Framework.Log
                 Methods.DirectEventViewerLog(ex);
             }
         }
+
+
 
         public static void DebugWriteLine(string message)
         {

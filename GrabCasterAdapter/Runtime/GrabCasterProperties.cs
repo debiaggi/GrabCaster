@@ -21,11 +21,13 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         private int maximumNumberOfMessages;
         private int errorThreshold;
         private string workInProgress;
+        private string uri;
 
         public string JsonBag { get { return this.jsonBag; } }
         public int MaximumBatchSize { get { return maximumBatchSize; } }
         public int MaximumNumberOfMessages { get { return this.maximumNumberOfMessages; } }
         public int ErrorThreshold { get { return errorThreshold; } }
+        public string Uri { get { return uri; } }
 
         public GrabCasterReceiveProperties() : base()
         {
@@ -56,6 +58,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
             this.maximumNumberOfMessages = IfExistsExtractInt(configDOM, "/Config/maximumNumberOfMessages", handlerMaximumNumberOfMessages);
             this.errorThreshold = ExtractInt(configDOM, "/Config/errorThreshold");
             this.workInProgress = IfExistsExtract(configDOM, "/Config/workInProgress", string.Empty);
+            this.uri = IfExistsExtract(configDOM, "/Config/uri", string.Empty);
         }
 
     }
@@ -74,9 +77,11 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         // Endpoint properties
         private string idConfiguration;
         private string idTrigger;
+        private string uri;
 
         public string IdConfiguration { get { return idConfiguration; } }
         public string IdTrigger { get { return idTrigger; } }
+        public string Uri { get { return uri; } }
         public static int BatchSize { get { return handlerSendBatchSize; } }
 
         public GrabCasterTransmitProperties(IBaseMessage message, string propertyNamespace)
@@ -117,6 +122,8 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
             this.idConfiguration = Extract(configDOM, "/Config/idConfiguration", string.Empty);
             this.idTrigger = Extract(configDOM, "/Config/idTrigger", string.Empty);
+            uri = Extract(configDOM, "/Config/uri", string.Empty);
+
         }
     }
 }
