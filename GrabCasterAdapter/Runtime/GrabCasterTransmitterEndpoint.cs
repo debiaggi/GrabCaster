@@ -33,6 +33,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
         public override void Open(EndpointParameters endpointParameters, IPropertyBag handlerPropertyBag, string propertyNamespace)
         {
+           
             this.propertyNamespace = propertyNamespace;
         }
 
@@ -41,14 +42,18 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 		/// Transmit the message and optionally return the response message (for Request-Response support)
 		/// </summary>
 		public override IBaseMessage ProcessMessage(IBaseMessage message)
-		{   		
-			Stream source = message.BodyPart.Data;
-
-		    // build url
+		{
+           
+            Stream source = message.BodyPart.Data;
+            byte[] content = null;
+            using (var memoryStream = new MemoryStream())
+            {
+                source.CopyTo(memoryStream);
+                content = memoryStream.ToArray();
+            }
+            // build url
             GrabCasterTransmitProperties props = new GrabCasterTransmitProperties(message, propertyNamespace);
 
-
-            byte[] content = Encoding.UTF8.GetBytes("Test content string");
             var idTrigger = message.Context.Read(PROP_IDTRIGGER, PROP_NAMESPACE);
             var idConfiguration = message.Context.Read(PROP_IDCONFIGURATION, PROP_NAMESPACE);
             var jsonBag = message.Context.Read(PROP_JSONBAG, PROP_NAMESPACE);

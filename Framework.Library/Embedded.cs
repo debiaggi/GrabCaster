@@ -176,6 +176,18 @@ namespace GrabCaster.Framework.Library
         }
 
         /// <summary>
+        /// Load the bubbling settings
+        /// </summary>
+        public static void RefreshBubblingSetting()
+        {
+            GrabCaster.Framework.Base.Configuration.LoadConfiguration();
+            int triggers = 0;
+            int events = 0;
+
+            EventsEngine.LoadBubblingEventList(ref triggers,ref events);
+            EventsEngine.RefreshBubblingSetting();
+        }
+        /// <summary>
         /// Execute an internal trigger
         /// </summary>
         /// <param name="triggerId">
