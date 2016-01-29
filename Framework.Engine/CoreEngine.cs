@@ -179,8 +179,21 @@ namespace GrabCaster.Framework.Engine
                 EventsEngine.RefreshBubblingSetting();
                 //Start triggers single instances
                 EventsEngine.ExecuteBubblingTriggerConfigurationsSingleInstance();
-                var treadPollingRun = new Thread(StartTriggerPolling);
-                treadPollingRun.Start();
+                //Start triggers polling instances
+                if (Configuration.EnginePollingTime() > 0)
+                {
+                    var treadPollingRun = new Thread(StartTriggerPolling);
+                    treadPollingRun.Start();
+                }
+                else
+                {
+                    LogEngine.WriteLog(Configuration.EngineName,
+                                            $"Configuration.EnginePollingTime = {Configuration.EnginePollingTime()}, internal polling system disabled.",
+                                            Constant.ErrorEventIdHighCritical,
+                                            Constant.TaskCategoriesError,
+                                            null,
+                                            EventLogEntryType.Warning);
+                }
 
                 //Start Engine Service
                 LogEngine.ConsoleWriteLine(

@@ -79,7 +79,7 @@ namespace GrabCaster.Framework.FileEvent
             try
             {
                 Debug.WriteLine("In FileEvent Event.");
-                File.WriteAllBytes(this.OutputDirectory + Guid.NewGuid() + ".txt", this.DataContext);
+                File.WriteAllBytes(this.OutputDirectory + Guid.NewGuid() + ".txt", this.DataContext == null?new byte[0]: this.DataContext);
                 this.DataContext = Serialization.ObjectToByteArray(true);
                 setEventActionEvent(this, context);
             }

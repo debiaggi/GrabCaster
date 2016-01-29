@@ -1,0 +1,4 @@
+Double click on GrabCaster.reg
+
+In the Windows search put %windir%\SysWoW64\cmd.exe and press enter
+Execute GrabCaster.reg

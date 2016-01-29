@@ -42,9 +42,9 @@ namespace GrabCaster.Framework.Library
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Log;
     using System.IO;
-    /// <summary>
-    /// The embedded point.
-    /// </summary>
+    using System.Text;    /// <summary>
+                          /// The embedded point.
+                          /// </summary>
     public static class Embedded
     {
 
@@ -178,15 +178,76 @@ namespace GrabCaster.Framework.Library
         /// <summary>
         /// Load the bubbling settings
         /// </summary>
-        public static void RefreshBubblingSetting()
+        public static void InitializeOffRampEmbedded()
         {
+            //Load Configuration
             GrabCaster.Framework.Base.Configuration.LoadConfiguration();
+
+            LogEngine.EventViewerWriteLog(Configuration.EngineName,
+                            "Inizialize Off Ramp embedded messaging.",
+                            Constant.ErrorEventIdHighCritical,
+                            Constant.TaskCategoriesError,
+                            null,
+                            EventLogEntryType.Information);
+
+            //Solve App domain environment
+            var current = AppDomain.CurrentDomain;
+            current.AssemblyResolve += HandleAssemblyResolve;
+
+
             int triggers = 0;
             int events = 0;
+            EventsEngine.InitializeTriggerEngine();
 
+            //Load component list configuration
             EventsEngine.LoadBubblingEventList(ref triggers,ref events);
+
+            //Load event list configuration
             EventsEngine.RefreshBubblingSetting();
         }
+
+
+        private static Assembly HandleAssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            /* Load the assembly specified in 'args' here and return it, 
+               if the assembly is already loaded you can return it here */
+            try
+            {
+                if (args.Name.Substring(0, 10) == "Microsoft.")
+                {
+                    return null;
+                }
+                if (args.Name.Substring(0, 7) == "System.")
+                {
+                    return null;
+                }
+
+                var bubblingEvent = (from assemblies in EventsEngine.GlobalEventListBaseDll
+                                     where assemblies.AssemblyObject.FullName == args.Name
+                                     select assemblies).First();
+
+                var assembly = bubblingEvent.AssemblyObject;
+                return assembly;
+            }
+            catch (Exception ex)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine(
+                    $"Critical error in {MethodBase.GetCurrentMethod().Name} - The Assembly [{args.Name}] not found.");
+                sb.AppendLine(
+                    "Workaround: this error because a trigger or event is looking for a particular external library in reference, check if all the libraries referenced by triggers and events are in the triggers and events directories dll or registered in GAC.");
+
+                LogEngine.WriteLog(
+                    Configuration.EngineName,
+                    sb.ToString(),
+                    Constant.ErrorEventIdHighCritical,
+                    Constant.TaskCategoriesError,
+                    ex,
+                    EventLogEntryType.Error);
+                return null;
+            }
+        }
+
         /// <summary>
         /// Execute an internal trigger
         /// </summary>
@@ -208,7 +269,7 @@ namespace GrabCaster.Framework.Library
             }
             catch (Exception ex)
             {
-                LogEngine.WriteLog(
+                LogEngine.EventViewerWriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name} - The trigger ID {triggerId} does not exist.",
                     Constant.ErrorEventIdHighCritical,

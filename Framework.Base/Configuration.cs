@@ -243,7 +243,7 @@ namespace GrabCaster.Framework.Base
                 BaseDirectory = Configuration.ClusterBaseFolder();
                 if (!Directory.Exists(BaseDirectory))
                 {
-                    Methods.DirectEventViewerLog($"Missing the Cluster Base Folder Directory {BaseDirectory}.");
+                    Methods.DirectEventViewerLog($"Missing the Cluster Base Folder Directory {BaseDirectory}.", EventLogEntryType.Error);
                     throw new NotImplementedException($"Missing the Cluster Base Folder Directory {BaseDirectory}.");
                 }
             }
@@ -258,7 +258,7 @@ namespace GrabCaster.Framework.Base
 
             if (!Directory.Exists(rootDirConf))
             {
-                Methods.DirectEventViewerLog($"Missing the Configuration Directory {rootDirConf}.");
+                Methods.DirectEventViewerLog($"Missing the Configuration Directory {rootDirConf}.", EventLogEntryType.Error);
                 throw new NotImplementedException($"Missing the Configuration Directory {rootDirConf}.");
             }
 

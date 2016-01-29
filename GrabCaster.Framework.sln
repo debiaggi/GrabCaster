@@ -100,6 +100,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Develoment Script", "Develo
 		Development Script\DevCopyTriggerDLLReleaseversion.cmd = Development Script\DevCopyTriggerDLLReleaseversion.cmd
 		Development Script\DevDefaultBubbligFiles2BubblingDirs.cmd = Development Script\DevDefaultBubbligFiles2BubblingDirs.cmd
 		Development Script\DevDefaultConfigurationFile2DebugReleaseDirs.cmd = Development Script\DevDefaultConfigurationFile2DebugReleaseDirs.cmd
+		Development Script\PrepareBizTalkAdapterEnvironment.cmd = Development Script\PrepareBizTalkAdapterEnvironment.cmd
 		Development Script\PrepareDeployPackage.cmd = Development Script\PrepareDeployPackage.cmd
 		Development Script\PrepareDevEnvironment.cmd = Development Script\PrepareDevEnvironment.cmd
 	EndProjectSection

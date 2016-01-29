@@ -313,15 +313,27 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
             {
                 builder.Append(maximumBatchSize.InnerText);
             }
+            else
+            {
+                throw new System.ArgumentException("Set the maximumBatchSize parameter.");
+            }
             XmlNode maximumNumberOfMessages = document.SelectSingleNode("Config/maximumNumberOfMessages");
             if (null != maximumNumberOfMessages && 0 < maximumBatchSize.InnerText.Length)
             {
                 builder.Append(maximumNumberOfMessages.InnerText);
             }
+            else
+            {
+                throw new System.ArgumentException("Set the maximumNumberOfMessages parameter.");
+            }
             XmlNode errorThreshold = document.SelectSingleNode("Config/errorThreshold");
             if (null != errorThreshold && 0 < errorThreshold.InnerText.Length)
             {
                 builder.Append(errorThreshold.InnerText);
+            }
+            else
+            {
+                throw new System.ArgumentException("Set the errorThreshold parameter.");
             }
             XmlNode uri = document.SelectSingleNode("Config/uri");
             if (null == uri)
@@ -330,7 +342,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
                 document.DocumentElement.AppendChild(uri);
             }
 
-            uri.InnerText = builder.ToString();
+            uri.InnerText = Guid.NewGuid().ToString();
 
             return document.OuterXml;
         }
@@ -355,11 +367,19 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
             {
                 builder.Append(idConfiguration.InnerText + @"\");
             }
-
-            XmlNode idTrigger = document.SelectSingleNode("Config/idTrigger");
-            if (null != idTrigger && 0 < idTrigger.InnerText.Length)
+            else
             {
-                builder.Append(idTrigger.InnerText);
+                throw new System.ArgumentException("Set the idConfiguration parameter.");
+            }
+
+            XmlNode idComponent = document.SelectSingleNode("Config/idComponent");
+            if (null != idComponent && 0 < idComponent.InnerText.Length)
+            {
+                builder.Append(idComponent.InnerText);
+            }
+            else
+            {
+                throw new System.ArgumentException("Set the idComponent parameter.");
             }
             XmlNode jsonBag = document.SelectSingleNode("Config/jsonBag");
             if (null != jsonBag && 0 < jsonBag.InnerText.Length)
@@ -373,7 +393,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
                 uri = document.CreateElement("uri");
                 document.DocumentElement.AppendChild(uri);
             }
-            uri.InnerText = builder.ToString();
+            uri.InnerText = Guid.NewGuid().ToString();
 
             return document.OuterXml;
         }

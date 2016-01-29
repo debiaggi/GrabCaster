@@ -76,11 +76,11 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
         // Endpoint properties
         private string idConfiguration;
-        private string idTrigger;
+        private string idComponent;
         private string uri;
 
         public string IdConfiguration { get { return idConfiguration; } }
-        public string IdTrigger { get { return idTrigger; } }
+        public string IdComponent { get { return idComponent; } }
         public string Uri { get { return uri; } }
         public static int BatchSize { get { return handlerSendBatchSize; } }
 
@@ -121,7 +121,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         {
 
             this.idConfiguration = Extract(configDOM, "/Config/idConfiguration", string.Empty);
-            this.idTrigger = Extract(configDOM, "/Config/idTrigger", string.Empty);
+            this.idComponent = Extract(configDOM, "/Config/idComponent", string.Empty);
             uri = Extract(configDOM, "/Config/uri", string.Empty);
 
         }

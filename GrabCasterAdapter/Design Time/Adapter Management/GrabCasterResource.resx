@@ -104,11 +104,11 @@
     <data name="configurationEngine">
         <value>Engine Configuration</value>
     </data>
-    <data name="idTriggerName">
-		<value>idTrigger</value>
+    <data name="idComponentName">
+		<value>idComponent</value>
 	</data>
-	<data name="idTriggerDesc">
-		<value>idTrigger associated to the GrabCaster trigger</value>
+	<data name="idComponentDesc">
+		<value>idComponent associated to the GrabCaster trigger</value>
 	</data>
     <data name="jsonBagName">
         <value>jsonBag</value>

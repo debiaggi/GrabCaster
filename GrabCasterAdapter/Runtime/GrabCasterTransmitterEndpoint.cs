@@ -8,6 +8,7 @@ using Microsoft.BizTalk.TransportProxy.Interop;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
 using GrabCaster.Framework.BizTalk.Adapter.Common;
+using GrabCaster.Framework.Log;
 
 namespace GrabCaster.Framework.BizTalk.Adapter
 {
@@ -22,7 +23,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         private static int IO_BUFFER_SIZE = 4096;
         private const string PROP_REMOTEMESSAGEID = "RemoteMessageId";
         private const string PROP_IDCONFIGURATION = "idConfiguration";
-        private const string PROP_IDTRIGGER = "idTrigger";
+        private const string PROP_IDCOMPONENT = "idComponent";
         private const string PROP_JSONBAG = "jsonBag";
         private const string PROP_NAMESPACE = "https://GrabCaster.BizTalk.Schemas.GrabCasterProperties";
 
@@ -33,7 +34,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
         public override void Open(EndpointParameters endpointParameters, IPropertyBag handlerPropertyBag, string propertyNamespace)
         {
-           
+            GrabCaster.Framework.Library.Embedded.InitializeOffRampEmbedded();
             this.propertyNamespace = propertyNamespace;
         }
 
@@ -54,13 +55,13 @@ namespace GrabCaster.Framework.BizTalk.Adapter
             // build url
             GrabCasterTransmitProperties props = new GrabCasterTransmitProperties(message, propertyNamespace);
 
-            var idTrigger = message.Context.Read(PROP_IDTRIGGER, PROP_NAMESPACE);
+            var idComponent = message.Context.Read(PROP_IDCOMPONENT, PROP_NAMESPACE);
             var idConfiguration = message.Context.Read(PROP_IDCONFIGURATION, PROP_NAMESPACE);
             var jsonBag = message.Context.Read(PROP_JSONBAG, PROP_NAMESPACE);
 
             GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
                 props.IdConfiguration,
-                props.IdTrigger,
+                props.IdComponent,
                 content);
             //GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
             //    "{82208FAA-272E-48A7-BB5C-4EACDEA538D2}",

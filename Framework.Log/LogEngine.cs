@@ -275,7 +275,7 @@ namespace GrabCaster.Framework.Log
                 logMessage.Message =
                     $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-EventID:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
 
-                Methods.DirectEventViewerLog(logMessage.Message);
+                Methods.DirectEventViewerLog(logMessage.Message, level);
             }
             catch (Exception ex)
             {
@@ -367,7 +367,7 @@ namespace GrabCaster.Framework.Log
             {
                 if (Verbose)
                 {
-                    Methods.DirectEventViewerLog(message);
+                    Methods.DirectEventViewerLog(message, EventLogEntryType.Information);
                 }
 
                 var logMessage = new LogMessage();

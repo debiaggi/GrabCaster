@@ -112,6 +112,7 @@ namespace GrabCaster.Framework.EventViewerTrigger
         /// </param>
         public void MyOnEntryWritten(object source, EntryWrittenEventArgs e)
         {
+            if (e.Entry.Source != "DEMOEV") return;
             var eventViewerMessage = new EventViewerMessage
                                          {
                                              EntryType = e.Entry.EntryType,
@@ -121,6 +122,7 @@ namespace GrabCaster.Framework.EventViewerTrigger
                                              TimeWritten = e.Entry.TimeWritten
                                          };
             var serializedMessage = JsonConvert.SerializeObject(eventViewerMessage);
+            
             this.DataContext = Encoding.UTF8.GetBytes(serializedMessage);
             this.SetEventActionTrigger(this, this.Context);
         }

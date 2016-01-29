@@ -154,20 +154,46 @@ namespace GrabCaster.Framework.Engine
         /// <summary>
         ///     Trigger Delegate initialization
         /// </summary>
-        public static void InitializeEventEngine(SetEventActionEvent delegateActionEventEmbedded)
+        public static void InitializeTriggerEngine()
         {
-            // Start Web API interface
-            LogEngine.ConsoleWriteLine(
-                $"Start the Hub Web API Interface at {Configuration.WebApiEndPoint()}", 
-                ConsoleColor.Yellow);
-            engineHost = new WebServiceHost(typeof(RestEventsEngine), new Uri(Configuration.WebApiEndPoint()));
-            engineHost.AddServiceEndpoint(typeof(IRestEventsEngine), new WebHttpBinding(), Configuration.EngineName);
-            var stp = engineHost.Description.Behaviors.Find<ServiceDebugBehavior>();
-            stp.HttpHelpPageEnabled = false;
-            engineHost.Open();
-            LogEngine.ConsoleWriteLine("Hub Web API Interface Running.", ConsoleColor.Yellow);
+
 
             delegateActionTrigger = ActionTriggerReceived;
+
+        }
+
+        /// <summary>
+        ///     Event Delegate initialization
+        /// </summary>
+        public static void InitializeEventEngine(SetEventActionEvent delegateActionEventEmbedded)
+        {
+
+
+            string webApiEndpoint = Configuration.WebApiEndPoint();
+
+            if (webApiEndpoint != String.Empty)
+            {
+                // Start Web API interface
+                LogEngine.ConsoleWriteLine(
+                    $"Start the Hub Web API Interface at {Configuration.WebApiEndPoint()}",
+                    ConsoleColor.Yellow);
+                engineHost = new WebServiceHost(typeof(RestEventsEngine), new Uri(Configuration.WebApiEndPoint()));
+                engineHost.AddServiceEndpoint(typeof(IRestEventsEngine), new WebHttpBinding(), Configuration.EngineName);
+                var stp = engineHost.Description.Behaviors.Find<ServiceDebugBehavior>();
+                stp.HttpHelpPageEnabled = false;
+                engineHost.Open();
+                LogEngine.ConsoleWriteLine("Hub Web API Interface Running.", ConsoleColor.Yellow);
+            }
+            else
+            {
+                LogEngine.WriteLog(Configuration.EngineName,
+                                    "Configuration.WebApiEndPoint key empty, internal Web Api interface disable",
+                                    Constant.ErrorEventIdHighCritical,
+                                    Constant.TaskCategoriesError,
+                                    null,
+                                    EventLogEntryType.Warning);
+            }
+            InitializeTriggerEngine();
             if (delegateActionEventEmbedded != null)
             {
                 //
@@ -176,6 +202,7 @@ namespace GrabCaster.Framework.Engine
             }
             else
             {
+
                 delegateActionEvent = ActionEventReceived;
 
             }

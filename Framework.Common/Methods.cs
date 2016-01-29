@@ -68,9 +68,9 @@ namespace GrabCaster.Framework.Common
         /// <summary>
         /// The last error point
         /// </summary>
-        public static void DirectEventViewerLog(string message)
+        public static void DirectEventViewerLog(string message, EventLogEntryType eventLogEntryType)
         {
-            EventLog.WriteEntry("GrabCaster", message, EventLogEntryType.Information, 0);
+            EventLog.WriteEntry("GrabCaster", message, eventLogEntryType, 0);
         }
     }
 }
