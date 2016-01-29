@@ -302,10 +302,10 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
             // Build up inner text
             StringBuilder builder = new StringBuilder();
 
-            XmlNode jsonBag = document.SelectSingleNode("Config/jsonBag");
-            if (null != jsonBag && 0 < jsonBag.InnerText.Length)
+            XmlNode pointName = document.SelectSingleNode("Config/pointName");
+            if (null != pointName && 0 < pointName.InnerText.Length)
             {
-                builder.Append(jsonBag.InnerText + @"\");
+                builder.Append(pointName.InnerText + @"\");
             }
 
             XmlNode maximumBatchSize = document.SelectSingleNode("Config/maximumBatchSize");
@@ -342,7 +342,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
                 document.DocumentElement.AppendChild(uri);
             }
 
-            uri.InnerText = Guid.NewGuid().ToString();
+            uri.InnerText = $"GrabCaster://{uri.InnerText = builder.ToString()}";
 
             return document.OuterXml;
         }
@@ -381,10 +381,10 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
             {
                 throw new System.ArgumentException("Set the idComponent parameter.");
             }
-            XmlNode jsonBag = document.SelectSingleNode("Config/jsonBag");
-            if (null != jsonBag && 0 < jsonBag.InnerText.Length)
+            XmlNode pointName = document.SelectSingleNode("Config/pointName");
+            if (null != pointName && 0 < pointName.InnerText.Length)
             {
-                builder.Append(jsonBag.InnerText);
+                builder.Append(pointName.InnerText);
             }
 
             XmlNode uri = document.SelectSingleNode("Config/uri");
@@ -393,7 +393,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter.Designtime
                 uri = document.CreateElement("uri");
                 document.DocumentElement.AppendChild(uri);
             }
-            uri.InnerText = Guid.NewGuid().ToString();
+            uri.InnerText = $"GrabCaster://{uri.InnerText = builder.ToString()}";
 
             return document.OuterXml;
         }

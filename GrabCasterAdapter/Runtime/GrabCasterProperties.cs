@@ -16,14 +16,14 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         private static int handlerMaximumNumberOfMessages = 0;
 
         // Endpoint properties
-        private string jsonBag;
+        private string pointName;
         private int maximumBatchSize;
         private int maximumNumberOfMessages;
         private int errorThreshold;
         private string workInProgress;
         private string uri;
 
-        public string JsonBag { get { return this.jsonBag; } }
+        public string PointName { get { return this.pointName; } }
         public int MaximumBatchSize { get { return maximumBatchSize; } }
         public int MaximumNumberOfMessages { get { return this.maximumNumberOfMessages; } }
         public int ErrorThreshold { get { return errorThreshold; } }
@@ -32,7 +32,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         public GrabCasterReceiveProperties() : base()
         {
             // establish defaults
-            this.jsonBag = String.Empty;
+            this.pointName = String.Empty;
             maximumBatchSize = 0;
             this.maximumNumberOfMessages = handlerMaximumNumberOfMessages; // default to handler value, override if set on the endpoint
             workInProgress = String.Empty;
@@ -53,7 +53,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         public void ReadLocationConfiguration(XmlDocument configDOM)
         {
 
-            this.jsonBag = IfExistsExtract(configDOM, "/Config/jsonBag", string.Empty);
+            this.pointName = IfExistsExtract(configDOM, "/Config/pointName", string.Empty);
             this.maximumBatchSize = IfExistsExtractInt(configDOM, "/Config/maximumBatchSize", 0);
             this.maximumNumberOfMessages = IfExistsExtractInt(configDOM, "/Config/maximumNumberOfMessages", handlerMaximumNumberOfMessages);
             this.errorThreshold = ExtractInt(configDOM, "/Config/errorThreshold");

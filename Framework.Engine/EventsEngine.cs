@@ -1261,6 +1261,7 @@ namespace GrabCaster.Framework.Engine
                         $"Run single instances {bubblingTriggerConfiguration.Name}", 
                         ConsoleColor.Green);
                     var treadRun = new Thread(() => ExecuteTriggerConfiguration(bubblingTriggerConfiguration,null));
+                    treadRun.Start();
                 }
             }
         }
@@ -1274,6 +1275,7 @@ namespace GrabCaster.Framework.Engine
         /// </param>
         public static void ExecuteTriggerConfiguration(object bubblingTriggerConfiguration,byte[] embeddedContent)
         {
+            LogEngine.ConsoleWriteLine("Start single instances on ExecuteTriggerConfiguration confirmed.", ConsoleColor.Green);
             var triggerConfiguration = (BubblingEvent)bubblingTriggerConfiguration;
             try
             {

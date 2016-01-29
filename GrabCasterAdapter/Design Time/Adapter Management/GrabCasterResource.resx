@@ -110,11 +110,11 @@
 	<data name="idComponentDesc">
 		<value>idComponent associated to the GrabCaster trigger</value>
 	</data>
-    <data name="jsonBagName">
-        <value>jsonBag</value>
+    <data name="pointNameName">
+        <value>Point Name</value>
     </data>
-    <data name="jsonBagDesc">
-        <value>Optional JSON trigger configuration</value>
+    <data name="pointNameDesc">
+        <value>Optional Unique PointName configuration</value>
     </data>
 	<data name="sendBatchSizeName">
 		<value>Batch Size</value>

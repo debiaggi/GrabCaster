@@ -32,7 +32,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         private const string PROP_REMOTEMESSAGEID = "RemoteMessageId";
         private const string PROP_IDCONFIGURATION = "idConfiguration";
         private const string PROP_IDCOMPONENT = "idComponent";
-        private const string PROP_JSONBAG = "jsonBag";
+        private const string PROP_POINTNAME = "pointName";
         private const string PROP_NAMESPACE = "https://GrabCaster.BizTalk.Schemas.GrabCasterProperties";
         
         public GrabCasterReceiverEndpoint()

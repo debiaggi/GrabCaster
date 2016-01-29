@@ -24,7 +24,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         private const string PROP_REMOTEMESSAGEID = "RemoteMessageId";
         private const string PROP_IDCONFIGURATION = "idConfiguration";
         private const string PROP_IDCOMPONENT = "idComponent";
-        private const string PROP_JSONBAG = "jsonBag";
+        private const string PROP_POINTNAME = "pointName";
         private const string PROP_NAMESPACE = "https://GrabCaster.BizTalk.Schemas.GrabCasterProperties";
 
         public GrabCasterTransmitterEndpoint(AsyncTransmitter asyncTransmitter) : base(asyncTransmitter)
@@ -57,12 +57,23 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
             var idComponent = message.Context.Read(PROP_IDCOMPONENT, PROP_NAMESPACE);
             var idConfiguration = message.Context.Read(PROP_IDCONFIGURATION, PROP_NAMESPACE);
-            var jsonBag = message.Context.Read(PROP_JSONBAG, PROP_NAMESPACE);
+            var pointName = message.Context.Read(PROP_POINTNAME, PROP_NAMESPACE);
 
-            GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
-                props.IdConfiguration,
-                props.IdComponent,
-                content);
+            if(idComponent != null && idConfiguration != null)
+            {
+                GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
+                    idConfiguration.ToString(),
+                    idComponent.ToString(),
+                    content);
+            }
+            else
+            {
+                GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
+                    props.IdConfiguration,
+                    props.IdComponent,
+                    content);
+            }
+
             //GrabCaster.Framework.Library.Embedded.ExecuteTrigger(
             //    "{82208FAA-272E-48A7-BB5C-4EACDEA538D2}",
             //    "{306DE168-1CEF-4D29-B280-225B5D0D76FD}",
