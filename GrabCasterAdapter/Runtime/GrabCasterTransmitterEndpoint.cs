@@ -9,6 +9,10 @@ using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
 using GrabCaster.Framework.BizTalk.Adapter.Common;
 using GrabCaster.Framework.Log;
+using GrabCaster.Framework.Library;
+using GrabCaster.Framework.Contracts.Events;
+using GrabCaster.Framework.Contracts.Globals;
+using System.Diagnostics;
 
 namespace GrabCaster.Framework.BizTalk.Adapter
 {
@@ -31,18 +35,39 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 		{
 			this.asyncTransmitter = asyncTransmitter;
 		}
+        /// <summary>
+        /// The set event action event embedded.
+        /// </summary>
+        private static SetEventActionEvent setEventActionEventEmbedded;
 
         public override void Open(EndpointParameters endpointParameters, IPropertyBag handlerPropertyBag, string propertyNamespace)
         {
-            GrabCaster.Framework.Library.Embedded.InitializeOffRampEmbedded();
+            setEventActionEventEmbedded = EventReceivedFromEmbedded;
+            GrabCaster.Framework.Library.Embedded.InitializeOffRampEmbedded(setEventActionEventEmbedded);
             this.propertyNamespace = propertyNamespace;
         }
 
-		/// <summary>
-		/// Implementation for AsyncTransmitterEndpoint::ProcessMessage
-		/// Transmit the message and optionally return the response message (for Request-Response support)
-		/// </summary>
-		public override IBaseMessage ProcessMessage(IBaseMessage message)
+        /// <summary>
+        /// The event received from embedded.
+        /// </summary>
+        /// <param name="eventType">
+        /// The event type.
+        /// </param>
+        /// <param name="context">
+        /// The context.
+        /// </param>
+        private void EventReceivedFromEmbedded(IEventType eventType, EventActionContext context)
+        {
+            System.Diagnostics.Debug.WriteLine("Event executed in GrabCaster BizTalk Sender Adpater.");
+            Trace.WriteLine("Event executed in GrabCaster BizTalk Sender Adpater.");
+
+
+        }
+        /// <summary>
+        /// Implementation for AsyncTransmitterEndpoint::ProcessMessage
+        /// Transmit the message and optionally return the response message (for Request-Response support)
+        /// </summary>
+        public override IBaseMessage ProcessMessage(IBaseMessage message)
 		{
            
             Stream source = message.BodyPart.Data;
@@ -82,14 +107,5 @@ namespace GrabCaster.Framework.BizTalk.Adapter
             return null;
 		}
 
-	    private bool kEngineAvailable()
-	    {
-
-            while (!GrabCaster.Framework.Library.Embedded.engineLoaded)
-            {
-                ;
-            }
-	        return true;
-	    }
 	}
 }

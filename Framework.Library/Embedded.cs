@@ -178,7 +178,7 @@ namespace GrabCaster.Framework.Library
         /// <summary>
         /// Load the bubbling settings
         /// </summary>
-        public static void InitializeOffRampEmbedded()
+        public static void InitializeOffRampEmbedded(SetEventActionEvent delegateActionEventEmbedded)
         {
             //Load Configuration
             GrabCaster.Framework.Base.Configuration.LoadConfiguration();
@@ -198,7 +198,7 @@ namespace GrabCaster.Framework.Library
             int triggers = 0;
             int events = 0;
             EventsEngine.InitializeTriggerEngine();
-
+            EventsEngine.InitializeEmbeddedEvent(delegateActionEventEmbedded);
             //Load component list configuration
             EventsEngine.LoadBubblingEventList(ref triggers,ref events);
 

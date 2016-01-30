@@ -135,7 +135,7 @@ namespace GrabCaster.Framework.Engine
             this.InternalTimer = new Timer { AutoReset = false, Interval = this.TimeLimit * 1000 };
             this.InternalTimer.Elapsed += (s, e) =>
                 {
-                    LogEngine.DebugWriteLine($"Log time limit: {this.TimeLimit} > Publish!");
+                    //LogEngine.DebugWriteLine($"Log time limit: {this.TimeLimit} > Publish!");
                     this.Publish();
                 };
             this.InternalTimer.Start();
@@ -158,7 +158,7 @@ namespace GrabCaster.Framework.Engine
                             }
 
                             this.StartPublishing();
-                            LogEngine.DebugWriteLine($"Log start dequeue {this.Count} items!");
+                            //LogEngine.DebugWriteLine($"Log start dequeue {this.Count} items!");
                             T item;
                             while (this.TryDequeue(out item))
                             {
@@ -191,7 +191,7 @@ namespace GrabCaster.Framework.Engine
                         }
                         finally
                         {
-                            LogEngine.DebugWriteLine($"Log dequeued {itemsToLog.Count} items");
+                            //LogEngine.DebugWriteLine($"Log dequeued {itemsToLog.Count} items");
                             this.OnPublish(itemsToLog);
                             this.CompletePublishing();
                         }

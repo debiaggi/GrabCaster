@@ -157,11 +157,18 @@ namespace GrabCaster.Framework.Engine
         public static void InitializeTriggerEngine()
         {
 
-
             delegateActionTrigger = ActionTriggerReceived;
-
         }
 
+
+        /// <summary>
+        ///     Trigger Delegate initialization
+        /// </summary>
+        public static void InitializeEmbeddedEvent(SetEventActionEvent delegateActionEventEmbedded)
+        {
+            delegateActionEvent = delegateActionEventEmbedded;
+
+        }
         /// <summary>
         ///     Event Delegate initialization
         /// </summary>
