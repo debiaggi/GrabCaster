@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework", "Framework\GrabCaster.Framework.csproj", "{5C90B335-47A3-4ADE-8B30-3AA286976A27}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -169,6 +169,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterManagement", "GrabCasterAdapter\Design Time\Adapter Management\AdapterManagement.csproj", "{2517F73A-C428-42DD-8A90-094E446ABC5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Log.File", "Framework.Log.File\GrabCaster.Framework.Log.File.csproj", "{24D9A738-C278-4047-8A4C-43C5DA78847B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certification", "Certification", "{826D4371-0A1B-4E65-8A07-3064E708D1AF}"
+	ProjectSection(SolutionItems) = preProject
+		Certification\grabcaster.cer = Certification\grabcaster.cer
+		Certification\grabcaster.pfx = Certification\grabcaster.pfx
+		Certification\grabcaster.pvk = Certification\grabcaster.pvk
+		Certification\grabcaster.spc = Certification\grabcaster.spc
+		Certification\sign.cmd = Certification\sign.cmd
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

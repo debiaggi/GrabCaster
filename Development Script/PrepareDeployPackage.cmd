@@ -55,6 +55,16 @@ copy Framework.Dcp.Redis\bin\Release\GrabCaster.Framework.Dcp.Redis.dll Setup\bi
 copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.dll Setup\bin\Debug\Deploy\Root_GrabCaster\* /y
 copy Framework.Dpp.Azure\bin\Release\GrabCaster.Framework.Dpp.Azure.dll Setup\bin\Release\Deploy\Root_GrabCaster\* /y
 
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.dll Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Common.dll Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.Designtime.dll Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.pdb Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Common.pdb Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.Designtime.pdb Setup\bin\Debug\Deploy\*  /y
+
+xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.reg Setup\bin\Debug\Deploy\*  /y
+xcopy "GrabCasterAdapter\Runtime\bin\Debug\Register BizTalk Adapter.txt" Setup\bin\Debug\Deploy\*  /y
+copy DefaultFiles\BTSNTSvc.cfg Setup\bin\Debug\Deploy\BTSNTSvc.cfg  /y
 
 cd %~dp0
 echo Deployment pachage ready to go.

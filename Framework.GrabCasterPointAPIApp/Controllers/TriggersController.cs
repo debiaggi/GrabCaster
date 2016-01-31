@@ -52,7 +52,9 @@ namespace GrabCasterPointAPIApp.Controllers
         [Swashbuckle.Swagger.Annotations.SwaggerResponse(HttpStatusCode.BadRequest, "An exception occured", typeof(Exception))]
         [Swashbuckle.Swagger.Annotations.SwaggerResponse(System.Net.HttpStatusCode.Created)]
         [Route("SendString")]
-        public HttpResponseMessage EventHubSend([Metadata("Connection String")]string connectionString, [FromBody]SkeletonActionMessage input)
+        public HttpResponseMessage EventHubSend([Metadata("idConfiguration")]string idConfiguration,
+                                                [Metadata("idConfiguration")]string idComponent,
+                                                [Metadata("idConfiguration")]string jsonTriggerConfiguration,[FromBody]SkeletonActionMessage input)
         {
             try {
 

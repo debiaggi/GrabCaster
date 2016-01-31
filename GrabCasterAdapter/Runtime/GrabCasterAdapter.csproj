@@ -178,6 +178,10 @@
       <Project>{44b780e7-6d79-4baf-9994-28cffa1172a6}</Project>
       <Name>GrabCaster.Framework.BizTalk.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Design Time\Adapter Management\AdapterManagement.csproj">
+      <Project>{2517f73a-c428-42dd-8a90-094e446abc5e}</Project>
+      <Name>AdapterManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Notes.txt" />
