@@ -4,12 +4,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{83775F3B-635A-4D74-B1B5-3B5F443A97C5}</ProjectGuid>
+    <ProjectGuid>{E41F9C01-9537-4089-BAE4-07B00AEEB384}</ProjectGuid>
     <ProjectTypeGuids>{EF7E3281-CD33-11D4-8326-00C04FA0CE8D};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>library</OutputType>
     <GenericProcessing>true</GenericProcessing>
-    <RootNamespace>GrabCaster.BizTalk.Schemas</RootNamespace>
-    <AssemblyName>GrabCaster.BizTalk.Schemas</AssemblyName>
+    <RootNamespace>GrabCaster.BizTalk.Sample</RootNamespace>
+    <AssemblyName>GrabCaster.BizTalk.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <BpelCompliance>True</BpelCompliance>
   </PropertyGroup>
@@ -68,11 +68,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Schema Include="GrabCasterProperties.xsd">
-      <TypeName>GrabCasterProperties</TypeName>
-      <Namespace>GrabCaster.BizTalk.Schemas</Namespace>
+    <XLang Include="BizTalk Orchestration1.odx">
+      <TypeName>BizTalk_Orchestration1</TypeName>
+      <Namespace>GrabCaster.BizTalk.Sample</Namespace>
       <SubType>Task</SubType>
-    </Schema>
+    </XLang>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Schemas\GrabCaster.BizTalk.Schemas\GrabCaster.BizTalk.Schemas\GrabCaster.BizTalk.Schemas.btproj">
+      <Project>{83775f3b-635a-4d74-b1b5-3b5f443a97c5}</Project>
+      <Name>GrabCaster.BizTalk.Schemas</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="GrabCaster.snk" />
