@@ -193,6 +193,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     var bubblingTriggerConfiguration = triggerSingleInstance;
    
                     EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration, skeletonMessage.Body);
+                    return;
                 }
 
                 var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
