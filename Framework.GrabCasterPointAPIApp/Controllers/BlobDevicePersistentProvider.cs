@@ -44,10 +44,11 @@ namespace GrabCaster.Framework.Library.Azure
     /// Main persistent provider.
     /// </summary>
     [DevicePersistentProviderContract("{53158DA4-EAEA-4D8A-90C8-81A66F7A0F74}", "DevicePersistentProvider", "Device Persistent Provider for Azure")]
-    public class BlobDevicePersistentProvider:IDevicePersistentProvider
+    public class BlobDevicePersistentProvider
     {
-        public void PersistEventToStorage(byte[] messageBody, string messageId)
+        public void PersistEventToStorage(byte[] messageBody, string messageId, string groupEventHubsStorageAccountName, string groupEventHubsStorageAccountKey)
         {
+            
             try
             {
                 var storageAccountName = ConfigurationLibrary.GroupEventHubsStorageAccountName();

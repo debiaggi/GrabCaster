@@ -53,12 +53,30 @@ namespace GrabCasterPointAPIApp.Controllers
         [Swashbuckle.Swagger.Annotations.SwaggerResponse(System.Net.HttpStatusCode.Created)]
         [Route("SendString")]
         public HttpResponseMessage EventHubSend([Metadata("idConfiguration")]string idConfiguration,
-                                                [Metadata("idConfiguration")]string idComponent,
-                                                [Metadata("idConfiguration")]string jsonTriggerConfiguration,[FromBody]SkeletonActionMessage input)
+                                                [Metadata("idComponent")]string idComponent,
+                                                [Metadata("groupEventHubsStorageAccountName")]string groupEventHubsStorageAccountName,
+                                                [Metadata("groupEventHubsStorageAccountKey")]string groupEventHubsStorageAccountKey,
+                                                [Metadata("SenderId")]string SenderId,
+                                                [Metadata("SenderName")]string SenderName,
+                                                [Metadata("SenderDescriprion")]string SenderDescriprion,
+                                                [Metadata("SenderDescriprion")]string AzureNameSpaceConnectionString,
+                                                [Metadata("SenderDescriprion")]string GroupEventHubsName,
+                                                [FromBody]SkeletonActionMessage input)
         {
-            try {
+            try
+            {
 
-        
+                SendSkeletonMessage(Encoding.UTF8.GetBytes(input.message),
+                                    idConfiguration,
+                                    idComponent,
+                                    groupEventHubsStorageAccountName,
+                                    groupEventHubsStorageAccountKey,
+                                    SenderId,
+                                    SenderName,
+                                    SenderDescriprion,
+                                    AzureNameSpaceConnectionString,
+                                    GroupEventHubsName);
+
                 return this.Request.CreateResponse(System.Net.HttpStatusCode.Created);
             }
             catch(NullReferenceException ex)
@@ -195,6 +213,66 @@ namespace GrabCasterPointAPIApp.Controllers
             [Metadata("Input parameter")]
             public string inputparam { get; set; }
         }
+
+
+        static void SendSkeletonMessage(byte[] content, 
+                                        string idConfiguration, 
+                                        string idComponent, 
+                                        string groupEventHubsStorageAccountName, 
+                                        string groupEventHubsStorageAccountKey, 
+                                        string SenderId, 
+                                        string SenderName, 
+                                        string SenderDescriprion,
+                                        string AzureNameSpaceConnectionString, 
+                                        string GroupEventHubsName)
+        {
+
+            var messageId = Guid.NewGuid().ToString();
+            GrabCaster.Framework.Contracts.Messaging.SkeletonMessage data = new GrabCaster.Framework.Contracts.Messaging.SkeletonMessage(null);
+
+            // IF > 256kb then persist
+            if (content.Length > 256000)
+            {
+                data.Body = Encoding.UTF8.GetBytes(messageId);
+                BlobDevicePersistentProvider storagePersistent = new BlobDevicePersistentProvider();
+                storagePersistent.PersistEventToStorage(content, messageId, groupEventHubsStorageAccountName, groupEventHubsStorageAccountKey);
+                data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.Persisting.ToString(), true);
+            }
+            else
+            {
+                data.Body = content;
+                data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.Persisting.ToString(), false);
+            }
+
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.MessageId.ToString(), messageId);
+
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.IdConfiguration.ToString(), idConfiguration);
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.IdComponent.ToString(), idComponent);
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.Embedded.ToString(), "true");
+
+            // Set main security subscription
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.GrabCasterMessageTypeName, GrabCaster.Framework.Base.Configuration.GrabCasterMessageTypeValue);
+
+            // Message context
+            data.Properties.Add(
+                GrabCaster.Framework.Base.Configuration.MessageDataProperty.Message.ToString(),
+                GrabCaster.Framework.Base.Configuration.MessageDataProperty.Message.ToString());
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.MessageType.ToString(), GrabCaster.Framework.Base.Configuration.MessageDataProperty.Event.ToString());
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.SenderId.ToString(), SenderId);
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.SenderName.ToString(), SenderName);
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.SenderDescriprion.ToString(), SenderDescriprion);
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.ChannelId.ToString(), "{BD48AFDD-846E-4AF2-A0E7-99E87C0214C8}");
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.ChannelName.ToString(), "Logic App Channel");
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.ChannelDescription.ToString(), "Logic App sender");
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.ReceiverChannelId.ToString(), "channelId");
+            data.Properties.Add(GrabCaster.Framework.Base.Configuration.MessageDataProperty.ReceiverPointId.ToString(), "pointId");
+
+            EventsUpStream eventsUpStream = new EventsUpStream();
+            eventsUpStream.CreateEventUpStream(AzureNameSpaceConnectionString, GroupEventHubsName);
+
+            eventsUpStream.SendMessage(data);
+        }
+
     }
 
 
