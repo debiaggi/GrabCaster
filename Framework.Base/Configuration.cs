@@ -94,6 +94,10 @@ namespace GrabCaster.Framework.Base
 
             IdComponent,
 
+            IdConfiguration,
+
+            Embedded,
+
             MessageType,
 
             MessageId,

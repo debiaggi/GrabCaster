@@ -33,6 +33,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using System.Text;
 
     using GrabCaster.Framework.Base;
     using GrabCaster.Framework.Common;
@@ -176,6 +177,24 @@ namespace GrabCaster.Framework.Engine.OnRamp
             if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
                 == Configuration.MessageDataProperty.Event.ToString())
             {
+
+                //Check if embedded
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.Embedded.ToString()].ToString()
+                    == "true")
+                {
+                    string idConfiguration =
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.IdConfiguration.ToString()].ToString();
+                    string idComponent =
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.IdComponent.ToString()].ToString();
+
+                    var triggerSingleInstance = (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
+                                                 where trigger.IdComponent == idComponent && trigger.IdConfiguration == idConfiguration
+                                                 select trigger).First();
+                    var bubblingTriggerConfiguration = triggerSingleInstance;
+   
+                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration, skeletonMessage.Body);
+                }
+
                 var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
                 PersistentProvider.PersistMessage(eventBubbling, PersistentProvider.CommunicationDiretion.OffRamp);
 
