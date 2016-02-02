@@ -85,6 +85,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionNotes", "SolutionNo
 		References.txt = References.txt
 		SolutionNotes\repetear code.txt = SolutionNotes\repetear code.txt
 		SolutionNotes\SystemWatcherLabCode.txt = SolutionNotes\SystemWatcherLabCode.txt
+		TestLogicApp.txt = TestLogicApp.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Develoment Script", "Develoment Script", "{98BA9CA1-ED78-4C67-9336-46B64EAE98DB}"
@@ -156,8 +157,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.Conso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Laboratory.Azure", "Laboratory.Azure\GrabCaster.Laboratory.Azure.csproj", "{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCasterPointAPIApp", "Framework.GrabCasterPointAPIApp\GrabCasterPointAPIApp.csproj", "{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BizTalk Adapter", "BizTalk Adapter", "{53ACFE67-DF06-4065-B73C-9A8CBBCE51A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCasterAdapter", "GrabCasterAdapter\Runtime\GrabCasterAdapter.csproj", "{C579C9EC-B584-4B82-94DD-E6304D61B2DD}"
@@ -178,6 +177,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Certification", "Certificat
 		Certification\grabcaster.spc = Certification\grabcaster.spc
 		Certification\sign.cmd = Certification\sign.cmd
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCasterPointAPIApp", "Framework.GrabCasterPointAPIApp\GrabCasterPointAPIApp.csproj", "{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -561,14 +562,6 @@ Global
 		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|x86.ActiveCfg = Release|Any CPU
 		{88470F1E-B216-4BC7-9DDC-C6A8276C99D4}.Release|x86.Build.0 = Release|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|x86.Build.0 = Debug|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|x86.ActiveCfg = Release|Any CPU
-		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|x86.Build.0 = Release|Any CPU
 		{C579C9EC-B584-4B82-94DD-E6304D61B2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C579C9EC-B584-4B82-94DD-E6304D61B2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C579C9EC-B584-4B82-94DD-E6304D61B2DD}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -609,6 +602,14 @@ Global
 		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|x86.ActiveCfg = Release|Any CPU
 		{24D9A738-C278-4047-8A4C-43C5DA78847B}.Release|x86.Build.0 = Release|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Debug|x86.Build.0 = Debug|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|x86.ActiveCfg = Release|Any CPU
+		{BE9D8EF4-0FFF-4BB5-80AE-B4B2507AE02F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

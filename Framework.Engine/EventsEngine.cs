@@ -263,6 +263,7 @@ namespace GrabCaster.Framework.Engine
 
                 // Send to MSP
                 if (remoteEvents.Count != 0 && !Configuration.DisableDeviceProviderInterface())
+
                 {
                     var eventsCloned = ObjectHelper.CloneObject(remoteEvents);
                     var bubblingEventClone = (BubblingEvent)ObjectHelper.CloneObject(context.BubblingConfiguration);

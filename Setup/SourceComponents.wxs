@@ -2,9 +2,6 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Fragment>
         <DirectoryRef Id="INSTALLDIR_GRABCASTER">
-            <Component Id="cmp8EE506239A3B50B9350280E6EED7B3BF" Guid="*">
-                <File Id="filA8BDACF1D22A1DA0308D0F65EC6E0089" KeyPath="yes" Source="$(var.SourcePath)\BTSNTSvc.cfg" />
-            </Component>
             <Component Id="cmpD4631A2B96C5BBE3143CC65C1B7E0C8D" Guid="*">
                 <File Id="fil556433D2B5C4031FF6309B8612978473" KeyPath="yes" Source="$(var.SourcePath)\Create new Clone.cmd" />
             </Component>
@@ -19,24 +16,6 @@
             </Component>
             <Component Id="cmp466BC8876CDB81DD9F7E0D1108768B5D" Guid="*">
                 <File Id="fil079769D549316C34E7DB4A4B5F3E6B2F" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Base.pdb" />
-            </Component>
-            <Component Id="cmp3A16E0BAAC1F50E8C34B936CB03C88A1" Guid="*">
-                <File Id="filE420926F5096532AE2ED4044C8D4F21E" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.BizTalk.Adapter.Designtime.dll" />
-            </Component>
-            <Component Id="cmp009AD7A29694BAD6D8B6CDD392FD9175" Guid="*">
-                <File Id="fil8846FC61464A15AC8B30C1A97A72279D" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.BizTalk.Adapter.Designtime.pdb" />
-            </Component>
-            <Component Id="cmp459F5F7752DA28035C65B8E136E83741" Guid="*">
-                <File Id="fil184D9984DD011395EA4F872F87222FDF" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.BizTalk.Adapter.dll" />
-            </Component>
-            <Component Id="cmp5B9C970C79443C3CDAAFF21B67AFDB0A" Guid="*">
-                <File Id="fil43E6027BCC99C0C9CCE2775DF9F3DB64" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.BizTalk.Adapter.pdb" />
-            </Component>
-            <Component Id="cmpCC86A6B4FBC4CC8C2A0647B114D07B31" Guid="*">
-                <File Id="fil93A05182060278FA3A28F7BBC6AB453B" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.BizTalk.Common.dll" />
-            </Component>
-            <Component Id="cmpBBB8BACD1B9043097FBB37934C797B99" Guid="*">
-                <File Id="fil226080227C738726002A5AFC6C28B388" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.BizTalk.Common.pdb" />
             </Component>
             <Component Id="cmpFDEE9FF1A4DF8B7D199A145B2CD92CE8" Guid="*">
                 <File Id="filB9B383A3DAB638E8E361251D3747C628" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.Framework.Common.dll" />
@@ -539,18 +518,11 @@
     </Fragment>
     <Fragment>
         <ComponentGroup Id="SourceComponentGroup">
-            <ComponentRef Id="cmp8EE506239A3B50B9350280E6EED7B3BF" />
             <ComponentRef Id="cmpD4631A2B96C5BBE3143CC65C1B7E0C8D" />
             <ComponentRef Id="cmp59F8B2E4BC62592AD542C049A0659922" />
             <ComponentRef Id="cmpAF12BB4AA3A1E30D7188CDDBB08D5D0C" />
             <ComponentRef Id="cmp9FE694406F05B20677112BB624B06DA6" />
             <ComponentRef Id="cmp466BC8876CDB81DD9F7E0D1108768B5D" />
-            <ComponentRef Id="cmp3A16E0BAAC1F50E8C34B936CB03C88A1" />
-            <ComponentRef Id="cmp009AD7A29694BAD6D8B6CDD392FD9175" />
-            <ComponentRef Id="cmp459F5F7752DA28035C65B8E136E83741" />
-            <ComponentRef Id="cmp5B9C970C79443C3CDAAFF21B67AFDB0A" />
-            <ComponentRef Id="cmpCC86A6B4FBC4CC8C2A0647B114D07B31" />
-            <ComponentRef Id="cmpBBB8BACD1B9043097FBB37934C797B99" />
             <ComponentRef Id="cmpFDEE9FF1A4DF8B7D199A145B2CD92CE8" />
             <ComponentRef Id="cmp5B72E0B9402C80F0C78E38234DEE9C4E" />
             <ComponentRef Id="cmpBF100FD0F931A97CCE596EA07151FB80" />

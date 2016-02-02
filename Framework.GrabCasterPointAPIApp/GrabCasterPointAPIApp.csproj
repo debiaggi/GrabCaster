@@ -129,7 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
@@ -152,8 +154,10 @@
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
     <None Include="Properties\PublishProfiles\EventHubAPI%28premium%29.pubxml" />
     <None Include="Properties\PublishProfiles\EventHubAPIApp%28default-web-westus%29.pubxml" />
-    <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28Default-SQL-NorthEurope%29.pubxml" />
+    <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28GCDemoResourceGroup%29.pubxml" />
+    <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28GCResourceGroup%29.pubxml" />
     <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28GrabCasterResourceGroup%29.pubxml" />
+    <None Include="Properties\PublishProfiles\GrabCasterPointAPIAppBeta%28GCResourceGroup%29.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -194,7 +198,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>21576</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
