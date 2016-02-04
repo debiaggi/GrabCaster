@@ -277,12 +277,22 @@ namespace GrabCaster.Framework.Engine
                     {
                         messageType = Configuration.MessageDataProperty.ByteArray;
                         message = trigger.DataContext;
-                        
+
+                        var receiverChannelId = "";
+                        var receiverPointId = "";
+
+
+                        foreach (var channel in remoteEvents[0].Channels)
+                        {
+                            receiverChannelId += channel.ChannelId + "|";
+                            receiverPointId = channel.Points.Aggregate(receiverPointId, (current, pointId) => current + (channel.ChannelId + "|"));
+                        }
+
                         OffRampEngineSending.SendMessageOnRamp(
                             message,
                             messageType,
-                            string.Empty,
-                            string.Empty,
+                            receiverChannelId,
+                            receiverPointId,
                             null);
                     }
                     else

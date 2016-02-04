@@ -46,8 +46,9 @@ namespace GrabCaster.Framework.Library.Azure
     [DevicePersistentProviderContract("{53158DA4-EAEA-4D8A-90C8-81A66F7A0F74}", "DevicePersistentProvider", "Device Persistent Provider for Azure")]
     public class BlobDevicePersistentProvider
     {
-        public void PersistEventToStorage(byte[] messageBody, string messageId,string groupEventHubsStorageAccountName,string groupEventHubsStorageAccountKey)
+        public void PersistEventToStorage(byte[] messageBody, string messageId, string groupEventHubsStorageAccountName, string groupEventHubsStorageAccountKey,string groupEventHubsName)
         {
+            
             try
             {
                 var storageAccountName = groupEventHubsStorageAccountName;
@@ -58,7 +59,7 @@ namespace GrabCaster.Framework.Library.Azure
                 var blobClient = storageAccount.CreateCloudBlobClient();
 
                 // Retrieve a reference to a container. 
-                var container = blobClient.GetContainerReference(ConfigurationLibrary.GroupEventHubsName());
+                var container = blobClient.GetContainerReference(groupEventHubsName);
 
                 // Create the container if it doesn't already exist.
                 container.CreateIfNotExists();
@@ -76,7 +77,7 @@ namespace GrabCaster.Framework.Library.Azure
             }
         }
 
-        public byte[] PersistEventFromStorage(string messageId, string groupEventHubsStorageAccountName, string groupEventHubsStorageAccountKey)
+        public byte[] PersistEventFromStorage(string messageId, string groupEventHubsStorageAccountName, string groupEventHubsStorageAccountKey, string groupEventHubsName)
         {
             try
             {
@@ -88,7 +89,7 @@ namespace GrabCaster.Framework.Library.Azure
                 var blobClient = storageAccount.CreateCloudBlobClient();
 
                 // Retrieve a reference to a container. 
-                var container = blobClient.GetContainerReference(ConfigurationLibrary.GroupEventHubsName());
+                var container = blobClient.GetContainerReference(groupEventHubsName);
 
                 // Create the container if it doesn't already exist.
                 container.CreateIfNotExists();

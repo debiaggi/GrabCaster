@@ -48,10 +48,26 @@ namespace GrabCaster.Framework.Library.Azure
     {
         private MessageIngestor.SetEventActionEventEmbedded SetEventActionEventEmbedded;
 
-        public void Run(MessageIngestor.SetEventActionEventEmbedded setEventActionEventEmbedded)
+        public string groupEventHubsStorageAccountName { get; set; }
+
+        public string groupEventHubsStorageAccountKey { get; set; }
+
+        public void Run(MessageIngestor.SetEventActionEventEmbedded setEventActionEventEmbedded, 
+                                        string groupEventHubsStorageAccountName,
+                                        string groupEventHubsStorageAccountKey,
+                                        string AzureNameSpaceConnectionString,
+                                        string GroupEventHubsName,
+                                        string ChannelId,
+                                        string PointId)
         {
             try
             {
+                MessageIngestor.GroupEventHubsStorageAccountName = groupEventHubsStorageAccountName;
+                MessageIngestor.GroupEventHubsStorageAccountKey = groupEventHubsStorageAccountKey;
+                MessageIngestor.GroupEventHubsName = GroupEventHubsName;
+                MessageIngestor.ChannelId = ChannelId;
+                MessageIngestor.PointId =PointId;
+
                 SetEventActionEventEmbedded = setEventActionEventEmbedded;
 
                 //Load message ingestor
@@ -59,10 +75,10 @@ namespace GrabCaster.Framework.Library.Azure
                 // Assign the delegate 
            
                 // Load vars
-                var eventHubConnectionString = ConfigurationLibrary.AzureNameSpaceConnectionString();
-                var eventHubName = ConfigurationLibrary.GroupEventHubsName();
+                var eventHubConnectionString = AzureNameSpaceConnectionString;
+                var eventHubName = GroupEventHubsName;
 
-                LogEngine.TraceInformation($"Start GrabCaster DownStream - Point Id {ConfigurationLibrary.PointId()} - Point name {ConfigurationLibrary.PointName()} - Channel Id {ConfigurationLibrary.ChannelId()} - Channel name {ConfigurationLibrary.ChannelName()} ");
+                LogEngine.TraceInformation($"Start GrabCaster DownStream - Point Id {PointId} - Channel Id {ChannelId}");
 
                 var builder = new ServiceBusConnectionStringBuilder(eventHubConnectionString)
                                   {
@@ -71,7 +87,7 @@ namespace GrabCaster.Framework.Library.Azure
                                   };
 
                 //If not exit it create one, drop brachets because Azure rules
-                var eventHubConsumerGroup = string.Concat(ConfigurationLibrary.EngineName(), "_", ConfigurationLibrary.ChannelId().Replace("{", "").Replace("}", "").Replace("-", ""));
+                var eventHubConsumerGroup = string.Concat(GrabCasterPointAPIApp.Controllers.Constants.EngineName, "_", ChannelId.Replace("{", "").Replace("}", "").Replace("-", ""));
 
                 var nsManager = NamespaceManager.CreateFromConnectionString(builder.ToString());
 

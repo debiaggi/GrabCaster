@@ -27,3 +27,8 @@ DB <> trigger <> automapper <> GC <> automaper <> event <> DB
 
 
 REST asking HELP and show the REST commands available
+
+
+http://www.c-sharpcorner.com/UploadFile/e4e3f7/dapper-king-of-micro-orm-C-Sharp-net/
+micro orm 
+dapper?

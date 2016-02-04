@@ -42,6 +42,7 @@ namespace GrabCaster.Framework.Library.Azure
     using GrabCaster.Framework.Contracts.Events;
     using GrabCaster.Framework.Contracts.Globals;
     using GrabCaster.Framework.Contracts.Messaging;
+    using GrabCaster.Framework.EmbeddedEvent;
     using GrabCaster.Framework.Serialization.Object;
     using GrabCaster.Framework.Storage;
 
@@ -57,7 +58,7 @@ namespace GrabCaster.Framework.Library.Azure
         public static string GroupEventHubsStorageAccountKey { get; set; }
         public static string GroupEventHubsName { get; set; }
 
-
+        
         public static string ChannelId { get; set; }
         public static string PointId { get; set; }
 
@@ -92,6 +93,7 @@ namespace GrabCaster.Framework.Library.Azure
             // ****************************CHECK MESSAGE TYPE*************************
             try
             {
+                LogEngine.TraceInformation("GrabCaster embedded message received!");
                 // Check message subscription, it must come from engine
                 if (skeletonMessage.Properties[Configuration.GrabCasterMessageTypeName].ToString()
                     != Configuration.GrabCasterMessageTypeValue)
@@ -113,9 +115,7 @@ namespace GrabCaster.Framework.Library.Azure
                         skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverChannelId.ToString()].ToString();
                     var receiverPointId =
                         skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverPointId.ToString()].ToString();
-
-                    ChannelId = "asd";
-                    PointId = "asd";
+ 
                     var requestAvailable = (receiverChannelId.Contains(ChannelId)
                                             && receiverPointId.Contains(PointId))
                                            || (receiverChannelId.Contains("*")
@@ -124,6 +124,8 @@ namespace GrabCaster.Framework.Library.Azure
                                                && receiverPointId.Contains("*"))
                                            || (receiverChannelId.Contains("*")
                                                && receiverPointId.Contains("*"));
+                    LogEngine.TraceInformation($"Event received step1.1 requestAvailable {requestAvailable.ToString()}");
+
                     if (!requestAvailable)
                     {
                         return;
@@ -161,7 +163,7 @@ namespace GrabCaster.Framework.Library.Azure
                 eventDataByte = skeletonMessage.Body;
             }
 
-            LogEngine.TraceInformation($"Event received step5 before serialization.");
+            LogEngine.TraceInformation($"Event received step5 sent to setEventActionEventEmbedded");
             setEventActionEventEmbedded(eventDataByte);
 
         }

@@ -317,6 +317,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 data.Properties.Add(
                     Configuration.MessageDataProperty.ChannelDescription.ToString(), 
                     Configuration.ChannelDescription());
+
                 data.Properties.Add(Configuration.MessageDataProperty.ReceiverChannelId.ToString(), channelId);
                 data.Properties.Add(Configuration.MessageDataProperty.ReceiverPointId.ToString(), pointId);
 

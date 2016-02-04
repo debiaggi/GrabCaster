@@ -42,7 +42,7 @@ namespace GrabCaster.Framework.Library.Azure
     ///     Send messages to EH
     /// </summary>
     [EventsUpStreamContract("{6FAEA018-C21B-423E-B860-3F8BAC0BC637}", "EventUpStream", "Event Hubs EventUpStream")]
-    public class EventsUpStream: IEventsUpStream
+    public class EventsUpStream
     {
         //EH variable
 
@@ -52,15 +52,15 @@ namespace GrabCaster.Framework.Library.Azure
 
         private static EventHubClient eventHubClient;
         
-        public bool CreateEventUpStream()
+        public bool CreateEventUpStream(string AzureNameSpaceConnectionString, string GroupEventHubsName)
         {
             try
             {
                 //EH Configuration
-                connectionString = ConfigurationLibrary.AzureNameSpaceConnectionString();
-                eventHubName = ConfigurationLibrary.GroupEventHubsName();
+                connectionString = AzureNameSpaceConnectionString;
+                eventHubName = GroupEventHubsName;
 
-                LogEngine.TraceInformation($"Start GrabCaster UpStream - Point Id {ConfigurationLibrary.PointId()} - Point name {ConfigurationLibrary.PointName()} - Channel Id {ConfigurationLibrary.ChannelId()} - Channel name {ConfigurationLibrary.ChannelName()} ");
+                LogEngine.TraceInformation($"Start GrabCaster UpStream - GroupEventHubsName {GroupEventHubsName}");
 
                 var builder = new ServiceBusConnectionStringBuilder(connectionString)
                                   {

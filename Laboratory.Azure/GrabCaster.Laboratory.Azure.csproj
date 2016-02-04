@@ -115,6 +115,10 @@
       <Project>{90edf12e-2f15-4b5c-bc55-d52919b86ab7}</Project>
       <Name>GrabCaster.Framework.Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
+      <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
+      <Name>GrabCaster.Framework.Serialization.Object</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

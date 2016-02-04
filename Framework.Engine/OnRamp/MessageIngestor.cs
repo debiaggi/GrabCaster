@@ -182,6 +182,24 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 if (skeletonMessage.Properties[Configuration.MessageDataProperty.Embedded.ToString()].ToString()
                     == "true")
                 {
+                    var recChannelId =
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverChannelId.ToString()].ToString();
+                    var recPointId =
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverPointId.ToString()].ToString();
+
+                    var reqAvailable = (recChannelId.Contains(Configuration.ChannelId())
+                                            && recPointId.Contains(Configuration.PointId()))
+                                           || (recChannelId.Contains(Configuration.ChannelAll)
+                                               && recPointId.Contains(Configuration.PointId()))
+                                           || (recChannelId.Contains(Configuration.ChannelId())
+                                               && recPointId.Contains(Configuration.ChannelAll))
+                                           || (recChannelId.Contains(Configuration.ChannelAll)
+                                               && recPointId.Contains(Configuration.ChannelAll));
+
+                    if (!reqAvailable)
+                    {
+                        return;
+                    }
                     string idConfiguration =
                         skeletonMessage.Properties[Configuration.MessageDataProperty.IdConfiguration.ToString()].ToString();
                     string idComponent =
