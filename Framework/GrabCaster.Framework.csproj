@@ -64,10 +64,10 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FD0A5A7B61E4457B80657E885F0E051AA45EE343</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>89CDDE34E23BE0C6B7F0E03C6A1A9078755CF179</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>GrabCaster.Framework_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>grabcaster.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -85,7 +85,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>GrabCaster.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Azure.KeyVault.Core">
@@ -242,9 +243,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="GrabCaster.Framework_TemporaryKey.pfx" />
-    <None Include="GrabCaster.snk" />
-    <None Include="JiTGate.Framework_TemporaryKey.pfx" />
+    <None Include="grabcaster.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
   </ItemGroup>
@@ -561,6 +560,7 @@
   <ItemGroup>
     <EmbeddedResource Include="NTService\ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -581,6 +581,9 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>signTool sign /f grabcaster.pfx /p 4r@bc@st3r /v grabcaster.exe</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

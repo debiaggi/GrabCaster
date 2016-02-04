@@ -29,6 +29,7 @@ namespace GrabCaster.Framework.Library.Azure
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
     using System.Reflection;
     using System.Text;
 
@@ -60,6 +61,7 @@ namespace GrabCaster.Framework.Library.Azure
                 connectionString = AzureNameSpaceConnectionString;
                 eventHubName = GroupEventHubsName;
 
+                LogEngine.TraceInformation($"Start GrabCaster UpStream - connectionString {connectionString}");
                 LogEngine.TraceInformation($"Start GrabCaster UpStream - GroupEventHubsName {GroupEventHubsName}");
 
                 var builder = new ServiceBusConnectionStringBuilder(connectionString)
@@ -68,7 +70,9 @@ namespace GrabCaster.Framework.Library.Azure
                                           TransportType.Amqp
                                   };
 
+                LogEngine.TraceInformation($"eventHubClient = EventHubClient.CreateFromConnectionString(builder.ToString(), eventHubName)");
                 eventHubClient = EventHubClient.CreateFromConnectionString(builder.ToString(), eventHubName);
+                LogEngine.TraceInformation($"After EventHubClient.CreateFromConnectionString");
 
                 return true;
             }
@@ -87,9 +91,18 @@ namespace GrabCaster.Framework.Library.Azure
         {
             try
             {
+                LogEngine.TraceInformation($"Enter in SendMessage");
+                LogEngine.TraceInformation($"Enter in SendMessage body lenght - {message.Body.Count().ToString()}");
+ 
+                LogEngine.TraceInformation($"Enter in SendMessage body text - {Encoding.UTF8.GetString(message.Body)}");
                 byte[] byteArrayBytes = SkeletonMessage.SerializeMessage(message);
+                LogEngine.TraceInformation($"Create EventData");
+
                 EventData evtData = new EventData(byteArrayBytes);
+
+                LogEngine.TraceInformation($"Send Message!");
                 eventHubClient.Send(evtData);
+                LogEngine.TraceInformation($"Message Sent!");
             }
             catch (Exception ex)
             {

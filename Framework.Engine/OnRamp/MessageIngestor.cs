@@ -135,6 +135,8 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     senderDescription =
                         skeletonMessage.Properties[Configuration.MessageDataProperty.SenderDescriprion.ToString()].ToString();
 
+                    //If using Guid pattern as string some system put an escape character like \ before the end brachet }
+
                     // Who receive the message
                     LogEngine.ConsoleWriteLine(
                         $"Event received from Sender {senderId} Sender description {senderDescription}", 
@@ -187,6 +189,8 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     var recPointId =
                         skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverPointId.ToString()].ToString();
 
+                    //If using Guid pattern as string some system put an escape character like \ before the end brachet }
+
                     var reqAvailable = (recChannelId.Contains(Configuration.ChannelId())
                                             && recPointId.Contains(Configuration.PointId()))
                                            || (recChannelId.Contains(Configuration.ChannelAll)
@@ -205,12 +209,27 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     string idComponent =
                         skeletonMessage.Properties[Configuration.MessageDataProperty.IdComponent.ToString()].ToString();
 
-                    var triggerSingleInstance = (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
-                                                 where trigger.IdComponent == idComponent && trigger.IdConfiguration == idConfiguration
-                                                 select trigger).First();
-                    var bubblingTriggerConfiguration = triggerSingleInstance;
-   
-                    EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration, skeletonMessage.Body);
+                    try
+                    {
+                        var triggerSingleInstance =
+                            (from trigger in EventsEngine.BubblingTriggerConfigurationsSingleInstance
+                             where trigger.IdComponent == idComponent && trigger.IdConfiguration == idConfiguration
+                             select trigger).First();
+                        var bubblingTriggerConfiguration = triggerSingleInstance;
+                        LogEngine.ConsoleWriteLine($"Execute trigger idConfiguration {idConfiguration} and idComponent {idComponent}", ConsoleColor.Green);
+                        EventsEngine.ExecuteTriggerConfiguration(bubblingTriggerConfiguration, skeletonMessage.Body);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        LogEngine.WriteLog(Configuration.EngineName,
+                                        $"Error in {MethodBase.GetCurrentMethod().Name} - ExecuteTriggerConfiguration Error - Missing the idConfiguration {idConfiguration} and idComponent {idComponent}",
+                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.TaskCategoriesError,
+                                        ex,
+                                        EventLogEntryType.Error);
+                    }
+
                     return;
                 }
 

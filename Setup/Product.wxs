@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="GrabCaster" Language="1033" Version="1.0.0.0" Manufacturer="Nino Crudele"
+  <Product Id="*" Name="GrabCaster" Language="1033" Version="1.0.0.0" Manufacturer="GrabCaster Ltd"
            UpgradeCode="554447c2-fb24-4269-b617-92ceedafdaf1">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 

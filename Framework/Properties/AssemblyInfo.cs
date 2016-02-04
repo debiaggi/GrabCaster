@@ -32,12 +32,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("core")]
-[assembly: AssemblyDescription("Just in Time Gate")]
+[assembly: AssemblyTitle("GrabCaster")]
+[assembly: AssemblyDescription("GrabCaster Core")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Nino Crudele Ltd.")]
-[assembly: AssemblyProduct("core")]
-[assembly: AssemblyCopyright("Copyright © 2015")]
+[assembly: AssemblyCompany("GrabCaster Ltd")]
+[assembly: AssemblyProduct("GrabCaster")]
+[assembly: AssemblyCopyright("Copyright GrabCaster Ltd © 2013 - 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

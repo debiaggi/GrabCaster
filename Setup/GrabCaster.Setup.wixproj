@@ -49,6 +49,9 @@
     <PreBuildEvent>call "$(Solutiondir)\Development Script\PrepareDeployPackage.cmd"
 "%25WIX%25\bin\heat.exe" dir "$(Solutiondir)Setup\bin\$(Configuration)\Deploy" -srd -dr INSTALLDIR_GRABCASTER -sfrag -sreg -cg SourceComponentGroup -var var.SourcePath -ag -out "$(SolutionDir).\Setup\SourceComponents.wxs"</PreBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>signTool sign /f grabcaster.pfx /p 4r%40bc%40st3r /v grabcaster.msi</PostBuildEvent>
+  </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.

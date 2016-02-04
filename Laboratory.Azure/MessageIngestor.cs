@@ -146,14 +146,14 @@ namespace GrabCaster.Framework.Library.Azure
                 string messageId = skeletonMessage.Properties[Configuration.MessageDataProperty.MessageId.ToString()].ToString();
                 BlobDevicePersistentProvider storagePersistent = new BlobDevicePersistentProvider();
 
-                var ret = storagePersistent.PersistEventFromStorage(
-                    messageId,
-                    GroupEventHubsStorageAccountName,
-                    GroupEventHubsStorageAccountKey,
-                    GroupEventHubsName);
+                //var ret = storagePersistent.PersistEventFromStorage(
+                //    messageId,
+                //    GroupEventHubsStorageAccountName,
+                //    GroupEventHubsStorageAccountKey,
+                //    GroupEventHubsName);
 
 
-                eventDataByte = (byte[])ret;
+                //eventDataByte = (byte[])ret;
             }
             else
             {

@@ -146,6 +146,7 @@
             public async Task RegisterTrigger(string triggerId, TriggerInput<EventHubInput, SkeletonMessage> triggerInput)
             {
                 LogEngine.TraceInformation("Enter in RegisterTrigger");
+                LogEngine.TraceInformation($"Enter in RegisterTrigger triggerId {triggerId}");
 
                 GrabCasterListener grabCasterListener = new GrabCasterListener();
 
