@@ -348,6 +348,12 @@ namespace GrabCaster.Framework.Log
             }
         }
 
+        public static void ConsoleWriteLineNoLog(string message, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
         public static void QueueConsoleMessageOnPublish(List<ConsoleMessage> consoleMessages)
         {
             foreach (var consoleMessage in consoleMessages)

@@ -27,22 +27,16 @@ namespace GrabCaster.Framework.Base
             ret.ValidationKey = InternalSignature.SignatureLicKey;
             return ret;
         }
-        public LicenseStatus EvaluateLicense()
+        public bool EvaluateLicense(ref string message)
         {
             CryptoLicense license = CreateLicense();
-
-            // The license will be loaded from/saved to the registry
-            license.StorageMode = LicenseStorageMode.ToRegistry;
-            license.RegistryStoragePath = license.RegistryStoragePath + "InternalSignature";
+            message = !license.Load() ? "Licensing missing, execute GrabCaster in console mode and enter the license key." : license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid ? "Licensing expired, execute GrabCaster in console mode and enter the license key." : "Licensing missing, execute GrabCaster in console mode and enter the license key.";
 
             // Load the license from the registry 
-            if (!license.Load())
-                return LicenseStatus.LicenseNotLoaded;
-            if (license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid)
-                return LicenseStatus.LicenseExpired;
-
-            return LicenseStatus.LicenseOk;
-
+            if (!license.Load() || license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid) 
+                return false;
+            else return true;
+ 
         }
     }
 }

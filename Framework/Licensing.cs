@@ -35,8 +35,6 @@ namespace GrabCaster.Framework
             // To avoid conflicts with other scenarios from this sample, the default load/save registry key is changed
             license.RegistryStoragePath = license.RegistryStoragePath + "InternalSignature";
 
-            // The remove method can be useful during development and testing - it deletes a previously saved license.
-           license.Remove();
 
             // Another useful method during development and testing is .ResetEvaluationInfo()
 

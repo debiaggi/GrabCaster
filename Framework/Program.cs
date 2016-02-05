@@ -68,15 +68,7 @@ namespace GrabCaster.Framework
         {
             try
             {
-                Licensing licensing = new Licensing();
-                if (!licensing.EvaluateLicense())
-                {
-                    MessageBox.Show(
-                        "License key not valid, contact the GrabCaster Team.",
-                        "GrabCaster",
-                        MessageBoxButtons.OKCancel,
-                        MessageBoxIcon.Error);
-                }
+
                 Configuration.LoadConfiguration();
 
 
@@ -98,6 +90,17 @@ namespace GrabCaster.Framework
 
                 if (!Environment.UserInteractive)
                 {
+                    //Licensing area
+                    //****************************************************************
+                    GrabCaster.Framework.Base.Licensing licensing = new GrabCaster.Framework.Base.Licensing();
+                    string message = "";
+                    if (!licensing.EvaluateLicense(ref message))
+                    {
+                        Methods.DirectEventViewerLog(message,EventLogEntryType.Error);
+                        Environment.Exit(0);
+                    }
+                    //****************************************************************
+ 
                     Debug.WriteLine("GrabCaster-servicesToRun procedure initialization.");
                     ServiceBase[] servicesToRun = { new NTWindowsService() };
                     Debug.WriteLine("GrabCaster-servicesToRun procedure starting.");
@@ -105,6 +108,20 @@ namespace GrabCaster.Framework
                 }
                 else
                 {
+                    //Licensing area
+                    //****************************************************************
+                    Licensing licensing = new Licensing();
+                    if (!licensing.EvaluateLicense())
+                    {
+                        MessageBox.Show(
+                            "License key not valid, contact the GrabCaster Team.",
+                            "GrabCaster",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                        Environment.Exit(0);
+                    }
+                    //****************************************************************
+
                     if (args.Length == 0)
                     {
                         // Set Console windows
