@@ -68,6 +68,15 @@ namespace GrabCaster.Framework
         {
             try
             {
+                Licensing licensing = new Licensing();
+                if (!licensing.EvaluateLicense())
+                {
+                    MessageBox.Show(
+                        "License key not valid, contact the GrabCaster Team.",
+                        "GrabCaster",
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Error);
+                }
                 Configuration.LoadConfiguration();
 
 
