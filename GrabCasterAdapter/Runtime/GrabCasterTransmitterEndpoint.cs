@@ -16,7 +16,10 @@ using System.Diagnostics;
 
 namespace GrabCaster.Framework.BizTalk.Adapter
 {
-	/// <summary>
+    using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Common;
+
+    /// <summary>
 	/// There is one instance of HttpTransmitterEndpoint class for each every static send port.
 	/// Messages will be forwarded to this class by AsyncTransmitterBatch
 	/// </summary>
@@ -42,6 +45,11 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
         public override void Open(EndpointParameters endpointParameters, IPropertyBag handlerPropertyBag, string propertyNamespace)
         {
+            //Licensing area
+            //****************************************************************
+            Licensing.EvaluateLicense(LicenseFeatures.BizTalk,true);
+            //****************************************************************
+
             setEventActionEventEmbedded = EventReceivedFromEmbedded;
             GrabCaster.Framework.Library.Embedded.InitializeOffRampEmbedded(setEventActionEventEmbedded);
             this.propertyNamespace = propertyNamespace;

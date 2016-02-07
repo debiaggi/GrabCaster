@@ -78,6 +78,11 @@ namespace GrabCaster.Framework.Library
         {
             try
             {
+                //Licensing area
+                //****************************************************************
+                Licensing.EvaluateLicense(LicenseFeatures.Embedded, true);
+                //****************************************************************
+
                 Configuration.LoadConfiguration();
                 LogEngine.Init();
                 LogEngine.ConsoleWriteLine(
@@ -180,6 +185,11 @@ namespace GrabCaster.Framework.Library
         /// </summary>
         public static void InitializeOffRampEmbedded(SetEventActionEvent delegateActionEventEmbedded)
         {
+            //Licensing area
+            //****************************************************************
+            Licensing.EvaluateLicense(LicenseFeatures.Embedded, true);
+            //****************************************************************
+
             //Load Configuration
             GrabCaster.Framework.Base.Configuration.LoadConfiguration();
 

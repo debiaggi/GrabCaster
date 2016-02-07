@@ -230,7 +230,6 @@
       <DependentUpon>LicenseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InternalSignature.cs" />
-    <Compile Include="Licensing.cs" />
     <Compile Include="NTService\NTService.cs" />
     <Compile Include="NTService\NTSharedProperties.cs" />
     <Compile Include="NTService\ProjectInstaller.cs">

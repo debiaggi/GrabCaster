@@ -19,6 +19,7 @@
     <SccLocalPath>
     </SccLocalPath>
     <Name>GrabCaster.Setup</Name>
+    <IncludeSearchPaths>C:\Users\Nino\Documents\GrabCaster\GrabCaster.Framework\DefaultFiles\</IncludeSearchPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>

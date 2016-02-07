@@ -7,6 +7,12 @@ using GrabCaster.Framework.BizTalk.Adapter.Common;
 
 namespace GrabCaster.Framework.BizTalk.Adapter
 {
+    using System.Data;
+    using System.Diagnostics;
+
+    using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Common;
+
     /// <summary>
     /// This class handles properties for a given Receive Location
     /// </summary>
@@ -86,6 +92,7 @@ namespace GrabCaster.Framework.BizTalk.Adapter
 
         public GrabCasterTransmitProperties(IBaseMessage message, string propertyNamespace)
         {
+
             XmlDocument locationConfigDom = null;
 
             //  get the adapter configuration off the message
@@ -107,6 +114,11 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         /// </summary>
         public static void ReadTransmitHandlerConfiguration(XmlDocument configDOM)
         {
+            //Licensing area
+            //****************************************************************
+            Licensing.EvaluateLicense(LicenseFeatures.BizTalk,true);
+            //****************************************************************
+
             // Handler properties
             handlerSendBatchSize = ExtractInt(configDOM, "/Config/sendBatchSize");
             handlerbufferSize = ExtractInt(configDOM, "/Config/bufferSize");
@@ -119,6 +131,11 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         /// <param name="configDOM"></param>
         public void ReadLocationConfiguration(XmlDocument configDOM)
         {
+
+            //Licensing area
+            //****************************************************************
+            Licensing.EvaluateLicense(LicenseFeatures.BizTalk,true);
+            //****************************************************************
 
             this.idConfiguration = Extract(configDOM, "/Config/idConfiguration", string.Empty);
             this.idComponent = Extract(configDOM, "/Config/idComponent", string.Empty);

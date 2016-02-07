@@ -17,6 +17,8 @@ using GrabCaster.Framework.BizTalk.Adapter.Common;
 
 namespace GrabCaster.Framework.BizTalk.Adapter
 {
+    using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Common;
     using GrabCaster.Framework.Contracts.Events;
     using GrabCaster.Framework.Contracts.Globals;
     using GrabCaster.Framework.Library;
@@ -54,6 +56,10 @@ namespace GrabCaster.Framework.BizTalk.Adapter
         {
             Trace.WriteLine("[GrabCasterReceiverEndpoint] Open called");
             this.errorCount = 0;
+            //Licensing area
+            //****************************************************************
+            Licensing.EvaluateLicense(LicenseFeatures.BizTalk,true);
+            //****************************************************************
 
             this.properties = new GrabCasterReceiveProperties();
             //  Location properties - possibly override some Handler properties

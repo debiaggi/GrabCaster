@@ -23,6 +23,8 @@ xcopy Laboratory\bin\Release\Laboratory.exe Setup\bin\Release\Deploy\Demo\*  /y
 xcopy Framework\bin\Debug\*.dll Setup\bin\Debug\Deploy\*  /y
 xcopy Framework\bin\Debug\*.pdb Setup\bin\Debug\Deploy\*  /y
 copy DefaultFiles\DeployDefault.cfg Setup\bin\Debug\Deploy\GrabCaster.cfg  /y
+copy DefaultFiles\license.rtf Setup\bin\Debug\Deploy\license.rtf  /y
+copy DefaultFiles\license.rtf Setup\bin\Release\Deploy\license.rtf  /y
 xcopy Framework\bin\Debug\*.exe Setup\bin\Debug\Deploy\*  /y
 
 xcopy Framework\bin\Release\*.dll Setup\bin\Release\Deploy\*  /y

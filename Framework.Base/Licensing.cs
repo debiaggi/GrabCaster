@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace GrabCaster.Framework.Base
 {
+    using System.Diagnostics;
     using System.Net.Mime;
     using System.Runtime.InteropServices.WindowsRuntime;
     using System.Windows.Forms;
+
+    using GrabCaster.Framework.Common;
 
     using LogicNP.CryptoLicensing;
 
@@ -19,24 +22,62 @@ namespace GrabCaster.Framework.Base
         LicenseExpired
     }
 
-    public class Licensing
+    public enum LicenseFeatures
     {
-        CryptoLicense CreateLicense()
+        Embedded = 1,
+        Throttling,
+        BizTalk,
+        WindowsNt,
+        Console,
+        UI
+
+    }
+    public static class Licensing
+    {
+        static CryptoLicense CreateLicense()
         {
             CryptoLicense ret = new CryptoLicense();
             ret.ValidationKey = InternalSignature.SignatureLicKey;
             return ret;
         }
-        public bool EvaluateLicense(ref string message)
+        public static bool EvaluateLicense(LicenseFeatures licenseFeatures,bool throwException)
         {
+            bool valid = true;
+            string message = "";
+
             CryptoLicense license = CreateLicense();
             message = !license.Load() ? "Licensing missing, execute GrabCaster in console mode and enter the license key." : license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid ? "Licensing expired, execute GrabCaster in console mode and enter the license key." : "Licensing missing, execute GrabCaster in console mode and enter the license key.";
 
             // Load the license from the registry 
-            if (!license.Load() || license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid) 
-                return false;
-            else return true;
- 
+            if (!license.Load())
+            {
+
+                message = "Licensing missing, execute GrabCaster in console mode and enter a valid license key.";
+                valid = false;
+            }
+            if (license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid)
+            {
+                message = "Licensing expired, execute GrabCaster in console mode and enter a valid license key.";
+                valid = false;
+            }
+            if (!license.IsFeaturePresentEx((int)licenseFeatures))
+            {
+                message = $"The feature {licenseFeatures.ToString()} is not enabled , execute GrabCaster in console mode and enter a valid license key.";
+                valid = false;
+            }
+
+            if (!valid)
+            {
+                Methods.DirectEventViewerLog(message, EventLogEntryType.Error);
+                if (throwException)
+                {
+                    throw new Exception(message);
+                }
+
+            }
+            return valid;
+
+
         }
     }
 }

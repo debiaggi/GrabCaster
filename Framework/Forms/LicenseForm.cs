@@ -10,23 +10,18 @@ using System.Windows.Forms;
 
 namespace GrabCaster.Framework
 {
+    using GrabCaster.Framework.Base;
+
     using LogicNP.CryptoLicensing;
+
+    using LicenseStatus = LogicNP.CryptoLicensing.LicenseStatus;
 
     public partial class LicenseForm : Form
     {
         CryptoLicense CreateLicense()
         {
             CryptoLicense ret = new CryptoLicense();
-
-            //Uses the validation key of the "samples.netlicproj" license project file from the "Samples" directory
-            // Get the validation key using Ctrl+K in the Generator UI.
-            ret.ValidationKey = "AMAAMACAan6T73Ctw/rY+L9u9uwHqu7uns3owx7c1/oqgVhKLo+dFEG34875h3IWCcNU8e0DAAEAAQ==";
-
-            // *** IMPORTANT: Set the LicenseServiceURL property below to the URL of your license service
-            // See video tutorial at http://www.ssware.com/cryptolicensing/demo/license_service_net.htm to learn 
-            // how to create the license service
-            ret.LicenseServiceURL = ""; // your license service URL here!
-
+            ret.ValidationKey = InternalSignature.SignatureLicKey;
             return ret;
         }
         public LicenseForm()
@@ -37,6 +32,36 @@ namespace GrabCaster.Framework
         private void linkLabelContact_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://grabcaster.io/grabcaster-contact/");
+        }
+
+        private void buttonConfirm_Click(object sender, EventArgs e)
+        {
+            CryptoLicense license = CreateLicense();
+
+            license.StorageMode = LicenseStorageMode.ToRegistry;
+            license.RegistryStoragePath = license.RegistryStoragePath + "InternalSignature";
+            LicenseForm licenseForm = new LicenseForm();
+            string licenseKey = licenseForm.textBoxLicense.Text;
+            license.LicenseCode = licenseKey;
+            if (license.Status != LicenseStatus.Valid)
+            {
+                MessageBox.Show(
+                    "The current license key is not valid, contact the support.",
+                    Configuration.EngineName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                license.Save();
+                MessageBox.Show(
+                    "License key valid, GrabCaster activated.",
+                    Configuration.EngineName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                this.Close();
+            }
+
         }
     }
 }

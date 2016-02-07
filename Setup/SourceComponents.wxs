@@ -98,8 +98,14 @@
             <Component Id="cmpB196EB4C55C07FD3F70C4514542D7E10" Guid="*">
                 <File Id="fil88C61C64F4548189C0F695178795F57D" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.vshost.exe" />
             </Component>
+            <Component Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" Guid="*">
+                <File Id="fil82A7F5F9679E1DCE9DFE4F04EAF765FC" KeyPath="yes" Source="$(var.SourcePath)\license.rtf" />
+            </Component>
             <Component Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" Guid="*">
                 <File Id="fil5FE9D3795346A00B46DD63B6F45E51CD" KeyPath="yes" Source="$(var.SourcePath)\LICENSE.txt" />
+            </Component>
+            <Component Id="cmpDC80D04183687DA26988FB1B2C414D61" Guid="*">
+                <File Id="filD0657A09E54A755BE0850CB6C65DD776" KeyPath="yes" Source="$(var.SourcePath)\LogicNP.CryptoLicensing.dll" />
             </Component>
             <Component Id="cmp9D4F8AEA18EDF0E7AED3E741E097FD36" Guid="*">
                 <File Id="fil10A5E38A9AC302C6635F966CF5EB4147" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Azure.KeyVault.Core.dll" />
@@ -571,7 +577,9 @@
             <ComponentRef Id="cmp0A272C269873B42D57FC3E9F6A0C5366" />
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
             <ComponentRef Id="cmpB196EB4C55C07FD3F70C4514542D7E10" />
+            <ComponentRef Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" />
             <ComponentRef Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" />
+            <ComponentRef Id="cmpDC80D04183687DA26988FB1B2C414D61" />
             <ComponentRef Id="cmp9D4F8AEA18EDF0E7AED3E741E097FD36" />
             <ComponentRef Id="cmp33416C1CAA701B7B965765FBB4F75954" />
             <ComponentRef Id="cmpAB143892D4035C414EC0EC14B1357FD7" />
