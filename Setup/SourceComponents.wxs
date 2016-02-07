@@ -95,6 +95,9 @@
             <Component Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" Guid="*">
                 <File Id="fil417E62484A0431F1536CD9C6936C259C" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.pdb" />
             </Component>
+            <Component Id="cmpCD92A7C4ACAFADCC3F8CB18EF843A98A" Guid="*">
+                <File Id="filDEFA48C315DB07AEB3EEC4AE8985C334" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.reg" />
+            </Component>
             <Component Id="cmpB196EB4C55C07FD3F70C4514542D7E10" Guid="*">
                 <File Id="fil88C61C64F4548189C0F695178795F57D" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.vshost.exe" />
             </Component>
@@ -178,6 +181,9 @@
             </Component>
             <Component Id="cmp1B8F0BF803C3197C87D25DF7A57294A5" Guid="*">
                 <File Id="filBE559681F5165701B10DE687864D18F2" KeyPath="yes" Source="$(var.SourcePath)\Phidget21.NET.dll" />
+            </Component>
+            <Component Id="cmp3A3EABB312006E6EF91D0ED6A84FCF80" Guid="*">
+                <File Id="fil8A65286A36FDE6338547593E4CE2B9EE" KeyPath="yes" Source="$(var.SourcePath)\Register BizTalk Adapter.txt" />
             </Component>
             <Component Id="cmp081661FEE03D98D766E01B0A2EE0BF53" Guid="*">
                 <File Id="fil6294EE7B6AA2FA2637BB1DAA8F68246A" KeyPath="yes" Source="$(var.SourcePath)\RestSharp.dll" />
@@ -541,6 +547,1090 @@
                     </Component>
                 </Directory>
             </Directory>
+            <Directory Id="dirD0A965A563A5682235D583696978E013" Name="SDK">
+                <Component Id="cmp3369E32ABC4BD18F97162EFD6A925DD1" Guid="*">
+                    <File Id="fil72060C0B97C97263F57CDCDBF6D35946" KeyPath="yes" Source="$(var.SourcePath)\SDK\GrabCaster.SDK.Events.sln" />
+                </Component>
+                <Component Id="cmp1F09BD6F6EFA54080ED3ACC7A6D7DBEB" Guid="*">
+                    <File Id="fil407D25308C695193B5EE7F062429D778" KeyPath="yes" Source="$(var.SourcePath)\SDK\GrabCaster.SDK.Triggers.sln" />
+                </Component>
+                <Component Id="cmpF86169493AF0895C7381DDF79139F54E" Guid="*">
+                    <File Id="fil09DB2D0E9E3A344DD933ECC21E3BB059" KeyPath="yes" Source="$(var.SourcePath)\SDK\Readme.txt" />
+                </Component>
+                <Directory Id="dir8177B6F330E7E32A5CDF039EE2CC83FD" Name="Events">
+                    <Directory Id="dir16A9C721DE2753AE89EC9ED4E1ADCC93" Name="AzureBlobEvent">
+                        <Component Id="cmp684BB1300C2241BBC04A4601AC17E272" Guid="*">
+                            <File Id="filA7E193FFB8B17A752FC43CCA98796D01" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp0A980BAF6725614AEA40C55AEA8194B7" Guid="*">
+                            <File Id="filBC519AEFE8F0DC188E4197BF7620F1E2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\AzureBlobEvent.cs" />
+                        </Component>
+                        <Component Id="cmp5ABD63F08531674332BE7E2F718FADDC" Guid="*">
+                            <File Id="filC12E74E4F13E42284B9D1984ED5DE412" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\GrabCaster.Framework.AzureBlobEvent.csproj" />
+                        </Component>
+                        <Component Id="cmpFC4F53A031E0E90C03535D2A3B25B731" Guid="*">
+                            <File Id="filA67A6974EC21D179C713BF44B3F44D18" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\GrabCaster.SDK.AzureBlobEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp07C14524A853F884712BA6BB44120068" Guid="*">
+                            <File Id="filDFFE40462758425E8FC6A146780403CA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\packages.config" />
+                        </Component>
+                        <Directory Id="dirB065D8D5ED2EABF010E1664800BCCB01" Name="obj">
+                            <Directory Id="dirF3547092B3E811C6967FB8BADA2B3740" Name="Debug">
+                                <Component Id="cmp6D77A9490BA40B73EA53FFD08B8B002D" Guid="*">
+                                    <File Id="fil3B84B0389E6F3D0B8A7BB04A343168C2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp2EFDDE17B59B9B06C906F1B39CF2CD4A" Guid="*">
+                                    <File Id="fil2CB5193B33D8D5C4008857F9D231B698" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpA981B86C1760BADAA2DBD3DFDCBD7FB5" Guid="*">
+                                    <File Id="fil54D934397565857EBE379D86A88FAB65" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp60F7F780D62E2488863ED75C718E4383" Guid="*">
+                                    <File Id="filD163CFB5A697F6F1574DC503246DAFE5" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirF6931D2E01757900DDEFF03E054023A3" Name="Properties">
+                            <Component Id="cmp4B204A87CDBD2E82E73CBB6D65311933" Guid="*">
+                                <File Id="fil7F41A4C3B4189D9C291A892D2EAECA59" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureBlobEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir48ABD987E75990824B462CA482410B70" Name="AzureQueueEvent">
+                        <Component Id="cmp28D1AD93794B51F8A58979EB01708CF0" Guid="*">
+                            <File Id="fil448B7B6145716EEFAA855DDEEC9D691C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\app.config" />
+                        </Component>
+                        <Component Id="cmpB5A849148E8E9AE0ACF9039CEF4ADF82" Guid="*">
+                            <File Id="filCB00323664892A3AEBE45ABAAC8C1ECE" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\AzureQueueEvent.cs" />
+                        </Component>
+                        <Component Id="cmpB1C3347DAA1EFDC0F1FFDAE41526B464" Guid="*">
+                            <File Id="fil54F0AD0BF0B792E7993EC5B63D62DB61" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\GrabCaster.Framework.AzureQueueEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp2D7821510E7E57D6FFAA4B7DEB8879E9" Guid="*">
+                            <File Id="filD99D84E1DA534DEC5175810AAF5E8A62" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\GrabCaster.SDK.AzureQueueEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpEDC96EE80E78B7C6103A7D6929B93AD8" Guid="*">
+                            <File Id="filC5D4DC0222BF514C5628E33A97CD07F7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\packages.config" />
+                        </Component>
+                        <Directory Id="dirECAF6EDE8E9C7AC957FB4270B473C2B3" Name="obj">
+                            <Directory Id="dir39BD3B31B7E9CDE20DEAAEBB27D3356D" Name="Debug">
+                                <Component Id="cmp7C69D720C2D223B901AA7F0E134F3241" Guid="*">
+                                    <File Id="filC7057101C4CEEF0A04EDBAA2D464F247" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp0F88268003DAB17303425DB7AC3E794F" Guid="*">
+                                    <File Id="filB1924DA3FC9D8F54515B8561A315D003" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp3B5E86AC0014F6342A4B1D8EFE1CAE08" Guid="*">
+                                    <File Id="filCE5451BD4106786C61C9B11C849F9E26" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp31E4EF23A1EB19092EA0CC534E220520" Guid="*">
+                                    <File Id="fil5A22A5E9060C6CECEFEE817D89412940" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir35B7C8B9D4D655A2FDFB5F4FF27BD88D" Name="Properties">
+                            <Component Id="cmpA6BA7458C5B882EA118BE8A8A7EDE1A0" Guid="*">
+                                <File Id="filE40063E64524D80C9407EBCE65C04622" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureQueueEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirD0027F4346B297035152169BF72C0D09" Name="AzureTopicEvent">
+                        <Component Id="cmp6BFA900619FC0A360B286C76A46A92FB" Guid="*">
+                            <File Id="fil73DDCCAD67A589A9943FDF152E2AFF62" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp05FE37D17C92CE2C45FDDB94C6832022" Guid="*">
+                            <File Id="filEFD854B09BC22BD99A90AD7D2FBFA1DC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\AzureTopicEvent.cs" />
+                        </Component>
+                        <Component Id="cmpF250EABA71F2E6373E3A70067BB0AF5C" Guid="*">
+                            <File Id="filD2F90E8D1BDC92B282A68775134D57A7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\GrabCaster.Framework.AzureTopicEvent.csproj" />
+                        </Component>
+                        <Component Id="cmpA97BB6999088E0126634673A468F7846" Guid="*">
+                            <File Id="filFA99462C31ED78938247867E90B799F2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\GrabCaster.SDK.AzureTopicEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp1A2F552D1D661971B517A1FD16644390" Guid="*">
+                            <File Id="filF8EF127AC2FC55984BDD56D6FC7BF250" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\packages.config" />
+                        </Component>
+                        <Directory Id="dirF6ACB3EEE47B072363B02E3C6B4FB999" Name="obj">
+                            <Directory Id="dir6A66DCC5B9E7D5E9D9EB51741016DF7F" Name="Debug">
+                                <Component Id="cmp813A304C53D9BE3396AF9215A46DB9EB" Guid="*">
+                                    <File Id="fil1CCCD81555BD29CA7DF45C868930612F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp7D9DC08AFA94D4693C6F13D642F45CFE" Guid="*">
+                                    <File Id="fil3B837BF62C8E3635E903FD4FD682675A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpA31054B8C051A9C775885010576B0E16" Guid="*">
+                                    <File Id="fil34051FC43CDBA91627B275E0BCB5B253" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpD99D36A6976DCF88FDC986B605C6C688" Guid="*">
+                                    <File Id="fil68F7895B8616A8F6DF6C4A857D263AE6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirD079A3078848588573EEDEE2FBDA4D5A" Name="Properties">
+                            <Component Id="cmp32AE4BCA8F258A528101F893AD31714B" Guid="*">
+                                <File Id="filE663381845BDA2CD2F7E6FAA60AE6ECA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\AzureTopicEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirA5F3FD5AB605AAE381246136B407912A" Name="BULKSQLServerEvent">
+                        <Component Id="cmp7D9A57CB7E871295E79EF7C14C4D1E33" Guid="*">
+                            <File Id="fil147306470C8FA470BC6BF2A7454C2850" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp7325EACE28299FBCF31F2B1A65B65B1D" Guid="*">
+                            <File Id="filDABE39F5AC1F9343A3041A9307F6FDD2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\BulksqlServerEvent.cs" />
+                        </Component>
+                        <Component Id="cmp0894988098D303617AF6E94BFAE9D1D3" Guid="*">
+                            <File Id="filDF7EE67B28C551C0374E80394B1BC1BF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\GrabCaster.Framework.BulksqlServerEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp873874CCF5905F1CC3D99964E0C09FC7" Guid="*">
+                            <File Id="fil37CB855BEB1E70D25418CF8C2D48202F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\GrabCaster.SDK.BulksqlServerEvent.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir881DF0A4075493746AEA64E87BC9B11F" Name="obj">
+                            <Directory Id="dir65103BE6286A211E4668322E030DDE75" Name="Debug">
+                                <Component Id="cmp6F909324DAE843E846532703A068E6EA" Guid="*">
+                                    <File Id="fil75C3502B23BB65FE926FF2E4183F6F27" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp9FDB189C388BD01F10A6C1570771D175" Guid="*">
+                                    <File Id="fil3B8C6CCD4EA8E2D6162F54A5FCBB453E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp5F270606D6D896199552BBB66BF8390A" Guid="*">
+                                    <File Id="fil4A24FB2A503150F3536672C72C5CB9D1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpC39B448CC7FA4F9F99196886DA47BF0A" Guid="*">
+                                    <File Id="fil185DBE5D36F568FE109B4C267AD49EAC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir0A1ECE65393FE9325E9C4413C3235663" Name="Properties">
+                            <Component Id="cmpF00D19A52D11BC961E01A59B589EEB8C" Guid="*">
+                                <File Id="fil782E5FDE570FD74A083C32597DACC5BD" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\BULKSQLServerEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirF7838968E57446B46E911FC496A5FA4E" Name="ChatEvent">
+                        <Component Id="cmpF35DAAE45E78AEFC13B9A50B70C2C0CB" Guid="*">
+                            <File Id="filB60E1006F910803F07708DB2F545798E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\app.config" />
+                        </Component>
+                        <Component Id="cmpE71D5F190A2F13A840584FA573636CBD" Guid="*">
+                            <File Id="fil98DA3530F546D3DA594620F8A761A285" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\ChatEvent.cs" />
+                        </Component>
+                        <Component Id="cmp12D268E18DD319558590993CE13C165E" Guid="*">
+                            <File Id="fil1020A8B0D6A0A46F6FA6AC6B412E420B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\GrabCaster.Framework.ChatEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp517C74F04A593C45321F7A3B6F527E0F" Guid="*">
+                            <File Id="fil08B58509DDB682753CB30C24BA4CE588" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\GrabCaster.SDK.ChatEvent.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir70A7C3A8BEC7B7EBCDFB6B4CCC875F03" Name="obj">
+                            <Directory Id="dir4E9C085FE75ADFDB9694A18B095197EB" Name="Debug">
+                                <Component Id="cmp656F4A667C966A735601C2EC388AF74A" Guid="*">
+                                    <File Id="fil9613ED36A2C47D4148B5462927370998" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpB26FC208AB6416C8FB18E8131C39A86B" Guid="*">
+                                    <File Id="filE7C2899B5867A4C9B94216806ED6902F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpC7A0B6D765919EB256E8EF270E47520D" Guid="*">
+                                    <File Id="fil913B25103FDDC6A2CC85DE743B9942B7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp5E41CB75436EF0720A6DFDCDC28F6136" Guid="*">
+                                    <File Id="filF944D70ABADB7744BFC1AAC4F4186C7E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirDC7027103F235A5C54B025E41154F093" Name="Properties">
+                            <Component Id="cmp33D296AA473CBA25CEC12FBF04E72C02" Guid="*">
+                                <File Id="fil0AF1804D30EC5C79A3304437193A19CB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\ChatEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir1D6DC2169889BB8D5FC3279EB45A94D7" Name="CSharpEvent">
+                        <Component Id="cmp08464EB06B97B81D5DBFA789B2DDC2FD" Guid="*">
+                            <File Id="filC769CB95AC6E87989464DE7A998E526E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp9C8D0AD131483C6F4817259DAC50DC81" Guid="*">
+                            <File Id="fil12F3B15FB8228AFFE7612ADA5060B415" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\CSharpEvent.cs" />
+                        </Component>
+                        <Component Id="cmp4AEED929A91A75630E400A22AB0902C8" Guid="*">
+                            <File Id="fil7B0E8DDB0625933943B36B8FE60CC4AB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\GrabCaster.Framework.CSharpEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp71157DCBAD43A92C11F9611F2B588B76" Guid="*">
+                            <File Id="filB3C91D1FD9F3819FA4862D9EC77D83F2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\GrabCaster.SDK.CSharpEvent.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir00F11A05EDB620493E37FFFDD135FCBB" Name="obj">
+                            <Directory Id="dirD59E546E5991C543BF78219DCF474ED5" Name="Debug">
+                                <Component Id="cmp2B343D11FD929119FC1A90DB1A2283E2" Guid="*">
+                                    <File Id="fil35D2357A03866913A4F8EC31266DC1C7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp732E9036B9FE271B1E96FB9448B4A91B" Guid="*">
+                                    <File Id="fil249028B4C7381CDFF09AD3A11BF9509C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp2AB50FC8D97F8D2371C41A882AA9C2BB" Guid="*">
+                                    <File Id="fil955E8AE5A976DEDD3A6326CD0F6E218A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpF6D92547AEA89B005EF1C6D308DCB597" Guid="*">
+                                    <File Id="filFD6628B52AEA3BF0D91CEB1B8C8F79D5" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirFC5F3EBDD883885AD46DB58032259AFF" Name="Properties">
+                            <Component Id="cmpD3036F1195E632E01D8F7D6ED6D83A78" Guid="*">
+                                <File Id="filCF09E578D4BB15022D125EBD6485BE8C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\CSharpEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir9C0B3A7B760804C327591E401CAEA1AF" Name="DialogBoxEvent">
+                        <Component Id="cmpE1EA3B0BF5BFFC8F71F88A5E3C595153" Guid="*">
+                            <File Id="fil6F0F5D55418EBF525E85C5D32B8C6AB9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp1BD512E506EC0E33811120156E0D1240" Guid="*">
+                            <File Id="fil92FDF52D8AAE12BE7CCFF333DC36148B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\DialogBoxEvent.cs" />
+                        </Component>
+                        <Component Id="cmp79269996AD41B38628454E6E9E24D2C7" Guid="*">
+                            <File Id="filEB66CFAD61BD5780221162624B70D403" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\GrabCaster.Framework.DialogBoxEvent.csproj" />
+                        </Component>
+                        <Component Id="cmpBECE68BB3B19F61253C3342A3E168315" Guid="*">
+                            <File Id="fil856AA07534646CDFCDBF9D0DFB3FD79B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\GrabCaster.SDK.DialogBoxEvent.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dirA0D2C8EA7F934B03CE27F8A83156359E" Name="obj">
+                            <Directory Id="dir306801DB582125FF6F9F40859EDC7F61" Name="Debug">
+                                <Component Id="cmpE13E9020DD815C02659C5143BC5322FF" Guid="*">
+                                    <File Id="fil62F3A4D9747EEB184BE9F5BDBEF3C7E8" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp952735125801C4697F2559B4386A23C6" Guid="*">
+                                    <File Id="fil6E1ED870638F1714028AE2E0C103560A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpC2EE73792D0930314F053AB752CD210E" Guid="*">
+                                    <File Id="fil6D3D0288505D71F3EA3B49913C2C970F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpF67A9644A35350313A3FF1C5C17B87C5" Guid="*">
+                                    <File Id="filE8387C61B0ABF84AC3A7231C91A64912" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir2A1BC966BED1F87377C19E02A82A43B3" Name="Properties">
+                            <Component Id="cmp536696E7E41C3B795BF974C1722F9CB0" Guid="*">
+                                <File Id="filBF2D6FA00A84EAF7FED5208207D3EC48" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\DialogBoxEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir8EAF909CD85220D3B37B53A72A42C117" Name="EmbeddedEvent">
+                        <Component Id="cmp7ECD800630BC88F5BBC9E52C35BC9A63" Guid="*">
+                            <File Id="filE9A88C3CE7CB690CC1DA041A07EFE465" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\EmbeddedEvent.cs" />
+                        </Component>
+                        <Component Id="cmp8DD49E8E947E674BF0CAF99AF89886CB" Guid="*">
+                            <File Id="fil2306AD15C6C6BC32CF409C0A71F00EC5" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\GrabCaster.Framework.EmbeddedEvent.csproj" />
+                        </Component>
+                        <Directory Id="dir796E00276EF6AF7617C1A002FA2CE1A3" Name="obj">
+                            <Directory Id="dir56B99A0CB5BDA2A67D091B8C767B7063" Name="Debug">
+                                <Component Id="cmp5958E831845F9781F317D1D0FAF5AE69" Guid="*">
+                                    <File Id="filBB9013C2202E72F93842F7BE8B190B01" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpA6ACF665FE255ED0855002C4DE9F11F4" Guid="*">
+                                    <File Id="fil5003985D262B3389D6029924A103AFD7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp20BCAF5CB77D4EB6B4EF92506C7A51C1" Guid="*">
+                                    <File Id="filED91DB401A2D1AECE5E0B9CB16AA4477" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpB8A14FDC5D30EE443B583B89954E7799" Guid="*">
+                                    <File Id="filDF1073FC154AAA334582818B0049E778" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir931E0372672CCA185DF0A574E8218561" Name="Properties">
+                            <Component Id="cmpE073424F2EC376091DCFF768508F5B66" Guid="*">
+                                <File Id="filC3830C2E0D2928B9638ABB0F4DD8A832" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EmbeddedEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir3728D869C8EACEA611B24B6D1D9A9F99" Name="EventHubEvent">
+                        <Component Id="cmp33F3D837217CFC44C02781AA69DCE2E6" Guid="*">
+                            <File Id="fil192F3B52C8892773ACE8F70BA0DF168F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp6723D545C45118B7BD947E99D3041F54" Guid="*">
+                            <File Id="filA113CA6D7FE3298370F822DA9D74FC06" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\EventHubEvent.cs" />
+                        </Component>
+                        <Component Id="cmp0EAA3BF6DCB54F705F8BF2BFE4AC252F" Guid="*">
+                            <File Id="fil0142C9743D36BDC29258D0DA12A6AD84" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\GrabCaster.Framework.EventHubEvent.csproj" />
+                        </Component>
+                        <Component Id="cmpD2DF2A0DC70A1CD977CD9A769F0D7171" Guid="*">
+                            <File Id="fil1ECAB48237A6E0F2F475E594DE9E7930" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\GrabCaster.SDK.EventHubEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp287B17FB0696117ED3467B36E663D2AA" Guid="*">
+                            <File Id="fil1EA766C0BE2D29950536910D6F4E3210" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\packages.config" />
+                        </Component>
+                        <Directory Id="dir36F1F94B223DEA02E3A6F3C2062FAE06" Name="obj">
+                            <Directory Id="dir11CC36C71C1A7FE198A2AAEAB4526500" Name="Debug">
+                                <Component Id="cmpF8EAB9756AA888B6FCFB495BBE748E0C" Guid="*">
+                                    <File Id="filF61BC6CD91BB9B000DCF8A0B40133204" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpEDD59F1522ECF003D85213891D787FF2" Guid="*">
+                                    <File Id="fil621D36D82684D989CE6CECAAA8879904" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp6447CD7A501C34AEF2A08E2A85023789" Guid="*">
+                                    <File Id="filD5CF0FAFAD451AFC7C0E4E9D6362DC4C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpD8EC6D2BB84F0E802FC1A0EFDDFED2CB" Guid="*">
+                                    <File Id="filECB16FC086974FAA96A4AA877949FB83" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirDEA4BB07A62039CA421E313E07F57E48" Name="Properties">
+                            <Component Id="cmp72700474256F5D6258405047603DCE7E" Guid="*">
+                                <File Id="fil25DEF2593EEAF4C8E4E2C4F9E9C11F51" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\EventHubEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir327163D7F474271DBBB913CC13FFBAA6" Name="FileEvent">
+                        <Component Id="cmpF2CEDF91FD22E5E5D1EFA0E28267CEFC" Guid="*">
+                            <File Id="filE6AAA0DE5D60C85B85D88025382D068D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp432DBB65EFE84CDEEE7057F67A25849C" Guid="*">
+                            <File Id="filF32353E54BC38C5EA15F172870FCF118" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\FileEvent.cs" />
+                        </Component>
+                        <Component Id="cmpC06A691A7CD1F73B5E9305C67429C476" Guid="*">
+                            <File Id="fil210624D3B52111612039E58B79D8197D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\GrabCaster.Framework.FileEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp3D75235EB2DDE7F214E72B249E8BBFBB" Guid="*">
+                            <File Id="fil85C16B657BE6A41DBE957F51C524B49E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\GrabCaster.SDK.FileEvent.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir4829828E3D63D007FDE5F3ACC82FD643" Name="obj">
+                            <Directory Id="dirA8D8930029EA7873FFCC24508D063A4F" Name="Debug">
+                                <Component Id="cmp246A55EF7EC848476D9E2917B89A80CB" Guid="*">
+                                    <File Id="fil07D7C94FDC7B36820DC3B944F56A16D4" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp4DF3C1DC29D2679971E77D563AD768EB" Guid="*">
+                                    <File Id="filD28DE0A324AEF2AA0CDAC2E83F20AC58" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp939EFD4B6CD67900060DC33F7D2DE4B3" Guid="*">
+                                    <File Id="filF71CE72A9AE8BF78231AC7176FDF792C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpC692C163D4C8A552661CBF33FE061BB8" Guid="*">
+                                    <File Id="fil91AE6BC77D1CF4CAE81C652CCBC88DF5" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirAAA6D670500B43046AF2074175A77DA2" Name="Properties">
+                            <Component Id="cmp5FF953531B2D1A91C9ABF3B1336A0EEC" Guid="*">
+                                <File Id="fil594919CE31CA147298F477ADBA829D90" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\FileEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirA7194BD7C00C65B54AD40140971C4788" Name="MessageBoxEvent">
+                        <Component Id="cmp4C39F4587811B97EE9D18FAE7E9313D9" Guid="*">
+                            <File Id="filEB10F3F019651510CCE61B6C4B26D8D8" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp34AFE73380A74BCB389013EB4AA3A2CB" Guid="*">
+                            <File Id="fil51F1AB870AE5E9B88E59C288B31524C2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\GrabCaster.Framework.MessageBoxEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp3ADBA8754EDB20D356B5134BCEE7C4E4" Guid="*">
+                            <File Id="fil44146DCD3A6988ACBBF9900785A1263C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\GrabCaster.SDK.MessageBoxEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpDEFDAE09B4F5B1BCD4EBD3B5084530C3" Guid="*">
+                            <File Id="fil4C5BD6E79E362CC1ACDC610D7A273D48" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\MessageBoxEvent.cs" />
+                        </Component>
+                        <Directory Id="dir50AEFA6CED1C535A027BC3BE8905EF78" Name="obj">
+                            <Directory Id="dir2A3C83FD77A594B1161A742C1EAFDF0F" Name="Debug">
+                                <Component Id="cmp60B7BFF3C4F62C02BAA75425DE02F1A6" Guid="*">
+                                    <File Id="filB7DDFE4A0F4AD199A46111EE6495B122" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp30F01966101E044A1EACA3800746737B" Guid="*">
+                                    <File Id="fil6EF8623AC4D86BE0301AEFFDD106FC87" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp88CDACF79312C2B326A408E8E7586260" Guid="*">
+                                    <File Id="filF70791588D7F6BC2925DAA460C7DAA52" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpA43101C324512706037707ADD78701E6" Guid="*">
+                                    <File Id="fil0829E4954B57CC4D8FEB70C9B170B04D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir3F14B0A17704EE20158B0CCB71E572B2" Name="Properties">
+                            <Component Id="cmp637B8DEB6604290FC68E56C0FF445747" Guid="*">
+                                <File Id="fil764AA48D746C41D1E36131DF3A1C8179" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\MessageBoxEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir0454402F23557146F19FE3A1D6CA8416" Name="NOPEvent">
+                        <Component Id="cmp9B6EBA80E9189EF5CA886BC0B0AF3CC4" Guid="*">
+                            <File Id="fil271106C185581E63B4F260B58CF31B2F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\app.config" />
+                        </Component>
+                        <Component Id="cmpC15DBB7C4D09BF4A5D3595FEB714828B" Guid="*">
+                            <File Id="fil7DD81D7E38F5B8028A12F43324E1B83F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\GrabCaster.Framework.NopEvent.csproj" />
+                        </Component>
+                        <Component Id="cmpFB783A12F2932E0DA7C0294DDCD46F04" Guid="*">
+                            <File Id="filB145FF6CBADC12B4A8EE9A23339C8BBC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\GrabCaster.SDK.NopEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpFC2922663B7CA87E3E802E138864876C" Guid="*">
+                            <File Id="filF3290CDC84C98762E9BD5BB0E16FB349" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\NopEvent.cs" />
+                        </Component>
+                        <Directory Id="dirDF24B9F6E8E490765E2264C404F1FBE4" Name="obj">
+                            <Directory Id="dir94158A008A075BB137867283077F3721" Name="Debug">
+                                <Component Id="cmp3F1C64B3E65EB4B5C7AE9A8D5EA41907" Guid="*">
+                                    <File Id="fil2A2B383153E9F69D06D3100CF6BA808D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp139F4501F7CA2D531BD353527804833C" Guid="*">
+                                    <File Id="fil7C6034A4755FD2920B2599EA10FFF87A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp82790D1936E16B3E1FBDC807808F31A2" Guid="*">
+                                    <File Id="filE15FAF5F02173FCCDAE6F7D8474E87B6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp7614BFE7B9DE7CB3E653F18B49D25987" Guid="*">
+                                    <File Id="filA621B113DAC30E8BF3CFF8CF5B5F5668" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir02518C6E75291CFC95295E08FDA6B897" Name="Properties">
+                            <Component Id="cmpA4288315121E913652EE6682B5C98798" Guid="*">
+                                <File Id="filE19344E5E1DC17C55627B81014FC726F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\NOPEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir4D3B8E3B5D67374ACA64580E3DC9B073" Name="PowershellEvent">
+                        <Component Id="cmpCF24F49086AF0A1A2E3CEE45A0D13D31" Guid="*">
+                            <File Id="fil9A888415242050F67522222DC462A81F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp39B7CC3F00B6D75B3AB7038042A24946" Guid="*">
+                            <File Id="filDF8A6C5ED6C4FD07F45DD6378CE0D2CE" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\GrabCaster.Framework.PowershellEvent.csproj" />
+                        </Component>
+                        <Component Id="cmpB3E7C0EEF9AAD731B7290F10D8286D39" Guid="*">
+                            <File Id="fil5C8E7FA482D7BAC3C2DC4D42B982763D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\GrabCaster.SDK.PowershellEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp0B6E8DDEC259EED81DCF12EB79C9F4A2" Guid="*">
+                            <File Id="fil6E282C0341475EA78AE7F0EC5C0F9317" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\PowershellEvent.cs" />
+                        </Component>
+                        <Directory Id="dirF1828A3973BD80C1D320B10D000C9D4F" Name="obj">
+                            <Directory Id="dir93A884BE0D3C367C9BD64EBB705115F9" Name="Debug">
+                                <Component Id="cmp0D923A3744B726F47AB6739D236403E5" Guid="*">
+                                    <File Id="filBE87C7DF1C1B90462ACE685472152F6D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpE6DDBF05BE25BB11F43A21BE591685D0" Guid="*">
+                                    <File Id="fil99368FFD76C315B4B378D330CB6E6736" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpCA02C02C6B5475572113720AA33C7A3E" Guid="*">
+                                    <File Id="filF0CA0AE44DF5A088A4445FB4C05B795C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp55EFA6B4309DB946CEC3B7B30999479A" Guid="*">
+                                    <File Id="filB39BF5F2467390B18E00894D3B6D53A0" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirFC2861835362E061CB6048E655B19FA9" Name="Properties">
+                            <Component Id="cmp6AD8FFF10C7F21B56194F46B5DEB75D6" Guid="*">
+                                <File Id="filE6112635D6CC27DDC95247E3BEB9FC6F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir1366A70CB75ED4E6467E2B92088ABBE5" Name="RunProcessEvent">
+                        <Component Id="cmp628AF1C114BD87E8036ED732B4A037B5" Guid="*">
+                            <File Id="filAC8E2898141C4EB847A2444E6268C8D1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\app.config" />
+                        </Component>
+                        <Component Id="cmpA8D9E14DD763245B45E9E8979ECA1644" Guid="*">
+                            <File Id="fil4C5116CD7219277876A5DAA847D0E996" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\FileEvent.cs" />
+                        </Component>
+                        <Component Id="cmpBF9855A07530AF872CF13E267B458EA1" Guid="*">
+                            <File Id="fil927FDE2A462399958B5D0655F1DBF339" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\RunProcessEvent.csproj" />
+                        </Component>
+                        <Directory Id="dir9C6B41F7CC0329044D0959240A350BF2" Name="Properties">
+                            <Component Id="cmp308CAEEAE4EB3C140E37364972D696B6" Guid="*">
+                                <File Id="fil94DF9F1C85B72020D6EE88F75C6AC011" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir24E237D8ED778B0CF4AFC1AA241704D5" Name="TwilioEvent">
+                        <Component Id="cmp4CE1514D8F39455FC50DBF5A321F1425" Guid="*">
+                            <File Id="fil4C3C5503AF766823A252A67A39D478B6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\app.config" />
+                        </Component>
+                        <Component Id="cmp833260D53753A4A82B3C92754364D2B3" Guid="*">
+                            <File Id="fil0D4EADE12A415B0D6C94629427671575" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\GrabCaster.Framework.TwilioEvent.csproj" />
+                        </Component>
+                        <Component Id="cmp1E1799577127781C95875064E89F83DA" Guid="*">
+                            <File Id="filD69660DE16FF78E7642679C287349020" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\GrabCaster.SDK.TwilioEvent.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp554604B3B90FFF06F6DF9BE55C35B066" Guid="*">
+                            <File Id="fil6B59A2BD1D5EB59B05ED2E3D6918A5E0" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\packages.config" />
+                        </Component>
+                        <Component Id="cmpDB627809DEB0DB2B94395B722728081F" Guid="*">
+                            <File Id="fil4B4396AF00E78B80DEE9D0EB4CE4E710" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\TwilioEvent.cs" />
+                        </Component>
+                        <Directory Id="dir644F153F8AF6F9673BCC67EBD91C807C" Name="obj">
+                            <Directory Id="dir70A4C46582FE527E517D899A3AAE9F7A" Name="Debug">
+                                <Component Id="cmpF52B9D50C0592A6DD2616E1A9864659C" Guid="*">
+                                    <File Id="fil18B7E6D9331FA4AC5C0E829BF84588F1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp38EC8C59AAA739131994E5AF2EE1BF96" Guid="*">
+                                    <File Id="fil5F9F941CCB172D44B26F53A249A52101" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpCB7BBF4116EAB2F2E16141D94A52DFC7" Guid="*">
+                                    <File Id="filDFA29085B5A81043E08689E00782A4C3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp2A5CE9D7B3DD759A0E6A8E77C28FC3F4" Guid="*">
+                                    <File Id="fil933A05671082DF76F5CACCB276B895AA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirFB92E9F954515113423C47AF2E829E14" Name="Properties">
+                            <Component Id="cmpC2469BFA1E15A84909B1331B0392E367" Guid="*">
+                                <File Id="fil177EBD6626927A2D710B25328C3ACC48" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\TwilioEvent\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir4F460C5E3AD4BC26B13FDCDA2393DEFF" Name="Triggers">
+                    <Directory Id="dirEAA452958A8A22F10E5923EA2F7FA5F6" Name="AzureBlobTrigger">
+                        <Component Id="cmpEFA5F2DE41403E2E59095F270384F105" Guid="*">
+                            <File Id="fil039D979A40ADFC772480BAC0414911C3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmpC69F7686D66A030FD70C27579BF1FE3B" Guid="*">
+                            <File Id="filB5E20A6A999B97DFDCF7A2316D957B6F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\AzureBlobTrigger.cs" />
+                        </Component>
+                        <Component Id="cmpF2A4153F715F2CCEC4DF2C32155BC4CC" Guid="*">
+                            <File Id="filE4772F82E7CA7B8231137D445A9298E2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\GrabCaster.Framework.AzureBlobTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmpACFD18B72D0D4D0B8120567801963767" Guid="*">
+                            <File Id="fil69C60C3480059D875C24F2B07F6B4B99" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\GrabCaster.SDK.AzureBlobTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp3AFEA79B7ADA69592B8B21DD04AAC010" Guid="*">
+                            <File Id="filBC7C8C70446EB8B4BE7F5307A4B01B31" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\packages.config" />
+                        </Component>
+                        <Directory Id="dirF1C0BA4319CD9D8B848D8039E542F103" Name="obj">
+                            <Directory Id="dir78FE5F469DA0B4B47AE88A4CDAB871AD" Name="Debug">
+                                <Component Id="cmpDBC3766FE9ECE2510ECE4EABA7B2DBF2" Guid="*">
+                                    <File Id="fil9CEEEBBAE2084FDA5DCF18E12EC74B32" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp004430A0E9040BDFBF621FB557BC9063" Guid="*">
+                                    <File Id="fil6E3E9227A4DBF285D242CBDCC6BE5A5E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp6EAE71D3E025023A92702ED485AA9387" Guid="*">
+                                    <File Id="filC637B8AD460017BC5D08785018118F78" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp71EE412C98E2FE9A0ABEF015283DE97B" Guid="*">
+                                    <File Id="fil0DF677678CD3EB0C2C4123A9941BACB8" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir0DA38E757CE3C6C49058B4B31E81E318" Name="Properties">
+                            <Component Id="cmpA711763F473C189CA2AB96ADE1A7ACEB" Guid="*">
+                                <File Id="fil756810B6FF534E0FB1330F9B66C7441D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureBlobTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir44B9B6DB7A56D8A1311EE626CBF03729" Name="AzureQueueTrigger">
+                        <Component Id="cmpD2AFFFCAFF665448E8007D763CD27FEB" Guid="*">
+                            <File Id="fil0FD169F8CE4AEFE85733623801904A96" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp753D5F8E41C96F9E29E23D134509548C" Guid="*">
+                            <File Id="filDC28636E635021EC47C06760122F220A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\AzureQueueTrigger.cs" />
+                        </Component>
+                        <Component Id="cmp45A70EDFDF9650598FEF0EAB811510CC" Guid="*">
+                            <File Id="fil7389F3EBD82340D13AA321C07939808D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\GrabCaster.Framework.AzureQueueTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp123E7D5465EAD13AFBC90B08A86394B1" Guid="*">
+                            <File Id="fil476E6B419926045E9B276358C19618B9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\GrabCaster.SDK.AzureQueueTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpFDB8360E026879DE9183CDC01327B65B" Guid="*">
+                            <File Id="fil255E509EC51EC7830AA451F64216BACE" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\packages.config" />
+                        </Component>
+                        <Directory Id="dirDBB57F3A863DCABA32640D4A76A1954F" Name="obj">
+                            <Directory Id="dirE754B4C217DE0D1DB5AD352D13FE6734" Name="Debug">
+                                <Component Id="cmp0DC5D352596EAA2A7A742A5D2D8E28CD" Guid="*">
+                                    <File Id="fil14DCC15CB739B226873D191A7CC77646" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpFAEAB0C43894DFF629D749D6F47DBD80" Guid="*">
+                                    <File Id="fil995F0D296453F8B42A75FB796655A0C0" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp3A028DF288EF1B68F45FF36005257A05" Guid="*">
+                                    <File Id="filB0858215DD5822AF2ED16EEB2AE333D3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp723C7A20BFEBF17D6EC8796AD34C6673" Guid="*">
+                                    <File Id="fil880960ECF38DB1C7272BB22D6F82C374" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir21A9B74A688CE655F2E78BB20E16C9B7" Name="Properties">
+                            <Component Id="cmp22745C5D1D4C3B393AA639F67581AE99" Guid="*">
+                                <File Id="filDD7EA375062B4E9C15BEA587F1B0F377" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureQueueTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirB709105B12660D6ADCCA290C15E8FBEC" Name="AzureTopicTrigger">
+                        <Component Id="cmpA9D437D16998D43A2FD107173B09DA83" Guid="*">
+                            <File Id="fil18F379D598697965E2F89AFEC0EFE13F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmpB0ACD97E2B0A77D3C414C331C35FD595" Guid="*">
+                            <File Id="fil845DF956FA14416527335FD4B0B69DC1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\AzureTopicTrigger.cs" />
+                        </Component>
+                        <Component Id="cmpE57815651D1917CEEA08E662F42117C5" Guid="*">
+                            <File Id="filBC77C4BD1BAC4846EFC591D54D86E0DB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\GrabCaster.Framework.AzureTopicTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmpFAA1012E5224A1737C1E59409AB2AF33" Guid="*">
+                            <File Id="filEDA0B03BAA2E98C5D5115C51CB21CE7A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\GrabCaster.SDK.AzureTopicTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp15BC3DE3678664AC5023E3E1F6C51090" Guid="*">
+                            <File Id="fil17F7544CA54DA914390929ABC0264837" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\packages.config" />
+                        </Component>
+                        <Directory Id="dirC535D9220E3FC46F13C58BD037F1865E" Name="obj">
+                            <Directory Id="dirE13373621EA9F21246D98C4CB81AA9F4" Name="Debug">
+                                <Component Id="cmp0CC3EFB6DE83812DD0654A6B11F1C92A" Guid="*">
+                                    <File Id="filEFB30A568FA22FE23CB86A783191CB78" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp18E1B92B5220386D2B83D4E6BBB37A5A" Guid="*">
+                                    <File Id="filFEC759C16342F5D82EE55F35F6991B8B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp6639FB2A21E9BCDCFE6B450449563449" Guid="*">
+                                    <File Id="filD4F1A2725F846DB41FE1829E209287CD" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpA18158F5261F34901AEF745DE63E2836" Guid="*">
+                                    <File Id="fil0878975F0FB679C78427AC7680D9AE08" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir08F6BE067C0A4734083C548B8A07A51E" Name="Properties">
+                            <Component Id="cmp4085E31B908F93EC54EEE3A16D74F178" Guid="*">
+                                <File Id="fil77D9A37A0E06D52FA15725DE6F27CA52" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\AzureTopicTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir6995C9F504319E26406975FE5FD096A6" Name="BULKSQLServerTrigger">
+                        <Component Id="cmp4C662DF5F3BB9B77E6570E33CB8C6780" Guid="*">
+                            <File Id="filDF0B4AD52B06845254DE06781BDF750D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp7E7D536C8DD01EEF91306902B2970B9C" Guid="*">
+                            <File Id="fil418C26BB20A47E8E0898E15536B5CB05" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\BulksqlServerTrigger.cs" />
+                        </Component>
+                        <Component Id="cmp9E0B8A8FBCBD0AE77919459EBF6C0246" Guid="*">
+                            <File Id="filD212C618BA285CD4957C6905B2C65186" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\GrabCaster.Framework.BulksqlServerTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp2FAA716F00E078C40F8F2140EDA86DAF" Guid="*">
+                            <File Id="fil8DA4F7A7DE29C0C7DA8D74CFC59AED29" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\GrabCaster.SDK.BulksqlServerTrigger.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir5F205AE44954B1ACD58CBD923B871F15" Name="obj">
+                            <Directory Id="dirDF09EA21FDA6E10DB581EF9BE651FB54" Name="Debug">
+                                <Component Id="cmp5AAF21923680422436B55C3666DF7E30" Guid="*">
+                                    <File Id="filC127BD8DC9842BCD8786A0402225AA2B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpA0219552CF0B391CF6408B2D4565E5F6" Guid="*">
+                                    <File Id="fil75C0016B5F9B82DCDB4D3DC5385685DC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp53F85D714F4010FED6887F234E6204F4" Guid="*">
+                                    <File Id="fil28BA4672DED21E8661492ABC8DF0E08C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpED067FAD66E395A788C1701DDEC3061F" Guid="*">
+                                    <File Id="filD827FBDBDA7016EFBEED0F006DBA2FA2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirE5841AE14882F0E5F72A91A852A4385B" Name="Properties">
+                            <Component Id="cmp8BB649D20F88F0698C71CA8DA35EA501" Guid="*">
+                                <File Id="filD67B57CCB8148C753D6B389DCAD0BF67" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\BULKSQLServerTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirEA1515F234AD6135EEDBC4FB58826427" Name="ChatTrigger">
+                        <Component Id="cmp36C58180AADF20E5715F75C88E45DEAF" Guid="*">
+                            <File Id="fil2722ECF16CA9A5C05EF84201E0FB16C6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp88C20F6DBBE210DC64A5E49342746F42" Guid="*">
+                            <File Id="filAD32CC6238C3686411753B780551DAFA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\ChatTrigger.cs" />
+                        </Component>
+                        <Component Id="cmpE64A776DC09BDA22E538F4D0E1DD571D" Guid="*">
+                            <File Id="fil90A8646EC7A9134588ED2B913A5CA5C9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\GrabCaster.Framework.ChatTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp61186433743B616FA57288A441282DC4" Guid="*">
+                            <File Id="fil09FA829C918390A0EBB0CA8B4DA739B3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\GrabCaster.SDK.ChatTrigger.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir661B76040F4EBDD24218C93FFC06901A" Name="obj">
+                            <Directory Id="dir0AC33AB96964FDF591A9F08B9761C2C6" Name="Debug">
+                                <Component Id="cmp66D30DF6E0243DC8444957041F4DF01A" Guid="*">
+                                    <File Id="filB90C005922DB0BD46F9A17E229CFA1DC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp46171BC1729992A02583E502C1D77A04" Guid="*">
+                                    <File Id="fil517322D9803A18A52881311BFE7B0FF7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp9650179FE117031D4EF138A162BBF04A" Guid="*">
+                                    <File Id="filDB32E857EA52F342385DD60749B40548" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp2D69D1DA583C89C85258D65F13638F1A" Guid="*">
+                                    <File Id="filF2B0C4134673E79291AD968736DFBBC7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir0771DEF6519AE4FE5B98263A631F11A1" Name="Properties">
+                            <Component Id="cmpE2ED528B0586A74F034E9AA85926986B" Guid="*">
+                                <File Id="fil7A1B18E14E019A556586C1945B44BF1F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ChatTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirE4359C0E9EB5B15207BBF87539132850" Name="CSharpTrigger">
+                        <Component Id="cmp4BAB2930859831C1C17ED2CE92ABB5A8" Guid="*">
+                            <File Id="fil63B9DD29501E788668EBB8BC99146AFE" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp5009F1DABD33CAD4FBA9D5926EC3EDC0" Guid="*">
+                            <File Id="fil212CC4CCA738F03462B8DD0026D96FAB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\CSharpTrigger.cs" />
+                        </Component>
+                        <Component Id="cmp7E96F1203560F59F56138E00DD162B44" Guid="*">
+                            <File Id="fil5B8ABF2056AD978DC11738D552C0E8F2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\GrabCaster.Framework.CSharpTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp189491DE3DE4654902B547E249AB9B30" Guid="*">
+                            <File Id="fil60331B626BCDB590C446DAE39CEF0528" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\GrabCaster.SDK.CSharpTrigger.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dir82F6CA90986A353403D9058049FBF8C3" Name="obj">
+                            <Directory Id="dir6189BD8A73AEF745E537D83A47DB9A67" Name="Debug">
+                                <Component Id="cmpBBD10B05C3A923317C0CBFE8C3FCBDFA" Guid="*">
+                                    <File Id="filD1811E126BF8B0C01D0838EA56AF35E3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpBDBB1AB81662FF00E6AD2E21BEA71B5B" Guid="*">
+                                    <File Id="filC99126F3E4E51DCA46D076169D9217A9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp7BC15E86F1527FB4B5500FED9910B748" Guid="*">
+                                    <File Id="fil1FA2E386AF570516C6B6FFBD4121B5D3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp4CE8C3940A52E7C4A487FF02DCA2C8F2" Guid="*">
+                                    <File Id="filEFEC4D29E9AD6C6FFC5ADDDE4498CF9F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirE1E45D102B246C7DD271F07E433CBA8B" Name="Properties">
+                            <Component Id="cmp8E051170F11B5726D85B9F0F687E1C86" Guid="*">
+                                <File Id="filE2EA78AE921BE48E594DA1A48591F75A" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\CSharpTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirFF42066C73747520FA07437F3E853727" Name="EmbeddedTrigger">
+                        <Component Id="cmpA77610BBDADBDFD2C338E1A79FB905AB" Guid="*">
+                            <File Id="fil68E46115C28592013527AE5BC55BB815" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\EmbeddedTrigger.cs" />
+                        </Component>
+                        <Component Id="cmpBD76A4104254AD0F5267CD28BE7729A9" Guid="*">
+                            <File Id="filF257E178D14253FD0E1629E9969FADEA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\GrabCaster.Framework.EmbeddedTrigger.csproj" />
+                        </Component>
+                        <Directory Id="dir44E344A3260EE3D13D2FCFEFAFB10D4B" Name="obj">
+                            <Directory Id="dir069298414BB082EA2429C8BC0B43309F" Name="Debug">
+                                <Component Id="cmpA3F51A303D888FFFDB014BBA63D718D1" Guid="*">
+                                    <File Id="fil2B919AA878DE209935564891708023CF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp6F50D1B223F43520B024B9D25ECA4CB5" Guid="*">
+                                    <File Id="fil4D07DDD15AA036BF4EF89F81E4AE46D1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpB391B8E06581177079D4D1D63F0F67CA" Guid="*">
+                                    <File Id="fil44F814767AC72560B25C55B173746D09" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp653346F7B374E13B22C0219669544023" Guid="*">
+                                    <File Id="fil2FF6D9E70BB178D07158679ABC60B982" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirDFCF5989A9B8283C1254C56B41105FD5" Name="Properties">
+                            <Component Id="cmp1B0B1C76D93D0103B6348FA8132749DB" Guid="*">
+                                <File Id="fil8560D49F67689D035971D5C55FC140E3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EmbeddedTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dirFCD008E117798ABF666C134560838C29" Name="ETW">
+                        <Component Id="cmp2211C424D09FDD6831E7165B26A2CAA3" Guid="*">
+                            <File Id="filCB9DC32F2008673BB74C14E9B3BC4606" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\app.config" />
+                        </Component>
+                        <Component Id="cmpD7C7C1AD8B7972566DE438CA63F48C88" Guid="*">
+                            <File Id="fil12567BB4B36E7D6639A8A734CED6C089" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\EtwTrigger.cs" />
+                        </Component>
+                        <Component Id="cmp3D41EC4997CD8AFCC0177CF9430C06AA" Guid="*">
+                            <File Id="filD903172363B5AA7854F3FCCBC854615E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\EventArrivedEventArgs.cs" />
+                        </Component>
+                        <Component Id="cmp3C12F40A7276BAAAD8FE43652A3239BB" Guid="*">
+                            <File Id="fil5F3BA6C76DD27CABDF04C1BBC8DF9B74" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\EventTraceWatcher.cs" />
+                        </Component>
+                        <Component Id="cmpB663E46523B8BD6C397F7B7C7769449C" Guid="*">
+                            <File Id="fil58EFDF732AA07A453FF75D7BF33E22AA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\GrabCaster.Framework.EtwTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp6CE7DE37EF31BA239E51D21491E9E64C" Guid="*">
+                            <File Id="filA870BB33A4BE5235E5EDABF7AF5AB9F5" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\GrabCaster.SDK.EtwTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpCF14BDC1EF40ED8B0C03C68FA89977DD" Guid="*">
+                            <File Id="filD9A2BD175564C4377036692CC3917823" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\PropertyBag.cs" />
+                        </Component>
+                        <Directory Id="dir187891E0788E4C946CD408E117812A18" Name="Interop">
+                            <Component Id="cmpAE819A99DCE8F987B641C52E6A0BA3F5" Guid="*">
+                                <File Id="fil17F0690200A89C17EA8872CF176F9D52" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\Interop\NativeMethods.cs" />
+                            </Component>
+                            <Component Id="cmp645CF981231912C296BB1A785F04627C" Guid="*">
+                                <File Id="fil174113331BACCEEB23779F0BC9828DFE" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\Interop\TraceEventInfoWrapper.cs" />
+                            </Component>
+                        </Directory>
+                        <Directory Id="dir1DDAA90A79044881CA688ECF325D59B7" Name="obj">
+                            <Directory Id="dir8C8BDC536E850D38ECC416F44EC8770A" Name="Debug">
+                                <Component Id="cmpD62406F8B37767B9D9BEF66D7DF3A841" Guid="*">
+                                    <File Id="filE1C1F352A44EC7A2E32B45581AE6642B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpD9B8B4BD289065536208D815B1EC2A07" Guid="*">
+                                    <File Id="fil53214F35CFD22B22B3A6DCB653E00CBC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp085CEC16B37CFE40F931CC40F7FCBAD5" Guid="*">
+                                    <File Id="fil40F78BF4B4FEA767C8A40376189D2875" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp7876E4D8D208080261720728B5D7AE3F" Guid="*">
+                                    <File Id="filDB83A9294C90FB9388C2A5E50CCBFB99" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir8E4BF04B621416D222AC5AE21FCCFF09" Name="Properties">
+                            <Component Id="cmp27EE7AB29C31EB82B1BA580B09029FCE" Guid="*">
+                                <File Id="fil4C04A7679CD210D4EC3DB361806167A0" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\ETW\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir502F0460BAAC46902C57A803A04B0B5C" Name="EventHubsTrigger">
+                        <Component Id="cmpE0723B96023DDE6DB74BAF507F41425B" Guid="*">
+                            <File Id="filC01180EDB176ED811E1CF5250CA2C912" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmpCC725B276B2AF7E6AB375E759C6CC3B8" Guid="*">
+                            <File Id="fil2F6049791C181F5D24C9D59E3B213AD6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\EventHubsTrigger.cs" />
+                        </Component>
+                        <Component Id="cmp5A2A82F576763EE935A04C044EBD0553" Guid="*">
+                            <File Id="fil7DBC6D76B4F97BB1B499E88DA82D73C7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\GrabCaster.Framework.EventHubsTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp458D345016D46899FCAB4BC0DF57FC19" Guid="*">
+                            <File Id="fil4E47E9394E9A5EDCAA8C7DEBA34858B9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\GrabCaster.SDK.EventHubsTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp97E34077F78AD8489C80DED43D88EA9D" Guid="*">
+                            <File Id="fil7AFAE293A2A1E9822697234192378AB2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\packages.config" />
+                        </Component>
+                        <Directory Id="dirA2D1AC1EA6707D6C3068578186231BBD" Name="obj">
+                            <Directory Id="dirD82D4EB10739E06B35F82DC6F02681A1" Name="Debug">
+                                <Component Id="cmpFD95F96A1217F58E483F6D22881545DC" Guid="*">
+                                    <File Id="filDE6941CEBC52A4F17FD4DBB8FD936AFF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp8BB752586C1CFF379D53E0E90D674B23" Guid="*">
+                                    <File Id="filC6F9CEDC74457A51B5224629352DA592" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp608262A29AC71439358D715E345C5818" Guid="*">
+                                    <File Id="fil55EFC6421359D42D112F8B12EB27D9CF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp49C62EFB0A67F7D133EC4A81B98D93B8" Guid="*">
+                                    <File Id="fil62F4C8D3619E844D9FE83C5B207BA9B9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir22465BC69432AF51BF978CCE31A305BD" Name="Properties">
+                            <Component Id="cmp415852D47C78358F7482266961781E95" Guid="*">
+                                <File Id="fil2BF9E06E186CCE7A29EFF8BE1ECAE9EB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventHubsTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir28AB73A39CA84785613C909E7D996250" Name="EventViewerTrigger">
+                        <Component Id="cmpECDEAABE80FD0B332921CB021811A2E6" Guid="*">
+                            <File Id="fil53F502307EDC4FF2A9B418CA30F26512" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmpF5E5055C77396A642AE87CBED92012D0" Guid="*">
+                            <File Id="filDD8A373F57CAD3011972D94541F3BE21" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\EventViewerTrigger.cs" />
+                        </Component>
+                        <Component Id="cmpB3E966951FFF5F9F681B1CFE464DA518" Guid="*">
+                            <File Id="filB0B9E93D72831CB93BF5082565581515" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\GrabCaster.Framework.EventViewerTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp39ADA1BF95B67569957DA0B685F1A0D4" Guid="*">
+                            <File Id="fil38C842EB9BC1978A29140C0159B6C9DC" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\GrabCaster.SDK.EventViewerTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpC76AB563FDB3E3448B0F096B6E1CCAF2" Guid="*">
+                            <File Id="fil5116DEA28A48C2DE14EC611161FFBFFE" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\packages.config" />
+                        </Component>
+                        <Directory Id="dir31F5681053FCE1C9DED57ECD4EC40712" Name="obj">
+                            <Directory Id="dirBDDDBBDCDB52837FA086E3720C74B1D8" Name="Debug">
+                                <Component Id="cmp8E20477A73442D2E7B3C0DC4803BD144" Guid="*">
+                                    <File Id="filC77224D8A3CC4F273E4C0793AC6391FB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpC849825E98A9587709FDF4472624F5F6" Guid="*">
+                                    <File Id="fil63CADD163AFBF28C3966A746A2FE4CF9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp6FAFED3A9077AAC7E0FEAE56FFF02323" Guid="*">
+                                    <File Id="filA4C77939A8E124FF2D8FD30B7AC8EC67" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpA46EEB69782D1B4BFFADD16E41B8CF4F" Guid="*">
+                                    <File Id="fil53BA4D94A69C74963F7BFF2D1A3B75C1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir4F2C4864A920917F36529521D4CC2683" Name="Properties">
+                            <Component Id="cmp0BEC42EF699E21E301C74CD5E6A54222" Guid="*">
+                                <File Id="fil500DA981CB126790B93CBD2C64B111F3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\EventViewerTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir7D5B16993DA66041A56D9E2C0C6633B3" Name="FileTrigger">
+                        <Component Id="cmp68F2A6591886EBB17BC4FD4A380632A3" Guid="*">
+                            <File Id="filE564BF9440281164530ED471760C8C43" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp984FCF4ACF1DDE3276C5F335704AA680" Guid="*">
+                            <File Id="fil971EAE69515453873A71713E884EEED2" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\FileTrigger.cs" />
+                        </Component>
+                        <Component Id="cmp3A157654A83FE9EE25D73F0A0826F5B2" Guid="*">
+                            <File Id="fil18FCB72DF69C7749A28C32666A7F6A46" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\GrabCaster.Framework.FileTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmpEB127822690FBA675CDFBD54D79E81C6" Guid="*">
+                            <File Id="fil6FA3FCA49568C167D34B52D9FC987937" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\GrabCaster.SDK.FileTrigger.csproj.vspscc" />
+                        </Component>
+                        <Directory Id="dirE4729963C81F640120FB657FFF48F3D8" Name="obj">
+                            <Directory Id="dir0EA044CC8D676F43A300C8497DEA0D15" Name="Debug">
+                                <Component Id="cmp9287A1FD4630DE63B7E282A2887987B5" Guid="*">
+                                    <File Id="fil66E9149E2FE066135E92130BA1AA45E3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp72BB2BEDED380272BA6D271002101414" Guid="*">
+                                    <File Id="fil6B58D5C3316E1E8C27D76A1F61A6F8E4" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp174623891F9B6C5D0567016F074F2151" Guid="*">
+                                    <File Id="fil87460FE842EE68F38F2A110F076CC4F6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpE21EFE85E5C052DF50FEEA51957AA171" Guid="*">
+                                    <File Id="fil2B23178CF4495C71CD8BCFDB0E551DB3" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir0511513D29CA93E25DFA3CAE59EC8B59" Name="Properties">
+                            <Component Id="cmp403B0CF6C471DF026775F10FB0427FEB" Guid="*">
+                                <File Id="fil3A5A43AC2B65AAC9EB1D8EF23C78F50D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\FileTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir06AADD4024F6A621AB01934673AB5743" Name="NOPTrigger">
+                        <Component Id="cmpF40C39BCAEBEA4AA27E0A6F8E60CC399" Guid="*">
+                            <File Id="filE130AFDFE6E57DF3EC9CA52F9BE9AB4D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmpB3005B0FD66C4D6C45252DE74E3278D0" Guid="*">
+                            <File Id="filBAB34C2B04AF1BBE7FBBE6CDE7F83D5D" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\GrabCaster.Framework.NopTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp7D3AA14B17FA16104BDC770F08F5FCBA" Guid="*">
+                            <File Id="filD48D6F110E55B3211E2DC823FCBB1BDF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\GrabCaster.SDK.NopTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp3207C24CEBA27FD25AD3F7AC4788F80E" Guid="*">
+                            <File Id="fil0D195590A5801C1783BA88FCBC42F9BF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\NopTrigger.cs" />
+                        </Component>
+                        <Directory Id="dirB1E9F2ED7692F1C7B946F565AF0226A6" Name="obj">
+                            <Directory Id="dirE1C96ED807D0AB80E5965E30C103EB00" Name="Debug">
+                                <Component Id="cmpE8657F42009BBE01E4472BCC43742E81" Guid="*">
+                                    <File Id="fil1924C0E60114C2903DB9B671901F551B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpC7740300A4C0C3E37F0D2B8CD2424758" Guid="*">
+                                    <File Id="fil46A860DFFD01DFE942E098A8B718D95F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp0AF2D56DDA69A8533F725E0D979CFE9B" Guid="*">
+                                    <File Id="filC6A380F018991575A2BED0E78C621C54" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp7F768232F602DA7F123B06C068D199E5" Guid="*">
+                                    <File Id="filCD98E68747159D2F133B103DC89D8BE6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dirD7BEC00143D1F7EE63FE59D26062E2E4" Name="Properties">
+                            <Component Id="cmp2C4C10B1D71686853A210D177A34BE1A" Guid="*">
+                                <File Id="filF562CBC13349066AE1E39CD6255AF5C7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\NOPTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir1C4F17FFB9AEE61CF2288877DA3EE52E" Name="PowershellTrigger">
+                        <Component Id="cmpFB813085C0B1D672744049F46D00BC21" Guid="*">
+                            <File Id="fil5CF565D2ABF1DB84A39DB352CB92D0B8" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp5DA3CB7CCFF0CE278008B5D1A9E09533" Guid="*">
+                            <File Id="fil9339B61664FC6F4BE7FD4A55D0D95A9F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\GrabCaster.Framework.PowerShellTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp463A3C98FB1EBC2E8C43B62BB9D2C571" Guid="*">
+                            <File Id="fil62DAB9A7EDC7DA3F09CDDFAA8DBE0524" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\GrabCaster.SDK.PowerShellTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmpE4E3C4F5696891B0BBFF615D397FFC69" Guid="*">
+                            <File Id="fil989C4A920EC5AF85538D111518690633" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\PowerShellTrigger.cs" />
+                        </Component>
+                        <Directory Id="dir7F44DA2E4208760614276AC8F00368C5" Name="obj">
+                            <Directory Id="dirCE3575A36BA25511B63E78CB6EAB5CB3" Name="Debug">
+                                <Component Id="cmpC16915FD99D0959AFD6F2BC83C0DFFED" Guid="*">
+                                    <File Id="fil9B43F63729FF37B2A39B7362C6F05A87" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp23CCD22FE53678C3289E168FE1239E7E" Guid="*">
+                                    <File Id="filCD907F0DF7C25BF263E3E3559AFE4EBA" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp0357E2300FA965B054B7E08CDD1A71DC" Guid="*">
+                                    <File Id="filDA8CDB6F6D53297A4F6A88F54F43C0D9" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp20FEA0CB80ADFF7C2A9AEA34D75BA511" Guid="*">
+                                    <File Id="fil64A38A913B62933542E3079E2779FFDB" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir090DACC1ECAF40B0C91743897E824356" Name="Properties">
+                            <Component Id="cmp1981B97F52EC97EF25925113866C4840" Guid="*">
+                                <File Id="filD232159AB5EBEAB474094D809DD2B998" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\PowershellTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir6D7F8B392D0DE4BDA001F41E96A4F853" Name="RfidTrigger">
+                        <Component Id="cmp8F833648D35E596C50EAE173CE441F80" Guid="*">
+                            <File Id="fil03ABFB9742123A62B0E42EC82CC87A88" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp471810934ABD58955A1EB780F9D01599" Guid="*">
+                            <File Id="filCEC7B3CDE8035295B4F82A64083A2E8C" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\GrabCaster.Framework.RfidTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmpC5F4BF569D99E11488112A282691952A" Guid="*">
+                            <File Id="fil7180FE464CEC8825FE949FB5A7D11A45" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\GrabCaster.SDK.RfidTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp40B0CDDC4C4174119E8B80589378B2A1" Guid="*">
+                            <File Id="filDDABE381B8152614CCE919497B4E3586" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\packages.config" />
+                        </Component>
+                        <Component Id="cmp90E0F0CD03E222E00EC12A4D25016217" Guid="*">
+                            <File Id="fil427A083D98562BDF32A607D5271A5B0F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\RfidTrigger.cs" />
+                        </Component>
+                        <Directory Id="dir576E731162FE5424B3CCF79536BCD68C" Name="obj">
+                            <Directory Id="dir029C5B676B448A6EF16A353C881568B1" Name="Debug">
+                                <Component Id="cmp8B83EC9B8C5557CF68F421053ADBE7C8" Guid="*">
+                                    <File Id="filE2DD7AAB74442A273C83258FD05EA72F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmpA6C74996B3FC821E781C35E9FE2351EE" Guid="*">
+                                    <File Id="fil522B81B95E14E7B0418B09309F0B07BD" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmpE2900F671E8FDE3CB2A659A86CBD0FDA" Guid="*">
+                                    <File Id="fil9B0F108A687CEB068263418322E66479" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmp4DD34294B531279D3676E044C6DBEBE2" Guid="*">
+                                    <File Id="fil300C216B63F9009E429529A25E54E26E" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir80756BAB0C22832F2218C62A54BA7A4B" Name="Properties">
+                            <Component Id="cmpCC7E2990F762D4DEBCCD45B4263C61DC" Guid="*">
+                                <File Id="fil8E722CD06FFC2D765289E235901AA1D1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\RfidTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                    <Directory Id="dir995830249DAE80C39B2EDC6DA6030840" Name="SQLServerTrigger">
+                        <Component Id="cmp3F33DCFEB52887D7F662D8AC2263E6D4" Guid="*">
+                            <File Id="fil87D67F7779DCB7D2B557B8021D388C94" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\app.config" />
+                        </Component>
+                        <Component Id="cmp2E3631B7C2CE3994C18D4324CFC5B7D5" Guid="*">
+                            <File Id="fil65E4467AD6CCDE61A5008B01412A5730" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\GrabCaster.Framework.SqlServerTrigger.csproj" />
+                        </Component>
+                        <Component Id="cmp61EA37CEDC1DC4243F4A93941592D551" Guid="*">
+                            <File Id="fil9A86433AEE82A4A8DF84A29DE9E027BD" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\GrabCaster.SDK.SqlServerTrigger.csproj.vspscc" />
+                        </Component>
+                        <Component Id="cmp70F5C5D56826541CB7B00DB800ADCE77" Guid="*">
+                            <File Id="filF89BAB37318CDB4E3C40DF5FAD47AFFF" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\SqlServerTrigger.cs" />
+                        </Component>
+                        <Directory Id="dir286324AF6F02F955AF7A7E60371A4CC6" Name="obj">
+                            <Directory Id="dirBCBD749195AE153ECB760E2C2723C5E6" Name="Debug">
+                                <Component Id="cmpD21192E3F5EF27A2B5AB1E6F60731773" Guid="*">
+                                    <File Id="fil1225C9AF3275F96ED20C0EEBE04632A7" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+                                </Component>
+                                <Component Id="cmp40981C2CDFB362852AD5769E2BD8DE0E" Guid="*">
+                                    <File Id="fil7ECD968C0C40B2E1C4DC65BA0CAB1679" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+                                </Component>
+                                <Component Id="cmp0A27FEE8F765E36489BED47F4FAB5F53" Guid="*">
+                                    <File Id="fil0FEAA22B7D86C19FC046CEA457FEBB7B" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+                                </Component>
+                                <Component Id="cmpED86B80E46904CA450FFC5E3A8C08BCF" Guid="*">
+                                    <File Id="filAAEA63C004BFDF0FAF2BD4C9F6776D77" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+                                </Component>
+                            </Directory>
+                        </Directory>
+                        <Directory Id="dir9EFF982BCE20A30C09B07679037FF7ED" Name="Properties">
+                            <Component Id="cmp83C44FD2BE55429E064B4B0D1C64E890" Guid="*">
+                                <File Id="filB8B3B65F036D67E9780C2D31FD509ED6" KeyPath="yes" Source="$(var.SourcePath)\SDK\Triggers\SQLServerTrigger\Properties\AssemblyInfo.cs" />
+                            </Component>
+                        </Directory>
+                    </Directory>
+                </Directory>
+            </Directory>
         </DirectoryRef>
     </Fragment>
     <Fragment>
@@ -576,6 +1666,7 @@
             <ComponentRef Id="cmpF5FF9AD522D24DF45D606AA6957CC418" />
             <ComponentRef Id="cmp0A272C269873B42D57FC3E9F6A0C5366" />
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
+            <ComponentRef Id="cmpCD92A7C4ACAFADCC3F8CB18EF843A98A" />
             <ComponentRef Id="cmpB196EB4C55C07FD3F70C4514542D7E10" />
             <ComponentRef Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" />
             <ComponentRef Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" />
@@ -604,6 +1695,7 @@
             <ComponentRef Id="cmp412348C80DE4B276CD42DAA49CF7F7DD" />
             <ComponentRef Id="cmp7D2E15AE0D7F25504D918345D8A28D0E" />
             <ComponentRef Id="cmp1B8F0BF803C3197C87D25DF7A57294A5" />
+            <ComponentRef Id="cmp3A3EABB312006E6EF91D0ED6A84FCF80" />
             <ComponentRef Id="cmp081661FEE03D98D766E01B0A2EE0BF53" />
             <ComponentRef Id="cmp61070C95980EB86FEBA6DC86BAAA225D" />
             <ComponentRef Id="cmp41DF4CA3DC4AE8ACC5B3B742FC3C8DF3" />
@@ -712,6 +1804,286 @@
             <ComponentRef Id="cmp6C9F4546DA63A071C2AF9A64EE05AB88" />
             <ComponentRef Id="cmp46D51DE54D2E980C60DB31BCF2B1A36D" />
             <ComponentRef Id="cmp7E06BC6CFEC524824A585B7C2461A4D8" />
+            <ComponentRef Id="cmp3369E32ABC4BD18F97162EFD6A925DD1" />
+            <ComponentRef Id="cmp1F09BD6F6EFA54080ED3ACC7A6D7DBEB" />
+            <ComponentRef Id="cmpF86169493AF0895C7381DDF79139F54E" />
+            <ComponentRef Id="cmp684BB1300C2241BBC04A4601AC17E272" />
+            <ComponentRef Id="cmp0A980BAF6725614AEA40C55AEA8194B7" />
+            <ComponentRef Id="cmp5ABD63F08531674332BE7E2F718FADDC" />
+            <ComponentRef Id="cmpFC4F53A031E0E90C03535D2A3B25B731" />
+            <ComponentRef Id="cmp07C14524A853F884712BA6BB44120068" />
+            <ComponentRef Id="cmp6D77A9490BA40B73EA53FFD08B8B002D" />
+            <ComponentRef Id="cmp2EFDDE17B59B9B06C906F1B39CF2CD4A" />
+            <ComponentRef Id="cmpA981B86C1760BADAA2DBD3DFDCBD7FB5" />
+            <ComponentRef Id="cmp60F7F780D62E2488863ED75C718E4383" />
+            <ComponentRef Id="cmp4B204A87CDBD2E82E73CBB6D65311933" />
+            <ComponentRef Id="cmp28D1AD93794B51F8A58979EB01708CF0" />
+            <ComponentRef Id="cmpB5A849148E8E9AE0ACF9039CEF4ADF82" />
+            <ComponentRef Id="cmpB1C3347DAA1EFDC0F1FFDAE41526B464" />
+            <ComponentRef Id="cmp2D7821510E7E57D6FFAA4B7DEB8879E9" />
+            <ComponentRef Id="cmpEDC96EE80E78B7C6103A7D6929B93AD8" />
+            <ComponentRef Id="cmp7C69D720C2D223B901AA7F0E134F3241" />
+            <ComponentRef Id="cmp0F88268003DAB17303425DB7AC3E794F" />
+            <ComponentRef Id="cmp3B5E86AC0014F6342A4B1D8EFE1CAE08" />
+            <ComponentRef Id="cmp31E4EF23A1EB19092EA0CC534E220520" />
+            <ComponentRef Id="cmpA6BA7458C5B882EA118BE8A8A7EDE1A0" />
+            <ComponentRef Id="cmp6BFA900619FC0A360B286C76A46A92FB" />
+            <ComponentRef Id="cmp05FE37D17C92CE2C45FDDB94C6832022" />
+            <ComponentRef Id="cmpF250EABA71F2E6373E3A70067BB0AF5C" />
+            <ComponentRef Id="cmpA97BB6999088E0126634673A468F7846" />
+            <ComponentRef Id="cmp1A2F552D1D661971B517A1FD16644390" />
+            <ComponentRef Id="cmp813A304C53D9BE3396AF9215A46DB9EB" />
+            <ComponentRef Id="cmp7D9DC08AFA94D4693C6F13D642F45CFE" />
+            <ComponentRef Id="cmpA31054B8C051A9C775885010576B0E16" />
+            <ComponentRef Id="cmpD99D36A6976DCF88FDC986B605C6C688" />
+            <ComponentRef Id="cmp32AE4BCA8F258A528101F893AD31714B" />
+            <ComponentRef Id="cmp7D9A57CB7E871295E79EF7C14C4D1E33" />
+            <ComponentRef Id="cmp7325EACE28299FBCF31F2B1A65B65B1D" />
+            <ComponentRef Id="cmp0894988098D303617AF6E94BFAE9D1D3" />
+            <ComponentRef Id="cmp873874CCF5905F1CC3D99964E0C09FC7" />
+            <ComponentRef Id="cmp6F909324DAE843E846532703A068E6EA" />
+            <ComponentRef Id="cmp9FDB189C388BD01F10A6C1570771D175" />
+            <ComponentRef Id="cmp5F270606D6D896199552BBB66BF8390A" />
+            <ComponentRef Id="cmpC39B448CC7FA4F9F99196886DA47BF0A" />
+            <ComponentRef Id="cmpF00D19A52D11BC961E01A59B589EEB8C" />
+            <ComponentRef Id="cmpF35DAAE45E78AEFC13B9A50B70C2C0CB" />
+            <ComponentRef Id="cmpE71D5F190A2F13A840584FA573636CBD" />
+            <ComponentRef Id="cmp12D268E18DD319558590993CE13C165E" />
+            <ComponentRef Id="cmp517C74F04A593C45321F7A3B6F527E0F" />
+            <ComponentRef Id="cmp656F4A667C966A735601C2EC388AF74A" />
+            <ComponentRef Id="cmpB26FC208AB6416C8FB18E8131C39A86B" />
+            <ComponentRef Id="cmpC7A0B6D765919EB256E8EF270E47520D" />
+            <ComponentRef Id="cmp5E41CB75436EF0720A6DFDCDC28F6136" />
+            <ComponentRef Id="cmp33D296AA473CBA25CEC12FBF04E72C02" />
+            <ComponentRef Id="cmp08464EB06B97B81D5DBFA789B2DDC2FD" />
+            <ComponentRef Id="cmp9C8D0AD131483C6F4817259DAC50DC81" />
+            <ComponentRef Id="cmp4AEED929A91A75630E400A22AB0902C8" />
+            <ComponentRef Id="cmp71157DCBAD43A92C11F9611F2B588B76" />
+            <ComponentRef Id="cmp2B343D11FD929119FC1A90DB1A2283E2" />
+            <ComponentRef Id="cmp732E9036B9FE271B1E96FB9448B4A91B" />
+            <ComponentRef Id="cmp2AB50FC8D97F8D2371C41A882AA9C2BB" />
+            <ComponentRef Id="cmpF6D92547AEA89B005EF1C6D308DCB597" />
+            <ComponentRef Id="cmpD3036F1195E632E01D8F7D6ED6D83A78" />
+            <ComponentRef Id="cmpE1EA3B0BF5BFFC8F71F88A5E3C595153" />
+            <ComponentRef Id="cmp1BD512E506EC0E33811120156E0D1240" />
+            <ComponentRef Id="cmp79269996AD41B38628454E6E9E24D2C7" />
+            <ComponentRef Id="cmpBECE68BB3B19F61253C3342A3E168315" />
+            <ComponentRef Id="cmpE13E9020DD815C02659C5143BC5322FF" />
+            <ComponentRef Id="cmp952735125801C4697F2559B4386A23C6" />
+            <ComponentRef Id="cmpC2EE73792D0930314F053AB752CD210E" />
+            <ComponentRef Id="cmpF67A9644A35350313A3FF1C5C17B87C5" />
+            <ComponentRef Id="cmp536696E7E41C3B795BF974C1722F9CB0" />
+            <ComponentRef Id="cmp7ECD800630BC88F5BBC9E52C35BC9A63" />
+            <ComponentRef Id="cmp8DD49E8E947E674BF0CAF99AF89886CB" />
+            <ComponentRef Id="cmp5958E831845F9781F317D1D0FAF5AE69" />
+            <ComponentRef Id="cmpA6ACF665FE255ED0855002C4DE9F11F4" />
+            <ComponentRef Id="cmp20BCAF5CB77D4EB6B4EF92506C7A51C1" />
+            <ComponentRef Id="cmpB8A14FDC5D30EE443B583B89954E7799" />
+            <ComponentRef Id="cmpE073424F2EC376091DCFF768508F5B66" />
+            <ComponentRef Id="cmp33F3D837217CFC44C02781AA69DCE2E6" />
+            <ComponentRef Id="cmp6723D545C45118B7BD947E99D3041F54" />
+            <ComponentRef Id="cmp0EAA3BF6DCB54F705F8BF2BFE4AC252F" />
+            <ComponentRef Id="cmpD2DF2A0DC70A1CD977CD9A769F0D7171" />
+            <ComponentRef Id="cmp287B17FB0696117ED3467B36E663D2AA" />
+            <ComponentRef Id="cmpF8EAB9756AA888B6FCFB495BBE748E0C" />
+            <ComponentRef Id="cmpEDD59F1522ECF003D85213891D787FF2" />
+            <ComponentRef Id="cmp6447CD7A501C34AEF2A08E2A85023789" />
+            <ComponentRef Id="cmpD8EC6D2BB84F0E802FC1A0EFDDFED2CB" />
+            <ComponentRef Id="cmp72700474256F5D6258405047603DCE7E" />
+            <ComponentRef Id="cmpF2CEDF91FD22E5E5D1EFA0E28267CEFC" />
+            <ComponentRef Id="cmp432DBB65EFE84CDEEE7057F67A25849C" />
+            <ComponentRef Id="cmpC06A691A7CD1F73B5E9305C67429C476" />
+            <ComponentRef Id="cmp3D75235EB2DDE7F214E72B249E8BBFBB" />
+            <ComponentRef Id="cmp246A55EF7EC848476D9E2917B89A80CB" />
+            <ComponentRef Id="cmp4DF3C1DC29D2679971E77D563AD768EB" />
+            <ComponentRef Id="cmp939EFD4B6CD67900060DC33F7D2DE4B3" />
+            <ComponentRef Id="cmpC692C163D4C8A552661CBF33FE061BB8" />
+            <ComponentRef Id="cmp5FF953531B2D1A91C9ABF3B1336A0EEC" />
+            <ComponentRef Id="cmp4C39F4587811B97EE9D18FAE7E9313D9" />
+            <ComponentRef Id="cmp34AFE73380A74BCB389013EB4AA3A2CB" />
+            <ComponentRef Id="cmp3ADBA8754EDB20D356B5134BCEE7C4E4" />
+            <ComponentRef Id="cmpDEFDAE09B4F5B1BCD4EBD3B5084530C3" />
+            <ComponentRef Id="cmp60B7BFF3C4F62C02BAA75425DE02F1A6" />
+            <ComponentRef Id="cmp30F01966101E044A1EACA3800746737B" />
+            <ComponentRef Id="cmp88CDACF79312C2B326A408E8E7586260" />
+            <ComponentRef Id="cmpA43101C324512706037707ADD78701E6" />
+            <ComponentRef Id="cmp637B8DEB6604290FC68E56C0FF445747" />
+            <ComponentRef Id="cmp9B6EBA80E9189EF5CA886BC0B0AF3CC4" />
+            <ComponentRef Id="cmpC15DBB7C4D09BF4A5D3595FEB714828B" />
+            <ComponentRef Id="cmpFB783A12F2932E0DA7C0294DDCD46F04" />
+            <ComponentRef Id="cmpFC2922663B7CA87E3E802E138864876C" />
+            <ComponentRef Id="cmp3F1C64B3E65EB4B5C7AE9A8D5EA41907" />
+            <ComponentRef Id="cmp139F4501F7CA2D531BD353527804833C" />
+            <ComponentRef Id="cmp82790D1936E16B3E1FBDC807808F31A2" />
+            <ComponentRef Id="cmp7614BFE7B9DE7CB3E653F18B49D25987" />
+            <ComponentRef Id="cmpA4288315121E913652EE6682B5C98798" />
+            <ComponentRef Id="cmpCF24F49086AF0A1A2E3CEE45A0D13D31" />
+            <ComponentRef Id="cmp39B7CC3F00B6D75B3AB7038042A24946" />
+            <ComponentRef Id="cmpB3E7C0EEF9AAD731B7290F10D8286D39" />
+            <ComponentRef Id="cmp0B6E8DDEC259EED81DCF12EB79C9F4A2" />
+            <ComponentRef Id="cmp0D923A3744B726F47AB6739D236403E5" />
+            <ComponentRef Id="cmpE6DDBF05BE25BB11F43A21BE591685D0" />
+            <ComponentRef Id="cmpCA02C02C6B5475572113720AA33C7A3E" />
+            <ComponentRef Id="cmp55EFA6B4309DB946CEC3B7B30999479A" />
+            <ComponentRef Id="cmp6AD8FFF10C7F21B56194F46B5DEB75D6" />
+            <ComponentRef Id="cmp628AF1C114BD87E8036ED732B4A037B5" />
+            <ComponentRef Id="cmpA8D9E14DD763245B45E9E8979ECA1644" />
+            <ComponentRef Id="cmpBF9855A07530AF872CF13E267B458EA1" />
+            <ComponentRef Id="cmp308CAEEAE4EB3C140E37364972D696B6" />
+            <ComponentRef Id="cmp4CE1514D8F39455FC50DBF5A321F1425" />
+            <ComponentRef Id="cmp833260D53753A4A82B3C92754364D2B3" />
+            <ComponentRef Id="cmp1E1799577127781C95875064E89F83DA" />
+            <ComponentRef Id="cmp554604B3B90FFF06F6DF9BE55C35B066" />
+            <ComponentRef Id="cmpDB627809DEB0DB2B94395B722728081F" />
+            <ComponentRef Id="cmpF52B9D50C0592A6DD2616E1A9864659C" />
+            <ComponentRef Id="cmp38EC8C59AAA739131994E5AF2EE1BF96" />
+            <ComponentRef Id="cmpCB7BBF4116EAB2F2E16141D94A52DFC7" />
+            <ComponentRef Id="cmp2A5CE9D7B3DD759A0E6A8E77C28FC3F4" />
+            <ComponentRef Id="cmpC2469BFA1E15A84909B1331B0392E367" />
+            <ComponentRef Id="cmpEFA5F2DE41403E2E59095F270384F105" />
+            <ComponentRef Id="cmpC69F7686D66A030FD70C27579BF1FE3B" />
+            <ComponentRef Id="cmpF2A4153F715F2CCEC4DF2C32155BC4CC" />
+            <ComponentRef Id="cmpACFD18B72D0D4D0B8120567801963767" />
+            <ComponentRef Id="cmp3AFEA79B7ADA69592B8B21DD04AAC010" />
+            <ComponentRef Id="cmpDBC3766FE9ECE2510ECE4EABA7B2DBF2" />
+            <ComponentRef Id="cmp004430A0E9040BDFBF621FB557BC9063" />
+            <ComponentRef Id="cmp6EAE71D3E025023A92702ED485AA9387" />
+            <ComponentRef Id="cmp71EE412C98E2FE9A0ABEF015283DE97B" />
+            <ComponentRef Id="cmpA711763F473C189CA2AB96ADE1A7ACEB" />
+            <ComponentRef Id="cmpD2AFFFCAFF665448E8007D763CD27FEB" />
+            <ComponentRef Id="cmp753D5F8E41C96F9E29E23D134509548C" />
+            <ComponentRef Id="cmp45A70EDFDF9650598FEF0EAB811510CC" />
+            <ComponentRef Id="cmp123E7D5465EAD13AFBC90B08A86394B1" />
+            <ComponentRef Id="cmpFDB8360E026879DE9183CDC01327B65B" />
+            <ComponentRef Id="cmp0DC5D352596EAA2A7A742A5D2D8E28CD" />
+            <ComponentRef Id="cmpFAEAB0C43894DFF629D749D6F47DBD80" />
+            <ComponentRef Id="cmp3A028DF288EF1B68F45FF36005257A05" />
+            <ComponentRef Id="cmp723C7A20BFEBF17D6EC8796AD34C6673" />
+            <ComponentRef Id="cmp22745C5D1D4C3B393AA639F67581AE99" />
+            <ComponentRef Id="cmpA9D437D16998D43A2FD107173B09DA83" />
+            <ComponentRef Id="cmpB0ACD97E2B0A77D3C414C331C35FD595" />
+            <ComponentRef Id="cmpE57815651D1917CEEA08E662F42117C5" />
+            <ComponentRef Id="cmpFAA1012E5224A1737C1E59409AB2AF33" />
+            <ComponentRef Id="cmp15BC3DE3678664AC5023E3E1F6C51090" />
+            <ComponentRef Id="cmp0CC3EFB6DE83812DD0654A6B11F1C92A" />
+            <ComponentRef Id="cmp18E1B92B5220386D2B83D4E6BBB37A5A" />
+            <ComponentRef Id="cmp6639FB2A21E9BCDCFE6B450449563449" />
+            <ComponentRef Id="cmpA18158F5261F34901AEF745DE63E2836" />
+            <ComponentRef Id="cmp4085E31B908F93EC54EEE3A16D74F178" />
+            <ComponentRef Id="cmp4C662DF5F3BB9B77E6570E33CB8C6780" />
+            <ComponentRef Id="cmp7E7D536C8DD01EEF91306902B2970B9C" />
+            <ComponentRef Id="cmp9E0B8A8FBCBD0AE77919459EBF6C0246" />
+            <ComponentRef Id="cmp2FAA716F00E078C40F8F2140EDA86DAF" />
+            <ComponentRef Id="cmp5AAF21923680422436B55C3666DF7E30" />
+            <ComponentRef Id="cmpA0219552CF0B391CF6408B2D4565E5F6" />
+            <ComponentRef Id="cmp53F85D714F4010FED6887F234E6204F4" />
+            <ComponentRef Id="cmpED067FAD66E395A788C1701DDEC3061F" />
+            <ComponentRef Id="cmp8BB649D20F88F0698C71CA8DA35EA501" />
+            <ComponentRef Id="cmp36C58180AADF20E5715F75C88E45DEAF" />
+            <ComponentRef Id="cmp88C20F6DBBE210DC64A5E49342746F42" />
+            <ComponentRef Id="cmpE64A776DC09BDA22E538F4D0E1DD571D" />
+            <ComponentRef Id="cmp61186433743B616FA57288A441282DC4" />
+            <ComponentRef Id="cmp66D30DF6E0243DC8444957041F4DF01A" />
+            <ComponentRef Id="cmp46171BC1729992A02583E502C1D77A04" />
+            <ComponentRef Id="cmp9650179FE117031D4EF138A162BBF04A" />
+            <ComponentRef Id="cmp2D69D1DA583C89C85258D65F13638F1A" />
+            <ComponentRef Id="cmpE2ED528B0586A74F034E9AA85926986B" />
+            <ComponentRef Id="cmp4BAB2930859831C1C17ED2CE92ABB5A8" />
+            <ComponentRef Id="cmp5009F1DABD33CAD4FBA9D5926EC3EDC0" />
+            <ComponentRef Id="cmp7E96F1203560F59F56138E00DD162B44" />
+            <ComponentRef Id="cmp189491DE3DE4654902B547E249AB9B30" />
+            <ComponentRef Id="cmpBBD10B05C3A923317C0CBFE8C3FCBDFA" />
+            <ComponentRef Id="cmpBDBB1AB81662FF00E6AD2E21BEA71B5B" />
+            <ComponentRef Id="cmp7BC15E86F1527FB4B5500FED9910B748" />
+            <ComponentRef Id="cmp4CE8C3940A52E7C4A487FF02DCA2C8F2" />
+            <ComponentRef Id="cmp8E051170F11B5726D85B9F0F687E1C86" />
+            <ComponentRef Id="cmpA77610BBDADBDFD2C338E1A79FB905AB" />
+            <ComponentRef Id="cmpBD76A4104254AD0F5267CD28BE7729A9" />
+            <ComponentRef Id="cmpA3F51A303D888FFFDB014BBA63D718D1" />
+            <ComponentRef Id="cmp6F50D1B223F43520B024B9D25ECA4CB5" />
+            <ComponentRef Id="cmpB391B8E06581177079D4D1D63F0F67CA" />
+            <ComponentRef Id="cmp653346F7B374E13B22C0219669544023" />
+            <ComponentRef Id="cmp1B0B1C76D93D0103B6348FA8132749DB" />
+            <ComponentRef Id="cmp2211C424D09FDD6831E7165B26A2CAA3" />
+            <ComponentRef Id="cmpD7C7C1AD8B7972566DE438CA63F48C88" />
+            <ComponentRef Id="cmp3D41EC4997CD8AFCC0177CF9430C06AA" />
+            <ComponentRef Id="cmp3C12F40A7276BAAAD8FE43652A3239BB" />
+            <ComponentRef Id="cmpB663E46523B8BD6C397F7B7C7769449C" />
+            <ComponentRef Id="cmp6CE7DE37EF31BA239E51D21491E9E64C" />
+            <ComponentRef Id="cmpCF14BDC1EF40ED8B0C03C68FA89977DD" />
+            <ComponentRef Id="cmpAE819A99DCE8F987B641C52E6A0BA3F5" />
+            <ComponentRef Id="cmp645CF981231912C296BB1A785F04627C" />
+            <ComponentRef Id="cmpD62406F8B37767B9D9BEF66D7DF3A841" />
+            <ComponentRef Id="cmpD9B8B4BD289065536208D815B1EC2A07" />
+            <ComponentRef Id="cmp085CEC16B37CFE40F931CC40F7FCBAD5" />
+            <ComponentRef Id="cmp7876E4D8D208080261720728B5D7AE3F" />
+            <ComponentRef Id="cmp27EE7AB29C31EB82B1BA580B09029FCE" />
+            <ComponentRef Id="cmpE0723B96023DDE6DB74BAF507F41425B" />
+            <ComponentRef Id="cmpCC725B276B2AF7E6AB375E759C6CC3B8" />
+            <ComponentRef Id="cmp5A2A82F576763EE935A04C044EBD0553" />
+            <ComponentRef Id="cmp458D345016D46899FCAB4BC0DF57FC19" />
+            <ComponentRef Id="cmp97E34077F78AD8489C80DED43D88EA9D" />
+            <ComponentRef Id="cmpFD95F96A1217F58E483F6D22881545DC" />
+            <ComponentRef Id="cmp8BB752586C1CFF379D53E0E90D674B23" />
+            <ComponentRef Id="cmp608262A29AC71439358D715E345C5818" />
+            <ComponentRef Id="cmp49C62EFB0A67F7D133EC4A81B98D93B8" />
+            <ComponentRef Id="cmp415852D47C78358F7482266961781E95" />
+            <ComponentRef Id="cmpECDEAABE80FD0B332921CB021811A2E6" />
+            <ComponentRef Id="cmpF5E5055C77396A642AE87CBED92012D0" />
+            <ComponentRef Id="cmpB3E966951FFF5F9F681B1CFE464DA518" />
+            <ComponentRef Id="cmp39ADA1BF95B67569957DA0B685F1A0D4" />
+            <ComponentRef Id="cmpC76AB563FDB3E3448B0F096B6E1CCAF2" />
+            <ComponentRef Id="cmp8E20477A73442D2E7B3C0DC4803BD144" />
+            <ComponentRef Id="cmpC849825E98A9587709FDF4472624F5F6" />
+            <ComponentRef Id="cmp6FAFED3A9077AAC7E0FEAE56FFF02323" />
+            <ComponentRef Id="cmpA46EEB69782D1B4BFFADD16E41B8CF4F" />
+            <ComponentRef Id="cmp0BEC42EF699E21E301C74CD5E6A54222" />
+            <ComponentRef Id="cmp68F2A6591886EBB17BC4FD4A380632A3" />
+            <ComponentRef Id="cmp984FCF4ACF1DDE3276C5F335704AA680" />
+            <ComponentRef Id="cmp3A157654A83FE9EE25D73F0A0826F5B2" />
+            <ComponentRef Id="cmpEB127822690FBA675CDFBD54D79E81C6" />
+            <ComponentRef Id="cmp9287A1FD4630DE63B7E282A2887987B5" />
+            <ComponentRef Id="cmp72BB2BEDED380272BA6D271002101414" />
+            <ComponentRef Id="cmp174623891F9B6C5D0567016F074F2151" />
+            <ComponentRef Id="cmpE21EFE85E5C052DF50FEEA51957AA171" />
+            <ComponentRef Id="cmp403B0CF6C471DF026775F10FB0427FEB" />
+            <ComponentRef Id="cmpF40C39BCAEBEA4AA27E0A6F8E60CC399" />
+            <ComponentRef Id="cmpB3005B0FD66C4D6C45252DE74E3278D0" />
+            <ComponentRef Id="cmp7D3AA14B17FA16104BDC770F08F5FCBA" />
+            <ComponentRef Id="cmp3207C24CEBA27FD25AD3F7AC4788F80E" />
+            <ComponentRef Id="cmpE8657F42009BBE01E4472BCC43742E81" />
+            <ComponentRef Id="cmpC7740300A4C0C3E37F0D2B8CD2424758" />
+            <ComponentRef Id="cmp0AF2D56DDA69A8533F725E0D979CFE9B" />
+            <ComponentRef Id="cmp7F768232F602DA7F123B06C068D199E5" />
+            <ComponentRef Id="cmp2C4C10B1D71686853A210D177A34BE1A" />
+            <ComponentRef Id="cmpFB813085C0B1D672744049F46D00BC21" />
+            <ComponentRef Id="cmp5DA3CB7CCFF0CE278008B5D1A9E09533" />
+            <ComponentRef Id="cmp463A3C98FB1EBC2E8C43B62BB9D2C571" />
+            <ComponentRef Id="cmpE4E3C4F5696891B0BBFF615D397FFC69" />
+            <ComponentRef Id="cmpC16915FD99D0959AFD6F2BC83C0DFFED" />
+            <ComponentRef Id="cmp23CCD22FE53678C3289E168FE1239E7E" />
+            <ComponentRef Id="cmp0357E2300FA965B054B7E08CDD1A71DC" />
+            <ComponentRef Id="cmp20FEA0CB80ADFF7C2A9AEA34D75BA511" />
+            <ComponentRef Id="cmp1981B97F52EC97EF25925113866C4840" />
+            <ComponentRef Id="cmp8F833648D35E596C50EAE173CE441F80" />
+            <ComponentRef Id="cmp471810934ABD58955A1EB780F9D01599" />
+            <ComponentRef Id="cmpC5F4BF569D99E11488112A282691952A" />
+            <ComponentRef Id="cmp40B0CDDC4C4174119E8B80589378B2A1" />
+            <ComponentRef Id="cmp90E0F0CD03E222E00EC12A4D25016217" />
+            <ComponentRef Id="cmp8B83EC9B8C5557CF68F421053ADBE7C8" />
+            <ComponentRef Id="cmpA6C74996B3FC821E781C35E9FE2351EE" />
+            <ComponentRef Id="cmpE2900F671E8FDE3CB2A659A86CBD0FDA" />
+            <ComponentRef Id="cmp4DD34294B531279D3676E044C6DBEBE2" />
+            <ComponentRef Id="cmpCC7E2990F762D4DEBCCD45B4263C61DC" />
+            <ComponentRef Id="cmp3F33DCFEB52887D7F662D8AC2263E6D4" />
+            <ComponentRef Id="cmp2E3631B7C2CE3994C18D4324CFC5B7D5" />
+            <ComponentRef Id="cmp61EA37CEDC1DC4243F4A93941592D551" />
+            <ComponentRef Id="cmp70F5C5D56826541CB7B00DB800ADCE77" />
+            <ComponentRef Id="cmpD21192E3F5EF27A2B5AB1E6F60731773" />
+            <ComponentRef Id="cmp40981C2CDFB362852AD5769E2BD8DE0E" />
+            <ComponentRef Id="cmp0A27FEE8F765E36489BED47F4FAB5F53" />
+            <ComponentRef Id="cmpED86B80E46904CA450FFC5E3A8C08BCF" />
+            <ComponentRef Id="cmp83C44FD2BE55429E064B4B0D1C64E890" />
         </ComponentGroup>
     </Fragment>
 </Wix>

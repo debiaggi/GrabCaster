@@ -46,7 +46,8 @@ namespace GrabCaster.Framework.Base
             string message = "";
 
             CryptoLicense license = CreateLicense();
-            message = !license.Load() ? "Licensing missing, execute GrabCaster in console mode and enter the license key." : license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid ? "Licensing expired, execute GrabCaster in console mode and enter the license key." : "Licensing missing, execute GrabCaster in console mode and enter the license key.";
+            license.StorageMode = LicenseStorageMode.ToRegistry;
+            license.RegistryStoragePath = license.RegistryStoragePath + "InternalSignature";
 
             // Load the license from the registry 
             if (!license.Load())
@@ -55,14 +56,14 @@ namespace GrabCaster.Framework.Base
                 message = "Licensing missing, execute GrabCaster in console mode and enter a valid license key.";
                 valid = false;
             }
-            if (license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid)
-            {
-                message = "Licensing expired, execute GrabCaster in console mode and enter a valid license key.";
-                valid = false;
-            }
             if (!license.IsFeaturePresentEx((int)licenseFeatures))
             {
                 message = $"The feature {licenseFeatures.ToString()} is not enabled , execute GrabCaster in console mode and enter a valid license key.";
+                valid = false;
+            }
+            if (license.Status != LogicNP.CryptoLicensing.LicenseStatus.Valid)
+            {
+                message = "Licensing expired, execute GrabCaster in console mode and enter a valid license key.";
                 valid = false;
             }
 

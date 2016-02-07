@@ -106,8 +106,8 @@ namespace GrabCaster.Framework
                     //****************************************************************
                     if (!Licensing.EvaluateLicense(LicenseFeatures.Console, false))
                     {
-                        MessageBox.Show(
-                            "License key not valid.",
+                        LogEngine.ConsoleWriteLineNoLog("License key not valid, check the event viewer for more information.", ConsoleColor.Red);
+                        MessageBox.Show("License key not valid, check the event viewer for more information.",
                             "GrabCaster",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);

@@ -5,6 +5,8 @@ pause
 
 cd..
 rd /s /q Setup\bin\Debug\Deploy
+echo Deploy directory removed.
+pause
 cd %~dp0
 
 call DeployEventsDLLDebugversion.cmd
@@ -33,6 +35,8 @@ xcopy Framework\bin\Release\*.exe Setup\bin\Release\Deploy\*  /y
 
 xcopy DefaultFiles\BubblingDeploy Setup\bin\Debug\Deploy\Root_GrabCaster\Bubbling\ /s /y /e
 xcopy DefaultFiles\BubblingDeploy Setup\bin\Release\Deploy\Root_GrabCaster\Bubbling\ /s /y /e
+xcopy SDK Setup\bin\Debug\Deploy\SDK\ /s /y /e
+xcopy SDK Setup\bin\Release\Deploy\SDK\ /s /y /e
 
 xcopy DefaultFiles\Log Setup\bin\Debug\Deploy\Root_GrabCaster\Log\* /s /y /e
 xcopy DefaultFiles\Log Setup\bin\Release\Deploy\Root_GrabCaster\Log\* /s /y /e
@@ -64,8 +68,8 @@ xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.p
 xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Common.pdb Setup\bin\Debug\Deploy\*  /y
 xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.Designtime.pdb Setup\bin\Debug\Deploy\*  /y
 
-xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.reg Setup\bin\Debug\Deploy\*  /y
-xcopy "GrabCasterAdapter\Runtime\bin\Debug\Register BizTalk Adapter.txt" Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterAdapter\GrabCaster.reg Setup\bin\Debug\Deploy\*  /y
+xcopy "GrabCasterAdapter\Register BizTalk Adapter.txt" Setup\bin\Debug\Deploy\*  /y
 copy DefaultFiles\BTSNTSvc.cfg Setup\bin\Debug\Deploy\BTSNTSvc.cfg  /y
 
 cd %~dp0

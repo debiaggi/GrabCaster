@@ -40,9 +40,7 @@ namespace GrabCaster.Framework
 
             license.StorageMode = LicenseStorageMode.ToRegistry;
             license.RegistryStoragePath = license.RegistryStoragePath + "InternalSignature";
-            LicenseForm licenseForm = new LicenseForm();
-            string licenseKey = licenseForm.textBoxLicense.Text;
-            license.LicenseCode = licenseKey;
+            license.LicenseCode = textBoxLic.Text; ;
             if (license.Status != LicenseStatus.Valid)
             {
                 MessageBox.Show(
@@ -62,6 +60,11 @@ namespace GrabCaster.Framework
                 this.Close();
             }
 
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

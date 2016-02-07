@@ -38,5 +38,10 @@ namespace TestLicensingApp
         {
             System.Diagnostics.Process.Start("http://grabcaster.io/grabcaster-contact/");
         }
+
+        private void buttonConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
