@@ -51,7 +51,8 @@
 "%25WIX%25\bin\heat.exe" dir "$(Solutiondir)Setup\bin\$(Configuration)\Deploy" -srd -dr INSTALLDIR_GRABCASTER -sfrag -sreg -cg SourceComponentGroup -var var.SourcePath -ag -out "$(SolutionDir).\Setup\SourceComponents.wxs"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>signTool sign /f grabcaster.pfx /p 4r%40bc%40st3r /v grabcaster.msi</PostBuildEvent>
+    <PostBuildEvent>signTool sign /f grabcaster.pfx /p 4r%40bc%40st3r /v grabcaster.msi
+xcopy grabcaster.msi C:\Users\Nino\Documents\GrabCaster\GrabCasterV2PPP\%2a  /y</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.

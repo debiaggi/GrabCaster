@@ -150,13 +150,8 @@
     <Content Include="packages.config" />
     <Content Include="apiapp.json" />
     <Content Include="Metadata\deploymentTemplates\apiappconfig.azureresource.json" />
-    <None Include="Properties\PublishProfiles\EventHubAPI%28premium%29.pubxml" />
     <None Include="Properties\PublishProfiles\EventHubAPIApp%28default-web-westus%29.pubxml" />
-    <None Include="Properties\PublishProfiles\GrabCasterPoint%28default-sql-northeurope%29 %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\GrabCasterPoint%28Default-SQL-NorthEurope%29.pubxml" />
-    <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28default-sql-northeurope%29 %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28Default-SQL-NorthEurope%29.pubxml" />
-    <None Include="Properties\PublishProfiles\GrabCasterPointAPIApp%28GrabCasterResourceGroup%29.pubxml" />
+    <None Include="Properties\PublishProfiles\GrabCasterPoint%28Default-Storage-NorthEurope%29.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

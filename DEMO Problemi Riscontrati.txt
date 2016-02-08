@@ -1,0 +1,1 @@
+la logic app non si avviava il mio sospetto e' perhe usavo guids, meglio evitare, documentalo

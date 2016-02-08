@@ -11,6 +11,10 @@ namespace GrabCaster.Framework.Library.Azure
 
     public static class LogEngine
     {
+        public static string storageAccountName { get; set; }
+        public static string storageAccountKey { get; set; }
+        public static bool azureLogEnabled { get; set; }
+
         public static void TraceInformation(string message)
         {
             string logMessage = $"{GrabCasterPointAPIApp.Controllers.Constants.EngineName} - {message}";
@@ -31,9 +35,10 @@ namespace GrabCaster.Framework.Library.Azure
         {
             try
             {
-                var storageAccountName = "grabcastersa";
-                var storageAccountKey =
-                    "Xmq9EjpObhOkzETSxFphF/diQFxb2RMGEAUwWvRvEAraCPFzZ+Alr4mHnwGbBAEYAYWQZ91yq5bLREUg9MImAA==";
+                //if (!azureLogEnabled) return;
+                string storageAccountName = "grabcasters1";
+                string storageAccountKey = "2Byk+sbyIRrgtE2+sTBnKt+jjqafcWCHrjvCD3IKCwETjYb+rleHnqTuQDny1gz1vcBhNErYQpSXOYCQZLnuqw==";
+
                 var connectionString =
                     $"DefaultEndpointsProtocol=https;AccountName={storageAccountName};AccountKey={storageAccountKey}";
                 var storageAccount = CloudStorageAccount.Parse(connectionString);

@@ -36,7 +36,8 @@
         {
             LogEngine.TraceInformation("Enter in EventHubPushTrigger");
             LogEngine.TraceInformation($"Enter in EventHubPushTrigger triggerId {triggerId}");
-            
+
+
             if (!InMemoryTriggerStore.Instance.GetStore().ContainsKey(triggerId))
             {
                 LogEngine.TraceInformation($"Enter in EventHubPushTrigger InMemoryTriggerStore.Instance.GetStore().ContainsKey(triggerId)");
@@ -69,10 +70,15 @@
                                                 [Metadata("Group EventHubs Name", "Set the Event Hub name used.")]string GroupEventHubsName,
                                                 [Metadata("Group Storage Account Key", "Set the Azure storage account key.")]string groupEventHubsStorageAccountKey,
                                                 [Metadata("Group Storage Account Name","Set the Azure storage account name.")]string groupEventHubsStorageAccountName,
+                                                [Metadata("Azure Log Enabled", "Enable the Azure Log on Azure table.")]bool azureLogEnabled,
                                                 [FromBody]SkeletonActionMessage input)
         {
             try
             {
+                LogEngine.storageAccountKey = groupEventHubsStorageAccountKey;
+                LogEngine.storageAccountName = groupEventHubsStorageAccountName;
+                LogEngine.azureLogEnabled = azureLogEnabled;
+
                 LogEngine.TraceInformation("Enter in EventHubSend");
                 SendSkeletonMessage(Encoding.UTF8.GetBytes(input.message),
                                     channelIds,
@@ -145,12 +151,16 @@
             /// <returns></returns>
             public async Task RegisterTrigger(string triggerId, TriggerInput<EventHubInput, SkeletonMessage> triggerInput)
             {
+                LogEngine.storageAccountKey = triggerInput.inputs.GroupEventHubsStorageAccountKey;
+                LogEngine.storageAccountName = triggerInput.inputs.GroupEventHubsStorageAccountName;
+                LogEngine.azureLogEnabled = triggerInput.inputs.azureLogEnabled;
+
                 LogEngine.TraceInformation("Enter in RegisterTrigger");
                 LogEngine.TraceInformation($"Enter in RegisterTrigger triggerId {triggerId}");
 
                 GrabCasterListener grabCasterListener = new GrabCasterListener();
 
-                LogEngine.TraceInformation("Start grabCasterListener cal back");
+                LogEngine.TraceInformation("Start grabCasterListener call back");
                 //Register the event.  When I recieve a message, call the method to trigger the logic app
                 grabCasterListener.MessageReceived += (sender, e) => sendTrigger(sender, e, Runtime.FromAppSettings(), triggerInput.GetCallback());
                 LogEngine.TraceInformation("Start grabCasterListener engine");
@@ -264,6 +274,8 @@
             public string GroupEventHubsStorageAccountKey { get; set; }
             [Metadata("Group Storage Account Name", "Set the Azure storage account name.")]
             public string GroupEventHubsStorageAccountName { get; set; }
+            [Metadata("Azure Log Enabled", "Enable the Azure Log on Azure table.")]
+            public bool azureLogEnabled { get; set; }
 
 
 
