@@ -35,9 +35,7 @@ namespace GrabCaster.Framework.Library.Azure
         {
             try
             {
-                //if (!azureLogEnabled) return;
-                string storageAccountName = "grabcasters1";
-                string storageAccountKey = "2Byk+sbyIRrgtE2+sTBnKt+jjqafcWCHrjvCD3IKCwETjYb+rleHnqTuQDny1gz1vcBhNErYQpSXOYCQZLnuqw==";
+                if(!azureLogEnabled) return;
 
                 var connectionString =
                     $"DefaultEndpointsProtocol=https;AccountName={storageAccountName};AccountKey={storageAccountKey}";
