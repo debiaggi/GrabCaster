@@ -151,6 +151,8 @@ namespace GrabCaster.Framework.Engine
         /// </summary>
         private static readonly FileSystemWatcher FswEventFolder = new FileSystemWatcher();
 
+        public static BubblingBag bubblingBag { get; set; }
+
         /// <summary>
         ///     Trigger Delegate initialization
         /// </summary>
@@ -1138,6 +1140,14 @@ namespace GrabCaster.Framework.Engine
                         EventLogEntryType.Warning);
                 }
             }
+
+            //Set up the bubblingBag for console
+            bubblingBag = new BubblingBag();
+            bubblingBag.TriggerConfigurationList = TriggerConfigurationList;
+            bubblingBag.EventConfigurationList = EventConfigurationList;
+            bubblingBag.GlobalEventListBaseDll = GlobalEventListBaseDll;
+            bubblingBag.ConfigurationStorage = Configuration.ConfigurationStorage;
+
         }
 
         /// <summary>

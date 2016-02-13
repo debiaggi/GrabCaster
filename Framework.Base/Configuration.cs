@@ -84,6 +84,8 @@ namespace GrabCaster.Framework.Base
 
             ChannelDescription,
 
+            LocalCall,
+
             SenderId,
 
             SenderName,

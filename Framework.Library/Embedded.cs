@@ -49,8 +49,7 @@ namespace GrabCaster.Framework.Library
     {
 
         public delegate void SetEventActionEventEmbedded(IEventType _this, EventActionContext context);
- 
- 
+
         /// <summary>
         /// Used internally by the embedded
         /// </summary>

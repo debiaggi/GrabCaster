@@ -122,18 +122,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\BubblingBag.cs" />
     <Compile Include="EventsEngine.cs" />
     <Compile Include="CoreEngine.cs" />
     <Compile Include="CoreServiceStates.cs" />
-    <Compile Include="IRESTEventsEngine.cs" />
+    <Compile Include="REST\IRESTEventsEngine.cs" />
     <Compile Include="OnRamp\MessageIngestor.cs" />
-    <Compile Include="SyncConfigurationFile.cs" />
-    <Compile Include="SyncProvider.cs" />
+    <Compile Include="SYNC\SyncConfigurationFile.cs" />
+    <Compile Include="SYNC\SyncProvider.cs" />
     <Compile Include="LockSlimQueueEngine.cs" />
     <Compile Include="OffRamp\OffRampEngine.cs" />
     <Compile Include="OnRamp\OnRampEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RESTEventsEngine.cs" />
+    <Compile Include="REST\RESTEventsEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework.Base\GrabCaster.Framework.Base.csproj">

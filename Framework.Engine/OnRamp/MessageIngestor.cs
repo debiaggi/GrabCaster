@@ -55,8 +55,15 @@ namespace GrabCaster.Framework.Engine.OnRamp
     /// <summary>
     /// Engine main message ingestor
     /// </summary>
-    internal static class MessageIngestor
+    public static class MessageIngestor
     {
+        public delegate void SetConsoleActionEventEmbedded(object bubblingBag);
+        /// <summary>
+        /// Used internally by the embedded
+        /// </summary>
+        public static SetConsoleActionEventEmbedded setConsoleActionEventEmbedded { get; set; }
+
+
         private static object classInstanceDpp;
         private static bool secondaryPersistProviderEnabled;
         private static int secondaryPersistProviderByteSize;
@@ -116,7 +123,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
             byte[] eventDataByte = null;
             var skeletonMessage = (ISkeletonMessage)message;
 
-            // ****************************CHECK MESSAGE TYPE*************************
+            // ****************************IF MESSAGE TYPE = GRABCASTER*************************
             try
             {
                 // Check message subscription, it must come from engine
@@ -142,6 +149,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         $"Event received from Sender {senderId} Sender description {senderDescription}", 
                         ConsoleColor.DarkCyan);
 
+                    // ****************************IF SAME SENDER*************************
                     if (senderId == Configuration.PointId())
                     {
                         LogEngine.ConsoleWriteLine("Same sender ID event discared.", ConsoleColor.Green);
@@ -162,8 +170,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 return;
             }
 
-            // ****************************CHECK MESSAGE TYPE*************************
-            // Check if >256, the restore or not
+            // ****************************GET FROM STORAGE IF REQUIRED*************************
             if ((bool)skeletonMessage.Properties[Configuration.MessageDataProperty.Persisting.ToString()])
             {
                 ParametersPersistEventFromBlob[0] = skeletonMessage.Properties[Configuration.MessageDataProperty.MessageId.ToString()];
@@ -175,12 +182,16 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 eventDataByte = skeletonMessage.Body;
             }
 
-            // Message Type Event,
+            //*******************************************************************
+            //              2 IF TYPES EVENT OR CONSOLE
+            //*******************************************************************
+
+            // ****************************IF EVENT TYPE*************************
             if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
                 == Configuration.MessageDataProperty.Event.ToString())
             {
 
-                //Check if embedded
+                // ****************************IF EMBEDED TYPE EXECUTE TRIGGER*************************
                 if (skeletonMessage.Properties[Configuration.MessageDataProperty.Embedded.ToString()].ToString()
                     == "true")
                 {
@@ -230,10 +241,14 @@ namespace GrabCaster.Framework.Engine.OnRamp
                                         EventLogEntryType.Error);
                     }
 
+                    // ****************************IF EMBEDED RETURN HERE*************************
                     return;
                 }
 
+                // ****************************CAST TO BUBBLING EVENT*************************
                 var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
+
+                // ****************************PERSIST MESSAGE IN FOLDER*************************
                 PersistentProvider.PersistMessage(eventBubbling, PersistentProvider.CommunicationDiretion.OffRamp);
 
                 if (Configuration.LoggingVerbose())
@@ -247,6 +262,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         ConsoleColor.Green);
                 }
 
+                // ****************************IF EXIST EVENT TO EXECUTE*************************
                 var eventsAvailable = from eventbubble in eventBubbling.Events
                                       from channel in eventbubble.Channels
                                       from point in channel.Points
@@ -261,11 +277,14 @@ namespace GrabCaster.Framework.Engine.OnRamp
                                               && point.PointId == Configuration.PointAll)
                                       select eventbubble;
 
+
                 if (!eventsAvailable.Any())
                 {
+                    // ****************************NO EVENT RETURN*************************
                     return;
                 }
 
+                // ****************************EVENT EXIST EXECUTE*************************
                 EventsEngine.ExecuteBubblingActionEvent(
                     eventBubbling, 
                     false, 
@@ -273,8 +292,15 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 return;
             }
 
-            // *******************************Sync and service messages area**********************************************************
-            var receiverChannelId =
+
+            // **************************** IF CONSOLE TYPE *************************
+            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                == Configuration.MessageDataProperty.ConsoleSync.ToString())
+            {
+                
+            }
+
+                var receiverChannelId =
                 skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverChannelId.ToString()].ToString();
             var receiverPointId =
                 skeletonMessage.Properties[Configuration.MessageDataProperty.ReceiverPointId.ToString()].ToString();
@@ -290,10 +316,12 @@ namespace GrabCaster.Framework.Engine.OnRamp
 
             if (!requestAvailable)
             {
+                // ****************************NOT FOR ME*************************
                 return;
             }
 
-            // Send the local bubbling configuration
+            //RICEVE I BUBBLINGS
+            // ****************************WRITE THE TRIGGERS AND EVENTS CONFIGURATION FILES IN FOLDERS*************************
             if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
                 == Configuration.MessageDataProperty.SyncSendBubblingConfiguration.ToString())
             {
@@ -312,6 +340,55 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(), 
                     skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelName.ToString()].ToString(), 
                     skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelDescription.ToString()].ToString());
+                return;
+            }
+
+            //RICEVE LA CONF DAL PUNTO
+            // ****************************WRITE THE POINT CONFIGURATION FILE IN FOLDERs*************************
+            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                == Configuration.MessageDataProperty.SyncSendConfiguration.ToString())
+            {
+                // EventDataByte = NULL
+                LogEngine.ConsoleWriteLine(
+                    $"SyncSendConfiguration from - {senderId} - {senderDescription}",
+                    ConsoleColor.Cyan);
+                SyncProvider.SyncWriteConfiguration(
+                    skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                    eventDataByte);
+                return;
+            }
+
+            //RICEVE E SCRIVE UN FILE DI CONFIGURAZIONE TRIGGER O EVENT NELLA BUBBLIG
+            // ****************************WRITE THE SPECIFIC BUBBLING FILE IN FOLDERS*************************
+            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                == Configuration.MessageDataProperty.SyncSendFileBubblingConfiguration.ToString())
+            {
+                // EventDataByte = NULL
+                LogEngine.ConsoleWriteLine(
+                    $"SyncSendFileBubblingConfiguration from - {senderId} - {senderDescription}",
+                    ConsoleColor.Cyan);
+                var syncConfigurationFilelIst =
+                    (List<SyncConfigurationFile>)SerializationEngine.ByteArrayToObject(eventDataByte);
+                SyncProvider.SyncLocalBubblingConfigurationFile(syncConfigurationFilelIst);
+                return;
+            }
+
+
+            //SCRIVE UN COMP DLL IN EVENTO O TRIGGER FOLDER
+            // ****************************UPDATE A DLL COMPONENT IN FILE IN FOLDERS*************************
+            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                == Configuration.MessageDataProperty.SyncSendComponent.ToString())
+            {
+                // EventDataByte = NULL
+                LogEngine.ConsoleWriteLine(
+                    $"SyncSendComponent from - {senderId} - {senderDescription}",
+                    ConsoleColor.Cyan);
+                var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
+                SyncProvider.SyncUpdateComponent(
+                    skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                    eventBubbling);
                 return;
             }
 
@@ -339,42 +416,14 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 LogEngine.ConsoleWriteLine(
                     $"SyncSendRequestConfiguration from - {senderId} - {senderDescription}", 
                     ConsoleColor.Cyan);
-                SyncProvider.SyncSendConfiguration(
-                    skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(), 
-                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString());
+
+                SyncProvider.SyncSendConfiguration(skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                                                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString());
+                
+
                 return;
             }
 
-            // Send the  configuration
-            // Send the configuration
-            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
-                == Configuration.MessageDataProperty.SyncSendConfiguration.ToString())
-            {
-                // EventDataByte = NULL
-                LogEngine.ConsoleWriteLine(
-                    $"SyncSendConfiguration from - {senderId} - {senderDescription}", 
-                    ConsoleColor.Cyan);
-                SyncProvider.SyncWriteConfiguration(
-                    skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(), 
-                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(), 
-                    eventDataByte);
-                return;
-            }
-
-            // Send a configuration file to update in the official bubbling folder
-            // Write the file in bubbling
-            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
-                == Configuration.MessageDataProperty.SyncSendFileBubblingConfiguration.ToString())
-            {
-                // EventDataByte = NULL
-                LogEngine.ConsoleWriteLine(
-                    $"SyncSendFileBubblingConfiguration from - {senderId} - {senderDescription}", 
-                    ConsoleColor.Cyan);
-                var syncConfigurationFilelIst =
-                    (List<SyncConfigurationFile>)SerializationEngine.ByteArrayToObject(eventDataByte);
-                SyncProvider.SyncLocalBubblingConfigurationFile(syncConfigurationFilelIst);
-                return;
-            }
 
             // Request to send back a component
             if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
@@ -391,36 +440,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 return;
             }
 
-            // Request to update a component
-            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
-                == Configuration.MessageDataProperty.SyncSendComponent.ToString())
-            {
-                // EventDataByte = NULL
-                LogEngine.ConsoleWriteLine(
-                    $"SyncSendComponent from - {senderId} - {senderDescription}", 
-                    ConsoleColor.Cyan);
-                var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
-                SyncProvider.SyncUpdateComponent(
-                    skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(), 
-                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(), 
-                    eventBubbling);
-                return;
-            }
 
-            // Send a configuration file to update in the official bubbling folder
-            // Write the file in bubbling
-            if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
-                != Configuration.MessageDataProperty.SyncSendFileBubblingConfiguration.ToString())
-            {
-                return;
-            }
-            // eventDataByte = NULL
-            LogEngine.ConsoleWriteLine(
-                $"SyncSendFileBubblingConfiguration from - {senderId} - {senderDescription}", 
-                ConsoleColor.Cyan);
-            var syncConfigurationFileList =
-                (List<SyncConfigurationFile>)SerializationEngine.ByteArrayToObject(eventDataByte);
-            SyncProvider.SyncLocalBubblingConfigurationFile(syncConfigurationFileList);
         }
     }
 }
