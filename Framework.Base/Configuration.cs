@@ -141,11 +141,9 @@ namespace GrabCaster.Framework.Base
 
             Message,
 
-            ConsoleSync,
+            ConsoleSendBubblingBag,
+            ConsoleSendBubblingBagFromPoint
 
-            ConsoleSyncEhName,
-
-            ConsoleSyncEhConnstring
         }
 
         //Configuration storagew
@@ -408,12 +406,20 @@ namespace GrabCaster.Framework.Base
         }
 
         /// <summary>
-        ///     BUBBLING directory
+        ///     BUBBLING\Log directory
         /// </summary>
         /// <returns></returns>
         public static string DirectoryLog()
         {
             return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, "Log");
+        }
+        /// <summary>
+        ///     BUBBLING\Log\Concole directory
+        /// </summary>
+        /// <returns></returns>
+        public static string DirectoryLogConsole()
+        {
+            return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, "Log\\Console");
         }
         /// <summary>
         ///     ENDPOINTS directory
@@ -646,7 +652,7 @@ namespace GrabCaster.Framework.Base
         }
 
         /// <summary>
-        /// Number of message in queue before publish
+        /// If provider emssaging is disable
         /// </summary>
         /// <returns></returns>
         public static bool DisableDeviceProviderInterface()

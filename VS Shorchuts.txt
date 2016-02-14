@@ -1,0 +1,3 @@
+Ctrl K + Ctrl F intent the code
+Ctrl K + X Snippet
+Ctrl + Mouse Click for definition

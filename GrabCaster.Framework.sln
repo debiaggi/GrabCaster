@@ -129,6 +129,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{31589D08-C670-48BA-94B5-9300DE84BEEE}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\GrabCaster v1.0- Technical Manual.docx = Documentation\GrabCaster v1.0- Technical Manual.docx
+		VS Shorchuts.txt = VS Shorchuts.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.ChatTrigger", "Triggers\ChatTrigger\GrabCaster.Framework.ChatTrigger.csproj", "{4AD31E16-4857-4015-84AF-E1FC51B1F718}"

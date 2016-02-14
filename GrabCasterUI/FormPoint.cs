@@ -13,6 +13,7 @@ namespace GrabCasterUI
     using System.Threading;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Engine;
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Engine.OnRamp;
@@ -27,8 +28,8 @@ namespace GrabCasterUI
         public const string CONST_ROOT = "ROOT";
         public const string CONST_ROOT_KEY = "ROOT";
 
-        public string PointId = "";
-        public string PointName = "";
+        public static string PointId = "";
+        public static string PointName = "";
 
 
         /// <summary>
@@ -48,7 +49,6 @@ namespace GrabCasterUI
             PointId = Guid.NewGuid().ToString();
             PointName = "Console";
 
-            Configuration.LoadConfiguration();
             setConsoleActionEventEmbedded = EventReceivedFromEmbedded;
             MessageIngestor.setConsoleActionEventEmbedded = setConsoleActionEventEmbedded;
             Console.WriteLine("Start GrabCaster Embedded Library");
@@ -71,11 +71,12 @@ namespace GrabCasterUI
             return null;
         }
 
-        private static void EventReceivedFromEmbedded(object bubblingBag)
+        private static void EventReceivedFromEmbedded(string DestinationConsolePointId, ISkeletonMessage skeletonMessage)
         {
-
-            Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
-
+            if (DestinationConsolePointId == PointId)
+            {
+                Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
+            }
 
 
         }
@@ -83,7 +84,7 @@ namespace GrabCasterUI
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
 
-            OffRampEngineSending.SendNullConsoleMessageOnRamp(
+            OffRampEngineSending.SendNullMessageOnRamp(
                 Configuration.MessageDataProperty.SyncSendRequestConfiguration,
                 "*",
                 "*",
@@ -93,6 +94,7 @@ namespace GrabCasterUI
 
         private void FormPoint_Load(object sender, EventArgs e)
         {
+            InizializeEnvironment();
 
         }
     }
