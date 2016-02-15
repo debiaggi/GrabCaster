@@ -241,7 +241,8 @@ namespace GrabCaster.Framework.Engine.OffRamp
             Configuration.MessageDataProperty ehMessageType, 
             string channelId, 
             string pointId, 
-            Dictionary<string, object> properties)
+            Dictionary<string, object> properties,
+            string pointIdOverrided)
         {
             try
             {
@@ -274,7 +275,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 SkeletonMessage data = new SkeletonMessage(null);
 
                 // IF > 256kb then persist
-                if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
+                    if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
                 {
                     data.Body = Encoding.UTF8.GetBytes(messageId);
                     ParametersCreateEventUpStream[0] = serializedMessage;
@@ -306,7 +307,10 @@ namespace GrabCaster.Framework.Engine.OffRamp
                     Configuration.MessageDataProperty.Message.ToString(), 
                     Configuration.MessageDataProperty.Message.ToString());
                 data.Properties.Add(Configuration.MessageDataProperty.MessageType.ToString(), ehMessageType.ToString());
-                data.Properties.Add(Configuration.MessageDataProperty.SenderId.ToString(), Configuration.PointId());
+
+                string senderid = pointIdOverrided != null? pointIdOverrided : Configuration.PointId();
+                data.Properties.Add(Configuration.MessageDataProperty.SenderId.ToString(), senderid);
+
                 data.Properties.Add(Configuration.MessageDataProperty.SenderName.ToString(), Configuration.PointName());
                 data.Properties.Add(
                     Configuration.MessageDataProperty.SenderDescriprion.ToString(), 
@@ -390,7 +394,8 @@ namespace GrabCaster.Framework.Engine.OffRamp
             string channelId, 
             string pointId, 
             string idComponent, 
-            string subscriberId)
+            string subscriberId,
+            string pointIdOverrided)
         {
             try
             {
@@ -420,7 +425,9 @@ namespace GrabCaster.Framework.Engine.OffRamp
                     Configuration.MessageDataProperty.Message.ToString());
                 data.Properties.Add(Configuration.MessageDataProperty.SubscriberId.ToString(), subscriberId);
                 data.Properties.Add(Configuration.MessageDataProperty.MessageType.ToString(), ehMessageType.ToString());
-                data.Properties.Add(Configuration.MessageDataProperty.SenderId.ToString(), Configuration.PointId());
+
+                string senderid = pointIdOverrided != null ? pointIdOverrided : Configuration.PointId();
+                data.Properties.Add(Configuration.MessageDataProperty.SenderId.ToString(), senderid);
                 data.Properties.Add(Configuration.MessageDataProperty.SenderName.ToString(), Configuration.PointName());
                 data.Properties.Add(
                     Configuration.MessageDataProperty.SenderDescriprion.ToString(), 

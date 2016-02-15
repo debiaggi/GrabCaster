@@ -295,6 +295,7 @@ namespace GrabCaster.Framework.Engine
                             messageType,
                             receiverChannelId,
                             receiverPointId,
+                            null,
                             null);
                     }
                     else
@@ -304,6 +305,7 @@ namespace GrabCaster.Framework.Engine
                             messageType,
                             string.Empty,
                             string.Empty,
+                            null,
                             null);
                     }
 
@@ -414,6 +416,7 @@ namespace GrabCaster.Framework.Engine
                             Configuration.MessageDataProperty.Event, 
                             string.Empty, 
                             string.Empty, 
+                            null,
                             null);
                     }
                 }

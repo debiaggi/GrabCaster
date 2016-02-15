@@ -85,7 +85,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.ConsoleWriteLine(
                     $"Received configuration from ChannelID: {channelId} PointID {pointId}", 
                     ConsoleColor.Green);
-                var folder = string.Concat(Configuration.DirectoryGcPointsBubbling(), "\\", channelId, "\\", pointId);
+                var folder = string.Concat(Configuration.SyncDirectoryGcPoints(), "\\", channelId, "\\", pointId);
                 if (!Directory.Exists(folder))
                 {
                     Directory.CreateDirectory(folder);
@@ -198,7 +198,7 @@ namespace GrabCaster.Framework.Engine
                 var filename = Path.GetFileName(syncConfigurationFile.Name);
 
                 var configurationFile = string.Concat(
-                    Configuration.DirectoryGcPointsBubbling(), 
+                    Configuration.SyncDirectoryGcPoints(), 
                     "\\", 
                     channelId, 
                     "\\", 
@@ -210,7 +210,7 @@ namespace GrabCaster.Framework.Engine
                     "\\", 
                     filename);
                 var gcPointInfoFile = string.Concat(
-                    Configuration.DirectoryGcPointsBubbling(), 
+                    Configuration.SyncDirectoryGcPoints(), 
                     "\\", 
                     channelId, 
                     "\\", 
@@ -366,6 +366,7 @@ namespace GrabCaster.Framework.Engine
                         Configuration.MessageDataProperty.SyncSendBubblingConfiguration, 
                         channelId, 
                         pointId, 
+                        null,
                         null);
                 }
                 else
@@ -421,6 +422,7 @@ namespace GrabCaster.Framework.Engine
                             Configuration.MessageDataProperty.SyncSendConfiguration, 
                             channelId, 
                             pointId, 
+                            null,
                             null);
                     }
                 }
@@ -490,7 +492,7 @@ namespace GrabCaster.Framework.Engine
                 try
                 {
                     var folder = Path.Combine(
-                        Configuration.DirectoryGcPointsBubbling(), 
+                        Configuration.SyncDirectoryGcPoints(), 
                         channelId, 
                         pointId, 
                         messageType.ToString() == "Trigger"
@@ -510,6 +512,7 @@ namespace GrabCaster.Framework.Engine
                         Configuration.MessageDataProperty.SyncSendFileBubblingConfiguration, 
                         channelId, 
                         pointId, 
+                        null,
                         null);
                 }
                 catch (Exception ex)
@@ -554,6 +557,7 @@ namespace GrabCaster.Framework.Engine
                     channelId, 
                     pointId, 
                     string.Empty, 
+                    null,
                     null);
             }
             catch (Exception ex)
@@ -587,6 +591,7 @@ namespace GrabCaster.Framework.Engine
                     channelId, 
                     pointId, 
                     string.Empty, 
+                    null,
                     null);
             }
             catch (Exception ex)
@@ -686,6 +691,7 @@ namespace GrabCaster.Framework.Engine
                         Configuration.MessageDataProperty.SyncSendComponent, 
                         channelId, 
                         pointId, 
+                        null,
                         null);
                     ret = $"Sent IDComponent {idComponent} to Point ID {pointId}";
                 }
@@ -731,6 +737,7 @@ namespace GrabCaster.Framework.Engine
                     channelId, 
                     pointId, 
                     idComponent, 
+                    null,
                     null);
             }
             catch (Exception ex)

@@ -322,7 +322,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 }
 
 
-                // **************************** SYNC AREA *************************
+                // **************************** IF CONSOLE TYPE *************************
                 //Save in a string to simplify the reading and code
                 string OperationTypRequested =
                     skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString();
@@ -365,8 +365,133 @@ namespace GrabCaster.Framework.Engine.OnRamp
                             EventLogEntryType.Warning);
                     }
                 }
-           
-                
+                //******************* OPERATION CONF BAG- ALL THE CONF FILES AND DLLS ****************************************************************
+
+
+
+
+
+                // **************************** REST SERVICE CALLS AREA *************************
+
+                //RICEVE I BUBBLINGS
+                // ****************************WRITE THE TRIGGERS AND EVENTS CONFIGURATION FILES IN FOLDERS*************************
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendBubblingConfiguration.ToString())
+                {
+                    // eventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendBubblingConfiguration from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+                    var syncConfigurationFilelIst =
+                        (List<SyncConfigurationFile>)SerializationEngine.ByteArrayToObject(eventDataByte);
+                    SyncProvider.SyncBubblingConfigurationFileList(
+                        syncConfigurationFilelIst,
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderName.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderDescriprion.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelName.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelDescription.ToString()].ToString());
+                    return;
+                }
+
+                //RICEVE LA CONF DAL PUNTO
+                // ****************************WRITE THE POINT CONFIGURATION FILE IN FOLDERs*************************
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendConfiguration.ToString())
+                {
+                    // EventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendConfiguration from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+                    SyncProvider.SyncWriteConfiguration(
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                        eventDataByte);
+                    return;
+                }
+
+                //RICEVE E SCRIVE UN FILE DI CONFIGURAZIONE TRIGGER O EVENT NELLA BUBBLIG
+                // ****************************WRITE THE SPECIFIC BUBBLING FILE IN FOLDERS*************************
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendFileBubblingConfiguration.ToString())
+                {
+                    // EventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendFileBubblingConfiguration from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+                    var syncConfigurationFilelIst =
+                        (List<SyncConfigurationFile>)SerializationEngine.ByteArrayToObject(eventDataByte);
+                    SyncProvider.SyncLocalBubblingConfigurationFile(syncConfigurationFilelIst);
+                    return;
+                }
+
+
+                //SCRIVE UN COMP DLL IN EVENTO O TRIGGER FOLDER
+                // ****************************UPDATE A DLL COMPONENT IN FILE IN FOLDERS*************************
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendComponent.ToString())
+                {
+                    // EventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendComponent from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+                    var eventBubbling = (BubblingEvent)SerializationEngine.ByteArrayToObject(eventDataByte);
+                    SyncProvider.SyncUpdateComponent(
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                        eventBubbling);
+                    return;
+                }
+
+                // Request to send the local configuration
+                // Send the configuration
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendRequestBubblingConfiguration.ToString())
+                {
+                    // EventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendBubblingConfiguration from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+                    SyncProvider.SyncSendBubblingConfiguration(
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString());
+                    return;
+                }
+
+                // Request to send the  configuration
+                // Send the configuration
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendRequestConfiguration.ToString())
+                {
+                    // EventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendRequestConfiguration from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+
+                    SyncProvider.SyncSendConfiguration(skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                                                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString());
+
+
+                    return;
+                }
+
+
+                // Request to send back a component
+                if (skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString()
+                    == Configuration.MessageDataProperty.SyncSendRequestComponent.ToString())
+                {
+                    // EventDataByte = NULL
+                    LogEngine.ConsoleWriteLine(
+                        $"SyncSendRequestComponent from - {senderId} - {senderDescription}",
+                        ConsoleColor.Cyan);
+                    SyncProvider.SyncSendComponent(
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                        skeletonMessage.Properties[Configuration.MessageDataProperty.IdComponent.ToString()].ToString());
+                    return;
+                }
 
             }
             catch (Exception ex)

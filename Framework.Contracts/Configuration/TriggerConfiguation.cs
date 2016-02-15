@@ -78,7 +78,7 @@ namespace GrabCaster.Framework.Contracts.Configuration
     /// <summary>
     /// The trigger.
     /// </summary>
-    [DataContract]
+    [DataContract,Serializable]
     public class Trigger
     {
         /// <summary>
@@ -136,7 +136,7 @@ namespace GrabCaster.Framework.Contracts.Configuration
     /// <summary>
     /// The trigger property.
     /// </summary>
-    [DataContract]
+    [DataContract, Serializable]
     public class TriggerProperty
     {
         /// <summary>
@@ -170,7 +170,7 @@ namespace GrabCaster.Framework.Contracts.Configuration
     /// <summary>
     /// The trigger action.
     /// </summary>
-    [DataContract]
+    [DataContract, Serializable]
     public class TriggerAction
     {
         /// <summary>

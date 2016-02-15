@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -76,6 +80,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,6 +103,10 @@
       <Project>{cf8282b8-4b29-4a41-8dbc-51a2fc45d223}</Project>
       <Name>GrabCaster.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Compression\GrabCaster.Framework.Compression.csproj">
+      <Project>{7e396d25-d909-4344-bfb5-0d0054be57a6}</Project>
+      <Name>GrabCaster.Framework.Compression</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Framework.Contracts\GrabCaster.Framework.Contracts.csproj">
       <Project>{48b1dc31-f74d-41d2-aa27-7a76f2e198b6}</Project>
       <Name>GrabCaster.Framework.Contracts</Name>
@@ -109,6 +118,14 @@
     <ProjectReference Include="..\Framework.Library\GrabCaster.Framework.Library.csproj">
       <Project>{90edf12e-2f15-4b5c-bc55-d52919b86ab7}</Project>
       <Name>GrabCaster.Framework.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
+      <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
+      <Name>GrabCaster.Framework.Serialization.Object</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Syncronization\GrabCaster.Framework.Syncronization.csproj">
+      <Project>{f1857105-026c-46f3-ba98-4d62c5cc6faf}</Project>
+      <Name>GrabCaster.Framework.Syncronization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -188,6 +188,12 @@ namespace GrabCaster.Framework.Base
 
         public static string DirectoryNamePoints = "GCPoints";
 
+        public static string DirectoryNameSync = "Sync";
+
+        public static string DirectoryNameIn = "In";
+
+        public static string DirectoryNameOut = "Out";
+
         //Messages
         public static string MessageContextAll = "*";
 
@@ -240,24 +246,23 @@ namespace GrabCaster.Framework.Base
                 JsonConvert.DeserializeObject<ConfigurationStorage>(
                     Encoding.UTF8.GetString(File.ReadAllBytes(configurationFile)));
 
-            string BaseDirectory;
             //Check Cluster configuration
             if (Configuration.Clustered())
             {
-                BaseDirectory = Configuration.ClusterBaseFolder();
-                if (!Directory.Exists(BaseDirectory))
+                ConfigurationStorage.BaseDirectory = Configuration.ClusterBaseFolder();
+                if (!Directory.Exists(ConfigurationStorage.BaseDirectory))
                 {
-                    Methods.DirectEventViewerLog($"Missing the Cluster Base Folder Directory {BaseDirectory}.", EventLogEntryType.Error);
-                    throw new NotImplementedException($"Missing the Cluster Base Folder Directory {BaseDirectory}.");
+                    Methods.DirectEventViewerLog($"Missing the Cluster Base Folder Directory {ConfigurationStorage.BaseDirectory}.", EventLogEntryType.Error);
+                    throw new NotImplementedException($"Missing the Cluster Base Folder Directory {ConfigurationStorage.BaseDirectory}.");
                 }
             }
             else
             {
-                BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                ConfigurationStorage.BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             }
 
             var rootDirConf = Path.Combine(
-                BaseDirectory,
+                ConfigurationStorage.BaseDirectory,
                 string.Concat(DirectoryNameConfigurationRoot, "_", filename));
 
             if (!Directory.Exists(rootDirConf))
@@ -268,9 +273,9 @@ namespace GrabCaster.Framework.Base
 
             //AppDomain.CurrentDomain.BaseDirectory
             ConfigurationStorage.DirectoryOperativeRootExeName = Path.Combine(
-                BaseDirectory,
+                ConfigurationStorage.BaseDirectory,
                 string.Concat(DirectoryNameConfigurationRoot, "_", filename));
-            ConfigurationStorage.DirectoryServiceExecutable = BaseDirectory;
+            ConfigurationStorage.DirectoryServiceExecutable = ConfigurationStorage.BaseDirectory;
         }
 
         public static void SaveConfgurtation(ConfigurationStorage configurationStorage)
@@ -426,15 +431,6 @@ namespace GrabCaster.Framework.Base
         /// </summary>
         /// <returns></returns>
         public static string DirectoryEndPoints()
-        {
-            return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, DirectoryNamePoints);
-        }
-
-        /// <summary>
-        ///     ENDPOINTS directory
-        /// </summary>
-        /// <returns></returns>
-        public static string DirectoryGcPointsBubbling()
         {
             return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, DirectoryNamePoints);
         }
@@ -831,6 +827,46 @@ namespace GrabCaster.Framework.Base
         {
             return ConfigurationStorage.EventHubsCheckPointPattern;
         }
+
+
+        //Syncronization Area
+
+
+        /// <summary>
+        ///     ENDPOINTS directory
+        /// </summary>
+        /// <returns></returns>
+        public static string SyncDirectoryGcPoints()
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints);
+        }
+
+        public static string SyncBuildSpecificDirectoryGcPoints(string ChannelId, string PointId)
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, ChannelId,PointId);
+        }
+        public static string SyncBuildSpecificDirectoryGcPointsIn(string ChannelId, string PointId)
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, ChannelId, PointId, DirectoryNameIn);
+        }
+        public static string SyncBuildSpecificDirectoryGcPointsOut(string ChannelId, string PointId)
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, ChannelId, PointId, DirectoryNameOut);
+        }
+        public static string SyncDirectorySync()
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNameSync);
+        }
+        public static string SyncDirectorySyncIn()
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNameSync, DirectoryNameIn);
+        }
+
+        public static string SyncDirectorySyncOut()
+        {
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNameSync,DirectoryNameOut);
+        }
+
     }
 
     [DataContract]
@@ -882,6 +918,7 @@ namespace GrabCaster.Framework.Base
 
         public string DirectoryOperativeRootExeName { get; set; }
 
+        public string BaseDirectory { get; set; }
         //Main Azure connection string
         [DataMember]
         public string AzureNameSpaceConnectionString { get; set; }
