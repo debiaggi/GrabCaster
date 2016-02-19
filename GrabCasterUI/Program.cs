@@ -16,7 +16,7 @@ namespace GrabCasterUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPoint());
+            Application.Run(new FormMain());
         }
     }
 }

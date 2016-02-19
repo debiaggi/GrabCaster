@@ -231,11 +231,12 @@ namespace GrabCaster.Framework.Base
         public static string BubblingOffExtension = @".off";
 
         //Methods
-        public static void LoadConfiguration()
+        public static void LoadConfiguration(string executableName)
         {
             //Get Exe name
             var filename = 
                 Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName).Replace(".vshost", "");
+            if (executableName != null) filename = executableName;
 
             //Get the configuration file
             var configurationFile = Path.Combine(
@@ -841,17 +842,17 @@ namespace GrabCaster.Framework.Base
             return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints);
         }
 
-        public static string SyncBuildSpecificDirectoryGcPoints(string ChannelId, string PointId)
+        public static string SyncBuildSpecificDirectoryGcPoints(string PointId)
         {
-            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, ChannelId,PointId);
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, PointId);
         }
-        public static string SyncBuildSpecificDirectoryGcPointsIn(string ChannelId, string PointId)
+        public static string SyncBuildSpecificDirectoryGcPointsIn(string PointId)
         {
-            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, ChannelId, PointId, DirectoryNameIn);
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, PointId, DirectoryNameIn);
         }
-        public static string SyncBuildSpecificDirectoryGcPointsOut(string ChannelId, string PointId)
+        public static string SyncBuildSpecificDirectoryGcPointsOut( string PointId)
         {
-            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, ChannelId, PointId, DirectoryNameOut);
+            return Path.Combine(ConfigurationStorage.BaseDirectory, DirectoryNamePoints, PointId, DirectoryNameOut);
         }
         public static string SyncDirectorySync()
         {

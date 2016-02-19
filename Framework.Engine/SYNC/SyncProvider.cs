@@ -1196,7 +1196,7 @@ namespace GrabCaster.Framework.Engine
             ////Check if it's a simple event/trigger configuration update (NOT DLL), then just update the eventlistsetting
             LogEngine.ConsoleWriteLine("-!EVENTS CONFIGURATION ENGINE SYNC!-", ConsoleColor.Green);
             EventsEngine.RefreshBubblingSetting();
-            Configuration.LoadConfiguration();
+            Configuration.LoadConfiguration(null);
         }
     }
 }

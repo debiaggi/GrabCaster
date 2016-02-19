@@ -39,7 +39,8 @@ namespace GrabCasterUI
 
         private static bool localPoint = false;
 
-        private ConfigurationStorage configurationStorage = null;
+        private ConfigurationStorage ConfigurationStorage = null;
+        private List<ConfigurationStorage> ConfigurationStorageList = null;
 
 
         /// <summary>
@@ -58,7 +59,9 @@ namespace GrabCasterUI
 
             // solo per debug ma va calcolato dalla combo
             localPoint = true;
+            string exenameTomonitor = "GrabCaster";
 
+            Configuration.LoadConfiguration(exenameTomonitor);
             if (localPoint)
             {
                 PointId = Configuration.PointId();
@@ -70,25 +73,12 @@ namespace GrabCasterUI
                 //si selezione, local oppure una delle dir a si splitta channelid e pointid
 
 
-                string direname="";
-                string[] data = direname.Split('_');
-                ChannelId = data[0];
-                PointId = data[1];
-
                 //prender il valori dal config file
-                configurationStorage = new ConfigurationStorage();
-                string workFolder = Configuration.SyncBuildSpecificDirectoryGcPoints(
-                    ChannelId,
-                    PointId);
+                string workFolder = Configuration.SyncBuildSpecificDirectoryGcPoints(PointId);
 
-                //deve prelevare il file cfg nella dir, puo avere nome diverso percio va cercato
-                string[] configurationFileFound = System.IO.Directory.GetFiles(workFolder, "*.cfg");
-                string configurationFile = Path.Combine(workFolder, configurationFileFound[0]);
-                configurationStorage = JsonConvert.DeserializeObject<ConfigurationStorage>(
-                                                    Encoding.UTF8.GetString(File.ReadAllBytes(configurationFile)));
-
-                PointId = configurationStorage.PointId;
-                PointName = configurationStorage.PointName;
+                ConfigurationStorage = GetConfigurationStorage(workFolder);
+                PointId = ConfigurationStorage.PointId;
+                PointName = ConfigurationStorage.PointName;
 
             }
             setConsoleActionEventEmbedded = EventReceivedFromEmbedded;
@@ -104,6 +94,17 @@ namespace GrabCasterUI
             GrabCaster.Framework.Library.Embedded.StartEngine();
         }
 
+        private ConfigurationStorage GetConfigurationStorage(string workFolder)
+        {
+            ConfigurationStorage configurationStorage = new ConfigurationStorage();
+
+            //deve prelevare il file cfg nella dir, puo avere nome diverso percio va cercato
+            string[] configurationFileFound = System.IO.Directory.GetFiles(workFolder, "*.cfg");
+            string configurationFile = Path.Combine(workFolder, configurationFileFound[0]);
+            configurationStorage = JsonConvert.DeserializeObject<ConfigurationStorage>(
+                                                Encoding.UTF8.GetString(File.ReadAllBytes(configurationFile)));
+            return configurationStorage;
+        }
         public TreeNode RefreshTreeviewPointRootNode()
         {
 
@@ -123,7 +124,7 @@ namespace GrabCasterUI
 
                 string currentSyncFolder = DestinationConsolePointId == Configuration.PointId()
                                                ? Configuration.SyncDirectorySyncIn()
-                                               : Configuration.SyncBuildSpecificDirectoryGcPointsIn(ChannelId, PointId);
+                                               : Configuration.SyncBuildSpecificDirectoryGcPointsIn(PointId);
                 GrabCaster.Framework.Compression.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
                 //GrabCaster.Framework.Syncronization.Helpers.SyncFolders();
 
@@ -133,21 +134,73 @@ namespace GrabCasterUI
 
         }
 
+        
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
-
-            OffRampEngineSending.SendNullMessageOnRamp(
-                Configuration.MessageDataProperty.ConsoleSendBubblingBag,
-                "*",
-                "*",
-                string.Empty,
-                string.Empty,
-                PointId);
+            AskPointBag("*","*",PointId, Configuration.MessageDataProperty.ConsoleSendBubblingBag);
         }
 
+        /// <summary>
+        /// Send a message request in the channels
+        /// </summary>
+        /// <param name="DestinationChannelId"></param>
+        /// <param name="DestinationPointId"></param>
+        /// <param name="CurrentPointId"></param>
+        /// <param name="messageDataProperty"></param>
+        private void AskPointBag(string DestinationChannelId, string DestinationPointId, string CurrentPointId, Configuration.MessageDataProperty messageDataProperty)
+        {
+            OffRampEngineSending.SendNullMessageOnRamp(messageDataProperty,
+                                                        DestinationChannelId,
+                                                        DestinationPointId,
+                                                        string.Empty,
+                                                        string.Empty,
+                                                        CurrentPointId);
+
+        }
         private void FormPoint_Load(object sender, EventArgs e)
         {
             InizializeEnvironment();
+
+        }
+
+        private void buttonAskSpecific_Click(object sender, EventArgs e)
+        {
+
+            ConfigurationStorageList = RefreshConfigurationStorageList();
+        }
+
+        private List<ConfigurationStorage> RefreshConfigurationStorageList()
+        {
+            listBoxGCPoints.Items.Clear();
+            var configurationStorageList = new List<ConfigurationStorage>();
+
+            string gcPointsFolder = Configuration.SyncDirectoryGcPoints();
+            string[] gcPointsFolders = Directory.GetDirectories(gcPointsFolder);
+
+            foreach (var item in gcPointsFolders)
+            {
+                ConfigurationStorage _configurationStorage = new ConfigurationStorage();
+                _configurationStorage = this.GetConfigurationStorage(item);
+                configurationStorageList.Add(_configurationStorage);
+                this.listBoxGCPoints.Items.Add(_configurationStorage.PointId);
+            }
+
+            return configurationStorageList;
+        }
+
+        private void buttonSelecteditem_Click(object sender, EventArgs e)
+        {
+            if (listBoxGCPoints.SelectedIndex < 0)
+            {
+                MessageBox.Show("Select a point.", "GrabCaster", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            ConfigurationStorage configurationStorage = ConfigurationStorageList[listBoxGCPoints.SelectedIndex];
+
+        }
+
+        private void buttonLoadBubbling_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -42,6 +42,8 @@ namespace GrabCaster.Framework
     using GrabCaster.Framework.Log;
     using GrabCaster.Framework.NTService;
 
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
+
     /// <summary>
     /// Class containing the main entry to the program.
     /// </summary>
@@ -68,9 +70,6 @@ namespace GrabCaster.Framework
         {
             try
             {
-
-                Configuration.LoadConfiguration();
-
 
                 LogEngine.Init();
                 LogEngine.ConsoleWriteLine(
