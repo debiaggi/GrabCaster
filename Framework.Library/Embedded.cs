@@ -82,7 +82,7 @@ namespace GrabCaster.Framework.Library
                 Licensing.EvaluateLicense(LicenseFeatures.Embedded, true);
                 //****************************************************************
 
-                Configuration.LoadConfiguration(null);
+                Configuration.LoadConfiguration();
                 LogEngine.Init();
                 LogEngine.ConsoleWriteLine(
                     $"Version {Assembly.GetExecutingAssembly().GetName().Version}",
@@ -190,7 +190,7 @@ namespace GrabCaster.Framework.Library
             //****************************************************************
 
             //Load Configuration
-            GrabCaster.Framework.Base.Configuration.LoadConfiguration(null);
+            GrabCaster.Framework.Base.Configuration.LoadConfiguration();
 
             LogEngine.EventViewerWriteLog(Configuration.EngineName,
                             "Inizialize Off Ramp embedded messaging.",

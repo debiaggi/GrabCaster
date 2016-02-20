@@ -61,7 +61,7 @@ namespace GrabCasterUI
             localPoint = true;
             string exenameTomonitor = "GrabCaster";
 
-            Configuration.LoadConfiguration(exenameTomonitor);
+            Configuration.LoadConfiguration();
             if (localPoint)
             {
                 PointId = Configuration.PointId();

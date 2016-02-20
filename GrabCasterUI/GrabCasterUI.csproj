@@ -68,6 +68,7 @@
     <Compile Include="FormPoint.Designer.cs">
       <DependentUpon>FormPoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="GCPointsFoldersData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormGCPointsList.resx">

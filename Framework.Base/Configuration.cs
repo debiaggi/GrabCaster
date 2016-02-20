@@ -231,12 +231,11 @@ namespace GrabCaster.Framework.Base
         public static string BubblingOffExtension = @".off";
 
         //Methods
-        public static void LoadConfiguration(string executableName)
+        public static void LoadConfiguration()
         {
             //Get Exe name
             var filename = 
                 Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName).Replace(".vshost", "");
-            if (executableName != null) filename = executableName;
 
             //Get the configuration file
             var configurationFile = Path.Combine(
