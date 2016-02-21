@@ -11,10 +11,13 @@ using System.Windows.Forms;
 namespace GrabCasterUI
 {
     using System.IO;
+    using System.Reflection;
     using System.Text.RegularExpressions;
     using System.Threading;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Attributes;
+    using GrabCaster.Framework.Contracts.Bubbling;
     using GrabCaster.Framework.Contracts.Configuration;
     using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Contracts.Syncronization;
@@ -54,13 +57,21 @@ namespace GrabCasterUI
 
         public const string CONST_COMPONENT = "COMPONENT";
         public const string CONST_COMPONENT_KEY = "COMPONENT";
+        public const string CONST_TRIGGERCOMPONENT_KEY = "TRIGGERCOMPONENT";
+        public const string CONST_EVENTCOMPONENT_KEY = "EVENTCOMPONENT";
         public const string CONST_TRIGGER = "TRIGGER";
         public const string CONST_TRIGGER_KEY = "TRIGGER";
+        public const string CONST_TRIGGEROFF_KEY = "TRIGGEROFF";
+        public const string CONST_TRIGGERON_KEY = "TRIGGERON";
         public const string CONST_EVENT = "EVENT";
         public const string CONST_EVENT_KEY = "EVENT";
+        public const string CONST_EVENTON_KEY = "EVENTON";
+        public const string CONST_EVENTOFF_KEY = "EVENTOFF";
 
+        public const string CONST_CORRELATION = "CORRELATION";
+        public const string CONST_CORRELATION_KEY = "CORRELATION";
 
-      private List<GcPointsFoldersData> GcPointsFoldersDataList = null;
+        private List<GcPointsFoldersData> GcPointsFoldersDataList = null;
 
         /// <summary>
         /// The set event action event embedded.
@@ -319,13 +330,16 @@ namespace GrabCasterUI
 
         private void LoadTreeview(TreeView treeView, GcPointsFoldersData gcPointsFoldersData)
         {
-            treeView.Tag = gcPointsFoldersData;
+           
 
             TreeNode treeNodePOINT = treeView.Nodes.Add(
                 CONST_POINT_KEY,
                 GetPointName(gcPointsFoldersData),
                 CONST_POINT_KEY,
                 CONST_POINT_KEY);
+
+            treeNodePOINT.Tag = gcPointsFoldersData;
+
             TreeNode treeNodeBubbling = treeNodePOINT.Nodes.Add(
                 CONST_BUBBLING,
                 CONST_BUBBLING,
@@ -386,9 +400,32 @@ namespace GrabCasterUI
                 TreeNode treeNodeTrigger = treeNodeTriggers.Nodes.Add(
                     CONST_TRIGGER,
                     triggerConfiguration.Trigger.Name,
-                    CONST_TRIGGER_KEY,
-                    CONST_TRIGGER_KEY);
-                treeNodeTrigger.Tag = triggerConfiguration;
+                    IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger)? CONST_TRIGGERON_KEY: CONST_TRIGGEROFF_KEY,
+                    IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger) ? CONST_TRIGGERON_KEY : CONST_TRIGGEROFF_KEY);
+                treeNodeTrigger.Tag = triggerConfiguration.Trigger;
+
+                //Check if event is created
+                if (triggerConfiguration.Events.Count != 0)
+                {
+                    TreeNode treeNodeEventsInTrigger = treeNodeTrigger.Nodes.Add(CONST_EVENTS,
+                                                                        CONST_EVENTS,
+                                                                        CONST_EVENTS_KEY,
+                                                                        CONST_EVENTS_KEY);
+                    foreach (var item in triggerConfiguration.Events)
+                    {
+
+                        TreeNode treeNodeEvent = treeNodeEventsInTrigger.Nodes.Add(
+                                                    CONST_EVENT,
+                                                    item.Name,
+                                                    CONST_EVENT_KEY,
+                                                    CONST_EVENT_KEY);
+                        treeNodeEvent.Tag = item;
+
+                        if (item.Correlation != null)
+                            CheckCorrelation(treeNodeEvent, item);
+
+                    }
+                }
 
             }
 
@@ -419,10 +456,166 @@ namespace GrabCasterUI
                 TreeNode treeNodeEvent = treeNodeEvents.Nodes.Add(
                                             CONST_EVENT,
                                             eventPropertyBag.Event.Name,
-                                            CONST_EVENT_KEY,
-                                            CONST_EVENT_KEY);
-                treeNodeEvent.Tag = eventPropertyBag;
+                                            IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY,
+                                            IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY);
+                treeNodeEvent.Tag = eventPropertyBag.Event;
 
+                if (eventPropertyBag.Event.Correlation != null)
+                    CheckCorrelation(treeNodeEvent, eventPropertyBag.Event);
+
+            }
+
+            //***********************************************************************************
+            //Load components
+
+
+            // Load triggers bubbling path
+            
+            var triggersDirectory = Path.Combine(gcPointsFoldersData.FolderName, Configuration.DirectoryNameTriggers);
+            var assemblyFilesTriggers =
+                Directory.GetFiles(triggersDirectory, Configuration.TriggersDllExtensionLookFor)
+                    .Where(path => regTriggers.IsMatch(path))
+                    .ToList();
+
+            // Load event bubbling path
+            var eventsDirectory = Path.Combine(gcPointsFoldersData.FolderName, Configuration.DirectoryNameEvents);
+            var assemblyFilesEvents =
+                Directory.GetFiles(eventsDirectory, Configuration.EventsDllExtensionLookFor)
+                    .Where(path => regEvents.IsMatch(path))
+                    .ToList();
+
+
+            // ****************************************************
+            // Load Triggers
+            // ****************************************************
+            foreach (var assemblyFile in assemblyFilesTriggers)
+            {
+                var assembly = Assembly.LoadFrom(assemblyFile);
+                var assemblyClasses = from t in assembly.GetTypes()
+                                      let attributes = t.GetCustomAttributes(typeof(TriggerContract), false)
+                                      where t.IsClass && attributes != null && attributes.Length > 0
+                                      select t;
+                foreach (var assemblyClass in assemblyClasses)
+                {
+                    var classAttributes = assemblyClass.GetCustomAttributes(typeof(TriggerContract), true);
+                    if (classAttributes.Length > 0)
+                    {
+
+                        var triggerContract = (TriggerContract)classAttributes[0];
+                        TreeNode treeNodeTriggersComponent = treeNodeTriggersComponents.Nodes.Add(
+                                        CONST_TRIGGERCOMPONENT_KEY,
+                                        triggerContract.Name,
+                                        CONST_TRIGGERCOMPONENT_KEY,
+                                        CONST_TRIGGERCOMPONENT_KEY);
+                        treeNodeTriggersComponent.Tag = triggerContract;
+                    }
+                }
+
+
+            }
+            // ****************************************************
+            // Load Events
+            // ****************************************************
+            foreach (var assemblyFile in assemblyFilesEvents)
+            {
+                // Get all classes with Attribute = Event
+                var assembly = Assembly.LoadFrom(assemblyFile);
+                var assemblyClasses = from t in assembly.GetTypes()
+                                      let attributes = t.GetCustomAttributes(typeof(EventContract), false)
+                                      where t.IsClass && attributes != null && attributes.Length > 0
+                                      select t;
+
+                foreach (var assemblyClass in assemblyClasses)
+                {
+                    var bubblingEvent = new BubblingEvent();
+                    var classAttributes = assemblyClass.GetCustomAttributes(typeof(EventContract), true);
+                    if (classAttributes.Length > 0)
+                    {
+
+                        var eventContract = (EventContract)classAttributes[0];
+                        TreeNode treeNodeEventsComponent = treeNodeEventsComponents.Nodes.Add(CONST_EVENTCOMPONENT_KEY,
+                                                                                                eventContract.Name,
+                                                                                                CONST_EVENTCOMPONENT_KEY,
+                                                                                                CONST_EVENTCOMPONENT_KEY);
+                        treeNodeEventsComponent.Tag = eventContract;
+
+                    }
+                }
+            }
+                }
+
+        private void CheckCorrelation(TreeNode treeNodeEvent, Event eventCorrelation)
+        {
+            TreeNode treeNodeCorrelation = treeNodeEvent.Nodes.Add(
+                CONST_CORRELATION,
+                CONST_CORRELATION,
+                CONST_CORRELATION_KEY,
+                CONST_CORRELATION_KEY);
+
+            treeNodeCorrelation.Tag = eventCorrelation.Correlation;
+
+            foreach (var item in eventCorrelation.Correlation.Events)
+            {
+
+                TreeNode treeNodeCorrelationEvent = treeNodeCorrelation.Nodes.Add(CONST_EVENT,
+                                                                item.Name,
+                                                                CONST_EVENT_KEY,
+                                                                CONST_EVENT_KEY);
+                treeNodeCorrelationEvent.Tag = item;
+                if (item.Correlation != null)
+                {
+                    this.CheckCorrelation(treeNodeCorrelationEvent, item);
+                }
+            }
+            
+        }
+
+        private bool IsTriggerEventActive(string ConfigurationFile,BubblingEventType bubblingEventType)
+        {
+            bool ret = false;
+            try
+            {
+                if (bubblingEventType == BubblingEventType.Trigger)
+                {
+                    ret = Path.GetExtension(ConfigurationFile).ToLower() == Configuration.BubblingTriggersExtension.ToLower();
+                }
+                if (bubblingEventType == BubblingEventType.Event)
+                {
+                    ret = Path.GetExtension(ConfigurationFile).ToLower() == Configuration.BubblingEventsExtension.ToLower();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ConcoleMessage($"Error! {ex.Message}");
+
+
+            }
+
+            return ret;
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox_SelectedIndexChanged((ComboBox)sender);
+        }
+
+
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (this.treeView1.SelectedNode?.Tag != null)
+            {
+                this.propertyGrid1.SelectedObject = this.treeView1.SelectedNode.Tag;
+            }
+        }
+
+        private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (this.treeView2.SelectedNode?.Tag != null)
+            {
+                this.propertyGrid2.SelectedObject = this.treeView2.SelectedNode.Tag;
             }
         }
     }

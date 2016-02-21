@@ -231,6 +231,7 @@
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.Size = new System.Drawing.Size(692, 272);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // imageListTreeview
             // 
@@ -244,6 +245,14 @@
             this.imageListTreeview.Images.SetKeyName(5, "TRIGGERS");
             this.imageListTreeview.Images.SetKeyName(6, "FOLDER");
             this.imageListTreeview.Images.SetKeyName(7, "POINT");
+            this.imageListTreeview.Images.SetKeyName(8, "CORRELATION");
+            this.imageListTreeview.Images.SetKeyName(9, "EVENTOFF");
+            this.imageListTreeview.Images.SetKeyName(10, "EVENTON");
+            this.imageListTreeview.Images.SetKeyName(11, "TRIGGERON");
+            this.imageListTreeview.Images.SetKeyName(12, "TRIGGEROFF");
+            this.imageListTreeview.Images.SetKeyName(13, "TRIGGER");
+            this.imageListTreeview.Images.SetKeyName(14, "EVENTCOMPONENT");
+            this.imageListTreeview.Images.SetKeyName(15, "TRIGGERCOMPONENT");
             // 
             // panel3
             // 
@@ -314,6 +323,7 @@
             this.treeView2.SelectedImageIndex = 0;
             this.treeView2.Size = new System.Drawing.Size(586, 274);
             this.treeView2.TabIndex = 1;
+            this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             // 
             // propertyGrid2
             // 
@@ -342,6 +352,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(586, 24);
             this.comboBox2.TabIndex = 2;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // textBoxConsole
             // 
