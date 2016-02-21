@@ -11,9 +11,11 @@ using System.Windows.Forms;
 namespace GrabCasterUI
 {
     using System.IO;
+    using System.Text.RegularExpressions;
     using System.Threading;
 
     using GrabCaster.Framework.Base;
+    using GrabCaster.Framework.Contracts.Configuration;
     using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Contracts.Syncronization;
     using GrabCaster.Framework.Engine;
@@ -36,20 +38,29 @@ namespace GrabCasterUI
         }
 
         #region Variables
-        private TreeNode treeNodeMainPoint = null;
 
         //Constants 
-        public const string CONST_CONFIGURATION = "BUBBLING";
-        public const string CONST_CONFIGURATION_KEY = "BUBBLING";
-        public const string CONST_COMPONENTS = "COMPONENTS";
-        public const string CONST_COMPONENTS_KEY = "COMPONENTS";
-        public const string CONST_ = "TRIGGERS";
-        public const string CONST__KEY = "COMPONENTS";
-        public const string CONST_ = "COMPONENTS";
-        public const string CONST__KEY = "COMPONENTS";
+        public const string CONST_POINT_KEY = "POINT";
 
-        private ConfigurationStorage ConfigurationStorage = null;
-        private List<GcPointsFoldersData> GcPointsFoldersDataList = null;
+        public const string CONST_BUBBLING = "BUBBLING";
+        public const string CONST_BUBBLING_KEY = "FOLDER";
+
+        public const string CONST_COMPONENTS = "COMPONENTS";
+        public const string CONST_COMPONENTS_KEY = "FOLDER";
+        public const string CONST_TRIGGERS = "TRIGGERS";
+        public const string CONST_TRIGGERS_KEY = "FOLDER";
+        public const string CONST_EVENTS = "EVENTS";
+        public const string CONST_EVENTS_KEY = "FOLDER";
+
+        public const string CONST_COMPONENT = "COMPONENT";
+        public const string CONST_COMPONENT_KEY = "COMPONENT";
+        public const string CONST_TRIGGER = "TRIGGER";
+        public const string CONST_TRIGGER_KEY = "TRIGGER";
+        public const string CONST_EVENT = "EVENT";
+        public const string CONST_EVENT_KEY = "EVENT";
+
+
+      private List<GcPointsFoldersData> GcPointsFoldersDataList = null;
 
         /// <summary>
         /// The set event action event embedded.
@@ -190,14 +201,17 @@ namespace GrabCasterUI
 
             foreach (var item in gcPointsFoldersDataList)
             {
-                ConcoleMessage($"Adding {item.ConfigurationStorage.PointName} - {item.ConfigurationStorage.PointId}");
-                this.comboBox1.Items.Add($"{item.ConfigurationStorage.PointName} - {item.ConfigurationStorage.PointId}");
-                this.comboBox2.Items.Add($"{item.ConfigurationStorage.PointName} - {item.ConfigurationStorage.PointId}");
+                ConcoleMessage($"Adding {GetPointName(item)}");
+                this.comboBox1.Items.Add(GetPointName(item));
+                this.comboBox2.Items.Add(GetPointName(item));
             }
 
         }
 
-
+        private string GetPointName(GcPointsFoldersData gcPointsFoldersData)
+        {
+            return $"{gcPointsFoldersData.ConfigurationStorage.PointName} - {gcPointsFoldersData.ConfigurationStorage.PointId}";
+        }
 
         #region Events
         //Riceve la configurazione
@@ -306,7 +320,110 @@ namespace GrabCasterUI
         private void LoadTreeview(TreeView treeView, GcPointsFoldersData gcPointsFoldersData)
         {
             treeView.Tag = gcPointsFoldersData;
-            this.treeNodeMainPoint = this.treeNodeMainPoint.Nodes.Add(CONST_ROOT, PointName, CONST_ROOT_KEY, CONST_ROOT_KEY);
+
+            TreeNode treeNodePOINT = treeView.Nodes.Add(
+                CONST_POINT_KEY,
+                GetPointName(gcPointsFoldersData),
+                CONST_POINT_KEY,
+                CONST_POINT_KEY);
+            TreeNode treeNodeBubbling = treeNodePOINT.Nodes.Add(
+                CONST_BUBBLING,
+                CONST_BUBBLING,
+                CONST_BUBBLING_KEY,
+                CONST_BUBBLING_KEY);
+            TreeNode treeNodeTriggers = treeNodeBubbling.Nodes.Add(
+                CONST_TRIGGERS,
+                CONST_TRIGGERS,
+                CONST_TRIGGERS_KEY,
+                CONST_TRIGGERS_KEY);
+            TreeNode treeNodeEvents = treeNodeBubbling.Nodes.Add(
+                CONST_EVENTS,
+                CONST_EVENTS,
+                CONST_EVENTS_KEY,
+                CONST_EVENTS_KEY);
+            TreeNode treeNodeComponents = treeNodePOINT.Nodes.Add(
+                CONST_COMPONENTS,
+                CONST_COMPONENTS,
+                CONST_COMPONENTS_KEY,
+                CONST_COMPONENTS_KEY);
+            TreeNode treeNodeTriggersComponents = treeNodeComponents.Nodes.Add(
+                CONST_TRIGGERS,
+                CONST_TRIGGERS,
+                CONST_TRIGGERS_KEY,
+                CONST_TRIGGERS_KEY);
+            TreeNode treeNodeEventsComponents = treeNodeComponents.Nodes.Add(
+                CONST_EVENTS,
+                CONST_EVENTS,
+                CONST_EVENTS_KEY,
+                CONST_EVENTS_KEY);
+            // TRIGGERS***************************************************************************
+            // Loop in the directory
+
+            string DirectoryBubblingTriggers = Path.Combine(
+                gcPointsFoldersData.FolderName,
+                Configuration.DirectoryNameBubbling,
+                Configuration.DirectoryNameTriggers);
+
+
+
+            var triggerBubblingDirectory = DirectoryBubblingTriggers;
+
+            var regTriggers = new Regex(".*");
+            var triggerConfigurationsFiles =
+                Directory.GetFiles(triggerBubblingDirectory, "*", SearchOption.AllDirectories)
+                    .Where(path => regTriggers.IsMatch(path))
+                    .ToList();
+
+            foreach (var triggerConfigurationsFile in triggerConfigurationsFiles)
+            {
+                TriggerConfiguration triggerConfiguration = null;
+                var triggerConfigurationsByteContent = File.ReadAllBytes(triggerConfigurationsFile);
+
+                triggerConfiguration =
+                    JsonConvert.DeserializeObject<TriggerConfiguration>(
+                        Encoding.UTF8.GetString(triggerConfigurationsByteContent));
+
+                TreeNode treeNodeTrigger = treeNodeTriggers.Nodes.Add(
+                    CONST_TRIGGER,
+                    triggerConfiguration.Trigger.Name,
+                    CONST_TRIGGER_KEY,
+                    CONST_TRIGGER_KEY);
+                treeNodeTrigger.Tag = triggerConfiguration;
+
+            }
+
+
+            // EVENTS******************************************************************************
+            // Loop in the directory
+
+            string eventsBubblingDirectory = Path.Combine(
+                gcPointsFoldersData.FolderName,
+                Configuration.DirectoryNameBubbling,
+                Configuration.DirectoryNameEvents);
+
+            var regEvents = new Regex(".*");
+            var propertyEventsFiles =
+                Directory.GetFiles(eventsBubblingDirectory, "*", SearchOption.AllDirectories)
+                    .Where(path => regEvents.IsMatch(path))
+                    .ToList();
+
+            // For each trigger search for the trigger in event bubbling and set the properties
+            foreach (var propertyEventsFile in propertyEventsFiles)
+            {
+                EventConfiguration eventPropertyBag = null;
+                var propertyEventsByteContent = File.ReadAllBytes(propertyEventsFile);
+                eventPropertyBag =
+                    JsonConvert.DeserializeObject<EventConfiguration>(
+                        Encoding.UTF8.GetString(propertyEventsByteContent));
+
+                TreeNode treeNodeEvent = treeNodeEvents.Nodes.Add(
+                                            CONST_EVENT,
+                                            eventPropertyBag.Event.Name,
+                                            CONST_EVENT_KEY,
+                                            CONST_EVENT_KEY);
+                treeNodeEvent.Tag = eventPropertyBag;
+
+            }
         }
     }
 }

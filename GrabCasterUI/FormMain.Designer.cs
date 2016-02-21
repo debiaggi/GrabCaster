@@ -42,19 +42,19 @@
             this.splitContainerMainHorrizzontal = new System.Windows.Forms.SplitContainer();
             this.splitContainerMainVertical = new System.Windows.Forms.SplitContainer();
             this.splitContainerOrizLeft = new System.Windows.Forms.SplitContainer();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
+            this.treeView2 = new System.Windows.Forms.TreeView();
             this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
             this.imageListMainToolbar = new System.Windows.Forms.ImageList(this.components);
-            this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.treeView2 = new System.Windows.Forms.TreeView();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -220,6 +220,31 @@
             this.splitContainerOrizLeft.SplitterWidth = 10;
             this.splitContainerOrizLeft.TabIndex = 3;
             // 
+            // treeView1
+            // 
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageListTreeview;
+            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.SelectedImageIndex = 0;
+            this.treeView1.Size = new System.Drawing.Size(692, 272);
+            this.treeView1.TabIndex = 0;
+            // 
+            // imageListTreeview
+            // 
+            this.imageListTreeview.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTreeview.ImageStream")));
+            this.imageListTreeview.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTreeview.Images.SetKeyName(0, "BUBBLING");
+            this.imageListTreeview.Images.SetKeyName(1, "COMPONENT");
+            this.imageListTreeview.Images.SetKeyName(2, "COMPONENTS");
+            this.imageListTreeview.Images.SetKeyName(3, "EVENT");
+            this.imageListTreeview.Images.SetKeyName(4, "EVENTS");
+            this.imageListTreeview.Images.SetKeyName(5, "TRIGGERS");
+            this.imageListTreeview.Images.SetKeyName(6, "FOLDER");
+            this.imageListTreeview.Images.SetKeyName(7, "POINT");
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.propertyGrid1);
@@ -278,6 +303,18 @@
             this.splitContainerOrizRight.SplitterWidth = 10;
             this.splitContainerOrizRight.TabIndex = 1;
             // 
+            // treeView2
+            // 
+            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView2.ImageIndex = 0;
+            this.treeView2.ImageList = this.imageListTreeview;
+            this.treeView2.Location = new System.Drawing.Point(0, 0);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.SelectedImageIndex = 0;
+            this.treeView2.Size = new System.Drawing.Size(586, 274);
+            this.treeView2.TabIndex = 1;
+            // 
             // propertyGrid2
             // 
             this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -327,30 +364,6 @@
             this.imageListMainToolbar.Images.SetKeyName(0, "bar_refresh.fw.png");
             this.imageListMainToolbar.Images.SetKeyName(1, "bar_setting.fw.png");
             this.imageListMainToolbar.Images.SetKeyName(2, "barr_add.fw.png");
-            // 
-            // imageListTreeview
-            // 
-            this.imageListTreeview.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListTreeview.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageListTreeview.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // treeView1
-            // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(692, 272);
-            this.treeView1.TabIndex = 0;
-            // 
-            // treeView2
-            // 
-            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView2.Location = new System.Drawing.Point(0, 0);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(586, 274);
-            this.treeView2.TabIndex = 1;
             // 
             // FormMain
             // 
