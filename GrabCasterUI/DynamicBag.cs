@@ -11,25 +11,16 @@ namespace GrabCasterUI
     [TypeConverter(typeof(CustomObjectType.CustomObjectConverter))]
     public class CustomObjectType
     {
-        [Category("Component Information")]
-        public string File { get; set; }
-        [Category("Component Information")]
-        public string Name { get; set; }
-        [Category("Component Information")]
-        public string Description { get; set; }
-        [Category("Component Information")]
-        public string ComponentId { get; set; }
-        [Category("Component Information")]
-        public bool Nop { get; set; }
-        [Category("Component Information")]
-        public bool PollingRequired { get; set; }
-        [Category("Component Information")]
-        public bool Shared { get; set; }
-        [Category("Component Information")]
-        public string Type { get; set; }
+
         private readonly List<CustomProperty> props = new List<CustomProperty>();
         [Browsable(false)]
-        public List<CustomProperty> Properties { get { return props; } }
+        public List<CustomProperty> Properties
+        {
+            get { return props; }
+            set
+            {
+            }
+        }
 
         private Dictionary<string, object> values = new Dictionary<string, object>();
 
@@ -66,7 +57,7 @@ namespace GrabCasterUI
             {
                 this.prop = prop;
             }
-            public override string Category { get { return "Properties"; } }
+            public override string Category { get { return prop.Category; } }
             public override string Description { get { return prop.Desc; } }
             public override string Name { get { return prop.Name; } }
             public override bool ShouldSerializeValue(object component) { return ((CustomObjectType)component)[prop.Name] != null; }
@@ -86,6 +77,8 @@ namespace GrabCasterUI
         public string Name { get; set; }
         public string Desc { get; set; }
         public object DefaultValue { get; set; }
+        public string Category { get; set; }
+
         Type type;
 
         public Type Type
@@ -97,7 +90,6 @@ namespace GrabCasterUI
             set
             {
                 type = value;
-                DefaultValue = Activator.CreateInstance(value);
             }
         }
     }
