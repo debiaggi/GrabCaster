@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace GrabCasterUI
 {
+    using System.Dynamic;
     using System.IO;
     using System.Reflection;
+    using System.Reflection.Emit;
     using System.Text.RegularExpressions;
     using System.Threading;
 
@@ -19,8 +21,10 @@ namespace GrabCasterUI
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Bubbling;
     using GrabCaster.Framework.Contracts.Configuration;
+    using GrabCaster.Framework.Contracts.Events;
     using GrabCaster.Framework.Contracts.Messaging;
     using GrabCaster.Framework.Contracts.Syncronization;
+    using GrabCaster.Framework.Contracts.Triggers;
     using GrabCaster.Framework.Engine;
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Engine.OnRamp;
@@ -73,6 +77,10 @@ namespace GrabCasterUI
 
         private List<GcPointsFoldersData> GcPointsFoldersDataList = null;
 
+        public const string Dictionary_File = "File";
+        public const string Dictionary_Object = "Object";
+
+    
         /// <summary>
         /// The set event action event embedded.
         /// </summary>
@@ -402,7 +410,8 @@ namespace GrabCasterUI
                     triggerConfiguration.Trigger.Name,
                     IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger)? CONST_TRIGGERON_KEY: CONST_TRIGGEROFF_KEY,
                     IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger) ? CONST_TRIGGERON_KEY : CONST_TRIGGEROFF_KEY);
-                treeNodeTrigger.Tag = triggerConfiguration.Trigger;
+
+                treeNodeTrigger.Tag = null;
 
                 //Check if event is created
                 if (triggerConfiguration.Events.Count != 0)
@@ -419,7 +428,9 @@ namespace GrabCasterUI
                                                     item.Name,
                                                     CONST_EVENT_KEY,
                                                     CONST_EVENT_KEY);
-                        treeNodeEvent.Tag = item;
+
+                        TreeviewBag treeviewBag = new TreeviewBag(triggerConfigurationsFile, triggerConfiguration.Trigger);
+                        treeNodeEvent.Tag = treeviewBag;
 
                         if (item.Correlation != null)
                             CheckCorrelation(treeNodeEvent, item);
@@ -433,10 +444,9 @@ namespace GrabCasterUI
             // EVENTS******************************************************************************
             // Loop in the directory
 
-            string eventsBubblingDirectory = Path.Combine(
-                gcPointsFoldersData.FolderName,
-                Configuration.DirectoryNameBubbling,
-                Configuration.DirectoryNameEvents);
+            string eventsBubblingDirectory = Path.Combine(gcPointsFoldersData.FolderName,
+                                                            Configuration.DirectoryNameBubbling,
+                                                            Configuration.DirectoryNameEvents);
 
             var regEvents = new Regex(".*");
             var propertyEventsFiles =
@@ -458,7 +468,10 @@ namespace GrabCasterUI
                                             eventPropertyBag.Event.Name,
                                             IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY,
                                             IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY);
-                treeNodeEvent.Tag = eventPropertyBag.Event;
+
+
+                TreeviewBag treeviewBag = new TreeviewBag(propertyEventsFile, eventPropertyBag.Event);
+                treeNodeEvent.Tag = treeviewBag;
 
                 if (eventPropertyBag.Event.Correlation != null)
                     CheckCorrelation(treeNodeEvent, eventPropertyBag.Event);
@@ -507,7 +520,26 @@ namespace GrabCasterUI
                                         triggerContract.Name,
                                         CONST_TRIGGERCOMPONENT_KEY,
                                         CONST_TRIGGERCOMPONENT_KEY);
-                        treeNodeTriggersComponent.Tag = triggerContract;
+
+                        var obj = new CustomObjectType();
+                        obj.Type = "Trigger";
+                        obj.File = assemblyFile;
+                        obj.Name = triggerContract.Name;
+                        obj.Description = triggerContract.Description;
+                        obj.ComponentId = triggerContract.Id;
+                        obj.Nop = triggerContract.Nop;
+                        obj.PollingRequired = triggerContract.PollingRequired;
+                        obj.Shared = triggerContract.Shared;
+                        foreach (var item in assemblyClass.GetProperties())
+                        {
+                            obj.Properties.Add(new CustomProperty { Name = item.Name, Type = typeof(string), Desc = item.PropertyType.ToString()});
+                        }
+
+
+                        TreeviewBag treeviewBag = new TreeviewBag(assemblyFile, obj);
+
+                        treeNodeTriggersComponent.Tag = treeviewBag;
+
                     }
                 }
 
@@ -537,7 +569,25 @@ namespace GrabCasterUI
                                                                                                 eventContract.Name,
                                                                                                 CONST_EVENTCOMPONENT_KEY,
                                                                                                 CONST_EVENTCOMPONENT_KEY);
-                        treeNodeEventsComponent.Tag = eventContract;
+                        var obj = new CustomObjectType();
+                        obj.Type = "Trigger";
+                        obj.File = assemblyFile;
+                        obj.Name = eventContract.Name;
+                        obj.Description = eventContract.Description;
+                        obj.ComponentId = eventContract.Id;
+                        obj.Nop = false;
+                        obj.PollingRequired = false;
+                        obj.Shared = eventContract.Shared;
+                        foreach (var item in assemblyClass.GetProperties())
+                        {
+                            obj.Properties.Add(new CustomProperty { Name = item.Name, Type = typeof(string), Desc = item.PropertyType.ToString() });
+                        }
+
+
+                        TreeviewBag treeviewBag = new TreeviewBag(assemblyFile, obj);
+
+                        treeNodeEventsComponent.Tag = treeviewBag;
+
 
                     }
                 }
@@ -551,8 +601,9 @@ namespace GrabCasterUI
                 CONST_CORRELATION,
                 CONST_CORRELATION_KEY,
                 CONST_CORRELATION_KEY);
+            TreeviewBag treeviewBagC = new TreeviewBag("", eventCorrelation.Correlation);
 
-            treeNodeCorrelation.Tag = eventCorrelation.Correlation;
+            treeNodeCorrelation.Tag = treeviewBagC;
 
             foreach (var item in eventCorrelation.Correlation.Events)
             {
@@ -561,7 +612,8 @@ namespace GrabCasterUI
                                                                 item.Name,
                                                                 CONST_EVENT_KEY,
                                                                 CONST_EVENT_KEY);
-                treeNodeCorrelationEvent.Tag = item;
+                TreeviewBag treeviewBagE = new TreeviewBag("", item);
+                treeNodeCorrelationEvent.Tag = treeviewBagE;
                 if (item.Correlation != null)
                 {
                     this.CheckCorrelation(treeNodeCorrelationEvent, item);
@@ -601,13 +653,24 @@ namespace GrabCasterUI
             comboBox_SelectedIndexChanged((ComboBox)sender);
         }
 
-
+        public static void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
+        {
+            // ExpandoObject supports IDictionary so we can extend it like this
+            var expandoDict = expando as IDictionary<string, object>;
+            if (expandoDict.ContainsKey(propertyName))
+                expandoDict[propertyName] = propertyValue;
+            else
+                expandoDict.Add(propertyName, propertyValue);
+        }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+
             if (this.treeView1.SelectedNode?.Tag != null)
             {
-                this.propertyGrid1.SelectedObject = this.treeView1.SelectedNode.Tag;
+                TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+                this.toolStripStatusLabelMessage.Text = treeviewBag.File;
+                this.propertyGrid2.SelectedObject = treeviewBag.Data;
             }
         }
 
@@ -615,8 +678,28 @@ namespace GrabCasterUI
         {
             if (this.treeView2.SelectedNode?.Tag != null)
             {
-                this.propertyGrid2.SelectedObject = this.treeView2.SelectedNode.Tag;
+                TreeviewBag treeviewBag = (TreeviewBag)this.treeView2.SelectedNode.Tag;
+                this.toolStripStatusLabelMessage.Text = treeviewBag.File;
+                this.propertyGrid2.SelectedObject = treeviewBag.Data;
+
             }
         }
+
+        public class TreeviewBag
+        {
+            public TreeviewBag(string File, object data)
+            {
+                this.File = File;
+                this.Data = Data;
+            }
+            public string File { get; set; }
+            public object Data { get; set; }
+        }
+
+ 
     }
+
+
+
+
 }

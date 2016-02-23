@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DynamicBag.cs" />
     <Compile Include="FormGCPointsList.cs">
       <SubType>Form</SubType>
     </Compile>

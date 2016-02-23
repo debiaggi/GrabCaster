@@ -38,7 +38,7 @@
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMainHorrizzontal = new System.Windows.Forms.SplitContainer();
             this.splitContainerMainVertical = new System.Windows.Forms.SplitContainer();
             this.splitContainerOrizLeft = new System.Windows.Forms.SplitContainer();
@@ -148,18 +148,18 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabelMessage});
             this.statusStrip1.Location = new System.Drawing.Point(0, 702);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1284, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // toolStripStatusLabelMessage
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(158, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabelMessage";
+            this.toolStripStatusLabelMessage.Name = "toolStripStatusLabelMessage";
+            this.toolStripStatusLabelMessage.Size = new System.Drawing.Size(158, 17);
+            this.toolStripStatusLabelMessage.Text = "toolStripStatusLabelMessage";
             // 
             // splitContainerMainHorrizzontal
             // 
@@ -429,7 +429,7 @@
         private System.Windows.Forms.ToolStrip toolStripMenu;
         private System.Windows.Forms.ToolStripButton toolStripButtonRefresh;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelMessage;
         private System.Windows.Forms.SplitContainer splitContainerMainHorrizzontal;
         private System.Windows.Forms.SplitContainer splitContainerMainVertical;
         private System.Windows.Forms.TextBox textBoxConsole;
