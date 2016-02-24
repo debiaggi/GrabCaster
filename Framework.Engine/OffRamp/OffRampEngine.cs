@@ -275,7 +275,8 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 SkeletonMessage data = new SkeletonMessage(null);
 
                 // IF > 256kb then persist
-                    if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
+
+                if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
                 {
                     data.Body = Encoding.UTF8.GetBytes(messageId);
                     ParametersCreateEventUpStream[0] = serializedMessage;

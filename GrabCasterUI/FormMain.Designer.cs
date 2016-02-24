@@ -160,6 +160,7 @@
             this.toolStripStatusLabelMessage.Name = "toolStripStatusLabelMessage";
             this.toolStripStatusLabelMessage.Size = new System.Drawing.Size(158, 17);
             this.toolStripStatusLabelMessage.Text = "toolStripStatusLabelMessage";
+            this.toolStripStatusLabelMessage.Click += new System.EventHandler(this.toolStripStatusLabelMessage_Click);
             // 
             // splitContainerMainHorrizzontal
             // 
@@ -222,6 +223,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.AllowDrop = true;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ImageIndex = 0;
@@ -314,6 +316,7 @@
             // 
             // treeView2
             // 
+            this.treeView2.AllowDrop = true;
             this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.ImageIndex = 0;
