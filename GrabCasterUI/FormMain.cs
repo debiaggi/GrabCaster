@@ -251,22 +251,123 @@ namespace GrabCasterUI
         {
             e.Effect = DragDropEffects.Copy;
         }
+
+        //When treeview receive the ndoe
         private void treeView_DragDrop(object sender, System.Windows.Forms.DragEventArgs e)
         {
-            TreeNode NewNode;
+            TreeNode SourceNode;
 
             if (e.Data.GetDataPresent("System.Windows.Forms.TreeNode", false))
             {
                 Point pt = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
                 TreeNode DestinationNode = ((TreeView)sender).GetNodeAt(pt);
-                NewNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
-                if (DestinationNode.TreeView != NewNode.TreeView)
+                SourceNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
+
+                //Get the tag data
+                TreeviewBag SourcetreeviewBag = null;
+                if (SourceNode.Tag != null)
+                    SourcetreeviewBag = (TreeviewBag)SourceNode.Tag;
+                TreeviewBag DestinationTreeviewBag = null;
+                if (DestinationNode.Tag != null)
+                    DestinationTreeviewBag = (TreeviewBag)DestinationNode.Tag;
+
+            
+
+                //Update?
+                if (SourcetreeviewBag.GrabCasterComponentType == DestinationTreeviewBag.GrabCasterComponentType)
                 {
-                    DestinationNode.Nodes.Add((TreeNode)NewNode.Clone());
-                    DestinationNode.Expand();
-                    //Remove Original Node
-                    //NewNode.Remove();
+                    if (DestinationNode.TreeView != SourceNode.TreeView)
+                    {
+                        if (MessageBoxForm(
+                            "Update the current component?",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //Update operation
+                            DestinationNode = SourceNode;
+                        }
+
+                    }
                 }
+                else
+                {
+                    switch (SourcetreeviewBag.GrabCasterComponentType)
+                    {
+                        case GrabCasterComponentType.TriggerConfiguration:
+                            if (DestinationTreeviewBag.GrabCasterComponentType == GrabCasterComponentType.TriggerComponentRoot)
+                            {
+                                if (DestinationNode.TreeView != SourceNode.TreeView)
+                                {
+                                    DestinationNode.Nodes.Add((TreeNode)SourceNode.Clone());
+                                    DestinationNode.Expand();
+                                    //Remove Original Node
+                                    //NewNode.Remove();
+                                }
+                            }
+                            else
+                            {
+                                
+                            }
+                            break;
+                        case GrabCasterComponentType.EventConfiguration:
+                            if (DestinationTreeviewBag.GrabCasterComponentType == GrabCasterComponentType.EventConfigurationRoot)
+                            {
+                                if (DestinationNode.TreeView != SourceNode.TreeView)
+                                {
+                                    DestinationNode.Nodes.Add((TreeNode)SourceNode.Clone());
+                                    DestinationNode.Expand();
+                                    //Remove Original Node
+                                    //NewNode.Remove();
+                                }
+                            }
+                            else
+                            {
+
+                            }
+                            break;
+                        case GrabCasterComponentType.TriggerComponent:
+                            if (DestinationTreeviewBag.GrabCasterComponentType == GrabCasterComponentType.TriggerComponentRoot)
+                            {
+                                if (DestinationNode.TreeView != SourceNode.TreeView)
+                                {
+                                    DestinationNode.Nodes.Add((TreeNode)SourceNode.Clone());
+                                    DestinationNode.Expand();
+                                    //Remove Original Node
+                                    //NewNode.Remove();
+                                }
+                            }
+                            else
+                            {
+
+                            }
+                            break;
+                        case GrabCasterComponentType.EventComponent:
+                            if (DestinationTreeviewBag.GrabCasterComponentType == GrabCasterComponentType.EventComponentRoot)
+                            {
+                                if (DestinationNode.TreeView != SourceNode.TreeView)
+                                {
+                                    DestinationNode.Nodes.Add((TreeNode)SourceNode.Clone());
+                                    DestinationNode.Expand();
+                                    //Remove Original Node
+                                    //NewNode.Remove();
+                                }
+                            }
+                            else
+                            {
+
+                            }
+                            break;
+                        case GrabCasterComponentType.Correlation:
+                            break;
+                        case GrabCasterComponentType.Root:
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+
+
             }
         }
         //Riceve la configurazione
@@ -374,8 +475,8 @@ namespace GrabCasterUI
 
         private void LoadTreeview(TreeView treeView, GcPointsFoldersData gcPointsFoldersData)
         {
-           
 
+            //treeNodePOINT****************************************************************************************************************
             TreeNode treeNodePOINT = treeView.Nodes.Add(
                 CONST_POINT_KEY,
                 GetPointName(gcPointsFoldersData),
@@ -389,44 +490,109 @@ namespace GrabCasterUI
             objRoot.Properties.Add(new CustomProperty { Category = "Point Information", Name = "Channel Id", DefaultValue = gcPointsFoldersData.ConfigurationStorage.ChannelId, Type = typeof(string), Desc = "GrabCaster Point Name." });
             objRoot.Properties.Add(new CustomProperty { Category = "Point Information", Name = "Channel Description", DefaultValue = gcPointsFoldersData.ConfigurationStorage.ChannelDescription, Type = typeof(string), Desc = "GrabCaster Point Name." });
 
+
             TreeviewBag treeviewBagRoot = new TreeviewBag(gcPointsFoldersData.FolderName,
                              GrabCasterComponentType.Root,
                              gcPointsFoldersData,
                              gcPointsFoldersData.ConfigurationStorage,
-                            typeof(TriggerConfiguration),
                             objRoot);
             treeNodePOINT.Tag = treeviewBagRoot;
+            //****************************************************************************************************************
 
+
+
+
+            //treeNodeBubbling****************************************************************************************************************
             TreeNode treeNodeBubbling = treeNodePOINT.Nodes.Add(
                 CONST_BUBBLING,
                 CONST_BUBBLING,
                 CONST_BUBBLING_KEY,
                 CONST_BUBBLING_KEY);
+            //****************************************************************************************************************
+
+
+            //treeNodeTriggers****************************************************************************************************************
             TreeNode treeNodeTriggers = treeNodeBubbling.Nodes.Add(
                 CONST_TRIGGERS,
                 CONST_TRIGGERS,
                 CONST_TRIGGERS_KEY,
                 CONST_TRIGGERS_KEY);
+
+            TreeviewBag treeviewBagtreeNodeTriggers = new TreeviewBag("Triggers Configuration Group.",
+                                                    GrabCasterComponentType.TriggerConfigurationRoot,
+                                                    "",
+                                                    "",
+                                                    null);
+            treeNodeTriggers.Tag = treeviewBagtreeNodeTriggers;
+            //****************************************************************************************************************
+
+
+
+            //treeNodeEvents****************************************************************************************************************
             TreeNode treeNodeEvents = treeNodeBubbling.Nodes.Add(
                 CONST_EVENTS,
                 CONST_EVENTS,
                 CONST_EVENTS_KEY,
                 CONST_EVENTS_KEY);
+
+            TreeviewBag treeviewBagtreeNodeEvents = new TreeviewBag("Events Configuration Group.",
+                                        GrabCasterComponentType.EventConfigurationRoot,
+                                        "",
+                                        "",
+                                        null);
+            treeNodeEvents.Tag = treeviewBagtreeNodeEvents;
+            //****************************************************************************************************************
+
+
+
+
+
+            //****************************************************************************************************************
             TreeNode treeNodeComponents = treeNodePOINT.Nodes.Add(
                 CONST_COMPONENTS,
                 CONST_COMPONENTS,
                 CONST_COMPONENTS_KEY,
                 CONST_COMPONENTS_KEY);
+            //****************************************************************************************************************
+
+
+
+
+            //****************************************************************************************************************
             TreeNode treeNodeTriggersComponents = treeNodeComponents.Nodes.Add(
                 CONST_TRIGGERS,
                 CONST_TRIGGERS,
                 CONST_TRIGGERS_KEY,
                 CONST_TRIGGERS_KEY);
+
+            TreeviewBag treeviewBagtreeNodeTriggersComponents = new TreeviewBag("Component Triggers Group.",
+                GrabCasterComponentType.TriggerComponent,
+                "",
+                "",
+                null);
+            treeNodeTriggersComponents.Tag = treeviewBagtreeNodeTriggersComponents;
+            //****************************************************************************************************************
+
+
+
+
+            //****************************************************************************************************************
             TreeNode treeNodeEventsComponents = treeNodeComponents.Nodes.Add(
                 CONST_EVENTS,
                 CONST_EVENTS,
                 CONST_EVENTS_KEY,
                 CONST_EVENTS_KEY);
+
+            TreeviewBag treeviewBagtreeNodeEventsComponents = new TreeviewBag("Component Events Group.",
+                            GrabCasterComponentType.EventComponentRoot,
+                            "",
+                            "",
+                            null);
+            treeNodeEventsComponents.Tag = treeviewBagtreeNodeEventsComponents;
+            //****************************************************************************************************************
+            
+            
+            
             // TRIGGERS***************************************************************************
             // Loop in the directory
 
@@ -482,7 +648,6 @@ namespace GrabCasterUI
                                                                     GrabCasterComponentType.TriggerConfiguration, 
                                                                     triggerConfiguration,
                                                                     triggerConfiguration.Trigger.TriggerProperties,
-                                                                    typeof(TriggerConfiguration),  
                                                                     objTriigerConfiguration);
                 treeNodeTrigger.Tag = treeviewBagTrigger;
 
@@ -520,10 +685,9 @@ namespace GrabCasterUI
                             }
                         }
                         TreeviewBag treeviewBag = new TreeviewBag(triggerConfigurationsFile,
-                                                     GrabCasterComponentType.EventConfiguration,
+                                                     GrabCasterComponentType.Event,
                                                      item,
                                                      item.EventProperties,
-                                                    typeof(TriggerConfiguration),
                                                     objTriigerEventConfiguration);
                         treeNodeEvent.Tag = treeviewBag;
                         if (item.Correlation != null)
@@ -588,7 +752,6 @@ namespace GrabCasterUI
                                              GrabCasterComponentType.EventConfiguration,
                                              eventPropertyBag,
                                              eventPropertyBag.Event.EventProperties,
-                                            typeof(EventConfiguration),
                                             objEventConfiguration);
                 treeNodeEvent.Tag = treeviewBag;
 
@@ -676,7 +839,6 @@ namespace GrabCasterUI
                                                                     GrabCasterComponentType.TriggerComponent,
                                                                     triggerContract,
                                                                     assemblyClass.GetProperties(),
-                                                                    typeof(TriggerContract),
                                                                     objTriiger);
 
                         treeNodeTriggersComponent.Tag = treeviewBag;
@@ -743,7 +905,6 @@ namespace GrabCasterUI
                                                                      GrabCasterComponentType.EventComponent,
                                                                      eventContract,
                                                                      assemblyClass.GetProperties(),
-                                                                    typeof(TriggerContract),
                                                                     objEvent);
 
                         treeNodeEventsComponent.Tag = treeviewBag;
@@ -766,7 +927,6 @@ namespace GrabCasterUI
                                               GrabCasterComponentType.Correlation,
                                               eventCorrelation,
                                               eventCorrelation.EventProperties,
-                                             typeof(Event),
                                              null);
 
             treeNodeCorrelation.Tag = treeviewBagC;
@@ -805,7 +965,6 @@ namespace GrabCasterUI
                                                         GrabCasterComponentType.EventConfiguration,
                                                         objCorrelation,
                                                         objCorrelation.Properties,
-                                                        typeof(Event),
                                                         objCorrelation);
 
             treeNodeCorrelationEvent.Tag = treeviewBagE;
@@ -889,7 +1048,6 @@ namespace GrabCasterUI
                                             GrabCasterComponentType.EventConfiguration,
                                             objCorrelationNested,
                                             objCorrelationNested.Properties,
-                                            typeof(Event),
                                             objCorrelationNested);
 
                     treeNodeCorrelationEvent.Tag = treeviewBagENested;
@@ -949,7 +1107,8 @@ namespace GrabCasterUI
             {
                 TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
-                this.propertyGrid1.SelectedObject = treeviewBag.DataBag;
+                this.userControlComponent1.LoadComponentData(treeviewBag);
+             //   this.propertyGrid1.SelectedObject = treeviewBag.DataBag;
             }
         }
 
@@ -959,36 +1118,25 @@ namespace GrabCasterUI
             {
                 TreeviewBag treeviewBag = (TreeviewBag)this.treeView2.SelectedNode.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
-                this.propertyGrid2.SelectedObject = treeviewBag.DataBag;
+              //  this.propertyGrid2.SelectedObject = treeviewBag.DataBag;
 
             }
         }
 
-        public class TreeviewBag
-        {
-            public TreeviewBag(string File, GrabCasterComponentType GrabCasterComponentType, object Header,object Body ,Type GrabCasterComponentObjectType, object DataBag)
-            {
-                this.File = File;
-                this.GrabCasterComponentType = GrabCasterComponentType;
-                this.Header = Header;
-                this.Body = Body;
-                this.GrabCasterComponentObjectType = GrabCasterComponentObjectType;
-                this.DataBag = DataBag;
-
-            }
-            public string File { get; set; }
-            public GrabCasterComponentType GrabCasterComponentType { get; set; }
-            public object Header { get; set; }
-            public object Body { get; set; }
-            public Type GrabCasterComponentObjectType { get; set; }
-            public object DataBag { get; set; }
-        }
 
         private void toolStripStatusLabelMessage_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(toolStripStatusLabelMessage.Text);
             MessageBoxForm("Content copied in the clipboard.", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void SaveJob()
+        {
+            var TriggersToUpdate = from trg in treeView1.Nodes.OfType<TreeNode>() where ((TreeviewBag)trg.Tag).GrabCasterComponentType == GrabCasterComponentType.TriggerComponent select trg.Tag;
+
+        }
+
+
     }
 
 
@@ -1002,6 +1150,8 @@ namespace GrabCasterUI
             return type.IsValueType ? typeDefaults.GetOrAdd(type, t => Activator.CreateInstance(t)) : null;
         }
     }
+
+    
 
 
 
