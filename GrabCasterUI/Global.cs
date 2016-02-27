@@ -35,4 +35,17 @@ namespace GrabCasterUI
         public object DataBag { get; set; }
     }
 
+    public class propertyConfiguration
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public propertyConfiguration(string Name, string Value)
+        {
+            this.Name = Name;
+            this.Value = Value;
+
+        }
+
+    }
 }

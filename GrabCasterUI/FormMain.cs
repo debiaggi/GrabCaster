@@ -126,7 +126,7 @@ namespace GrabCasterUI
         /// </summary>
         /// <param name="workFolder"></param>
         /// <returns></returns>
-        private ConfigurationStorage GetConfigurationStorage(string workFolder,string configurationFileOverrided)
+        private ConfigurationStorage GetConfigurationStorage(string workFolder,ref string configurationFileOverrided)
         {
             ConfigurationStorage configurationStorage = new ConfigurationStorage();
             string configurationFile = "";
@@ -139,6 +139,7 @@ namespace GrabCasterUI
             {
                 configurationFileFound = System.IO.Directory.GetFiles(workFolder, "*.cfg");
                 configurationFile = Path.Combine(workFolder, configurationFileFound[0]);
+                configurationFileOverrided = configurationFile;
             }
 
 
@@ -192,8 +193,8 @@ namespace GrabCasterUI
                     string configFileNameWithFolder = Path.Combine(
                         Configuration.ConfigurationStorage.BaseDirectory,
                         $"{configFileName}.cfg");
-                    _configurationStorage = this.GetConfigurationStorage(configFileNameWithFolder, configFileNameWithFolder);
-                    gcPointsFoldersDataList.Add(new GcPointsFoldersData(item,_configurationStorage));
+                    _configurationStorage = this.GetConfigurationStorage(configFileNameWithFolder, ref configFileNameWithFolder);
+                    gcPointsFoldersDataList.Add(new GcPointsFoldersData(item, configFileNameWithFolder,_configurationStorage));
                 }
 
             }
@@ -208,8 +209,9 @@ namespace GrabCasterUI
             foreach (var item in gcPointsFolders)
             {
                 ConfigurationStorage _configurationStorage = new ConfigurationStorage();
-                _configurationStorage = this.GetConfigurationStorage(item,null);
-                gcPointsFoldersDataList.Add(new GcPointsFoldersData(item, _configurationStorage));
+                string fileName = null;
+                _configurationStorage = this.GetConfigurationStorage(item, ref fileName);
+                gcPointsFoldersDataList.Add(new GcPointsFoldersData(item, fileName, _configurationStorage));
             }
 
             ComboBoxRefreshConfigurationStorageList(gcPointsFoldersDataList);
@@ -492,10 +494,10 @@ namespace GrabCasterUI
 
 
             TreeviewBag treeviewBagRoot = new TreeviewBag(gcPointsFoldersData.FolderName,
-                             GrabCasterComponentType.Root,
-                             gcPointsFoldersData,
-                             gcPointsFoldersData.ConfigurationStorage,
-                            objRoot);
+                                                         GrabCasterComponentType.Root,
+                                                         gcPointsFoldersData,
+                                                         "",
+                                                        objRoot);
             treeNodePOINT.Tag = treeviewBagRoot;
             //****************************************************************************************************************
 
@@ -1107,8 +1109,71 @@ namespace GrabCasterUI
             {
                 TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
-                this.userControlComponent1.LoadComponentData(treeviewBag);
-             //   this.propertyGrid1.SelectedObject = treeviewBag.DataBag;
+
+                switch (treeviewBag.GrabCasterComponentType)
+                {
+                    case GrabCasterComponentType.TriggerConfiguration:
+                        UserControlComponentConfiguration userControlComponentConfigurationTrg = new UserControlComponentConfiguration();
+                        userControlComponentConfigurationTrg.Visible = false;
+                        userControlComponentConfigurationTrg.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlComponentConfigurationTrg.Dock = DockStyle.Fill;
+                        this.panelUCContainer1.Controls.Add(userControlComponentConfigurationTrg);
+                        userControlComponentConfigurationTrg.Visible = true;
+                        break;
+                    case GrabCasterComponentType.Event:
+                        UserControlComponentConfiguration userControlComponentConfigurationEvtTrg = new UserControlComponentConfiguration();
+                        userControlComponentConfigurationEvtTrg.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlComponentConfigurationEvtTrg.Dock = DockStyle.Fill;
+                        this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvtTrg);
+                        userControlComponentConfigurationEvtTrg.Visible = true;
+                        break;
+                    case GrabCasterComponentType.EventConfiguration:
+                        UserControlComponentConfiguration userControlComponentConfigurationEvt = new UserControlComponentConfiguration();
+                        userControlComponentConfigurationEvt.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlComponentConfigurationEvt.Dock = DockStyle.Fill;
+                        this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvt);
+                        userControlComponentConfigurationEvt.Visible = true;
+                        break;
+                    case GrabCasterComponentType.TriggerComponent:
+                        UserControlComponent userControlComponentTrg = new UserControlComponent();
+                        userControlComponentTrg.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlComponentTrg.Dock = DockStyle.Fill;
+                        this.panelUCContainer1.Controls.Add(userControlComponentTrg);
+                        userControlComponentTrg.Visible = true;
+                        break;
+                    case GrabCasterComponentType.EventComponent:
+                        UserControlComponent userControlComponentEvt = new UserControlComponent();
+                        userControlComponentEvt.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlComponentEvt.Dock = DockStyle.Fill;
+                        this.panelUCContainer1.Controls.Add(userControlComponentEvt);
+                        userControlComponentEvt.Visible = true;
+                        break;
+                    case GrabCasterComponentType.Correlation:
+                        break;
+                    case GrabCasterComponentType.Root:
+                        UserControlConfiguration userControlConfiguration = new UserControlConfiguration();
+                        userControlConfiguration.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlConfiguration.Dock = DockStyle.Fill;
+                        this.panelUCContainer1.Controls.Add(userControlConfiguration);
+                        userControlConfiguration.Visible = true;
+                        break;
+                    default:
+                        break;
+                }
+
+
             }
         }
 

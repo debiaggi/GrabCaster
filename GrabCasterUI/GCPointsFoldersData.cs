@@ -11,12 +11,14 @@ namespace GrabCasterUI
     internal class GcPointsFoldersData
     {
         public string FolderName { get; set; }
+        public string ConfigurationFileName { get; set; }
 
         public ConfigurationStorage ConfigurationStorage { get; set; }
 
-        public GcPointsFoldersData(string FolderName, ConfigurationStorage ConfigurationStorage)
+        public GcPointsFoldersData(string FolderName, string ConfigurationFileName, ConfigurationStorage ConfigurationStorage)
         {
             this.FolderName = FolderName;
+            this.ConfigurationFileName = ConfigurationFileName;
             this.ConfigurationStorage = ConfigurationStorage;
         }
 

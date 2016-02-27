@@ -45,17 +45,18 @@
             this.splitContainerOrizLeft = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelUCContainer1 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
             this.treeView2 = new System.Windows.Forms.TreeView();
-            this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
+            this.panelUCContainer2 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
             this.imageListMainToolbar = new System.Windows.Forms.ImageList(this.components);
             this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
+            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -71,12 +72,13 @@
             this.splitContainerOrizLeft.Panel1.SuspendLayout();
             this.splitContainerOrizLeft.Panel2.SuspendLayout();
             this.splitContainerOrizLeft.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelUCContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerOrizRight)).BeginInit();
             this.splitContainerOrizRight.Panel1.SuspendLayout();
             this.splitContainerOrizRight.Panel2.SuspendLayout();
             this.splitContainerOrizRight.SuspendLayout();
+            this.panelUCContainer2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -226,7 +228,7 @@
             // 
             // splitContainerOrizLeft.Panel2
             // 
-            this.splitContainerOrizLeft.Panel2.Controls.Add(this.panel3);
+            this.splitContainerOrizLeft.Panel2.Controls.Add(this.panelUCContainer1);
             this.splitContainerOrizLeft.Size = new System.Drawing.Size(692, 589);
             this.splitContainerOrizLeft.SplitterDistance = 331;
             this.splitContainerOrizLeft.SplitterWidth = 10;
@@ -267,14 +269,14 @@
             this.imageListTreeview.Images.SetKeyName(14, "EVENTCOMPONENT");
             this.imageListTreeview.Images.SetKeyName(15, "TRIGGERCOMPONENT");
             // 
-            // panel3
+            // panelUCContainer1
             // 
-            this.panel3.Controls.Add(this.userControlComponent1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(692, 248);
-            this.panel3.TabIndex = 0;
+            this.panelUCContainer1.Controls.Add(this.userControlComponent1);
+            this.panelUCContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUCContainer1.Location = new System.Drawing.Point(0, 0);
+            this.panelUCContainer1.Name = "panelUCContainer1";
+            this.panelUCContainer1.Size = new System.Drawing.Size(692, 248);
+            this.panelUCContainer1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -310,7 +312,7 @@
             // 
             // splitContainerOrizRight.Panel2
             // 
-            this.splitContainerOrizRight.Panel2.Controls.Add(this.propertyGrid2);
+            this.splitContainerOrizRight.Panel2.Controls.Add(this.panelUCContainer2);
             this.splitContainerOrizRight.Size = new System.Drawing.Size(586, 589);
             this.splitContainerOrizRight.SplitterDistance = 334;
             this.splitContainerOrizRight.SplitterWidth = 10;
@@ -330,14 +332,14 @@
             this.treeView2.TabIndex = 1;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             // 
-            // propertyGrid2
+            // panelUCContainer2
             // 
-            this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid2.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.propertyGrid2.Location = new System.Drawing.Point(0, 0);
-            this.propertyGrid2.Name = "propertyGrid2";
-            this.propertyGrid2.Size = new System.Drawing.Size(586, 245);
-            this.propertyGrid2.TabIndex = 0;
+            this.panelUCContainer2.Controls.Add(this.userControlComponent2);
+            this.panelUCContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUCContainer2.Location = new System.Drawing.Point(0, 0);
+            this.panelUCContainer2.Name = "panelUCContainer2";
+            this.panelUCContainer2.Size = new System.Drawing.Size(586, 245);
+            this.panelUCContainer2.TabIndex = 0;
             // 
             // panel2
             // 
@@ -390,6 +392,15 @@
             this.userControlComponent1.Size = new System.Drawing.Size(692, 248);
             this.userControlComponent1.TabIndex = 0;
             // 
+            // userControlComponent2
+            // 
+            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Name = "userControlComponent2";
+            this.userControlComponent2.Size = new System.Drawing.Size(586, 245);
+            this.userControlComponent2.TabIndex = 1;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,12 +434,13 @@
             this.splitContainerOrizLeft.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerOrizLeft)).EndInit();
             this.splitContainerOrizLeft.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.panelUCContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.splitContainerOrizRight.Panel1.ResumeLayout(false);
             this.splitContainerOrizRight.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerOrizRight)).EndInit();
             this.splitContainerOrizRight.ResumeLayout(false);
+            this.panelUCContainer2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -451,18 +463,19 @@
         private System.Windows.Forms.ImageList imageListTreeview;
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.SplitContainer splitContainerOrizLeft;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelUCContainer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.SplitContainer splitContainerOrizRight;
-        private System.Windows.Forms.PropertyGrid propertyGrid2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ToolStripButton toolStripButtonSyncronize;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TreeView treeView2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Panel panelUCContainer2;
         private UserControlComponent userControlComponent1;
+        private UserControlComponent userControlComponent2;
     }
 }
 

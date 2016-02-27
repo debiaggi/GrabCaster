@@ -73,6 +73,18 @@
     <Compile Include="Global.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControlConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlConfiguration.Designer.cs">
+      <DependentUpon>UserControlConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlComponentConfiguration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlComponentConfiguration.Designer.cs">
+      <DependentUpon>UserControlComponentConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +110,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControlConfiguration.resx">
+      <DependentUpon>UserControlConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlComponentConfiguration.resx">
+      <DependentUpon>UserControlComponentConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlComponent.resx">
       <DependentUpon>UserControlComponent.cs</DependentUpon>
     </EmbeddedResource>
