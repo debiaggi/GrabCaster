@@ -805,43 +805,12 @@ namespace GrabCasterUI
                                         CONST_TRIGGERCOMPONENT_KEY,
                                         CONST_TRIGGERCOMPONENT_KEY);
 
-                        var objTriiger = new CustomObjectType();
-                        objTriiger.Properties.Clear();
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "Type", DefaultValue = "Trigger", Type = typeof(string), Desc = "Component object type [Trigger or Event]." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "Assembly", DefaultValue = assemblyFile, Type = typeof(string), Desc = "Assembly file path." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "Name", DefaultValue = triggerContract.Name, Type = typeof(string), Desc = "Component object name." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "Description", DefaultValue = triggerContract.Description, Type = typeof(string), Desc = "Component object description." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "ComponentId", DefaultValue = triggerContract.Id, Type = typeof(string), Desc = "Component uniquque identifier." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "No operations required", DefaultValue = triggerContract.Nop, Type = typeof(bool), Desc = "[internal use] If true then no any operation will be executed by the component." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "Polling Required", DefaultValue = triggerContract.PollingRequired, Type = typeof(bool), Desc = "If true the component will be executed by the internal engine polling system." });
-                        objTriiger.Properties.Add(new CustomProperty { Category = "Component Information", Name = "Shared", DefaultValue = triggerContract.Shared, Type = typeof(bool), Desc = "If true the component will be shared to the other GrabCaster points." });
-
-                        foreach (var propertyInfo in assemblyClass.GetProperties())
-                        {
-                            var propertyAttributes =
-                                propertyInfo.GetCustomAttributes(typeof(TriggerPropertyContract), true);
-                            if (propertyAttributes.Length > 0)
-                            {
-                                var triggerProperty = (TriggerPropertyContract)propertyAttributes[0];
-
-                                // TODO 1004
-                                if (propertyInfo.Name != triggerProperty.Name)
-                                {
-                                    throw new Exception(
-                                        $"Critical error! the properies {propertyAttributes[0]} and {propertyInfo.Name} are different! Class name {assemblyClass.Name}");
-                                }
-                                if (triggerProperty.Name != "DataContext")
-                                    objTriiger.Properties.Add(new CustomProperty { Category = "Properties", Name = triggerProperty.Name, DefaultValue = propertyInfo.PropertyType.Name, Type = typeof(string), Desc = triggerProperty.Description });
-
-                            }
-                        }
-
 
                         TreeviewBag treeviewBag = new TreeviewBag(assemblyFile,
                                                                     GrabCasterComponentType.TriggerComponent,
                                                                     triggerContract,
                                                                     assemblyClass.GetProperties(),
-                                                                    objTriiger);
+                                                                    assemblyClasses);
 
                         treeNodeTriggersComponent.Tag = treeviewBag;
 

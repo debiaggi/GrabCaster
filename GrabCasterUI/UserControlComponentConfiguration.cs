@@ -87,7 +87,7 @@ namespace GrabCasterUI
 
             for (int i = 0; i < numOfColumns; i++)
             {
-                dataGridViewProperties.Columns[i].Width = averageWitdh;
+                dataGridViewProperties.Columns[i].Width = averageWitdh-30;
             }
 
 

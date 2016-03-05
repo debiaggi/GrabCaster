@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelIdConfiguration = new System.Windows.Forms.Label();
-            this.textBoxIdConfiguration = new System.Windows.Forms.TextBox();
+            this.labelFile = new System.Windows.Forms.Label();
+            this.textBoxFile = new System.Windows.Forms.TextBox();
             this.dataGridViewProperties = new System.Windows.Forms.DataGridView();
             this.labelProperties = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProperties)).BeginInit();
             this.SuspendLayout();
             // 
-            // labelIdConfiguration
+            // labelFile
             // 
-            this.labelIdConfiguration.AutoSize = true;
-            this.labelIdConfiguration.Location = new System.Drawing.Point(2, 6);
-            this.labelIdConfiguration.Name = "labelIdConfiguration";
-            this.labelIdConfiguration.Size = new System.Drawing.Size(78, 13);
-            this.labelIdConfiguration.TabIndex = 0;
-            this.labelIdConfiguration.Text = "IdConfiguration";
+            this.labelFile.AutoSize = true;
+            this.labelFile.Location = new System.Drawing.Point(2, 6);
+            this.labelFile.Name = "labelFile";
+            this.labelFile.Size = new System.Drawing.Size(23, 13);
+            this.labelFile.TabIndex = 0;
+            this.labelFile.Text = "File";
             // 
-            // textBoxIdConfiguration
+            // textBoxFile
             // 
-            this.textBoxIdConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIdConfiguration.Location = new System.Drawing.Point(86, 3);
-            this.textBoxIdConfiguration.Name = "textBoxIdConfiguration";
-            this.textBoxIdConfiguration.Size = new System.Drawing.Size(431, 20);
-            this.textBoxIdConfiguration.TabIndex = 1;
+            this.textBoxFile.Enabled = false;
+            this.textBoxFile.Location = new System.Drawing.Point(86, 3);
+            this.textBoxFile.Name = "textBoxFile";
+            this.textBoxFile.Size = new System.Drawing.Size(431, 20);
+            this.textBoxFile.TabIndex = 1;
             // 
             // dataGridViewProperties
             // 
@@ -84,7 +85,7 @@
             this.buttonSave.TabIndex = 10;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-    
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // UserControlConfiguration
             // 
@@ -93,8 +94,8 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelProperties);
             this.Controls.Add(this.dataGridViewProperties);
-            this.Controls.Add(this.textBoxIdConfiguration);
-            this.Controls.Add(this.labelIdConfiguration);
+            this.Controls.Add(this.textBoxFile);
+            this.Controls.Add(this.labelFile);
             this.Name = "UserControlConfiguration";
             this.Size = new System.Drawing.Size(525, 428);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProperties)).EndInit();
@@ -105,8 +106,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelIdConfiguration;
-        private System.Windows.Forms.TextBox textBoxIdConfiguration;
+        private System.Windows.Forms.Label labelFile;
+        private System.Windows.Forms.TextBox textBoxFile;
         private System.Windows.Forms.DataGridView dataGridViewProperties;
         private System.Windows.Forms.Label labelProperties;
         private System.Windows.Forms.Button buttonSave;

@@ -31,6 +31,20 @@ namespace GrabCasterUI
 
         public void LoadComponentData(TreeviewBag treeviewBag)
         {
+            this.textBoxFile.Text = treeviewBag.File;
+
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
+            PropertyInfo[] propertyInfos = gcPointsFoldersData.ConfigurationStorage.GetType().GetProperties();
+            List<propertyConfiguration> propertyConfigurations = new List<propertyConfiguration>();
+
+            foreach (var item in propertyInfos)
+            {
+                var value = item.GetValue(gcPointsFoldersData.ConfigurationStorage) ?? "";
+
+                propertyConfigurations.Add(new propertyConfiguration(item.Name, value.ToString()));
+            }
+            this.dataGridViewProperties.DataSource = propertyConfigurations;
+
         }
 
         private void setDataGridColumnsWidth()
@@ -44,7 +58,7 @@ namespace GrabCasterUI
 
             for (int i = 0; i < numOfColumns; i++)
             {
-                dataGridViewProperties.Columns[i].Width = averageWitdh;
+                dataGridViewProperties.Columns[i].Width = averageWitdh - 30;
             }
 
 
@@ -54,6 +68,11 @@ namespace GrabCasterUI
         private void dataGridViewProperties_Resize(object sender, EventArgs e)
         {
             setDataGridColumnsWidth();
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
