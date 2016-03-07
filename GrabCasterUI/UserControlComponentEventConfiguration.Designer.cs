@@ -1,6 +1,6 @@
 ﻿namespace GrabCasterUI
 {
-    partial class UserControlComponentConfiguration
+    partial class UserControlComponentEventConfiguration
     {
         /// <summary> 
         /// Required designer variable.
@@ -45,9 +45,10 @@
             // labelIdConfiguration
             // 
             this.labelIdConfiguration.AutoSize = true;
+            this.labelIdConfiguration.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIdConfiguration.Location = new System.Drawing.Point(2, 6);
             this.labelIdConfiguration.Name = "labelIdConfiguration";
-            this.labelIdConfiguration.Size = new System.Drawing.Size(78, 13);
+            this.labelIdConfiguration.Size = new System.Drawing.Size(112, 14);
             this.labelIdConfiguration.TabIndex = 0;
             this.labelIdConfiguration.Text = "IdConfiguration";
             // 
@@ -55,26 +56,29 @@
             // 
             this.textBoxIdConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIdConfiguration.Location = new System.Drawing.Point(86, 3);
+            this.textBoxIdConfiguration.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxIdConfiguration.Location = new System.Drawing.Point(113, 3);
             this.textBoxIdConfiguration.Name = "textBoxIdConfiguration";
-            this.textBoxIdConfiguration.Size = new System.Drawing.Size(431, 20);
+            this.textBoxIdConfiguration.Size = new System.Drawing.Size(806, 20);
             this.textBoxIdConfiguration.TabIndex = 1;
             // 
             // textBoxIdComponent
             // 
             this.textBoxIdComponent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIdComponent.Location = new System.Drawing.Point(86, 29);
+            this.textBoxIdComponent.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxIdComponent.Location = new System.Drawing.Point(113, 29);
             this.textBoxIdComponent.Name = "textBoxIdComponent";
-            this.textBoxIdComponent.Size = new System.Drawing.Size(431, 20);
+            this.textBoxIdComponent.Size = new System.Drawing.Size(806, 20);
             this.textBoxIdComponent.TabIndex = 3;
             // 
             // labelIdComponent
             // 
             this.labelIdComponent.AutoSize = true;
+            this.labelIdComponent.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIdComponent.Location = new System.Drawing.Point(2, 32);
             this.labelIdComponent.Name = "labelIdComponent";
-            this.labelIdComponent.Size = new System.Drawing.Size(70, 13);
+            this.labelIdComponent.Size = new System.Drawing.Size(84, 14);
             this.labelIdComponent.TabIndex = 2;
             this.labelIdComponent.Text = "IdComponent";
             // 
@@ -82,17 +86,19 @@
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.Location = new System.Drawing.Point(86, 55);
+            this.textBoxName.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxName.Location = new System.Drawing.Point(113, 55);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(431, 20);
+            this.textBoxName.Size = new System.Drawing.Size(806, 20);
             this.textBoxName.TabIndex = 5;
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.Location = new System.Drawing.Point(2, 58);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(35, 13);
+            this.labelName.Size = new System.Drawing.Size(35, 14);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "Name";
             // 
@@ -100,19 +106,21 @@
             // 
             this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDescription.Location = new System.Drawing.Point(86, 81);
+            this.textBoxDescription.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDescription.Location = new System.Drawing.Point(113, 81);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDescription.Size = new System.Drawing.Size(431, 40);
+            this.textBoxDescription.Size = new System.Drawing.Size(806, 40);
             this.textBoxDescription.TabIndex = 7;
             // 
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
+            this.labelDescription.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescription.Location = new System.Drawing.Point(2, 84);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(60, 13);
+            this.labelDescription.Size = new System.Drawing.Size(84, 14);
             this.labelDescription.TabIndex = 6;
             this.labelDescription.Text = "Description";
             // 
@@ -122,25 +130,27 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewProperties.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProperties.Location = new System.Drawing.Point(5, 146);
+            this.dataGridViewProperties.Location = new System.Drawing.Point(5, 151);
             this.dataGridViewProperties.Name = "dataGridViewProperties";
-            this.dataGridViewProperties.Size = new System.Drawing.Size(512, 246);
+            this.dataGridViewProperties.Size = new System.Drawing.Size(914, 245);
             this.dataGridViewProperties.TabIndex = 8;
             this.dataGridViewProperties.Resize += new System.EventHandler(this.dataGridViewProperties_Resize);
             // 
             // labelProperties
             // 
             this.labelProperties.AutoSize = true;
-            this.labelProperties.Location = new System.Drawing.Point(2, 130);
+            this.labelProperties.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProperties.Location = new System.Drawing.Point(2, 134);
             this.labelProperties.Name = "labelProperties";
-            this.labelProperties.Size = new System.Drawing.Size(54, 13);
+            this.labelProperties.Size = new System.Drawing.Size(224, 14);
             this.labelProperties.TabIndex = 9;
-            this.labelProperties.Text = "Properties";
+            this.labelProperties.Text = "Override Destination Properties";
             // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(442, 398);
+            this.buttonSave.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSave.Location = new System.Drawing.Point(844, 402);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 10;
@@ -148,7 +158,7 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // UserControlComponentConfiguration
+            // UserControlComponentEventConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -163,8 +173,8 @@
             this.Controls.Add(this.labelIdComponent);
             this.Controls.Add(this.textBoxIdConfiguration);
             this.Controls.Add(this.labelIdConfiguration);
-            this.Name = "UserControlComponentConfiguration";
-            this.Size = new System.Drawing.Size(525, 428);
+            this.Name = "UserControlComponentEventConfiguration";
+            this.Size = new System.Drawing.Size(927, 440);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProperties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

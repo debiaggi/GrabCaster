@@ -16,14 +16,14 @@ namespace GrabCasterUI
     using GrabCaster.Framework.Contracts.Configuration;
     using GrabCaster.Framework.Contracts.Globals;
 
-    public partial class UserControlComponentConfiguration : UserControl
+    public partial class UserControlComponentTriggerConfiguration : UserControl
     {
         private const string DefaultMessage = "Component configuration area.";
         private GrabCasterComponentType grabCasterComponentType { get; set; }
 
         private object objectToUpdate { get; set; }
 
-        public UserControlComponentConfiguration()
+        public UserControlComponentTriggerConfiguration()
         {
             InitializeComponent();
         }
@@ -45,27 +45,6 @@ namespace GrabCasterUI
                     this.dataGridViewProperties.DataSource = triggerConfiguration.Trigger.TriggerProperties;
                     setDataGridColumnsWidth();
                     break;
-                case GrabCasterComponentType.Event:
-                    objectToUpdate = treeviewBag.Component;
-                    Event eventInTrigger = (Event)objectToUpdate;
-                    this.textBoxIdConfiguration.Text = eventInTrigger.IdConfiguration;
-                    this.textBoxIdComponent.Text = eventInTrigger.IdComponent;
-                    this.textBoxName.Text = eventInTrigger.Name;
-                    this.textBoxDescription.Text = eventInTrigger.Description;
-                    this.dataGridViewProperties.DataSource = eventInTrigger.EventProperties;
-                    setDataGridColumnsWidth();
-                    break;
-                case GrabCasterComponentType.EventConfiguration:
-                    objectToUpdate = treeviewBag.Component;
-                    EventConfiguration eventConfiguration = (EventConfiguration)objectToUpdate;
-                    this.textBoxIdConfiguration.Text = eventConfiguration.Event.IdConfiguration;
-                    this.textBoxIdComponent.Text = eventConfiguration.Event.IdComponent;
-                    this.textBoxName.Text = eventConfiguration.Event.Name;
-                    this.textBoxDescription.Text = eventConfiguration.Event.Description;
-                    this.dataGridViewProperties.DataSource = eventConfiguration.Event.EventProperties;
-                    setDataGridColumnsWidth();
-                    break;
-
                 default:
                     break;
             }

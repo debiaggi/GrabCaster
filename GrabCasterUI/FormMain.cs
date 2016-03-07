@@ -21,6 +21,7 @@ namespace GrabCasterUI
     using GrabCaster.Framework.Base;
     using GrabCaster.Framework.Contracts.Attributes;
     using GrabCaster.Framework.Contracts.Bubbling;
+    using GrabCaster.Framework.Contracts.Channels;
     using GrabCaster.Framework.Contracts.Configuration;
     using GrabCaster.Framework.Contracts.Events;
     using GrabCaster.Framework.Contracts.Messaging;
@@ -81,7 +82,11 @@ namespace GrabCasterUI
         public const string Dictionary_File = "File";
         public const string Dictionary_Object = "Object";
 
+        //Al channels
+        private List<Channel> Channels { get; set; }
+
     
+
         /// <summary>
         /// The set event action event embedded.
         /// </summary>
@@ -182,6 +187,13 @@ namespace GrabCasterUI
 
             ConcoleMessage("Adding local folders...");
 
+            Channels = new List<Channel>();
+            List<GrabCaster.Framework.Contracts.Points.Point> PointsAll = new List<GrabCaster.Framework.Contracts.Points.Point>();
+            PointsAll.Add(new GrabCaster.Framework.Contracts.Points.Point("*", "All Points", "All Active Points"));
+            Channel channelAll = new Channel("*", "All Channels", "All Active Channels", PointsAll);
+            Channels.Add(channelAll);
+
+
             //Look in all the folder because I can have multiple GC point cloned in the same local folder
             foreach (var item in gcCongigurationFolders)
             {
@@ -195,6 +207,11 @@ namespace GrabCasterUI
                         $"{configFileName}.cfg");
                     _configurationStorage = this.GetConfigurationStorage(configFileNameWithFolder, ref configFileNameWithFolder);
                     gcPointsFoldersDataList.Add(new GcPointsFoldersData(item, configFileNameWithFolder,_configurationStorage));
+
+                    List<GrabCaster.Framework.Contracts.Points.Point> Points = new List<GrabCaster.Framework.Contracts.Points.Point>();
+                    Points.Add(new GrabCaster.Framework.Contracts.Points.Point(_configurationStorage.PointId, _configurationStorage.PointName, _configurationStorage.PointDescription));
+                    Channel channel = new Channel(_configurationStorage.ChannelId, _configurationStorage.ChannelName, _configurationStorage.ChannelDescription,Points);
+                    Channels.Add(channel);
                 }
 
             }
@@ -212,6 +229,12 @@ namespace GrabCasterUI
                 string fileName = null;
                 _configurationStorage = this.GetConfigurationStorage(item, ref fileName);
                 gcPointsFoldersDataList.Add(new GcPointsFoldersData(item, fileName, _configurationStorage));
+
+                List<GrabCaster.Framework.Contracts.Points.Point> Points = new List<GrabCaster.Framework.Contracts.Points.Point>();
+                Points.Add(new GrabCaster.Framework.Contracts.Points.Point(_configurationStorage.PointId, _configurationStorage.PointName, _configurationStorage.PointDescription));
+                Channel channel = new Channel(_configurationStorage.ChannelId, _configurationStorage.ChannelName, _configurationStorage.ChannelDescription, Points);
+                Channels.Add(channel);
+
             }
 
             ComboBoxRefreshConfigurationStorageList(gcPointsFoldersDataList);
@@ -1082,7 +1105,7 @@ namespace GrabCasterUI
                 switch (treeviewBag.GrabCasterComponentType)
                 {
                     case GrabCasterComponentType.TriggerConfiguration:
-                        UserControlComponentConfiguration userControlComponentConfigurationTrg = new UserControlComponentConfiguration();
+                        UserControlComponentTriggerConfiguration userControlComponentConfigurationTrg = new UserControlComponentTriggerConfiguration();
                         userControlComponentConfigurationTrg.Visible = false;
                         userControlComponentConfigurationTrg.LoadComponentData(treeviewBag);
                         this.panelUCContainer1.Controls.Clear();
@@ -1092,16 +1115,17 @@ namespace GrabCasterUI
                         userControlComponentConfigurationTrg.Visible = true;
                         break;
                     case GrabCasterComponentType.Event:
-                        UserControlComponentConfiguration userControlComponentConfigurationEvtTrg = new UserControlComponentConfiguration();
+                        UserControlComponentEventTrigger userControlComponentConfigurationEvtTrg = new UserControlComponentEventTrigger();
                         userControlComponentConfigurationEvtTrg.LoadComponentData(treeviewBag);
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlComponentConfigurationEvtTrg.Dock = DockStyle.Fill;
+                        userControlComponentConfigurationEvtTrg.ChannelsIn = Channels;
                         this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvtTrg);
                         userControlComponentConfigurationEvtTrg.Visible = true;
                         break;
                     case GrabCasterComponentType.EventConfiguration:
-                        UserControlComponentConfiguration userControlComponentConfigurationEvt = new UserControlComponentConfiguration();
+                        UserControlComponentEventConfiguration userControlComponentConfigurationEvt = new UserControlComponentEventConfiguration();
                         userControlComponentConfigurationEvt.LoadComponentData(treeviewBag);
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
