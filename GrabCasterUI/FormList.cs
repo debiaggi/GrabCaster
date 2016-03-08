@@ -50,6 +50,7 @@ namespace GrabCasterUI
                     }
 
                 }
+
             }
 
             if (listBoxPoints.SelectedItems.Count > 0 && listBoxChannels.SelectedItems.Count == 1)
@@ -85,6 +86,7 @@ namespace GrabCasterUI
             }
 
             ChannelsOut = channelsSelected;
+            this.Close();
         }
 
         private void FormList_Load(object sender, EventArgs e)

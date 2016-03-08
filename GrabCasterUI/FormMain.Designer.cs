@@ -33,6 +33,22 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.triggersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItemTrigger = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItemTrigger = new System.Windows.Forms.ToolStripMenuItem();
+            this.eventsConfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItemEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItemEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.eventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compTriggersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItemCompTrigger = new System.Windows.Forms.ToolStripMenuItem();
+            this.delToolStripMenuItemCompTrigger = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToToolStripMenuItemCompTrigger = new System.Windows.Forms.ToolStripMenuItem();
+            this.compEventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItemCompEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItemCompEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendToToolStripMenuItemCompEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSyncronize = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
@@ -46,17 +62,21 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
             this.panelUCContainer1 = new System.Windows.Forms.Panel();
+            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.panelUCContainer2 = new System.Windows.Forms.Panel();
+            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
             this.imageListMainToolbar = new System.Windows.Forms.ImageList(this.components);
-            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
-            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
+            this.contextMenuStripTriggers = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripEvents = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripTriggersComponent = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripEventComponents = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -85,7 +105,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.configurationToolStripMenuItem,
+            this.eventsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
@@ -105,6 +127,122 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.closeToolStripMenuItem.Text = "Close";
+            // 
+            // configurationToolStripMenuItem
+            // 
+            this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.triggersToolStripMenuItem,
+            this.eventsConfToolStripMenuItem});
+            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.configurationToolStripMenuItem.Text = "Configuration";
+            // 
+            // triggersToolStripMenuItem
+            // 
+            this.triggersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItemTrigger,
+            this.deleteToolStripMenuItemTrigger});
+            this.triggersToolStripMenuItem.Name = "triggersToolStripMenuItem";
+            this.triggersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.triggersToolStripMenuItem.Text = "Triggers";
+            // 
+            // newToolStripMenuItemTrigger
+            // 
+            this.newToolStripMenuItemTrigger.Name = "newToolStripMenuItemTrigger";
+            this.newToolStripMenuItemTrigger.Size = new System.Drawing.Size(107, 22);
+            this.newToolStripMenuItemTrigger.Text = "New";
+            // 
+            // deleteToolStripMenuItemTrigger
+            // 
+            this.deleteToolStripMenuItemTrigger.Name = "deleteToolStripMenuItemTrigger";
+            this.deleteToolStripMenuItemTrigger.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItemTrigger.Text = "Delete";
+            // 
+            // eventsConfToolStripMenuItem
+            // 
+            this.eventsConfToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItemEvent,
+            this.deleteToolStripMenuItemEvent});
+            this.eventsConfToolStripMenuItem.Name = "eventsConfToolStripMenuItem";
+            this.eventsConfToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eventsConfToolStripMenuItem.Text = "Events";
+            // 
+            // newToolStripMenuItemEvent
+            // 
+            this.newToolStripMenuItemEvent.Name = "newToolStripMenuItemEvent";
+            this.newToolStripMenuItemEvent.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItemEvent.Text = "New";
+            // 
+            // deleteToolStripMenuItemEvent
+            // 
+            this.deleteToolStripMenuItemEvent.Name = "deleteToolStripMenuItemEvent";
+            this.deleteToolStripMenuItemEvent.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItemEvent.Text = "Delete";
+            // 
+            // eventsToolStripMenuItem
+            // 
+            this.eventsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compTriggersToolStripMenuItem,
+            this.compEventsToolStripMenuItem});
+            this.eventsToolStripMenuItem.Name = "eventsToolStripMenuItem";
+            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.eventsToolStripMenuItem.Text = "Components";
+            // 
+            // compTriggersToolStripMenuItem
+            // 
+            this.compTriggersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItemCompTrigger,
+            this.delToolStripMenuItemCompTrigger,
+            this.sendToToolStripMenuItemCompTrigger});
+            this.compTriggersToolStripMenuItem.Name = "compTriggersToolStripMenuItem";
+            this.compTriggersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.compTriggersToolStripMenuItem.Text = "Triggers";
+            // 
+            // newToolStripMenuItemCompTrigger
+            // 
+            this.newToolStripMenuItemCompTrigger.Name = "newToolStripMenuItemCompTrigger";
+            this.newToolStripMenuItemCompTrigger.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItemCompTrigger.Text = "New";
+            // 
+            // delToolStripMenuItemCompTrigger
+            // 
+            this.delToolStripMenuItemCompTrigger.Name = "delToolStripMenuItemCompTrigger";
+            this.delToolStripMenuItemCompTrigger.Size = new System.Drawing.Size(152, 22);
+            this.delToolStripMenuItemCompTrigger.Text = "Delete";
+            // 
+            // sendToToolStripMenuItemCompTrigger
+            // 
+            this.sendToToolStripMenuItemCompTrigger.Name = "sendToToolStripMenuItemCompTrigger";
+            this.sendToToolStripMenuItemCompTrigger.Size = new System.Drawing.Size(152, 22);
+            this.sendToToolStripMenuItemCompTrigger.Text = "Send To";
+            // 
+            // compEventsToolStripMenuItem
+            // 
+            this.compEventsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItemCompEvent,
+            this.deleteToolStripMenuItemCompEvent,
+            this.sendToToolStripMenuItemCompEvent});
+            this.compEventsToolStripMenuItem.Name = "compEventsToolStripMenuItem";
+            this.compEventsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.compEventsToolStripMenuItem.Text = "Events";
+            // 
+            // newToolStripMenuItemCompEvent
+            // 
+            this.newToolStripMenuItemCompEvent.Name = "newToolStripMenuItemCompEvent";
+            this.newToolStripMenuItemCompEvent.Size = new System.Drawing.Size(116, 22);
+            this.newToolStripMenuItemCompEvent.Text = "New";
+            // 
+            // deleteToolStripMenuItemCompEvent
+            // 
+            this.deleteToolStripMenuItemCompEvent.Name = "deleteToolStripMenuItemCompEvent";
+            this.deleteToolStripMenuItemCompEvent.Size = new System.Drawing.Size(116, 22);
+            this.deleteToolStripMenuItemCompEvent.Text = "Delete";
+            // 
+            // sendToToolStripMenuItemCompEvent
+            // 
+            this.sendToToolStripMenuItemCompEvent.Name = "sendToToolStripMenuItemCompEvent";
+            this.sendToToolStripMenuItemCompEvent.Size = new System.Drawing.Size(116, 22);
+            this.sendToToolStripMenuItemCompEvent.Text = "Send To";
             // 
             // toolStripMenu
             // 
@@ -247,6 +385,7 @@
             this.treeView1.Size = new System.Drawing.Size(692, 331);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // imageListTreeview
             // 
@@ -277,6 +416,17 @@
             this.panelUCContainer1.Name = "panelUCContainer1";
             this.panelUCContainer1.Size = new System.Drawing.Size(692, 248);
             this.panelUCContainer1.TabIndex = 0;
+            // 
+            // userControlComponent1
+            // 
+            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent1.Name = "userControlComponent1";
+            this.userControlComponent1.Size = new System.Drawing.Size(692, 248);
+            this.userControlComponent1.TabIndex = 0;
+            this.userControlComponent1.TreeNodeSide = null;
+            this.userControlComponent1.TreeViewSide = null;
             // 
             // panel1
             // 
@@ -341,6 +491,17 @@
             this.panelUCContainer2.Size = new System.Drawing.Size(586, 245);
             this.panelUCContainer2.TabIndex = 0;
             // 
+            // userControlComponent2
+            // 
+            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Name = "userControlComponent2";
+            this.userControlComponent2.Size = new System.Drawing.Size(586, 245);
+            this.userControlComponent2.TabIndex = 1;
+            this.userControlComponent2.TreeNodeSide = null;
+            this.userControlComponent2.TreeViewSide = null;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.comboBox2);
@@ -383,23 +544,25 @@
             this.imageListMainToolbar.Images.SetKeyName(1, "bar_setting.fw.png");
             this.imageListMainToolbar.Images.SetKeyName(2, "barr_add.fw.png");
             // 
-            // userControlComponent1
+            // contextMenuStripTriggers
             // 
-            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(692, 248);
-            this.userControlComponent1.TabIndex = 0;
+            this.contextMenuStripTriggers.Name = "contextMenuStripTriggers";
+            this.contextMenuStripTriggers.Size = new System.Drawing.Size(61, 4);
             // 
-            // userControlComponent2
+            // contextMenuStripEvents
             // 
-            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(586, 245);
-            this.userControlComponent2.TabIndex = 1;
+            this.contextMenuStripEvents.Name = "contextMenuStripTriggers";
+            this.contextMenuStripEvents.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStripTriggersComponent
+            // 
+            this.contextMenuStripTriggersComponent.Name = "contextMenuStripTriggers";
+            this.contextMenuStripTriggersComponent.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStripEventComponents
+            // 
+            this.contextMenuStripEventComponents.Name = "contextMenuStripTriggers";
+            this.contextMenuStripEventComponents.Size = new System.Drawing.Size(61, 4);
             // 
             // FormMain
             // 
@@ -476,6 +639,26 @@
         private System.Windows.Forms.Panel panelUCContainer2;
         private UserControlComponent userControlComponent1;
         private UserControlComponent userControlComponent2;
+        private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem triggersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItemTrigger;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItemTrigger;
+        private System.Windows.Forms.ToolStripMenuItem eventsConfToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItemEvent;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItemEvent;
+        private System.Windows.Forms.ToolStripMenuItem eventsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compTriggersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItemCompTrigger;
+        private System.Windows.Forms.ToolStripMenuItem delToolStripMenuItemCompTrigger;
+        private System.Windows.Forms.ToolStripMenuItem sendToToolStripMenuItemCompTrigger;
+        private System.Windows.Forms.ToolStripMenuItem compEventsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItemCompEvent;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItemCompEvent;
+        private System.Windows.Forms.ToolStripMenuItem sendToToolStripMenuItemCompEvent;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTriggers;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripEvents;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTriggersComponent;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripEventComponents;
     }
 }
 

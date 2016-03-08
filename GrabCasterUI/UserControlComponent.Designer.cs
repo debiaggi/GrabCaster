@@ -39,7 +39,6 @@
             this.richTextBoxSummary.Size = new System.Drawing.Size(525, 428);
             this.richTextBoxSummary.TabIndex = 11;
             this.richTextBoxSummary.Text = "Configuration area.";
-            this.richTextBoxSummary.Visible = false;
             // 
             // UserControlComponent
             // 

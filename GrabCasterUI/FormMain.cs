@@ -97,6 +97,11 @@ namespace GrabCasterUI
         {
             //Load Configuration
 
+            this.contextMenuStripTriggers.Items.Add(triggersToolStripMenuItem);
+            this.contextMenuStripEvents.Items.Add(eventsConfToolStripMenuItem);
+            this.contextMenuStripTriggersComponent.Items.Add(compTriggersToolStripMenuItem);
+            this.contextMenuStripEventComponents.Items.Add(compEventsToolStripMenuItem);
+
             this.treeView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
             this.treeView2.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
             this.treeView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeView_DragEnter);
@@ -303,7 +308,7 @@ namespace GrabCasterUI
                 {
                     if (DestinationNode.TreeView != SourceNode.TreeView)
                     {
-                        if (MessageBoxForm(
+                        if (Global.MessageBoxForm(
                             "Update the current component?",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Question) == DialogResult.Yes)
@@ -466,14 +471,11 @@ namespace GrabCasterUI
 
         #endregion
 
-        private DialogResult MessageBoxForm(string message, MessageBoxButtons messageBoxButtons, MessageBoxIcon messageBoxIcon)
-        {
-            return MessageBox.Show(message, "GrabCaster", messageBoxButtons, messageBoxIcon);
-        }
+
 
         private void toolStripButtonSyncronize_Click(object sender, EventArgs e)
         {
-            if (MessageBoxForm("Send the syncronization request?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            if (Global.MessageBoxForm("Send the syncronization request?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes)
             {
                 SyncGCPointsFolder();
@@ -674,6 +676,9 @@ namespace GrabCasterUI
                                                                     triggerConfiguration,
                                                                     triggerConfiguration.Trigger.TriggerProperties,
                                                                     objTriigerConfiguration);
+
+                treeviewBagRoot.triggerConfigurationList.Add(triggerConfiguration);
+
                 treeNodeTrigger.Tag = treeviewBagTrigger;
 
                 //Check if event is created
@@ -778,6 +783,7 @@ namespace GrabCasterUI
                                              eventPropertyBag,
                                              eventPropertyBag.Event.EventProperties,
                                             objEventConfiguration);
+                treeviewBagRoot.eventConfigurationList.Add(eventPropertyBag);
                 treeNodeEvent.Tag = treeviewBag;
 
                 if (eventPropertyBag.Event.Correlation != null)
@@ -834,7 +840,7 @@ namespace GrabCasterUI
                                                                     triggerContract,
                                                                     assemblyClass.GetProperties(),
                                                                     assemblyClasses);
-
+                        treeviewBagRoot.componentTriggerList.Add(new componentTrigger(triggerContract,assemblyClass));
                         treeNodeTriggersComponent.Tag = treeviewBag;
 
                     }
@@ -900,7 +906,7 @@ namespace GrabCasterUI
                                                                      eventContract,
                                                                      assemblyClass.GetProperties(),
                                                                     objEvent);
-
+                        treeviewBagRoot.componentEventList.Add(new componentEvent(eventContract, assemblyClass));
                         treeNodeEventsComponent.Tag = treeviewBag;
 
 
@@ -1111,6 +1117,8 @@ namespace GrabCasterUI
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlComponentConfigurationTrg.Dock = DockStyle.Fill;
+                        userControlComponentConfigurationTrg.TreeViewSide = this.treeView1;
+                        userControlComponentConfigurationTrg.TreeNodeSide = this.treeView1.SelectedNode;
                         this.panelUCContainer1.Controls.Add(userControlComponentConfigurationTrg);
                         userControlComponentConfigurationTrg.Visible = true;
                         break;
@@ -1120,6 +1128,8 @@ namespace GrabCasterUI
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlComponentConfigurationEvtTrg.Dock = DockStyle.Fill;
+                        userControlComponentConfigurationEvtTrg.TreeViewSide = this.treeView1;
+                        userControlComponentConfigurationEvtTrg.TreeNodeSide = this.treeView1.SelectedNode;
                         userControlComponentConfigurationEvtTrg.ChannelsIn = Channels;
                         this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvtTrg);
                         userControlComponentConfigurationEvtTrg.Visible = true;
@@ -1130,6 +1140,8 @@ namespace GrabCasterUI
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlComponentConfigurationEvt.Dock = DockStyle.Fill;
+                        userControlComponentConfigurationEvt.TreeViewSide = this.treeView1;
+                        userControlComponentConfigurationEvt.TreeNodeSide = this.treeView1.SelectedNode;
                         this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvt);
                         userControlComponentConfigurationEvt.Visible = true;
                         break;
@@ -1139,6 +1151,8 @@ namespace GrabCasterUI
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlComponentTrg.Dock = DockStyle.Fill;
+                        userControlComponentTrg.TreeViewSide = this.treeView1;
+                        userControlComponentTrg.TreeNodeSide = this.treeView1.SelectedNode;
                         this.panelUCContainer1.Controls.Add(userControlComponentTrg);
                         userControlComponentTrg.Visible = true;
                         break;
@@ -1148,6 +1162,8 @@ namespace GrabCasterUI
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlComponentEvt.Dock = DockStyle.Fill;
+                        userControlComponentEvt.TreeViewSide = this.treeView1;
+                        userControlComponentEvt.TreeNodeSide = this.treeView1.SelectedNode;
                         this.panelUCContainer1.Controls.Add(userControlComponentEvt);
                         userControlComponentEvt.Visible = true;
                         break;
@@ -1159,6 +1175,8 @@ namespace GrabCasterUI
                         this.panelUCContainer1.Controls.Clear();
                         this.panelUCContainer1.BackColor = SystemColors.Control;
                         userControlConfiguration.Dock = DockStyle.Fill;
+                        userControlConfiguration.TreeViewSide = this.treeView1;
+                        userControlConfiguration.TreeNodeSide = this.treeView1.SelectedNode;
                         this.panelUCContainer1.Controls.Add(userControlConfiguration);
                         userControlConfiguration.Visible = true;
                         break;
@@ -1185,7 +1203,7 @@ namespace GrabCasterUI
         private void toolStripStatusLabelMessage_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(toolStripStatusLabelMessage.Text);
-            MessageBoxForm("Content copied in the clipboard.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Global.MessageBoxForm("Content copied in the clipboard.", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SaveJob()
@@ -1194,7 +1212,48 @@ namespace GrabCasterUI
 
         }
 
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+                    return;
+            if (this.treeView1.SelectedNode?.Tag != null)
+            {
+                TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+                this.toolStripStatusLabelMessage.Text = treeviewBag.File;
 
+                switch (treeviewBag.GrabCasterComponentType)
+                {
+                    case GrabCasterComponentType.TriggerConfiguration:
+                        this.treeView1.SelectedNode.ContextMenuStrip = contextMenuStripTriggers;
+
+                        break;
+                    case GrabCasterComponentType.Event:
+                        this.treeView1.SelectedNode.ContextMenuStrip = contextMenuStripTriggers;
+
+                        break;
+                    case GrabCasterComponentType.EventConfiguration:
+
+                        break;
+                    case GrabCasterComponentType.TriggerComponent:
+
+                        break;
+                    case GrabCasterComponentType.EventComponent:
+
+                        break;
+                    case GrabCasterComponentType.Correlation:
+
+                        break;
+                    case GrabCasterComponentType.Root:
+
+                        break;
+                    default:
+                        break;
+                }
+
+
+            }
+
+        }
     }
 
 

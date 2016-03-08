@@ -142,9 +142,9 @@
             this.labelProperties.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelProperties.Location = new System.Drawing.Point(2, 134);
             this.labelProperties.Name = "labelProperties";
-            this.labelProperties.Size = new System.Drawing.Size(224, 14);
+            this.labelProperties.Size = new System.Drawing.Size(203, 14);
             this.labelProperties.TabIndex = 9;
-            this.labelProperties.Text = "Override Destination Properties";
+            this.labelProperties.Text = "Destination Event Properties";
             // 
             // buttonSave
             // 

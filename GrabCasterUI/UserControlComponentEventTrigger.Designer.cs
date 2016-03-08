@@ -179,21 +179,23 @@
             // 
             this.buttonDelProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelProperty.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelProperty.Image")));
-            this.buttonDelProperty.Location = new System.Drawing.Point(899, 391);
+            this.buttonDelProperty.Location = new System.Drawing.Point(899, 373);
             this.buttonDelProperty.Name = "buttonDelProperty";
             this.buttonDelProperty.Size = new System.Drawing.Size(25, 25);
             this.buttonDelProperty.TabIndex = 26;
             this.buttonDelProperty.UseVisualStyleBackColor = true;
+            this.buttonDelProperty.Click += new System.EventHandler(this.buttonDelProperty_Click);
             // 
             // buttonAddProperty
             // 
             this.buttonAddProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddProperty.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddProperty.Image")));
-            this.buttonAddProperty.Location = new System.Drawing.Point(899, 360);
+            this.buttonAddProperty.Location = new System.Drawing.Point(899, 342);
             this.buttonAddProperty.Name = "buttonAddProperty";
             this.buttonAddProperty.Size = new System.Drawing.Size(25, 25);
             this.buttonAddProperty.TabIndex = 25;
             this.buttonAddProperty.UseVisualStyleBackColor = true;
+            this.buttonAddProperty.Click += new System.EventHandler(this.buttonAddProperty_Click);
             // 
             // buttonDelPoint
             // 
@@ -204,6 +206,7 @@
             this.buttonDelPoint.Size = new System.Drawing.Size(25, 25);
             this.buttonDelPoint.TabIndex = 20;
             this.buttonDelPoint.UseVisualStyleBackColor = true;
+            this.buttonDelPoint.Click += new System.EventHandler(this.buttonDelPoint_Click);
             // 
             // buttonAddPoints
             // 
@@ -214,6 +217,7 @@
             this.buttonAddPoints.Size = new System.Drawing.Size(25, 25);
             this.buttonAddPoints.TabIndex = 19;
             this.buttonAddPoints.UseVisualStyleBackColor = true;
+            this.buttonAddPoints.Click += new System.EventHandler(this.buttonAddPoints_Click);
             // 
             // buttonDelChannel
             // 
@@ -224,6 +228,7 @@
             this.buttonDelChannel.Size = new System.Drawing.Size(25, 25);
             this.buttonDelChannel.TabIndex = 22;
             this.buttonDelChannel.UseVisualStyleBackColor = true;
+            this.buttonDelChannel.Click += new System.EventHandler(this.buttonDelChannel_Click);
             // 
             // buttonAddChannel
             // 

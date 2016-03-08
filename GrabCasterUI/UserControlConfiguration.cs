@@ -22,6 +22,8 @@ namespace GrabCasterUI
         private GrabCasterComponentType grabCasterComponentType { get; set; }
 
         private object objectToUpdate { get; set; }
+        public TreeView TreeViewSide { get; set; }
+        public TreeNode TreeNodeSide { get; set; }
 
         public UserControlConfiguration()
         {
