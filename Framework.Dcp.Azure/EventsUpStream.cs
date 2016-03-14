@@ -65,7 +65,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Event Hubs transfort Type: {Configuration.ServiceBusConnectivityMode()}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     null,
                     EventLogEntryType.Information);
@@ -104,7 +104,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCriticalEventHubs,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesEventHubs,
                     ex,
                     EventLogEntryType.Error);

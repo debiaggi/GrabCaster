@@ -35,12 +35,12 @@ namespace GrabCaster.Framework.Base
         /// <summary>
         /// The ID for the high critical events (Engine).
         /// </summary>
-        public static int ErrorEventIdHighCritical { get; } = 10001;
+        public static int DefconOne { get; } = 1;
+        public static int DefconTwo { get; } = 2;
+        public static int DefconThree { get; } = 3;
+        public static int DefconFour { get; } = 4;
+        public static int DefconFive { get; } = 5;
 
-        /// <summary>
-        /// The ID for the high critical events (Event Hub)
-        /// </summary>
-        public static int ErrorEventIdHighCriticalEventHubs { get; } = 11001;
 
         /// <summary>
         /// The task category error.

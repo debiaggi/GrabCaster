@@ -59,7 +59,7 @@ namespace GrabCaster.Framework.Storage
                 {
                     LogEngine.WriteLog(Configuration.EngineName,
                                         $"Impossible to use a remote storage provider, this GrabCaster point is configured for local only execution.",
-                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.DefconOne,
                                         Constant.TaskCategoriesError,
                                         null,
                                         EventLogEntryType.Warning);
@@ -93,7 +93,7 @@ namespace GrabCaster.Framework.Storage
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -143,7 +143,7 @@ namespace GrabCaster.Framework.Storage
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);

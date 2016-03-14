@@ -81,6 +81,12 @@
     <Compile Include="FormPoint.Designer.cs">
       <DependentUpon>FormPoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTextInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTextInput.Designer.cs">
+      <DependentUpon>FormTextInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="GCPointsFoldersData.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Program.cs" />
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPoint.resx">
       <DependentUpon>FormPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTextInput.resx">
+      <DependentUpon>FormTextInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -197,6 +206,10 @@
     <ProjectReference Include="..\Framework.Serialization.Object\GrabCaster.Framework.Serialization.Object.csproj">
       <Project>{8ac04993-e722-47f5-ac8e-7c448c752852}</Project>
       <Name>GrabCaster.Framework.Serialization.Object</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Serialization.Xml\GrabCaster.Framework.Serialization.Xml.csproj">
+      <Project>{AFEE871C-778B-4A26-9609-609D922D9653}</Project>
+      <Name>GrabCaster.Framework.Serialization.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Syncronization\GrabCaster.Framework.Syncronization.csproj">
       <Project>{f1857105-026c-46f3-ba98-4d62c5cc6faf}</Project>

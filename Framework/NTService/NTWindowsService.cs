@@ -62,7 +62,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -86,7 +86,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Instance {this.ServiceName} engine starting.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     null, 
                     EventLogEntryType.Information);
@@ -98,7 +98,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Instance {this.ServiceName} engine started.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     null, 
                     EventLogEntryType.Information);
@@ -108,7 +108,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);

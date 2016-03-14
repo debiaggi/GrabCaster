@@ -121,7 +121,7 @@ namespace GrabCaster.Framework.Storage
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -159,7 +159,7 @@ namespace GrabCaster.Framework.Storage
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -208,7 +208,7 @@ namespace GrabCaster.Framework.Storage
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);

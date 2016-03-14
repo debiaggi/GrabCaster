@@ -31,6 +31,7 @@ namespace GrabCasterUI
     using GrabCaster.Framework.Engine.OffRamp;
     using GrabCaster.Framework.Engine.OnRamp;
     using GrabCaster.Framework.Serialization.Object;
+    using GrabCaster.Framework.Serialization.Xml;
 
     using Newtonsoft.Json;
 
@@ -51,8 +52,8 @@ namespace GrabCasterUI
         //Constants 
         public const string CONST_POINT_KEY = "POINT";
 
-        public const string CONST_BUBBLING = "BUBBLING";
-        public const string CONST_BUBBLING_KEY = "FOLDER";
+        public const string CONST_CONFIGURATION = "CONFIGURATION";
+        public const string CONST_CONFIGURATION_KEY = "FOLDER";
 
         public const string CONST_COMPONENTS = "COMPONENTS";
         public const string CONST_COMPONENTS_KEY = "FOLDER";
@@ -74,7 +75,7 @@ namespace GrabCasterUI
         public const string CONST_EVENTON_KEY = "EVENTON";
         public const string CONST_EVENTOFF_KEY = "EVENTOFF";
 
-        public const string CONST_CORRELATION = "CORRELATION";
+        public const string CONST_CORRELATION = "Correlation";
         public const string CONST_CORRELATION_KEY = "CORRELATION";
 
         private List<GcPointsFoldersData> GcPointsFoldersDataList = null;
@@ -97,10 +98,6 @@ namespace GrabCasterUI
         {
             //Load Configuration
 
-            this.contextMenuStripTriggers.Items.Add(triggersToolStripMenuItem);
-            this.contextMenuStripEvents.Items.Add(eventsConfToolStripMenuItem);
-            this.contextMenuStripTriggersComponent.Items.Add(compTriggersToolStripMenuItem);
-            this.contextMenuStripEventComponents.Items.Add(compEventsToolStripMenuItem);
 
             this.treeView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
             this.treeView2.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
@@ -429,6 +426,7 @@ namespace GrabCasterUI
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+     
             InizializeEnvironment();
         }
         /// <summary>
@@ -502,14 +500,21 @@ namespace GrabCasterUI
 
         private void LoadTreeview(TreeView treeView, GcPointsFoldersData gcPointsFoldersData)
         {
+            TreeNode treeNodePOINT = treeView.Nodes.Add(
+                                CONST_POINT_KEY,
+                                GetPointName(gcPointsFoldersData),
+                                CONST_POINT_KEY,
+                                CONST_POINT_KEY);
+            LoadRooTreeViewNode(treeView, treeNodePOINT, gcPointsFoldersData);
+        }
+
+        private void LoadRooTreeViewNode(TreeView treeView,TreeNode treeNodePOINT, GcPointsFoldersData gcPointsFoldersData)
+        {
 
             //treeNodePOINT****************************************************************************************************************
-            TreeNode treeNodePOINT = treeView.Nodes.Add(
-                CONST_POINT_KEY,
-                GetPointName(gcPointsFoldersData),
-                CONST_POINT_KEY,
-                CONST_POINT_KEY);
+
             var objRoot = new CustomObjectType();
+
             objRoot.Properties.Add(new CustomProperty { Category = "Point Information", Name = "Point Name", DefaultValue = gcPointsFoldersData.ConfigurationStorage.PointName, Type = typeof(string), Desc = "GrabCaster Point Name." });
             objRoot.Properties.Add(new CustomProperty { Category = "Point Information", Name = "Point Id", DefaultValue = gcPointsFoldersData.ConfigurationStorage.PointId, Type = typeof(string), Desc = "GrabCaster Point Name." });
             objRoot.Properties.Add(new CustomProperty { Category = "Point Information", Name = "Point Description", DefaultValue = gcPointsFoldersData.ConfigurationStorage.PointDescription, Type = typeof(string), Desc = "GrabCaster Point Name." });
@@ -522,7 +527,7 @@ namespace GrabCasterUI
                                                          GrabCasterComponentType.Root,
                                                          gcPointsFoldersData,
                                                          "",
-                                                        objRoot);
+                                                        objRoot, null, null);
             treeNodePOINT.Tag = treeviewBagRoot;
             //****************************************************************************************************************
 
@@ -531,10 +536,10 @@ namespace GrabCasterUI
 
             //treeNodeBubbling****************************************************************************************************************
             TreeNode treeNodeBubbling = treeNodePOINT.Nodes.Add(
-                CONST_BUBBLING,
-                CONST_BUBBLING,
-                CONST_BUBBLING_KEY,
-                CONST_BUBBLING_KEY);
+                CONST_CONFIGURATION,
+                CONST_CONFIGURATION,
+                CONST_CONFIGURATION_KEY,
+                CONST_CONFIGURATION_KEY);
             //****************************************************************************************************************
 
 
@@ -549,7 +554,7 @@ namespace GrabCasterUI
                                                     GrabCasterComponentType.TriggerConfigurationRoot,
                                                     "",
                                                     "",
-                                                    null);
+                                                    null, null, null);
             treeNodeTriggers.Tag = treeviewBagtreeNodeTriggers;
             //****************************************************************************************************************
 
@@ -566,7 +571,7 @@ namespace GrabCasterUI
                                         GrabCasterComponentType.EventConfigurationRoot,
                                         "",
                                         "",
-                                        null);
+                                        null, null, null);
             treeNodeEvents.Tag = treeviewBagtreeNodeEvents;
             //****************************************************************************************************************
 
@@ -593,10 +598,10 @@ namespace GrabCasterUI
                 CONST_TRIGGERS_KEY);
 
             TreeviewBag treeviewBagtreeNodeTriggersComponents = new TreeviewBag("Component Triggers Group.",
-                GrabCasterComponentType.TriggerComponent,
+                GrabCasterComponentType.TriggerComponentRoot,
                 "",
                 "",
-                null);
+                null, null, null);
             treeNodeTriggersComponents.Tag = treeviewBagtreeNodeTriggersComponents;
             //****************************************************************************************************************
 
@@ -614,12 +619,12 @@ namespace GrabCasterUI
                             GrabCasterComponentType.EventComponentRoot,
                             "",
                             "",
-                            null);
+                            null, null, null);
             treeNodeEventsComponents.Tag = treeviewBagtreeNodeEventsComponents;
             //****************************************************************************************************************
-            
-            
-            
+
+
+
             // TRIGGERS***************************************************************************
             // Loop in the directory
 
@@ -640,92 +645,7 @@ namespace GrabCasterUI
 
             foreach (var triggerConfigurationsFile in triggerConfigurationsFiles)
             {
-                TriggerConfiguration triggerConfiguration = null;
-                var triggerConfigurationsByteContent = File.ReadAllBytes(triggerConfigurationsFile);
-
-                triggerConfiguration =
-                    JsonConvert.DeserializeObject<TriggerConfiguration>(
-                        Encoding.UTF8.GetString(triggerConfigurationsByteContent));
-
-                TreeNode treeNodeTrigger = treeNodeTriggers.Nodes.Add(
-                    CONST_TRIGGER,
-                    triggerConfiguration.Trigger.Name,
-                    IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger)? CONST_TRIGGERON_KEY: CONST_TRIGGEROFF_KEY,
-                    IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger) ? CONST_TRIGGERON_KEY : CONST_TRIGGEROFF_KEY);
-
-                //Add trigger node
-                var objTriigerConfiguration = new CustomObjectType();
-                objTriigerConfiguration.Properties.Clear();
-
-                objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = triggerConfiguration.Trigger.Name, Type = typeof(string), Desc = "Specify the trigger name." });
-                objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = triggerConfiguration.Trigger.Description, Type = typeof(string), Desc = "Specify the trigger description." });
-                objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = triggerConfiguration.Trigger.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
-                objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = triggerConfiguration.Trigger.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
-
-                if (triggerConfiguration.Trigger.TriggerProperties != null)
-                {
-                    foreach (var item in triggerConfiguration.Trigger.TriggerProperties)
-                    {
-                        objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Properties", Name = item.Name, DefaultValue = item.Value, Type = typeof(string), Desc = "Trigger property." });
-                    }
-                }
-
-
-                TreeviewBag treeviewBagTrigger = new TreeviewBag(triggerConfigurationsFile,
-                                                                    GrabCasterComponentType.TriggerConfiguration, 
-                                                                    triggerConfiguration,
-                                                                    triggerConfiguration.Trigger.TriggerProperties,
-                                                                    objTriigerConfiguration);
-
-                treeviewBagRoot.triggerConfigurationList.Add(triggerConfiguration);
-
-                treeNodeTrigger.Tag = treeviewBagTrigger;
-
-                //Check if event is created
-                if (triggerConfiguration.Events.Count != 0)
-                {
-                    TreeNode treeNodeEventsInTrigger = treeNodeTrigger.Nodes.Add(CONST_EVENTS,
-                                                                        CONST_EVENTS,
-                                                                        CONST_EVENTS_KEY,
-                                                                        CONST_EVENTS_KEY);
-                    foreach (var item in triggerConfiguration.Events)
-                    {
-
-                        TreeNode treeNodeEvent = treeNodeEventsInTrigger.Nodes.Add(
-                                                    CONST_EVENT,
-                                                    item.Name,
-                                                    CONST_EVENT_KEY,
-                                                    CONST_EVENT_KEY);
-                        //Add event node
-
-                        var objTriigerEventConfiguration = new CustomObjectType();
-                        objTriigerEventConfiguration.Properties.Clear();
-
-                        objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = item.Name, Type = typeof(string), Desc = "Specify the trigger name." });
-                        objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = item.Description, Type = typeof(string), Desc = "Specify the trigger description." });
-                        objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = item.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
-                        objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = item.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
-                        objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Channels", DefaultValue = item.Channels, Type = typeof(List<>), Desc = "Specify the Channels to use." });
-
-                        if (item.EventProperties != null)
-                        {
-                            foreach (var _item in item.EventProperties)
-                            {
-                                objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Properties", Name = _item.Name, DefaultValue = _item.Value, Type = typeof(string), Desc = "Event property." });
-                            }
-                        }
-                        TreeviewBag treeviewBag = new TreeviewBag(triggerConfigurationsFile,
-                                                     GrabCasterComponentType.Event,
-                                                     item,
-                                                     item.EventProperties,
-                                                    objTriigerEventConfiguration);
-                        treeNodeEvent.Tag = treeviewBag;
-                        if (item.Correlation != null)
-                            CheckCorrelation(triggerConfigurationsFile,treeNodeEvent, item);
-
-                    }
-                }
-
+                CreateTriggerConfigurationNode(treeviewBagRoot, treeNodeTriggers, triggerConfigurationsFile);
             }
 
 
@@ -745,50 +665,7 @@ namespace GrabCasterUI
             // For each trigger search for the trigger in event bubbling and set the properties
             foreach (var propertyEventsFile in propertyEventsFiles)
             {
-                EventConfiguration eventPropertyBag = null;
-                var propertyEventsByteContent = File.ReadAllBytes(propertyEventsFile);
-                eventPropertyBag =
-                    JsonConvert.DeserializeObject<EventConfiguration>(
-                        Encoding.UTF8.GetString(propertyEventsByteContent));
-
-                TreeNode treeNodeEvent = treeNodeEvents.Nodes.Add(
-                                            CONST_EVENT,
-                                            eventPropertyBag.Event.Name,
-                                            IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY,
-                                            IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY);
-
-                //Add event
-
-                var objEventConfiguration = new CustomObjectType();
-                objEventConfiguration.Properties.Clear();
-
-                objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = eventPropertyBag.Event.Name, Type = typeof(string), Desc = "Specify the trigger name." });
-                objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = eventPropertyBag.Event.Description, Type = typeof(string), Desc = "Specify the trigger description." });
-                objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = eventPropertyBag.Event.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
-                objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = eventPropertyBag.Event.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
-                objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Channels", DefaultValue = eventPropertyBag.Event.Channels, Type = typeof(List<>), Desc = "Specify the Channels to use." });
-
-                if (eventPropertyBag.Event.EventProperties != null)
-                {
-                    foreach (var _item in eventPropertyBag.Event.EventProperties)
-                    {
-                        objEventConfiguration.Properties.Add(new CustomProperty { Category = "Properties", Name = _item.Name, DefaultValue = _item.Value, Type = typeof(string), Desc = "Event property." });
-                    }
-
-                }
-
-
-                TreeviewBag treeviewBag = new TreeviewBag(propertyEventsFile,
-                                             GrabCasterComponentType.EventConfiguration,
-                                             eventPropertyBag,
-                                             eventPropertyBag.Event.EventProperties,
-                                            objEventConfiguration);
-                treeviewBagRoot.eventConfigurationList.Add(eventPropertyBag);
-                treeNodeEvent.Tag = treeviewBag;
-
-                if (eventPropertyBag.Event.Correlation != null)
-                    CheckCorrelation(propertyEventsFile,treeNodeEvent, eventPropertyBag.Event);
-
+                CreateEventConfigurationNode(treeviewBagRoot, treeNodeEvents, propertyEventsFile);
             }
 
             //***********************************************************************************
@@ -796,7 +673,7 @@ namespace GrabCasterUI
 
 
             // Load triggers bubbling path
-            
+
             var triggersDirectory = Path.Combine(gcPointsFoldersData.FolderName, Configuration.DirectoryNameTriggers);
             var assemblyFilesTriggers =
                 Directory.GetFiles(triggersDirectory, Configuration.TriggersDllExtensionLookFor)
@@ -834,13 +711,17 @@ namespace GrabCasterUI
                                         CONST_TRIGGERCOMPONENT_KEY,
                                         CONST_TRIGGERCOMPONENT_KEY);
 
-
+                        componentTrigger componentTrigger = new componentTrigger(
+                            triggerContract,
+                            assemblyClass,
+                            assemblyFile,
+                            assembly);
                         TreeviewBag treeviewBag = new TreeviewBag(assemblyFile,
                                                                     GrabCasterComponentType.TriggerComponent,
                                                                     triggerContract,
                                                                     assemblyClass.GetProperties(),
-                                                                    assemblyClasses);
-                        treeviewBagRoot.componentTriggerList.Add(new componentTrigger(triggerContract,assemblyClass));
+                                                                    assemblyClasses, componentTrigger, null);
+                        treeviewBagRoot.componentTriggerList.Add(componentTrigger);
                         treeNodeTriggersComponent.Tag = treeviewBag;
 
                     }
@@ -894,169 +775,189 @@ namespace GrabCasterUI
                                         $"Critical error! the properies {propertyAttributes[0]} and {propertyInfo.Name} are different! Class name {assemblyClass.Name}");
                                 }
 
-                                if(propertyAttribute.Name !="DataContext")
+                                if (propertyAttribute.Name != "DataContext")
                                     objEvent.Properties.Add(new CustomProperty { Category = "Properties", Name = propertyAttribute.Name, DefaultValue = propertyInfo.PropertyType.Name, Type = typeof(string), Desc = propertyAttribute.Description });
 
                             }
                         }
 
-
+                        componentEvent componentEvent = new componentEvent(eventContract,
+                                                                            assemblyClass,
+                                                                            assemblyFile,
+                                                                            assembly);
                         TreeviewBag treeviewBag = new TreeviewBag(assemblyFile,
                                                                      GrabCasterComponentType.EventComponent,
                                                                      eventContract,
                                                                      assemblyClass.GetProperties(),
-                                                                    objEvent);
-                        treeviewBagRoot.componentEventList.Add(new componentEvent(eventContract, assemblyClass));
+                                                                    objEvent,
+                                                                    null,
+                                                                    componentEvent);
+                        treeviewBagRoot.componentEventList.Add(componentEvent);
                         treeNodeEventsComponent.Tag = treeviewBag;
 
 
                     }
                 }
             }
+        }
+        public void CreateEventConfigurationNode(
+            TreeviewBag treeviewBagRoot,
+            TreeNode treeNodeEvents,
+            string propertyEventsFile)
+        {
+            EventConfiguration eventPropertyBag = null;
+            var propertyEventsByteContent = File.ReadAllBytes(propertyEventsFile);
+            eventPropertyBag =
+                JsonConvert.DeserializeObject<EventConfiguration>(
+                    Encoding.UTF8.GetString(propertyEventsByteContent));
+
+            TreeNode treeNodeEvent = treeNodeEvents.Nodes.Add(
+                                        CONST_EVENT,
+                                        eventPropertyBag.Event.Name,
+                                        IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY,
+                                        IsTriggerEventActive(propertyEventsFile, BubblingEventType.Event) ? CONST_EVENTON_KEY : CONST_EVENTOFF_KEY);
+
+            //Add event
+
+            var objEventConfiguration = new CustomObjectType();
+            objEventConfiguration.Properties.Clear();
+
+            objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = eventPropertyBag.Event.Name, Type = typeof(string), Desc = "Specify the trigger name." });
+            objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = eventPropertyBag.Event.Description, Type = typeof(string), Desc = "Specify the trigger description." });
+            objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = eventPropertyBag.Event.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
+            objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = eventPropertyBag.Event.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
+            objEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Channels", DefaultValue = eventPropertyBag.Event.Channels, Type = typeof(List<>), Desc = "Specify the Channels to use." });
+
+            if (eventPropertyBag.Event.EventProperties != null)
+            {
+                foreach (var _item in eventPropertyBag.Event.EventProperties)
+                {
+                    objEventConfiguration.Properties.Add(new CustomProperty { Category = "Properties", Name = _item.Name, DefaultValue = _item.Value, Type = typeof(string), Desc = "Event property." });
                 }
 
+            }
+
+
+            TreeviewBag treeviewBag = new TreeviewBag(propertyEventsFile,
+                                         GrabCasterComponentType.EventConfiguration,
+                                         eventPropertyBag,
+                                         eventPropertyBag.Event.EventProperties,
+                                        objEventConfiguration,null,null);
+            treeviewBagRoot.eventConfigurationList.Add(eventPropertyBag);
+            treeNodeEvent.Tag = treeviewBag;
+
+            if (eventPropertyBag.Event.Correlation != null)
+                CheckCorrelation(propertyEventsFile, treeNodeEvent, eventPropertyBag.Event);
+
+        }
+        public void CreateTriggerConfigurationNode(TreeviewBag treeviewBagRoot,TreeNode treeNodeTriggers, string triggerConfigurationsFile)
+        {
+            TriggerConfiguration triggerConfiguration = null;
+            var triggerConfigurationsByteContent = File.ReadAllBytes(triggerConfigurationsFile);
+
+            triggerConfiguration =
+                JsonConvert.DeserializeObject<TriggerConfiguration>(
+                    Encoding.UTF8.GetString(triggerConfigurationsByteContent));
+
+            TreeNode treeNodeTrigger = treeNodeTriggers.Nodes.Add(
+                CONST_TRIGGER,
+                triggerConfiguration.Trigger.Name,
+                IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger) ? CONST_TRIGGERON_KEY : CONST_TRIGGEROFF_KEY,
+                IsTriggerEventActive(triggerConfigurationsFile, BubblingEventType.Trigger) ? CONST_TRIGGERON_KEY : CONST_TRIGGEROFF_KEY);
+
+            //Add trigger node
+            var objTriigerConfiguration = new CustomObjectType();
+            objTriigerConfiguration.Properties.Clear();
+
+            objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = triggerConfiguration.Trigger.Name, Type = typeof(string), Desc = "Specify the trigger name." });
+            objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = triggerConfiguration.Trigger.Description, Type = typeof(string), Desc = "Specify the trigger description." });
+            objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = triggerConfiguration.Trigger.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
+            objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = triggerConfiguration.Trigger.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
+
+            if (triggerConfiguration.Trigger.TriggerProperties != null)
+            {
+                foreach (var item in triggerConfiguration.Trigger.TriggerProperties)
+                {
+                    objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Properties", Name = item.Name, DefaultValue = item.Value, Type = typeof(string), Desc = "Trigger property." });
+                }
+            }
+
+
+            TreeviewBag treeviewBagTrigger = new TreeviewBag(triggerConfigurationsFile,
+                                                                GrabCasterComponentType.TriggerConfiguration,
+                                                                triggerConfiguration,
+                                                                triggerConfiguration.Trigger.TriggerProperties,
+                                                                objTriigerConfiguration,null,null);
+
+            treeviewBagRoot.triggerConfigurationList.Add(triggerConfiguration);
+
+            treeNodeTrigger.Tag = treeviewBagTrigger;
+
+            //Check if event is created
+            if (triggerConfiguration.Events.Count != 0)
+            {
+                TreeNode treeNodeEventsInTrigger = treeNodeTrigger.Nodes.Add(CONST_EVENTS,
+                                                                    CONST_EVENTS,
+                                                                    CONST_EVENTS_KEY,
+                                                                    CONST_EVENTS_KEY);
+                foreach (var item in triggerConfiguration.Events)
+                {
+
+                    TreeNode treeNodeEvent = treeNodeEventsInTrigger.Nodes.Add(
+                                                CONST_EVENT,
+                                                item.Name,
+                                                CONST_EVENT_KEY,
+                                                CONST_EVENT_KEY);
+                    //Add event node
+
+                    var objTriigerEventConfiguration = new CustomObjectType();
+                    objTriigerEventConfiguration.Properties.Clear();
+
+                    objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = item.Name, Type = typeof(string), Desc = "Specify the trigger name." });
+                    objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = item.Description, Type = typeof(string), Desc = "Specify the trigger description." });
+                    objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = item.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
+                    objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = item.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
+                    objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Channels", DefaultValue = item.Channels, Type = typeof(List<>), Desc = "Specify the Channels to use." });
+
+                    if (item.EventProperties != null)
+                    {
+                        foreach (var _item in item.EventProperties)
+                        {
+                            objTriigerConfiguration.Properties.Add(new CustomProperty { Category = "Properties", Name = _item.Name, DefaultValue = _item.Value, Type = typeof(string), Desc = "Event property." });
+                        }
+                    }
+                    TreeviewBag treeviewBag = new TreeviewBag(triggerConfigurationsFile,
+                                                 GrabCasterComponentType.Event,
+                                                 item,
+                                                 item.EventProperties,
+                                                objTriigerEventConfiguration, null, null);
+                    treeNodeEvent.Tag = treeviewBag;
+                    if (item.Correlation != null)
+                        CheckCorrelation(triggerConfigurationsFile, treeNodeEvent, item);
+
+                }
+            }
+
+        }
         private void CheckCorrelation(string fileName, TreeNode treeNodeEvent, Event eventCorrelation)
         {
+            if (eventCorrelation.Correlation == null) return;
             TreeNode treeNodeCorrelation = treeNodeEvent.Nodes.Add(
                 CONST_CORRELATION,
                 CONST_CORRELATION,
                 CONST_CORRELATION_KEY,
                 CONST_CORRELATION_KEY);
 
+            var jsonSerialization = JsonConvert.SerializeObject(eventCorrelation.Correlation, Formatting.Indented);
+
             TreeviewBag treeviewBagC = new TreeviewBag(fileName,
                                               GrabCasterComponentType.Correlation,
                                               eventCorrelation,
-                                              eventCorrelation.EventProperties,
-                                             null);
+                                              eventCorrelation.EventProperties, jsonSerialization, null,null);
 
             treeNodeCorrelation.Tag = treeviewBagC;
 
-            var objCorrelation = new CustomObjectType();
-            objCorrelation.Properties.Clear();
-
-            objCorrelation.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = eventCorrelation.Name, Type = typeof(string), Desc = "Specify the trigger name." });
-            objCorrelation.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = eventCorrelation.Description, Type = typeof(string), Desc = "Specify the trigger description." });
-            objCorrelation.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = eventCorrelation.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
-            objCorrelation.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = eventCorrelation.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
-            objCorrelation.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Channels", DefaultValue = eventCorrelation.Channels, Type = typeof(List<>), Desc = "Specify the Channels to use." });
-
-            if (objCorrelation.Properties != null)
-            {
-                foreach (var _item in eventCorrelation.EventProperties)
-                {
-                    objCorrelation.Properties.Add(
-                        new CustomProperty
-                            {
-                                Category = "Properties",
-                                Name = _item.Name,
-                                DefaultValue = _item.Value,
-                                Type = typeof(string),
-                                Desc = "Event property."
-                            });
-                }
-            }
-
-            TreeNode treeNodeCorrelationEvent = treeNodeCorrelation.Nodes.Add(CONST_EVENT,
-                                                            eventCorrelation.Name,
-                                                            CONST_EVENT_KEY,
-                                                            CONST_EVENT_KEY);
-
-            TreeviewBag treeviewBagE = new TreeviewBag(fileName,
-                                                        GrabCasterComponentType.EventConfiguration,
-                                                        objCorrelation,
-                                                        objCorrelation.Properties,
-                                                        objCorrelation);
-
-            treeNodeCorrelationEvent.Tag = treeviewBagE;
-
-            if (eventCorrelation.Correlation.Events != null)
-            {
-                foreach (var item in eventCorrelation.Correlation.Events)
-                {
-
-                    TreeNode treeNodeCorrelationEventNested = treeNodeCorrelationEvent.Nodes.Add(
-                        CONST_EVENT,
-                        item.Name,
-                        CONST_EVENT_KEY,
-                        CONST_EVENT_KEY);
-
-
-                    var objCorrelationNested = new CustomObjectType();
-                    objCorrelation.Properties.Clear();
-
-                    objCorrelationNested.Properties.Add(
-                        new CustomProperty
-                            {
-                                Category = "Main Properties",
-                                Name = "Name",
-                                DefaultValue = item.Name,
-                                Type = typeof(string),
-                                Desc = "Specify the trigger name."
-                            });
-                    objCorrelationNested.Properties.Add(
-                        new CustomProperty
-                            {
-                                Category = "Main Properties",
-                                Name = "Description",
-                                DefaultValue = item.Description,
-                                Type = typeof(string),
-                                Desc = "Specify the trigger description."
-                            });
-                    objCorrelationNested.Properties.Add(
-                        new CustomProperty
-                            {
-                                Category = "Main Properties",
-                                Name = "IdComponent",
-                                DefaultValue = item.IdComponent,
-                                Type = typeof(string),
-                                Desc = "Specify the Id Componet to use."
-                            });
-                    objCorrelationNested.Properties.Add(
-                        new CustomProperty
-                            {
-                                Category = "Main Properties",
-                                Name = "IdConfiguration",
-                                DefaultValue = item.IdConfiguration,
-                                Type = typeof(string),
-                                Desc = "Specify the Id group Configuration to use."
-                            });
-                    objCorrelationNested.Properties.Add(
-                        new CustomProperty
-                            {
-                                Category = "Main Properties",
-                                Name = "Channels",
-                                DefaultValue = item.Channels,
-                                Type = typeof(List<>),
-                                Desc = "Specify the Channels to use."
-                            });
-                    if (item.EventProperties != null)
-                    {
-                        foreach (var _item in item.EventProperties)
-                        {
-                            objCorrelation.Properties.Add(
-                                new CustomProperty
-                                    {
-                                        Category = "Properties",
-                                        Name = _item.Name,
-                                        DefaultValue = _item.Value,
-                                        Type = typeof(string),
-                                        Desc = "Event property."
-                                    });
-                        }
-                    }
-                    TreeviewBag treeviewBagENested = new TreeviewBag(fileName,
-                                            GrabCasterComponentType.EventConfiguration,
-                                            objCorrelationNested,
-                                            objCorrelationNested.Properties,
-                                            objCorrelationNested);
-
-                    treeNodeCorrelationEvent.Tag = treeviewBagENested;
-                    if (item.Correlation != null)
-                    {
-                        this.CheckCorrelation(fileName, treeNodeCorrelationEvent, item);
-                    }
-                }
-            }
+            
         }
 
         private bool IsTriggerEventActive(string ConfigurationFile,BubblingEventType bubblingEventType)
@@ -1168,6 +1069,15 @@ namespace GrabCasterUI
                         userControlComponentEvt.Visible = true;
                         break;
                     case GrabCasterComponentType.Correlation:
+                        UserControlComponent userControlComponentCorrelation = new UserControlComponent();
+                        userControlComponentCorrelation.LoadComponentData(treeviewBag);
+                        this.panelUCContainer1.Controls.Clear();
+                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        userControlComponentCorrelation.Dock = DockStyle.Fill;
+                        userControlComponentCorrelation.TreeViewSide = this.treeView1;
+                        userControlComponentCorrelation.TreeNodeSide = this.treeView1.SelectedNode;
+                        this.panelUCContainer1.Controls.Add(userControlComponentCorrelation);
+                        userControlComponentCorrelation.Visible = true;
                         break;
                     case GrabCasterComponentType.Root:
                         UserControlConfiguration userControlConfiguration = new UserControlConfiguration();
@@ -1212,38 +1122,56 @@ namespace GrabCasterUI
 
         }
 
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private TreeNode treeNodeCurrent = null;
+
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Button != MouseButtons.Right)
-                    return;
-            if (this.treeView1.SelectedNode?.Tag != null)
+            if (this.treeView1.SelectedNode?.Tag != null && e.Button == MouseButtons.Right)
             {
+                this.treeView1.SelectedNode = e.Node;
+                treeNodeCurrent = this.treeView1.SelectedNode;
                 TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
 
                 switch (treeviewBag.GrabCasterComponentType)
                 {
+                    case GrabCasterComponentType.TriggerConfigurationRoot:
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
+                        break;
                     case GrabCasterComponentType.TriggerConfiguration:
-                        this.treeView1.SelectedNode.ContextMenuStrip = contextMenuStripTriggers;
-
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
+                        break;
+                    case GrabCasterComponentType.EventConfigurationRoot:
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.Event:
-                        this.treeView1.SelectedNode.ContextMenuStrip = contextMenuStripTriggers;
-
-                        break;
-                    case GrabCasterComponentType.EventConfiguration:
-
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.TriggerComponent:
-
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
+                        break;
+                    case GrabCasterComponentType.TriggerComponentRoot:
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
                         break;
                     case GrabCasterComponentType.EventComponent:
-
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
                         break;
+                    case GrabCasterComponentType.EventComponentRoot:
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
+                        break;
+
+
                     case GrabCasterComponentType.Correlation:
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripCorrelation;
 
                         break;
                     case GrabCasterComponentType.Root:
+                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripRoot;
 
                         break;
                     default:
@@ -1252,7 +1180,158 @@ namespace GrabCasterUI
 
 
             }
+        }
 
+        private void contextMenuStripTriggerComponent_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemNew_Click(object sender, EventArgs e)
+        {
+            FormTextInput formTextInput = new FormTextInput();
+            DialogResult dialogResult = formTextInput.ShowDialog();
+            if (dialogResult != DialogResult.Yes)
+                return;
+
+            //Filename
+            string fileName = formTextInput.textBox1.Text;
+            
+            //Prepare the bags
+            TreeNode treeNodeCurrent = this.treeView1.SelectedNode;
+            TreeNode treeNodeRoot = GetRootNode(this.treeView1.SelectedNode);
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
+
+
+            //Get the bubbling event
+            BubblingEvent bubblingEvent = EventsEngine.CreateBubblingTrigger(treeviewBagCurrent.componentTrigger.triggerClass,
+                                                                                treeviewBagCurrent.componentTrigger.assembly,
+                                                                                treeviewBagCurrent.File);
+
+            var jsonSerialization = SerializationHelper.CreteJsonTriggerConfigurationTemplate(bubblingEvent);
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            string DirectoryBubblingTriggers = Path.Combine(gcPointsFoldersData.FolderName,
+                                                            Configuration.DirectoryNameBubbling,
+                                                            Configuration.DirectoryNameTriggers);
+
+            string triggerConfigurationsFile = Path.Combine(DirectoryBubblingTriggers, fileName + ".off");
+
+            File.WriteAllText(triggerConfigurationsFile, jsonSerialization);
+ 
+            TreeNode treeNodeTriggers = treeNodeRoot.Nodes[0].Nodes[0];
+
+            CreateTriggerConfigurationNode(treeviewBagRoot, treeNodeTriggers, triggerConfigurationsFile);
+
+        }
+
+        private void contextMenuStripTriggerConfigurationNew_Click(object sender, EventArgs e)
+        {
+ 
+        }
+        private TreeNode GetRootNode(TreeNode node)
+        {
+
+            while (node.Parent != null)
+            {
+                node = node.Parent;
+            }
+            return node;
+        }
+
+        private void contextMenuStripEventComponentNew_Click(object sender, EventArgs e)
+        {
+            FormTextInput formTextInput = new FormTextInput();
+            DialogResult dialogResult = formTextInput.ShowDialog();
+            if (dialogResult != DialogResult.Yes)
+                return;
+
+            //Filename
+            string fileName = formTextInput.textBox1.Text;
+
+            //Prepare the bags
+            TreeNode treeNodeCurrent = this.treeView1.SelectedNode;
+            TreeNode treeNodeRoot = GetRootNode(this.treeView1.SelectedNode);
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
+
+
+            //Get the bubbling event
+            BubblingEvent bubblingEvent = EventsEngine.CreateBubblingEvent(treeviewBagCurrent.componentEvent.eventClass,
+                                                                                treeviewBagCurrent.componentEvent.assembly,
+                                                                                treeviewBagCurrent.File);
+
+            var jsonSerialization = SerializationHelper.CreteJsonEventConfigurationTemplate(bubblingEvent);
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            string DirectoryBubblingEvents = Path.Combine(gcPointsFoldersData.FolderName,
+                                                            Configuration.DirectoryNameBubbling,
+                                                            Configuration.DirectoryNameEvents);
+
+            string eventConfigurationsFile = Path.Combine(DirectoryBubblingEvents, fileName + ".off");
+
+            File.WriteAllText(eventConfigurationsFile, jsonSerialization);
+
+            TreeNode treeNodeEvents = treeNodeRoot.Nodes[0].Nodes[1];
+
+            this.CreateEventConfigurationNode(treeviewBagRoot, treeNodeEvents, eventConfigurationsFile);
+        }
+
+        private void contextMenuStripTriggerComponentDelete_Click(object sender, EventArgs e)
+        {
+            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+        }
+
+        private void DeleteTreeNodeComponent(TreeNode treeNodeCurrent)
+        {
+            TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
+            try
+            {
+                File.Delete(treeviewBagCurrent.File);
+                this.treeView1.SelectedNode.Remove();
+            }
+            catch (Exception ex)
+            {
+                Global.MessageBoxForm($"Error {ex.Message}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void contextMenuStripEventComponentDelete_Click(object sender, EventArgs e)
+        {
+            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+        }
+
+        private void contextMenuStripTriggerConfigurationDelete_Click(object sender, EventArgs e)
+        {
+            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+        }
+
+        private void contextMenuStripEventConfigurationDelete_Click(object sender, EventArgs e)
+        {
+            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+        }
+
+        private void toolStripMenuItemCorrelationDelete_Click(object sender, EventArgs e)
+        {
+            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+        }
+
+        private void toolStripMenuItemRootRemove_Click(object sender, EventArgs e)
+        {
+            this.treeView1.SelectedNode.Remove();
+        }
+
+        private void toolStripMenuItemRootRefresh_Click(object sender, EventArgs e)
+        {
+            foreach (TreeNode item in treeView1.SelectedNode.Nodes)
+            {
+                item.Remove();
+            }
+            TreeviewBag treeviewBag = (TreeviewBag)treeView1.SelectedNode.Tag;
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
+            LoadRooTreeViewNode(this.treeView1, treeView1.SelectedNode, gcPointsFoldersData);
         }
     }
 

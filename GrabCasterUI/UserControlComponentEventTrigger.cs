@@ -64,7 +64,7 @@ namespace GrabCasterUI
             this.listBoxChannels.Items.Clear();
             this.listBoxPoints.Items.Clear();
 
-            if (eventInTrigger.Channels == null)
+            if (eventInTrigger.Channels == null || eventInTrigger.Channels.Count == 0)
             {
                 this.listBoxChannels.Items.Add("No channels present, the event will be executed locally.");
                 this.listBoxPoints.Items.Add("No channels present, the event will be executed locally.");

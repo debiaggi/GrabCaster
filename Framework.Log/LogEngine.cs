@@ -96,6 +96,7 @@ namespace GrabCaster.Framework.Log
         {
             try
             {
+                Configuration.LoadConfiguration();
                 Enabled = Configuration.LoggingEngineEnabled();
                 Verbose = Configuration.LoggingVerbose();
                 //Load logging external component
@@ -158,14 +159,14 @@ namespace GrabCaster.Framework.Log
                 LogEngine.EventViewerWriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
@@ -220,7 +221,7 @@ namespace GrabCaster.Framework.Log
                     logMessage.TaskCategory = taskCategory;
                     var exceptionText = logMessage.ExceptionObject != "" ? "\r-->Exception:" + logMessage.ExceptionObject : "";
                     logMessage.Message =
-                        $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-EventID:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
+                        $"-Level:{level}\r-Source:{source}\r-Message:{message}\r-Severity:{eventId}\r-TaskCategory:{taskCategory}{exceptionText}";
 
                     if (QueueAbstractMessage != null)
                     {

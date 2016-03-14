@@ -82,7 +82,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     sb.ToString(),
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
@@ -124,7 +124,7 @@ namespace GrabCaster.Framework.Engine
 
                 //Create the two sends layers
                 // in EventsEngine
-                if (!Configuration.DisableDeviceProviderInterface())
+                if (!Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.ConsoleWriteLine("Start Internal Event Engine Channel.", ConsoleColor.Yellow);
                     var canStart = EventsEngine.CreateEventUpStream();
@@ -134,7 +134,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName,
                             $"Error during engine service starting. Name: {Configuration.EngineName} - ID: {Configuration.ChannelId()}",
-                            Constant.ErrorEventIdHighCritical,
+                            Constant.DefconOne,
                             Constant.TaskCategoriesError,
                             null,
                             EventLogEntryType.Error);
@@ -152,7 +152,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName,
                             $"Error during engine service starting. Name: {Configuration.ChannelName()} - ID: {Configuration.ChannelId()}",
-                            Constant.ErrorEventIdHighCritical,
+                            Constant.DefconOne,
                             Constant.TaskCategoriesError,
                             null,
                             EventLogEntryType.Error);
@@ -189,7 +189,7 @@ namespace GrabCaster.Framework.Engine
                 {
                     LogEngine.WriteLog(Configuration.EngineName,
                                             $"Configuration.EnginePollingTime = {Configuration.EnginePollingTime()}, internal polling system disabled.",
-                                            Constant.ErrorEventIdHighCritical,
+                                            Constant.DefconOne,
                                             Constant.TaskCategoriesError,
                                             null,
                                             EventLogEntryType.Warning);
@@ -202,7 +202,7 @@ namespace GrabCaster.Framework.Engine
                 var treadEngineStates = new Thread(CheckServiceStates);
                 treadEngineStates.Start();
 
-                if (!Configuration.DisableDeviceProviderInterface())
+                if (!Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.ConsoleWriteLine("Start On Ramp Engine.", ConsoleColor.Green);
                     var onRampEngineReceiving = new OnRampEngineReceiving();
@@ -214,7 +214,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Engine service initialization procedure terminated. Name: {Configuration.ChannelName()} - ID: {Configuration.ChannelId()}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     null,
                     EventLogEntryType.Information);
@@ -224,7 +224,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
@@ -276,7 +276,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.WriteLog(
                         Configuration.EngineName,
                         $"EnginePollingTime = 0 - Internal logging system disabled.",
-                        Constant.ErrorEventIdHighCritical,
+                        Constant.DefconOne,
                         Constant.TaskCategoriesError,
                         null,
                         EventLogEntryType.Warning);
@@ -324,7 +324,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);

@@ -76,12 +76,12 @@ namespace GrabCaster.Framework
                     $"Version {Assembly.GetExecutingAssembly().GetName().Version}",
                     ConsoleColor.Green);
 
-                if (Configuration.DisableDeviceProviderInterface())
+                if (Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.WriteLog(
                         Configuration.EngineName,
                         "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.",
-                        Constant.ErrorEventIdHighCritical,
+                        Constant.DefconThree,
                         Constant.TaskCategoriesError,
                         null,
                         EventLogEntryType.Warning);
@@ -103,7 +103,7 @@ namespace GrabCaster.Framework
                 {
                     //Licensing area
                     //****************************************************************
-                    if (!Licensing.EvaluateLicense(LicenseFeatures.Console, false))
+                    if (!Licensing.EvaluateLicense(LicenseFeatures.WindowsNt, false))
                     {
                         LogEngine.ConsoleWriteLineNoLog("License key not valid, check the event viewer for more information.", ConsoleColor.Red);
                         MessageBox.Show("License key not valid, check the event viewer for more information.",
@@ -112,7 +112,7 @@ namespace GrabCaster.Framework
                             MessageBoxIcon.Error);
                         LicenseForm licenseForm = new LicenseForm();
                         licenseForm.ShowDialog();
-                        Licensing.EvaluateLicense(LicenseFeatures.Console, true);
+                        Licensing.EvaluateLicense(LicenseFeatures.WindowsNt, true);
                     }
                     //****************************************************************
 
@@ -213,7 +213,7 @@ namespace GrabCaster.Framework
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     "Error in " + MethodBase.GetCurrentMethod().Name,
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);

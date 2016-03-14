@@ -98,7 +98,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -133,7 +133,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -228,7 +228,7 @@ namespace GrabCaster.Framework.Engine
 
                     LogEngine.WriteLog(Configuration.EngineName, 
                         $"Error in {MethodBase.GetCurrentMethod().Name} - Missing configuration file.", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         null, 
                         EventLogEntryType.Error);
@@ -243,7 +243,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -308,7 +308,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -336,7 +336,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -356,7 +356,7 @@ namespace GrabCaster.Framework.Engine
         {
             try
             {
-                if (!Configuration.DisableDeviceProviderInterface())
+                if (!Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.ConsoleWriteLine(
                         $"Syncronizing  Bubbling confuguration - Point ID {Configuration.PointId()}", 
@@ -374,7 +374,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         null, 
                         EventLogEntryType.Warning);
@@ -385,7 +385,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -405,7 +405,7 @@ namespace GrabCaster.Framework.Engine
         {
             try
             {
-                if (!Configuration.DisableDeviceProviderInterface())
+                if (!Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.ConsoleWriteLine(
                         $"Send all confuguration - Point ID {Configuration.PointId()}", 
@@ -431,7 +431,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         null, 
                         EventLogEntryType.Warning);
@@ -442,7 +442,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -472,12 +472,12 @@ namespace GrabCaster.Framework.Engine
         {
             try
             {
-                if (Configuration.DisableDeviceProviderInterface())
+                if (Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         null, 
                         EventLogEntryType.Warning);
@@ -520,7 +520,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         $"Error in {MethodBase.GetCurrentMethod().Name} File {fileName}", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         ex, 
                         EventLogEntryType.Error);
@@ -531,7 +531,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -565,7 +565,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -599,7 +599,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -649,7 +649,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -707,7 +707,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -745,7 +745,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);

@@ -88,12 +88,12 @@ namespace GrabCaster.Framework.Library
                     $"Version {Assembly.GetExecutingAssembly().GetName().Version}",
                     ConsoleColor.Green);
 
-                if (Configuration.DisableDeviceProviderInterface())
+                if (Configuration.DisableExternalEventsStreamEngine())
                 {
                     LogEngine.WriteLog(
                         Configuration.EngineName,
                         "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.",
-                        Constant.ErrorEventIdHighCritical,
+                        Constant.DefconOne,
                         Constant.TaskCategoriesError,
                         null,
                         EventLogEntryType.Warning);
@@ -119,7 +119,7 @@ namespace GrabCaster.Framework.Library
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     "Error in " + MethodBase.GetCurrentMethod().Name,
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
@@ -171,7 +171,7 @@ namespace GrabCaster.Framework.Library
                     LogEngine.WriteLog(
                         Configuration.EngineName,
                         $"Error in {MethodBase.GetCurrentMethod().Name}",
-                        Constant.ErrorEventIdHighCritical,
+                        Constant.DefconOne,
                         Constant.TaskCategoriesError,
                         ex,
                         EventLogEntryType.Error);
@@ -194,7 +194,7 @@ namespace GrabCaster.Framework.Library
 
             LogEngine.EventViewerWriteLog(Configuration.EngineName,
                             "Inizialize Off Ramp embedded messaging.",
-                            Constant.ErrorEventIdHighCritical,
+                            Constant.DefconOne,
                             Constant.TaskCategoriesError,
                             null,
                             EventLogEntryType.Information);
@@ -249,7 +249,7 @@ namespace GrabCaster.Framework.Library
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     sb.ToString(),
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
@@ -281,7 +281,7 @@ namespace GrabCaster.Framework.Library
                 LogEngine.EventViewerWriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name} - The trigger ID {triggerId} does not exist.",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);

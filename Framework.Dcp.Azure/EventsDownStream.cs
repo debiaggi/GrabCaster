@@ -65,7 +65,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Event Hubs transfort Type: {Configuration.ServiceBusConnectivityMode()}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     null,
                     EventLogEntryType.Information);
@@ -114,7 +114,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name} - Hint: Check if the firewall outbound port 5671 is opened.",
-                    Constant.ErrorEventIdHighCriticalEventHubs,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesEventHubs,
                     ex,
                     EventLogEntryType.Error);
@@ -184,7 +184,7 @@ namespace GrabCaster.Framework.Dcp.Azure
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);

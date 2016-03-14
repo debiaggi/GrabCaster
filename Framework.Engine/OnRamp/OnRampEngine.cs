@@ -114,7 +114,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
             {
                 LogEngine.WriteLog(Configuration.EngineName,
                                     $"This GrabCaster point is configured for local only execution.",
-                                    Constant.ErrorEventIdHighCritical,
+                                    Constant.DefconOne,
                                     Constant.TaskCategoriesError,
                                     null,
                                     EventLogEntryType.Warning);
@@ -126,7 +126,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
             LogEngine.WriteLog(
                 Configuration.EngineName, 
                 "Start On Ramp engine.", 
-                Constant.ErrorEventIdHighCritical, 
+                Constant.DefconOne, 
                 Constant.TaskCategoriesError, 
                 null, 
                 EventLogEntryType.Information);

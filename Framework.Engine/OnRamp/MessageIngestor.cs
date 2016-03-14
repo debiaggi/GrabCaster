@@ -111,7 +111,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCriticalEventHubs,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesEventHubs,
                     ex,
                     EventLogEntryType.Error);
@@ -164,7 +164,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name} - Not GrabCaster message type received (Missing GrabCaster_MessageType_Name properties.) -DISCARED-",
-                    Constant.ErrorEventIdHighCritical,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesError,
                     ex,
                     EventLogEntryType.Error);
@@ -241,7 +241,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         {
                             LogEngine.WriteLog(Configuration.EngineName,
                                             $"Error in {MethodBase.GetCurrentMethod().Name} - ExecuteTriggerConfiguration Error - Missing the idConfiguration {idConfiguration} and idComponent {idComponent}",
-                                            Constant.ErrorEventIdHighCritical,
+                                            Constant.DefconOne,
                                             Constant.TaskCategoriesError,
                                             ex,
                                             EventLogEntryType.Error);
@@ -336,7 +336,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
 
                     //If send or received operaion
                     bool sendOperation = true && OperationTypRequested == Configuration.MessageDataProperty.ConsoleSendBubblingBag.ToString();
-                    if (!Configuration.DisableDeviceProviderInterface())
+                    if (!Configuration.DisableExternalEventsStreamEngine())
                     {
                         if(sendOperation)
                                 OffRampEngineSending.SendMessageOnRamp(
@@ -359,7 +359,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         LogEngine.WriteLog(
                             Configuration.EngineName,
                             "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.",
-                            Constant.ErrorEventIdHighCritical,
+                            Constant.DefconThree,
                             Constant.TaskCategoriesError,
                             null,
                             EventLogEntryType.Warning);
@@ -375,7 +375,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
 
                 LogEngine.WriteLog(Configuration.EngineName,
                                   $"Error in {MethodBase.GetCurrentMethod().Name}",
-                                  Constant.ErrorEventIdHighCritical,
+                                  Constant.DefconOne,
                                   Constant.TaskCategoriesError,
                                   ex,
                                   EventLogEntryType.Error);

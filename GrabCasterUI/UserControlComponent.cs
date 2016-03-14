@@ -33,16 +33,26 @@ namespace GrabCasterUI
 
         }
 
+        private string boldText(string text)
+        {
+            return @"\b " + text + @"\b0";
+        }
+        private string ansiText(string text)
+        {
+            return @"{\rtf1\ansi " + text + @" }";
+        }
         public void LoadComponentData(TreeviewBag treeviewBag)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            
+            if (treeviewBag.DataBag == null) return;
             switch (treeviewBag.GrabCasterComponentType)
             {
 
                 case GrabCasterComponentType.TriggerComponent:
                     TriggerContract triggerContract = (TriggerContract)treeviewBag.Component;
-                    stringBuilder.AppendLine($"Component type Trigger.");
+                    stringBuilder.AppendLine($"Component information");
+                    stringBuilder.AppendLine($"------------------------------------------------------");
+                    stringBuilder.AppendLine($"Component type - Trigger");
                     stringBuilder.AppendLine($"Assembly file {treeviewBag.File}");
                     stringBuilder.AppendLine($"Name: {triggerContract.Name}");
                     stringBuilder.AppendLine($"Description: {triggerContract.Description}");
@@ -54,18 +64,32 @@ namespace GrabCasterUI
                     break;
                 case GrabCasterComponentType.EventComponent:
                     EventContract eventContract = (EventContract)treeviewBag.Component;
-                    stringBuilder.AppendLine($"Component type Event.");
+                    stringBuilder.AppendLine($"Component information");
+                    stringBuilder.AppendLine($"------------------------------------------------------");
+                    stringBuilder.AppendLine($"Component type - Event.");
                     stringBuilder.AppendLine($"Assembly file {treeviewBag.File}");
                     stringBuilder.AppendLine($"Name: {eventContract.Name}");
                     stringBuilder.AppendLine($"Description: {eventContract.Description}");
                     stringBuilder.AppendLine($"Component Id: {eventContract.Id}");
                     stringBuilder.AppendLine($"Shared: {eventContract.Shared}");
                     break;
+                case GrabCasterComponentType.Correlation:
+                    this.richTextBoxSummary.Text = treeviewBag.DataBag.ToString();
+                    break;
                 default:
                     break;
 
 
             }
+
+            //if correlation not need to do anything more...
+            if (treeviewBag.GrabCasterComponentType == GrabCasterComponentType.Correlation) return;
+
+            stringBuilder.AppendLine($"");
+            stringBuilder.AppendLine($"------------------------------------------------------");
+            stringBuilder.AppendLine($"Properties to configure and use. (Name and Description)");
+            stringBuilder.AppendLine($"------------------------------------------------------");
+
             PropertyInfo[] propertyInfos = (PropertyInfo[])treeviewBag.ComponentDetails;
             foreach (var propertyInfo in propertyInfos)
             {

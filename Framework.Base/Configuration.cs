@@ -651,9 +651,9 @@ namespace GrabCaster.Framework.Base
         /// If provider emssaging is disable
         /// </summary>
         /// <returns></returns>
-        public static bool DisableDeviceProviderInterface()
+        public static bool DisableExternalEventsStreamEngine()
         {
-            return ConfigurationStorage.DisableDeviceProviderInterface;
+            return ConfigurationStorage.DisableExternalEventsStreamEngine;
         }
 
         /// <summary>
@@ -1044,7 +1044,7 @@ namespace GrabCaster.Framework.Base
         public EventHubsCheckPointPattern EventHubsCheckPointPattern { get; set; }
 
         [DataMember]
-        public bool DisableDeviceProviderInterface { get; set; }
+        public bool DisableExternalEventsStreamEngine { get; set; }
 
         [DataMember]
         public int ThrottlingOnRampIncomingRateNumber { get; set; }

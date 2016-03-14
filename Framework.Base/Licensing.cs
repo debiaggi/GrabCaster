@@ -27,9 +27,7 @@ namespace GrabCaster.Framework.Base
         Embedded = 1,
         Throttling,
         BizTalk,
-        WindowsNt,
-        Console,
-        UI
+        WindowsNt
 
     }
     public static class Licensing

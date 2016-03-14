@@ -65,7 +65,7 @@ namespace GrabCaster.Framework.Dcp.Redis
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCriticalEventHubs,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesEventHubs,
                     ex,
                     EventLogEntryType.Error);
@@ -94,7 +94,7 @@ namespace GrabCaster.Framework.Dcp.Redis
                 LogEngine.WriteLog(
                     Configuration.EngineName,
                     $"Error in {MethodBase.GetCurrentMethod().Name}",
-                    Constant.ErrorEventIdHighCriticalEventHubs,
+                    Constant.DefconOne,
                     Constant.TaskCategoriesEventHubs,
                     ex,
                     EventLogEntryType.Error);

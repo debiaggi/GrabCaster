@@ -55,9 +55,9 @@ namespace GrabCaster.Framework.Serialization.Xml
         {
             var eventCorrelationTemplate = new Event(
                 "{Event component ID to execute if Correlation = true}", 
-                "{Configuration ID to execute if Correlation = true}", 
-                "EventName", 
-                "EventDescription");
+                "{Configuration ID to execute if Correlation = true}",
+                "Event Name Sample",
+                "Event Description Sample");
             try
             {
                 var triggerConfiguration = new TriggerConfiguration();
@@ -80,25 +80,25 @@ namespace GrabCaster.Framework.Serialization.Xml
 
                 // 1*
                 var eventTriggerTemplate = new Event(
-                    "{Event component ID to execute}", 
-                    "{Configuration ID to execute}", 
-                    "Event Name", 
-                    "Event Description");
+                    "{Event component ID  Sample to execute}",
+                    "{Configuration ID  Sample to execute}",
+                    "Event Name Sample",
+                    "Event Description Sample");
                 eventTriggerTemplate.Channels = new List<Channel>();
                 var points = new List<Point>();
-                points.Add(new Point("Point ID", "Point Name", "Point Description"));
+                points.Add(new Point("Point ID Sample", "Point Name Sample", "Point Description Sample"));
                 eventTriggerTemplate.Channels.Add(
-                    new Channel("Channel ID", "Channel Name", "Channel Description", points));
+                    new Channel("Channel ID Sample", "Channel Name Sample", "Channel Description Sample", points));
 
                 eventCorrelationTemplate.Channels = new List<Channel>();
                 eventCorrelationTemplate.Channels.Add(
-                    new Channel("Channel ID", "Channel Name", "Channel Description", points));
+                    new Channel("Channel ID Sample", "Channel Name Sample", "Channel Description Sample", points));
 
                 triggerConfiguration.Events.Add(eventTriggerTemplate);
 
                 var events = new List<Event>();
                 events.Add(eventCorrelationTemplate);
-                eventTriggerTemplate.Correlation = new Correlation("Correlation Name", "C# script", events);
+                eventTriggerTemplate.Correlation = new Correlation("Correlation Name Sample", "C# script", events);
 
                 var serializedMessage = JsonConvert.SerializeObject(
                     triggerConfiguration, 

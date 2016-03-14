@@ -197,7 +197,7 @@ namespace GrabCaster.Framework.Engine
             {
                 LogEngine.WriteLog(Configuration.EngineName,
                                     "Configuration.WebApiEndPoint key empty, internal Web Api interface disable",
-                                    Constant.ErrorEventIdHighCritical,
+                                    Constant.DefconOne,
                                     Constant.TaskCategoriesError,
                                     null,
                                     EventLogEntryType.Warning);
@@ -264,7 +264,7 @@ namespace GrabCaster.Framework.Engine
                         .ToList();
 
                 // Send to MSP
-                if (remoteEvents.Count != 0 && !Configuration.DisableDeviceProviderInterface())
+                if (remoteEvents.Count != 0 && !Configuration.DisableExternalEventsStreamEngine())
 
                 {
                     var eventsCloned = ObjectHelper.CloneObject(remoteEvents);
@@ -408,7 +408,7 @@ namespace GrabCaster.Framework.Engine
                                        select levent;
 
                     // Send to MSP
-                    if (!Configuration.DisableDeviceProviderInterface() && remoteEvents.Any())
+                    if (!Configuration.DisableExternalEventsStreamEngine() && remoteEvents.Any())
                     {
                         var remoteContext = new EventActionContext(context.BubblingConfiguration);
                         OffRampEngineSending.SendMessageOnRamp(
@@ -427,7 +427,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         ex, 
                         EventLogEntryType.Error);
@@ -475,7 +475,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -516,7 +516,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -599,13 +599,223 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
             }
         }
 
+        /// <summary>
+        /// Create a bubbling event from DLL class
+        /// </summary>
+        /// <param name="lastAssemblyFileLoaded"></param>
+        /// <param name="numOfTriggers"></param>
+        /// <param name="assemblyFile"></param>
+        /// <returns></returns>
+        public static BubblingEvent CreateBubblingTrigger(Type assemblyClass,Assembly assembly,string assemblyFile)
+        {
+            try
+            {
+
+                    var bubblingEvent = new BubblingEvent();
+                    var classAttributes = assemblyClass.GetCustomAttributes(typeof(TriggerContract), true);
+                    if (classAttributes.Length > 0)
+                    {
+                        var trigger = (TriggerContract)classAttributes[0];
+
+                        // Create event bubbling
+                        bubblingEvent.AssemblyObject = assembly;
+                        bubblingEvent.AssemblyFile = assemblyFile;
+                        bubblingEvent.BubblingEventType = BubblingEventType.Trigger;
+                        bubblingEvent.Description = trigger.Description;
+                        bubblingEvent.IdComponent = trigger.Id;
+                        bubblingEvent.Name = trigger.Name;
+                        bubblingEvent.AssemblyClassType = assemblyClass;
+                        bubblingEvent.PollingRequired = trigger.PollingRequired;
+                        bubblingEvent.Nop = trigger.Nop;
+                        bubblingEvent.Shared = trigger.Shared;
+                        bubblingEvent.Version = assembly.GetName().Version;
+                        bubblingEvent.AssemblyContent = File.ReadAllBytes(assemblyFile);
+
+                        LogEngine.ConsoleWriteLine(
+                            $"[SYNC ROOT-{Path.GetFileName(assemblyFile)}]-[NAME-{trigger.Name}]",
+                            ConsoleColor.Gray);
+                    }
+
+                    bubblingEvent.Properties = new List<Property>();
+                    foreach (var propertyInfo in assemblyClass.GetProperties())
+                    {
+                        var propertyAttributes =
+                            propertyInfo.GetCustomAttributes(typeof(TriggerPropertyContract), true);
+                        if (propertyAttributes.Length > 0)
+                        {
+                            var triggerProperty = (TriggerPropertyContract)propertyAttributes[0];
+
+                            // TODO 1004
+                            if (propertyInfo.Name != triggerProperty.Name)
+                            {
+                                throw new Exception(
+                                    $"Critical error! the properies {propertyAttributes[0]} and {propertyInfo.Name} are different! Class name {assemblyClass.Name}");
+                            }
+
+                            bubblingEvent.Properties.Add(
+                                new Property(
+                                    triggerProperty.Name,
+                                    triggerProperty.Description,
+                                    propertyInfo,
+                                    propertyInfo.GetType(),
+                                    null));
+                        }
+                    }
+
+                    bubblingEvent.BaseActions = new List<BaseAction>();
+                    foreach (var methodInfo in assemblyClass.GetMethods())
+                    {
+                        var methodInfoAttributes = methodInfo.GetCustomAttributes(
+                            typeof(TriggerActionContract),
+                            true);
+                        if (methodInfoAttributes.Length > 0)
+                        {
+                            var triggerAction = (TriggerActionContract)methodInfoAttributes[0];
+
+                            // Add the method
+                            var baseAction = new BaseAction(
+                                triggerAction.Id,
+                                triggerAction.Name,
+                                triggerAction.Description,
+                                methodInfo,
+                                null)
+                            {
+                                Parameters = new List<Parameter>()
+                            };
+
+                            bubblingEvent.BaseActions.Add(baseAction);
+                        }
+                    }
+
+                    // Add the bubbling event
+                    return bubblingEvent;
+                
+            }
+            catch (Exception ex)
+            {
+                LogEngine.WriteLog(
+                    Configuration.EngineName,
+                    $"Assembly file {assemblyFile} - Error in {MethodBase.GetCurrentMethod().Name}",
+                    Constant.DefconOne,
+                    Constant.TaskCategoriesError,
+                    ex,
+                    EventLogEntryType.Error);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Create a event bubbling from a event dll class
+        /// </summary>
+        /// <param name="lastAssemblyFileLoaded"></param>
+        /// <param name="numOfEvents"></param>
+        /// <param name="assemblyClass"></param>
+        /// <param name="assembly"></param>
+        /// <param name="assemblyFile"></param>
+        /// <returns></returns>
+        public static BubblingEvent CreateBubblingEvent(Type assemblyClass, Assembly assembly, string assemblyFile)
+        {
+            try
+            {
+
+
+            var bubblingEvent = new BubblingEvent();
+            var classAttributes = assemblyClass.GetCustomAttributes(typeof(EventContract), true);
+            if (classAttributes.Length > 0)
+            {
+                var classAttribute = (EventContract)classAttributes[0];
+
+                // Create event bubbling
+                bubblingEvent.AssemblyFile = assemblyFile;
+                bubblingEvent.AssemblyObject = assembly;
+                bubblingEvent.BubblingEventType = BubblingEventType.Event;
+                bubblingEvent.Description = classAttribute.Description;
+                bubblingEvent.IdComponent = classAttribute.Id;
+                bubblingEvent.Name = classAttribute.Name;
+                bubblingEvent.AssemblyClassType = assemblyClass;
+                bubblingEvent.PollingRequired = false;
+                bubblingEvent.Nop = false;
+                bubblingEvent.Shared = classAttribute.Shared;
+                bubblingEvent.Version = assembly.GetName().Version;
+                bubblingEvent.AssemblyContent = File.ReadAllBytes(assemblyFile);
+
+                LogEngine.ConsoleWriteLine(
+                    $"[SYNC ROOT-{Path.GetFileName(assemblyFile)}]-[NAME-{classAttribute.Name}]",
+                    ConsoleColor.Gray);
+            }
+
+            bubblingEvent.Properties = new List<Property>();
+            foreach (var propertyInfo in assemblyClass.GetProperties())
+            {
+                var propertyAttributes = propertyInfo.GetCustomAttributes(
+                    typeof(EventPropertyContract),
+                    true);
+                if (propertyAttributes.Length > 0)
+                {
+                    var propertyAttribute = (EventPropertyContract)propertyAttributes[0];
+                    if (propertyInfo.Name != propertyAttribute.Name)
+                    {
+                        throw new Exception(
+                            $"Critical error! the properies {propertyAttributes[0]} and {propertyInfo.Name} are different! Class name {assemblyClass.Name}");
+                    }
+
+                    bubblingEvent.Properties.Add(
+                        new Property(
+                            propertyAttribute.Name,
+                            propertyAttribute.Description,
+                            propertyInfo,
+                            propertyInfo.GetType(),
+                            null));
+                }
+            }
+
+            bubblingEvent.BaseActions = new List<BaseAction>();
+            foreach (var methodInfo in assemblyClass.GetMethods())
+            {
+                var methodInfoAttributes = methodInfo.GetCustomAttributes(
+                    typeof(EventActionContract),
+                    true);
+                if (methodInfoAttributes.Length > 0)
+                {
+                    var methodInfoAttribute = (EventActionContract)methodInfoAttributes[0];
+
+                    // Add the method
+                    var baseAction = new BaseAction(
+                        methodInfoAttribute.Id,
+                        methodInfoAttribute.Name,
+                        methodInfoAttribute.Description,
+                        methodInfo,
+                        null)
+                    {
+                        Parameters = new List<Parameter>()
+                    };
+
+                    bubblingEvent.BaseActions.Add(baseAction);
+                }
+            }
+
+            // Add the bubbling event
+            return bubblingEvent;
+            }
+            catch (Exception ex)
+            {
+                LogEngine.WriteLog(
+                    Configuration.EngineName,
+                    $"Assembly file {assemblyFile} - Error in {MethodBase.GetCurrentMethod().Name}",
+                    Constant.DefconOne,
+                    Constant.TaskCategoriesError,
+                    ex,
+                    EventLogEntryType.Error);
+                return null;
+            }
+        }
         /// <summary>
         /// Load the events list from the directory
         /// </summary>
@@ -690,97 +900,24 @@ namespace GrabCaster.Framework.Engine
 
                         foreach (var assemblyClass in assemblyClasses)
                         {
-                            var bubblingEvent = new BubblingEvent();
-                            var classAttributes = assemblyClass.GetCustomAttributes(typeof(TriggerContract), true);
-                            if (classAttributes.Length > 0)
-                            {
-                                ++numOfTriggers;
-                                var trigger = (TriggerContract)classAttributes[0];
-
-                                // Create event bubbling
-                                bubblingEvent.AssemblyObject = assembly;
-                                bubblingEvent.AssemblyFile = assemblyFile;
-                                bubblingEvent.BubblingEventType = BubblingEventType.Trigger;
-                                bubblingEvent.Description = trigger.Description;
-                                bubblingEvent.IdComponent = trigger.Id;
-                                bubblingEvent.Name = trigger.Name;
-                                bubblingEvent.AssemblyClassType = assemblyClass;
-                                bubblingEvent.PollingRequired = trigger.PollingRequired;
-                                bubblingEvent.Nop = trigger.Nop;
-                                bubblingEvent.Shared = trigger.Shared;
-                                bubblingEvent.Version = assembly.GetName().Version;
-                                bubblingEvent.AssemblyContent = File.ReadAllBytes(assemblyFile);
-
-                                LogEngine.ConsoleWriteLine(
-                                    $"[SYNC ROOT-{Path.GetFileName(assemblyFile)}]-[NAME-{trigger.Name}]", 
-                                    ConsoleColor.Gray);
-                            }
-
-                            bubblingEvent.Properties = new List<Property>();
-                            foreach (var propertyInfo in assemblyClass.GetProperties())
-                            {
-                                var propertyAttributes =
-                                    propertyInfo.GetCustomAttributes(typeof(TriggerPropertyContract), true);
-                                if (propertyAttributes.Length > 0)
-                                {
-                                    var triggerProperty = (TriggerPropertyContract)propertyAttributes[0];
-
-                                    // TODO 1004
-                                    if (propertyInfo.Name != triggerProperty.Name)
-                                    {
-                                        throw new Exception(
-                                            $"Critical error! the properies {propertyAttributes[0]} and {propertyInfo.Name} are different! Class name {assemblyClass.Name}");
-                                    }
-
-                                    bubblingEvent.Properties.Add(
-                                        new Property(
-                                            triggerProperty.Name, 
-                                            triggerProperty.Description, 
-                                            propertyInfo, 
-                                            propertyInfo.GetType(), 
-                                            null));
-                                }
-                            }
-
-                            bubblingEvent.BaseActions = new List<BaseAction>();
-                            foreach (var methodInfo in assemblyClass.GetMethods())
-                            {
-                                var methodInfoAttributes = methodInfo.GetCustomAttributes(
-                                    typeof(TriggerActionContract), 
-                                    true);
-                                if (methodInfoAttributes.Length > 0)
-                                {
-                                    var triggerAction = (TriggerActionContract)methodInfoAttributes[0];
-
-                                    // Add the method
-                                    var baseAction = new BaseAction(
-                                        triggerAction.Id, 
-                                        triggerAction.Name, 
-                                        triggerAction.Description, 
-                                        methodInfo, 
-                                        null) {
-                                                 Parameters = new List<Parameter>() 
-                                              };
-
-                                    bubblingEvent.BaseActions.Add(baseAction);
-                                }
-                            }
-
-                            // Add the bubbling event
+                            BubblingEvent bubblingEvent = CreateBubblingTrigger(assemblyClass, assembly, assemblyFile);
+                            ++numOfTriggers;
                             GlobalEventListBaseDll.Add(bubblingEvent);
                         }
                     }
                     catch (Exception ex)
                     {
                         LogEngine.WriteLog(
-                            Configuration.EngineName, 
-                            $"Assembly file {lastAssemblyFileLoaded} - Error in {MethodBase.GetCurrentMethod().Name}", 
-                            Constant.ErrorEventIdHighCritical, 
-                            Constant.TaskCategoriesError, 
-                            ex, 
+                            Configuration.EngineName,
+                            $"Assembly file {lastAssemblyFileLoaded} - Error in {MethodBase.GetCurrentMethod().Name}",
+                            Constant.DefconOne,
+                            Constant.TaskCategoriesError,
+                            ex,
                             EventLogEntryType.Error);
                         return false;
                     }
+
+
                 }
 
                 // ****************************************************
@@ -818,82 +955,8 @@ namespace GrabCaster.Framework.Engine
 
                         foreach (var assemblyClass in assemblyClasses)
                         {
-                            var bubblingEvent = new BubblingEvent();
-                            var classAttributes = assemblyClass.GetCustomAttributes(typeof(EventContract), true);
-                            if (classAttributes.Length > 0)
-                            {
-                                ++numOfEvents;
-                                var classAttribute = (EventContract)classAttributes[0];
-
-                                // Create event bubbling
-                                bubblingEvent.AssemblyFile = assemblyFile;
-                                bubblingEvent.AssemblyObject = assembly;
-                                bubblingEvent.BubblingEventType = BubblingEventType.Event;
-                                bubblingEvent.Description = classAttribute.Description;
-                                bubblingEvent.IdComponent = classAttribute.Id;
-                                bubblingEvent.Name = classAttribute.Name;
-                                bubblingEvent.AssemblyClassType = assemblyClass;
-                                bubblingEvent.PollingRequired = false;
-                                bubblingEvent.Nop = false;
-                                bubblingEvent.Shared = classAttribute.Shared;
-                                bubblingEvent.Version = assembly.GetName().Version;
-                                bubblingEvent.AssemblyContent = File.ReadAllBytes(assemblyFile);
-
-                                LogEngine.ConsoleWriteLine(
-                                    $"[SYNC ROOT-{Path.GetFileName(assemblyFile)}]-[NAME-{classAttribute.Name}]", 
-                                    ConsoleColor.Gray);
-                            }
-
-                            bubblingEvent.Properties = new List<Property>();
-                            foreach (var propertyInfo in assemblyClass.GetProperties())
-                            {
-                                var propertyAttributes = propertyInfo.GetCustomAttributes(
-                                    typeof(EventPropertyContract), 
-                                    true);
-                                if (propertyAttributes.Length > 0)
-                                {
-                                    var propertyAttribute = (EventPropertyContract)propertyAttributes[0];
-                                    if (propertyInfo.Name != propertyAttribute.Name)
-                                    {
-                                        throw new Exception(
-                                            $"Critical error! the properies {propertyAttributes[0]} and {propertyInfo.Name} are different! Class name {assemblyClass.Name}");
-                                    }
-
-                                    bubblingEvent.Properties.Add(
-                                        new Property(
-                                            propertyAttribute.Name, 
-                                            propertyAttribute.Description, 
-                                            propertyInfo, 
-                                            propertyInfo.GetType(), 
-                                            null));
-                                }
-                            }
-
-                            bubblingEvent.BaseActions = new List<BaseAction>();
-                            foreach (var methodInfo in assemblyClass.GetMethods())
-                            {
-                                var methodInfoAttributes = methodInfo.GetCustomAttributes(
-                                    typeof(EventActionContract), 
-                                    true);
-                                if (methodInfoAttributes.Length > 0)
-                                {
-                                    var methodInfoAttribute = (EventActionContract)methodInfoAttributes[0];
-
-                                    // Add the method
-                                    var baseAction = new BaseAction(
-                                        methodInfoAttribute.Id, 
-                                        methodInfoAttribute.Name, 
-                                        methodInfoAttribute.Description, 
-                                        methodInfo, 
-                                        null) {
-                                                 Parameters = new List<Parameter>() 
-                                              };
-
-                                    bubblingEvent.BaseActions.Add(baseAction);
-                                }
-                            }
-
-                            // Add the bubbling event
+                            BubblingEvent bubblingEvent = CreateBubblingEvent(assemblyClass, assembly, assemblyFile);
+                            ++numOfEvents;
                             GlobalEventListBaseDll.Add(bubblingEvent);
                         }
                     }
@@ -902,7 +965,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName, 
                             $"Assembly file {lastAssemblyFileLoaded} - Error in {MethodBase.GetCurrentMethod().Name} - Possible workaround: Check if the propeties name and the corresponding contract properties name are the same in the assembly.", 
-                            Constant.ErrorEventIdHighCritical, 
+                            Constant.DefconOne, 
                             Constant.TaskCategoriesError, 
                             ex, 
                             EventLogEntryType.Error);
@@ -917,7 +980,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Assembly file {lastAssemblyFileLoaded} - Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -984,7 +1047,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName, 
                             $"Error in {MethodBase.GetCurrentMethod().Name} File {triggerConfigurationsFile}", 
-                            Constant.ErrorEventIdHighCritical, 
+                            Constant.DefconOne, 
                             Constant.TaskCategoriesError, 
                             ex, 
                             EventLogEntryType.Error);
@@ -1041,7 +1104,7 @@ namespace GrabCaster.Framework.Engine
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         $"Warning in {MethodBase.GetCurrentMethod().Name},Trigger [{triggerConfiguration.Trigger.Name}] with  IDComponent {triggerConfiguration.Trigger.IdComponent} present in the configuration event directory and not found in the event dll directory.", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         null, 
                         EventLogEntryType.Warning);
@@ -1082,7 +1145,7 @@ namespace GrabCaster.Framework.Engine
                             LogEngine.WriteLog(
                                 Configuration.EngineName, 
                                 $"Error in {MethodBase.GetCurrentMethod().Name} File {propertyEventsFile}", 
-                                Constant.ErrorEventIdHighCritical, 
+                                Constant.DefconOne, 
                                 Constant.TaskCategoriesError, 
                                 ex, 
                                 EventLogEntryType.Error);
@@ -1137,7 +1200,7 @@ namespace GrabCaster.Framework.Engine
                             MethodBase.GetCurrentMethod().Name, 
                             eventPropertyBag.Event.IdComponent, 
                             eventPropertyBag.Event.Name), 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesError, 
                         null, 
                         EventLogEntryType.Warning);
@@ -1203,7 +1266,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName, 
                             $"Error in {MethodBase.GetCurrentMethod().Name} File {triggerConfigurationsFile}", 
-                            Constant.ErrorEventIdHighCritical, 
+                            Constant.DefconOne, 
                             Constant.TaskCategoriesError, 
                             ex, 
                             EventLogEntryType.Error);
@@ -1250,7 +1313,7 @@ namespace GrabCaster.Framework.Engine
                             LogEngine.WriteLog(
                                 Configuration.EngineName, 
                                 $"Error in {MethodBase.GetCurrentMethod().Name} File {propertyEventsFile}", 
-                                Constant.ErrorEventIdHighCritical, 
+                                Constant.DefconOne, 
                                 Constant.TaskCategoriesError, 
                                 ex, 
                                 EventLogEntryType.Error);
@@ -1343,7 +1406,7 @@ namespace GrabCaster.Framework.Engine
                             LogEngine.WriteLog(
                                 Configuration.EngineName, 
                                 $"Error in {MethodBase.GetCurrentMethod().Name}-The property {propertyEvent.Name} is missing.Possible issue: you are missing this property in the dll compnent or in the trigger configuration file for trigger:{triggerConfiguration.Name}", 
-                                Constant.ErrorEventIdHighCritical, 
+                                Constant.DefconOne, 
                                 Constant.TaskCategoriesError, 
                                 null, 
                                 EventLogEntryType.Error);
@@ -1385,7 +1448,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName, 
                             $"Critical Error in {MethodBase.GetCurrentMethod().Name} invoking the component {triggerConfiguration.AssemblyFile}", 
-                            Constant.ErrorEventIdHighCritical, 
+                            Constant.DefconOne, 
                             Constant.TaskCategoriesError, 
                             ex, 
                             EventLogEntryType.Error);
@@ -1412,7 +1475,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -1440,7 +1503,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name} - BubblingTriggerConfiguration null.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     null, 
                     EventLogEntryType.Error);
@@ -1496,7 +1559,7 @@ namespace GrabCaster.Framework.Engine
                             $"Error in {MethodBase.GetCurrentMethod().Name} - No found event, check if the event is configured and active in the Bubbling folder events."
                             + $"\rEvent ID Configuration requested {_event.IdConfiguration}"
                             + $"\rEvent ID Component requested {_event.IdComponent}", 
-                            Constant.ErrorEventIdHighCritical, 
+                            Constant.DefconOne, 
                             Constant.TaskCategoriesError, 
                             null, 
                             EventLogEntryType.Error);
@@ -1567,7 +1630,7 @@ namespace GrabCaster.Framework.Engine
                                             LogEngine.WriteLog(
                                                 Configuration.EngineName, 
                                                 $"Attemp to override an unknown event property{eventProperty.Name} Error in {MethodBase.GetCurrentMethod().Name} - Source Event: {sourceSerializedEvents} - Local Event: {currentSerializedEvents}", 
-                                                Constant.ErrorEventIdHighCritical, 
+                                                Constant.DefconOne, 
                                                 Constant.TaskCategoriesError, 
                                                 null, 
                                                 EventLogEntryType.Error);
@@ -1589,11 +1652,28 @@ namespace GrabCaster.Framework.Engine
                                     {
                                         foreach (var eventProperty in eventConfiguration.Event.EventProperties)
                                         {
-                                            var propertyToOverride =
-                                                (from prop in bubblingEvent.Properties
-                                                 where prop.Name == eventProperty.Name
-                                                 select prop).First();
-                                            propertyToOverride.Value = eventProperty.Value;
+                                            try
+                                            {
+                                                var propertyToOverride =(from prop in bubblingEvent.Properties
+                                                                         where prop.Name == eventProperty.Name
+                                                                         select prop).First();
+                                                propertyToOverride.Value = eventProperty.Value;
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+
+                                                LogEngine.WriteLog(Configuration.EngineName,
+                                                                      $"Contract error - the property {eventProperty.Name} defined in the event [Name:{eventConfiguration.Event.Name} IdConfiguration:{eventConfiguration.Event.IdConfiguration} IdComponent:{eventConfiguration.Event.IdComponent}] is not present or declared as EventPropertyContract in the event assembly file {bubblingEvent.AssemblyFile}",
+                                                                      Constant.DefconOne,
+                                                                      Constant.TaskCategoriesError,
+                                                                      ex,
+                                                                      EventLogEntryType.Error);
+                                                return;
+
+
+                                            }
+
                                         }
                                     }
                                 }
@@ -1648,7 +1728,7 @@ namespace GrabCaster.Framework.Engine
                         LogEngine.WriteLog(
                             Configuration.EngineName, 
                             $"Warning! in {MethodBase.GetCurrentMethod().Name} - Try to execute a not available event for trigger {bubblingEventConfiguration.Name} and IdComponent {bubblingEventConfiguration.IdComponent}", 
-                            Constant.ErrorEventIdHighCritical, 
+                            Constant.DefconOne, 
                             Constant.TaskCategoriesError, 
                             null, 
                             EventLogEntryType.Warning);
@@ -1661,7 +1741,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Warning! in {MethodBase.GetCurrentMethod().Name} - Try to execute a not available event for trigger {bubblingEventConfiguration.Name} and IdComponent {bubblingEventConfiguration.IdComponent}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -1685,7 +1765,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Event Hubs transfort Type: {Configuration.ServiceBusConnectivityMode()}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     null, 
                     EventLogEntryType.Information);
@@ -1704,7 +1784,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -1740,7 +1820,7 @@ namespace GrabCaster.Framework.Engine
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);

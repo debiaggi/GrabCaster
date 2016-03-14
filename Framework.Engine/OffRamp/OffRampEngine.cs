@@ -125,7 +125,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 {
                     LogEngine.WriteLog(Configuration.EngineName,
                                         $"This GrabCaster point is configured for local only execution.",
-                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.DefconOne,
                                         Constant.TaskCategoriesError,
                                         null,
                                         EventLogEntryType.Warning);
@@ -167,7 +167,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     "Start Off Ramp Engine.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     null, 
                     EventLogEntryType.Information);
@@ -210,7 +210,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesError, 
                     ex, 
                     EventLogEntryType.Error);
@@ -250,7 +250,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 {
                     LogEngine.WriteLog(Configuration.EngineName,
                                         $"Impossible to send the message using a remote message storage provider, this GrabCaster point is configured for local only execution.",
-                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.DefconOne,
                                         Constant.TaskCategoriesError,
                                         null,
                                         EventLogEntryType.Warning);
@@ -364,7 +364,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCriticalEventHubs, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesEventHubs, 
                     ex, 
                     EventLogEntryType.Error);
@@ -404,7 +404,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 {
                     LogEngine.WriteLog(Configuration.EngineName,
                                         $"Impossible to send the message using a remote message storage provider, this GrabCaster point is configured for local only execution.",
-                                        Constant.ErrorEventIdHighCritical,
+                                        Constant.DefconOne,
                                         Constant.TaskCategoriesError,
                                         null,
                                         EventLogEntryType.Warning);
@@ -463,7 +463,7 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Error in {MethodBase.GetCurrentMethod().Name}", 
-                    Constant.ErrorEventIdHighCriticalEventHubs, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesEventHubs, 
                     ex, 
                     EventLogEntryType.Error);

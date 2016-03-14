@@ -118,7 +118,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"NT Service instance {ServiceName} is already installed.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesConsole, 
                     null, 
                     EventLogEntryType.Information);
@@ -139,7 +139,7 @@ namespace GrabCaster.Framework.NTService
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         $"NT Service instance {ServiceName} installation completed.", 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesConsole, 
                         null, 
                         EventLogEntryType.Information);
@@ -173,7 +173,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"NT Service instance {ServiceName} is not installed.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesConsole, 
                     null, 
                     EventLogEntryType.Warning);
@@ -190,7 +190,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"Service {ServiceName} Uninstallation completed.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesConsole, 
                     null, 
                     EventLogEntryType.Information);
@@ -210,7 +210,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     $"NT Service instance {ServiceName} is not installed.", 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesConsole, 
                     null, 
                     EventLogEntryType.Warning);
@@ -230,7 +230,7 @@ namespace GrabCaster.Framework.NTService
                 LogEngine.WriteLog(
                     Configuration.EngineName, 
                     "Error in " + MethodBase.GetCurrentMethod().Name, 
-                    Constant.ErrorEventIdHighCritical, 
+                    Constant.DefconOne, 
                     Constant.TaskCategoriesConsole, 
                     ex, 
                     EventLogEntryType.Error);
@@ -268,7 +268,7 @@ namespace GrabCaster.Framework.NTService
                     LogEngine.WriteLog(
                         Configuration.EngineName, 
                         "Error in " + MethodBase.GetCurrentMethod().Name, 
-                        Constant.ErrorEventIdHighCritical, 
+                        Constant.DefconOne, 
                         Constant.TaskCategoriesConsole, 
                         ex, 
                         EventLogEntryType.Error);

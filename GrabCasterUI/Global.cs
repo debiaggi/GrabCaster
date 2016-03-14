@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrabCasterUI
 {
+    using System.Reflection;
     using System.Windows.Forms;
 
     using GrabCaster.Framework.Contracts.Attributes;
@@ -14,7 +15,7 @@ namespace GrabCasterUI
     public enum GrabCasterComponentType
     {
         TriggerConfiguration,Event, EventConfiguration, TriggerComponent,EventComponent,Correlation,Root,
-        TriggerConfigurationRoot, EventConfigurationRoot, TriggerComponentRoot, EventComponentRoot
+        TriggerConfigurationRoot, EventConfigurationRoot, TriggerComponentRoot, EventComponentRoot,none
     }
 
     public static class Global
@@ -26,13 +27,15 @@ namespace GrabCasterUI
     }
     public class TreeviewBag
     {
-        public TreeviewBag(string File, GrabCasterComponentType GrabCasterComponentType, object component, object componentDetails, object DataBag)
+        public TreeviewBag(string File, GrabCasterComponentType GrabCasterComponentType, object component, object componentDetails, object DataBag, componentTrigger componentTrigger, componentEvent componentEvent)
         {
             this.File = File;
             this.GrabCasterComponentType = GrabCasterComponentType;
             this.Component = component;
             this.ComponentDetails = componentDetails;
             this.DataBag = DataBag;
+            this.componentTrigger = componentTrigger;
+            this.componentEvent = componentEvent;
 
             triggerConfigurationList = new List<TriggerConfiguration>() ?? null;
             eventConfigurationList= new List<EventConfiguration>() ?? null;
@@ -47,6 +50,8 @@ namespace GrabCasterUI
         public object Component { get; set; }
         public object ComponentDetails { get; set; }
         public object DataBag { get; set; }
+        public componentTrigger componentTrigger { get; set; }
+        public componentEvent componentEvent { get; set; }
 
         public List<TriggerConfiguration> triggerConfigurationList { get; set; }
         public List<EventConfiguration> eventConfigurationList { get; set; }
@@ -57,24 +62,33 @@ namespace GrabCasterUI
 
     public class componentTrigger
     {
-        public componentTrigger(TriggerContract triggerContract, Type triggerClass)
+        public componentTrigger(TriggerContract triggerContract, Type triggerClass,string file, Assembly assembly)
         {
             this.triggerContract = triggerContract;
             this.triggerClass = triggerClass;
+            this.file = file;
+            this.assembly = assembly;
         }
         public TriggerContract triggerContract { get; set; }
         public Type triggerClass { get; set; }
+        public string file { get; set; }
+        public Assembly assembly{ get; set; }
+
     }
 
     public class componentEvent
     {
-        public componentEvent(EventContract eventContract, Type eventClass)
+        public componentEvent(EventContract eventContract, Type eventClass, string file, Assembly assembly)
         {
             this.eventContract = eventContract;
             this.eventClass = eventClass;
+            this.file = file;
+            this.assembly = assembly;
         }
         public EventContract eventContract { get; set; }
         public Type eventClass { get; set; }
+        public string file { get; set; }
+        public Assembly assembly { get; set; }
     }
 
     public class propertyConfiguration
