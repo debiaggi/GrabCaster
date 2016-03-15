@@ -275,6 +275,18 @@ namespace GrabCaster.Framework.Engine.OffRamp
                 SkeletonMessage data = new SkeletonMessage(null);
 
                 // IF > 256kb then persist
+                if (serializedMessage.Length > secondaryPersistProviderByteSize && !secondaryPersistProviderEnabled)
+                {
+
+                    LogEngine.WriteLog(Configuration.EngineName,
+                              $"Error in {MethodBase.GetCurrentMethod().Name} - Impossible to send the message, the message body size if bigger than the secondaryPersistProviderByteSize paramenter but the secondaryPersistProviderEnabled is false.\rConsider to enable the secondaryPersistProviderEnabled paramanter in the config file and configure the storage component.",
+                              Constant.DefconOne,
+                              Constant.TaskCategoriesError,
+                              null,
+                              EventLogEntryType.Error);
+
+                    return;
+                }
 
                 if (serializedMessage.Length > secondaryPersistProviderByteSize && secondaryPersistProviderEnabled)
                 {

@@ -16,7 +16,7 @@ namespace GrabCaster.Framework.Engine
     /// Contains the bubbling folder filse (trg, evn, and dlls)
     /// </summary>
     [Serializable,DataContract]
-    public class BubblingBag
+    public class BubblingBagObjet
     {
         [DataMember]
         public List<TriggerConfiguration> TriggerConfigurationList { get; set; }
@@ -27,5 +27,10 @@ namespace GrabCaster.Framework.Engine
         [DataMember]
         public ConfigurationStorage ConfigurationStorage { get; set; }
 
+    }
+    [Serializable]
+    public class BubblingBag
+    {
+        public byte[] contentBubblingFolder { get; set; }
     }
 }

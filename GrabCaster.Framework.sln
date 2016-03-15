@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework", "Framework\GrabCaster.Framework.csproj", "{5C90B335-47A3-4ADE-8B30-3AA286976A27}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -185,7 +185,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCasterPoint", "Framewor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCasterUI", "GrabCasterUI\GrabCasterUI.csproj", "{7A7D68E2-464F-49D6-8D28-9DAA4B072BAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Compression", "Framework.Compression\GrabCaster.Framework.Compression.csproj", "{7E396D25-D909-4344-BFB5-0D0054BE57A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.CompressionLibrary", "Framework.Compression\GrabCaster.Framework.CompressionLibrary.csproj", "{7E396D25-D909-4344-BFB5-0D0054BE57A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Syncronization", "Framework.Syncronization\GrabCaster.Framework.Syncronization.csproj", "{F1857105-026C-46F3-BA98-4D62C5CC6FAF}"
 EndProject

@@ -66,17 +66,18 @@
             this.contextMenuStripEventComponentDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripEventComponentSend = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTriggerConfiguration = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStripTriggerConfigurationNew = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTriggerConfigurationDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripTriggerConfigurationSend = new System.Windows.Forms.ToolStripMenuItem();
+            this.executeToolStripMenuItemTriggerConfigurationExecute = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripEventConfiguration = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.contextMenuStripEventConfigurationNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripEventConfigurationDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripEventConfigurationSend = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripCorrelation = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemCorrelationDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripRoot = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRootRefresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandAllToolStripMenuItemRootExpandall = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -295,6 +296,7 @@
             this.imageListTreeview.Images.SetKeyName(13, "TRIGGER");
             this.imageListTreeview.Images.SetKeyName(14, "EVENTCOMPONENT");
             this.imageListTreeview.Images.SetKeyName(15, "TRIGGERCOMPONENT");
+            this.imageListTreeview.Images.SetKeyName(16, "CONSOLE");
             // 
             // panelUCContainer1
             // 
@@ -461,6 +463,7 @@
             this.contextMenuStripTriggerComponentSend.Name = "contextMenuStripTriggerComponentSend";
             this.contextMenuStripTriggerComponentSend.Size = new System.Drawing.Size(215, 22);
             this.contextMenuStripTriggerComponentSend.Text = "Send to Point";
+            this.contextMenuStripTriggerComponentSend.Click += new System.EventHandler(this.contextMenuStripTriggerComponentSend_Click);
             // 
             // contextMenuStripEventComponent
             // 
@@ -470,6 +473,7 @@
             this.contextMenuStripEventComponentSend});
             this.contextMenuStripEventComponent.Name = "contextMenuStripTriggers";
             this.contextMenuStripEventComponent.Size = new System.Drawing.Size(208, 70);
+            this.contextMenuStripEventComponent.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripEventComponent_Opening);
             // 
             // contextMenuStripEventComponentNew
             // 
@@ -490,22 +494,16 @@
             this.contextMenuStripEventComponentSend.Name = "contextMenuStripEventComponentSend";
             this.contextMenuStripEventComponentSend.Size = new System.Drawing.Size(207, 22);
             this.contextMenuStripEventComponentSend.Text = "Send to Point";
+            this.contextMenuStripEventComponentSend.Click += new System.EventHandler(this.contextMenuStripEventComponentSend_Click);
             // 
             // contextMenuStripTriggerConfiguration
             // 
             this.contextMenuStripTriggerConfiguration.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contextMenuStripTriggerConfigurationNew,
             this.contextMenuStripTriggerConfigurationDelete,
-            this.contextMenuStripTriggerConfigurationSend});
+            this.contextMenuStripTriggerConfigurationSend,
+            this.executeToolStripMenuItemTriggerConfigurationExecute});
             this.contextMenuStripTriggerConfiguration.Name = "contextMenuStripTriggers";
             this.contextMenuStripTriggerConfiguration.Size = new System.Drawing.Size(146, 70);
-            // 
-            // contextMenuStripTriggerConfigurationNew
-            // 
-            this.contextMenuStripTriggerConfigurationNew.Name = "contextMenuStripTriggerConfigurationNew";
-            this.contextMenuStripTriggerConfigurationNew.Size = new System.Drawing.Size(145, 22);
-            this.contextMenuStripTriggerConfigurationNew.Text = "New";
-            this.contextMenuStripTriggerConfigurationNew.Click += new System.EventHandler(this.contextMenuStripTriggerConfigurationNew_Click);
             // 
             // contextMenuStripTriggerConfigurationDelete
             // 
@@ -519,20 +517,30 @@
             this.contextMenuStripTriggerConfigurationSend.Name = "contextMenuStripTriggerConfigurationSend";
             this.contextMenuStripTriggerConfigurationSend.Size = new System.Drawing.Size(145, 22);
             this.contextMenuStripTriggerConfigurationSend.Text = "Send to Point";
+            this.contextMenuStripTriggerConfigurationSend.Click += new System.EventHandler(this.contextMenuStripTriggerConfigurationSend_Click);
+            // 
+            // executeToolStripMenuItemTriggerConfigurationExecute
+            // 
+            this.executeToolStripMenuItemTriggerConfigurationExecute.Name = "executeToolStripMenuItemTriggerConfigurationExecute";
+            this.executeToolStripMenuItemTriggerConfigurationExecute.Size = new System.Drawing.Size(145, 22);
+            this.executeToolStripMenuItemTriggerConfigurationExecute.Text = "Execute!";
+            this.executeToolStripMenuItemTriggerConfigurationExecute.Click += new System.EventHandler(this.executeToolStripMenuItemTriggerConfigurationExecute_Click);
             // 
             // contextMenuStripEventConfiguration
             // 
             this.contextMenuStripEventConfiguration.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contextMenuStripEventConfigurationNew,
+            this.contextMenuStripEventConfigurationDelete,
             this.contextMenuStripEventConfigurationSend});
             this.contextMenuStripEventConfiguration.Name = "contextMenuStripTriggers";
             this.contextMenuStripEventConfiguration.Size = new System.Drawing.Size(146, 48);
+            this.contextMenuStripEventConfiguration.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripEventConfiguration_Opening);
             // 
-            // contextMenuStripEventConfigurationNew
+            // contextMenuStripEventConfigurationDelete
             // 
-            this.contextMenuStripEventConfigurationNew.Name = "contextMenuStripEventConfigurationNew";
-            this.contextMenuStripEventConfigurationNew.Size = new System.Drawing.Size(145, 22);
-            this.contextMenuStripEventConfigurationNew.Text = "New";
+            this.contextMenuStripEventConfigurationDelete.Name = "contextMenuStripEventConfigurationDelete";
+            this.contextMenuStripEventConfigurationDelete.Size = new System.Drawing.Size(145, 22);
+            this.contextMenuStripEventConfigurationDelete.Text = "Delete";
+            this.contextMenuStripEventConfigurationDelete.Click += new System.EventHandler(this.contextMenuStripEventConfigurationDelete_Click_1);
             // 
             // contextMenuStripEventConfigurationSend
             // 
@@ -558,23 +566,31 @@
             // 
             this.contextMenuStripRoot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemRootRefresh,
-            this.toolStripMenuItemRootRemove});
+            this.toolStripMenuItemRootRemove,
+            this.expandAllToolStripMenuItemRootExpandall});
             this.contextMenuStripRoot.Name = "contextMenuStripTriggers";
-            this.contextMenuStripRoot.Size = new System.Drawing.Size(153, 70);
-            // 
-            // toolStripMenuItemRootRemove
-            // 
-            this.toolStripMenuItemRootRemove.Name = "toolStripMenuItemRootRemove";
-            this.toolStripMenuItemRootRemove.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemRootRemove.Text = "Remove";
-            this.toolStripMenuItemRootRemove.Click += new System.EventHandler(this.toolStripMenuItemRootRemove_Click);
+            this.contextMenuStripRoot.Size = new System.Drawing.Size(130, 70);
             // 
             // toolStripMenuItemRootRefresh
             // 
             this.toolStripMenuItemRootRefresh.Name = "toolStripMenuItemRootRefresh";
-            this.toolStripMenuItemRootRefresh.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemRootRefresh.Size = new System.Drawing.Size(129, 22);
             this.toolStripMenuItemRootRefresh.Text = "Refresh";
             this.toolStripMenuItemRootRefresh.Click += new System.EventHandler(this.toolStripMenuItemRootRefresh_Click);
+            // 
+            // toolStripMenuItemRootRemove
+            // 
+            this.toolStripMenuItemRootRemove.Name = "toolStripMenuItemRootRemove";
+            this.toolStripMenuItemRootRemove.Size = new System.Drawing.Size(129, 22);
+            this.toolStripMenuItemRootRemove.Text = "Remove";
+            this.toolStripMenuItemRootRemove.Click += new System.EventHandler(this.toolStripMenuItemRootRemove_Click);
+            // 
+            // expandAllToolStripMenuItemRootExpandall
+            // 
+            this.expandAllToolStripMenuItemRootExpandall.Name = "expandAllToolStripMenuItemRootExpandall";
+            this.expandAllToolStripMenuItemRootExpandall.Size = new System.Drawing.Size(129, 22);
+            this.expandAllToolStripMenuItemRootExpandall.Text = "Expand All";
+            this.expandAllToolStripMenuItemRootExpandall.Click += new System.EventHandler(this.expandAllToolStripMenuItemRootExpandall_Click);
             // 
             // FormMain
             // 
@@ -667,17 +683,18 @@
         private System.Windows.Forms.ToolStripMenuItem contextMenuStripEventComponentDelete;
         private System.Windows.Forms.ToolStripMenuItem contextMenuStripEventComponentSend;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTriggerConfiguration;
-        private System.Windows.Forms.ToolStripMenuItem contextMenuStripTriggerConfigurationNew;
         private System.Windows.Forms.ToolStripMenuItem contextMenuStripTriggerConfigurationDelete;
         private System.Windows.Forms.ToolStripMenuItem contextMenuStripTriggerConfigurationSend;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripEventConfiguration;
-        private System.Windows.Forms.ToolStripMenuItem contextMenuStripEventConfigurationNew;
         private System.Windows.Forms.ToolStripMenuItem contextMenuStripEventConfigurationSend;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripCorrelation;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCorrelationDelete;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripRoot;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRootRemove;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRootRefresh;
+        private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItemRootExpandall;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuStripEventConfigurationDelete;
+        private System.Windows.Forms.ToolStripMenuItem executeToolStripMenuItemTriggerConfigurationExecute;
     }
 }
 

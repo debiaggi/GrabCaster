@@ -14,9 +14,9 @@ namespace GrabCasterUI
 
     public partial class FormGCPointsList : Form
     {
-        public List<ConfigurationStorage> configurationStorages { get; set; }
 
-        public ConfigurationStorage configurationStorageSelected = null;
+        private List<GcPointsFoldersData> _gcPointsFoldersDataList { get; set; }
+        public GcPointsFoldersData gcPointsFoldersDataSelected = null;
 
         public FormGCPointsList()
         {
@@ -28,20 +28,47 @@ namespace GrabCasterUI
             this.Close();
         }
 
+        public void LoadList(List<GcPointsFoldersData> gcPointsFoldersDataList)
+        {
+            this.listView1.Columns.Add("Channel Name"); //column 1 heading
+            listView1.Columns.Add("Channel Description"); //column 2 heading
+            listView1.Columns.Add("Channel Id"); //column 2 heading
+            listView1.Columns.Add("Point name"); //column 2 heading
+            listView1.Columns.Add("Point Description"); //column 2 heading
+            listView1.Columns.Add("Point Id"); //column 2 heading
+            listView1.View = View.Details;
+
+            _gcPointsFoldersDataList = gcPointsFoldersDataList;
+            foreach (var item in gcPointsFoldersDataList)
+            {
+
+                ListViewItem lvi = new ListViewItem(item.ConfigurationStorage.ChannelName);
+                lvi.SubItems.Add(item.ConfigurationStorage.ChannelDescription);
+                lvi.SubItems.Add(item.ConfigurationStorage.ChannelId);
+                lvi.SubItems.Add(item.ConfigurationStorage.PointName);
+                lvi.SubItems.Add(item.ConfigurationStorage.PointDescription);
+                lvi.SubItems.Add(item.ConfigurationStorage.PointId);
+                lvi.Tag = item;
+                // add the listviewitem to a new row of the ListView control
+                listView1.Items.Add(lvi); //show Text1 in column1, Text2 in col2
+
+
+            }
+        }
         private void FormGCPointsList_Load(object sender, EventArgs e)
         {
 
-            foreach (var item in configurationStorages)
-            {
-                string[] record = { item.PointId, item.PointName, item.ChannelId, item.ChannelName };
-                this.listBoxPoints.Items.AddRange(record);
 
-            }
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            this.configurationStorageSelected = this.listBoxPoints.SelectedIndex == 0 ? Configuration.ConfigurationStorage : this.configurationStorages[this.listBoxPoints.SelectedIndex];
+            if (this.listView1.SelectedItems.Count < 0) return;
+
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)this.listView1.SelectedItems[0].Tag;
+            this.gcPointsFoldersDataSelected = gcPointsFoldersData;
+            this.Close();
+            
         }
     
     }

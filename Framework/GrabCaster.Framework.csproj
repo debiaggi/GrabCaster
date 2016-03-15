@@ -273,9 +273,9 @@
       <Project>{cf8282b8-4b29-4a41-8dbc-51a2fc45d223}</Project>
       <Name>GrabCaster.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Framework.Compression\GrabCaster.Framework.Compression.csproj">
+    <ProjectReference Include="..\Framework.Compression\GrabCaster.Framework.CompressionLibrary.csproj">
       <Project>{7e396d25-d909-4344-bfb5-0d0054be57a6}</Project>
-      <Name>GrabCaster.Framework.Compression</Name>
+      <Name>GrabCaster.Framework.CompressionLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\Framework.Contracts\GrabCaster.Framework.Contracts.csproj">
       <Project>{48b1dc31-f74d-41d2-aa27-7a76f2e198b6}</Project>

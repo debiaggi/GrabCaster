@@ -151,7 +151,8 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         ConsoleColor.DarkCyan);
 
                     // ****************************IF SAME SENDER*************************
-                    if (senderId == Configuration.PointId())
+                    //TODO DELETE the  + "debug"
+                    if (senderId == Configuration.PointId() + "debug")
                     {
                         LogEngine.ConsoleWriteLine("Same sender ID event discared.", ConsoleColor.Green);
                         return;
@@ -328,29 +329,22 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     skeletonMessage.Properties[Configuration.MessageDataProperty.MessageType.ToString()].ToString();
 
                 //******************* OPERATION CONF BAG- ALL THE CONF FILES AND DLLS ****************************************************************
-                if (OperationTypRequested
-                    == Configuration.MessageDataProperty.ConsoleSendBubblingBag.ToString() ||
-                    OperationTypRequested
-                    == Configuration.MessageDataProperty.ConsoleSendBubblingBagFromPoint.ToString())
+                //Receive the request to send the bubbling
+                if (OperationTypRequested == Configuration.MessageDataProperty.ConsoleRequestSendBubblingBag.ToString())
                 {
 
-                    //If send or received operaion
-                    bool sendOperation = true && OperationTypRequested == Configuration.MessageDataProperty.ConsoleSendBubblingBag.ToString();
                     if (!Configuration.DisableExternalEventsStreamEngine())
                     {
-                        if(sendOperation)
-                                OffRampEngineSending.SendMessageOnRamp(
-                                                    EventsEngine.bubblingBag,
-                                                    Configuration.MessageDataProperty.ConsoleSendBubblingBagFromPoint,
-                                                    skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
-                                                    skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
-                                                    null,
-                                                    null);
-                        else
+                        //If I am console do nothing
+                        if (Configuration.IamConsole())
                         {
-                            setConsoleActionEventEmbedded(
-                                Configuration.MessageDataProperty.ReceiverPointId.ToString(),
-                                skeletonMessage);
+                            OffRampEngineSending.SendMessageOnRamp(
+                                          EventsEngine.bubblingBag,
+                                          Configuration.MessageDataProperty.ConsoleResponseSendBubblingBag,
+                                          skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
+                                          skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                                          null,
+                                          null);
                         }
 
                     }
@@ -365,8 +359,40 @@ namespace GrabCaster.Framework.Engine.OnRamp
                             EventLogEntryType.Warning);
                     }
                 }
-           
-                
+                //Receive the request to send the bubbling
+                if (OperationTypRequested == Configuration.MessageDataProperty.ConsoleResponseSendBubblingBag.ToString())
+                {
+
+                    if (!Configuration.DisableExternalEventsStreamEngine())
+                    {
+                        //se non sono console 
+                        //metto 
+                        if (!Configuration.IamConsole())
+                        {
+                            byte[] bubblingContent = SerializationEngine.ObjectToByteArray(skeletonMessage.Body);
+
+                            string currentSyncFolder = DestinationConsolePointId == Configuration.PointId()
+                                                            ? Configuration.SyncDirectorySyncIn()
+                                                            : Configuration.SyncBuildSpecificDirectoryGcPointsIn("");
+                            GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
+                        }
+                        else
+                        {
+                            setConsoleActionEventEmbedded(skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
+                                        skeletonMessage);
+                        }
+                    }
+                    else
+                    {
+                        LogEngine.WriteLog(
+                            Configuration.EngineName,
+                            "Warning the Device Provider Interface is disable, the GrabCaster point will be able to work in local mode only.",
+                            Constant.DefconThree,
+                            Constant.TaskCategoriesError,
+                            null,
+                            EventLogEntryType.Warning);
+                    }
+                }
 
             }
             catch (Exception ex)

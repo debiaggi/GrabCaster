@@ -125,7 +125,7 @@ namespace GrabCasterUI
                 string currentSyncFolder = DestinationConsolePointId == Configuration.PointId()
                                                ? Configuration.SyncDirectorySyncIn()
                                                : Configuration.SyncBuildSpecificDirectoryGcPointsIn(PointId);
-                GrabCaster.Framework.Compression.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
+                GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
                 //GrabCaster.Framework.Syncronization.Helpers.SyncFolders();
 
                 Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
@@ -137,7 +137,7 @@ namespace GrabCasterUI
         
         private void buttonRefresh_Click(object sender, EventArgs e)
         {
-            AskPointBag("*","*",PointId, Configuration.MessageDataProperty.ConsoleSendBubblingBag);
+            AskPointBag("*","*",PointId, Configuration.MessageDataProperty.ConsoleRequestSendBubblingBag);
         }
 
         /// <summary>

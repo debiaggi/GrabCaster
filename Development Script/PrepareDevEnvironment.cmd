@@ -37,5 +37,8 @@ copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.dll Framework\
 copy Framework.Dpp.Azure\bin\Debug\GrabCaster.Framework.Dpp.Azure.pdb Framework\bin\Debug\Root_GrabCaster\* /y
 copy Framework.Dpp.Azure\bin\Release\GrabCaster.Framework.Dpp.Azure.dll Framework\bin\Release\Root_GrabCaster\* /y
 
+xcopy DefaultFiles\Log Framework\bin\Debug\Log\* /s /y /e
+xcopy DefaultFiles\Log Framework\bin\Debug\Log\* /s /y /e
+
 cd %~dp0
 

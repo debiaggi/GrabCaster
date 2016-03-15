@@ -151,6 +151,7 @@ namespace GrabCaster.Framework.Engine
         /// </summary>
         private static readonly FileSystemWatcher FswEventFolder = new FileSystemWatcher();
 
+        public static BubblingBagObjet bubblingBagObject { get; set; }
         public static BubblingBag bubblingBag { get; set; }
 
         /// <summary>
@@ -1207,13 +1208,19 @@ namespace GrabCaster.Framework.Engine
                 }
             }
 
+            LogEngine.ConsoleWriteLine($"Preparing the Bubbling Data Syncronization Bag.",ConsoleColor.Green);
             //Set up the bubblingBag for console
-            bubblingBag = new BubblingBag();
-            bubblingBag.TriggerConfigurationList = TriggerConfigurationList;
-            bubblingBag.EventConfigurationList = EventConfigurationList;
-            bubblingBag.GlobalEventListBaseDll = GlobalEventListBaseDll;
-            bubblingBag.ConfigurationStorage = Configuration.ConfigurationStorage;
+            bubblingBagObject = new BubblingBagObjet();
+            bubblingBagObject.TriggerConfigurationList = TriggerConfigurationList;
+            bubblingBagObject.EventConfigurationList = EventConfigurationList;
+            bubblingBagObject.GlobalEventListBaseDll = GlobalEventListBaseDll;
+            bubblingBagObject.ConfigurationStorage = Configuration.ConfigurationStorage;
 
+            //Get bubbling folder
+            bubblingBag = new BubblingBag();
+            string gcRootConfiguration = Configuration.DirectoryOperativeRootExeName();
+            bubblingBag.contentBubblingFolder = GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromDirectory(gcRootConfiguration);
+            LogEngine.ConsoleWriteLine($"Bubbling Data Syncronization Bag prepared.", ConsoleColor.Green);
         }
 
         /// <summary>

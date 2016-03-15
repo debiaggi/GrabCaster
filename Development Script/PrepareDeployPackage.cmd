@@ -38,8 +38,8 @@ xcopy DefaultFiles\BubblingDeploy Setup\bin\Release\Deploy\Root_GrabCaster\Bubbl
 xcopy SDK Setup\bin\Debug\Deploy\SDK\ /s /y /e
 xcopy SDK Setup\bin\Release\Deploy\SDK\ /s /y /e
 
-xcopy DefaultFiles\Log Setup\bin\Debug\Deploy\Root_GrabCaster\Log\* /s /y /e
-xcopy DefaultFiles\Log Setup\bin\Release\Deploy\Root_GrabCaster\Log\* /s /y /e
+xcopy DefaultFiles\Log Setup\bin\Debug\Deploy\Log\* /s /y /e
+xcopy DefaultFiles\Log Setup\bin\Release\Deploy\Log\* /s /y /e
 
 xcopy DefaultFiles\Demo Setup\bin\Debug\Deploy\Demo\* /s /y /e
 xcopy DefaultFiles\PersistentStorage Setup\bin\Debug\Deploy\PersistentStorage\* /s /y /e

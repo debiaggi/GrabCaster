@@ -8,7 +8,7 @@ namespace GrabCasterUI
 {
     using GrabCaster.Framework.Base;
 
-    internal class GcPointsFoldersData
+    public class GcPointsFoldersData
     {
         public string FolderName { get; set; }
         public string ConfigurationFileName { get; set; }

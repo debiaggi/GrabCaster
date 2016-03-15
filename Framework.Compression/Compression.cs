@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrabCaster.Framework.Compression
+namespace GrabCaster.Framework.CompressionLibrary
 {
     using System.Diagnostics;
     using System.IO;

@@ -42,7 +42,6 @@ namespace GrabCasterUI
             foreach (var item in propertyInfos)
             {
                 var value = item.GetValue(gcPointsFoldersData.ConfigurationStorage) ?? "";
-
                 propertyConfigurations.Add(new propertyConfiguration(item.Name, value.ToString()));
             }
             this.dataGridViewProperties.DataSource = propertyConfigurations;

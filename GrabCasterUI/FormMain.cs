@@ -42,6 +42,8 @@ namespace GrabCasterUI
     /// </summary>
     public partial class FormMain : Form
     {
+        List<GcPointsFoldersData> gcPointsFoldersDataList = null;
+
         public FormMain()
         {
             InitializeComponent();
@@ -50,6 +52,9 @@ namespace GrabCasterUI
         #region Variables
 
         //Constants 
+        public const string CONST_CONSOLE = "CONSOLE";
+        public const string CONST_CONSOLE_KEY = "CONSOLE";
+
         public const string CONST_POINT_KEY = "POINT";
 
         public const string CONST_CONFIGURATION = "CONFIGURATION";
@@ -98,6 +103,7 @@ namespace GrabCasterUI
         {
             //Load Configuration
 
+            
 
             this.treeView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
             this.treeView2.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.treeView_ItemDrag);
@@ -168,7 +174,7 @@ namespace GrabCasterUI
         {
 
             //Ask folder to all the points
-            AskPointBag("*", "*", Configuration.PointId(), Configuration.MessageDataProperty.ConsoleSendBubblingBag);
+            AskPointBag("*", "*", Configuration.PointId(), Configuration.MessageDataProperty.ConsoleRequestSendBubblingBag);
         }
 
 
@@ -179,7 +185,7 @@ namespace GrabCasterUI
         private List<GcPointsFoldersData> RefreshConfigurationStorageList()
         {
 
-            List<GcPointsFoldersData> gcPointsFoldersDataList= new List<GcPointsFoldersData>();
+            gcPointsFoldersDataList= new List<GcPointsFoldersData>();
 
             ConcoleMessage("Refresh operation requested...");
             //Get the locals configurations folders
@@ -200,7 +206,7 @@ namespace GrabCasterUI
             foreach (var item in gcCongigurationFolders)
             {
                 //If folder contains bubbling folder then is a config folder
-                if (item.Contains("Root_") && !item.Contains("Root_GrabCasterUI"))
+                if (item.Contains("Root_"))
                 {
                     ConfigurationStorage _configurationStorage = new ConfigurationStorage();
                     string configFileName = item.Split(Path.DirectorySeparatorChar).Last().Split('_').Last();
@@ -264,7 +270,8 @@ namespace GrabCasterUI
 
         private string GetPointName(GcPointsFoldersData gcPointsFoldersData)
         {
-            return $"{gcPointsFoldersData.ConfigurationStorage.PointName} - {gcPointsFoldersData.ConfigurationStorage.PointId}";
+            string consoleFolder = gcPointsFoldersData.FolderName.Contains("Root_GrabCasterUI") ? "[CONSOLE] " : string.Empty;
+            return $"{consoleFolder} {gcPointsFoldersData.ConfigurationStorage.PointName} - {gcPointsFoldersData.ConfigurationStorage.PointId}";
         }
 
         #region Events
@@ -400,15 +407,14 @@ namespace GrabCasterUI
         //Riceve la configurazione
         private static void EventReceivedFromEmbedded(string DestinationConsolePointId, ISkeletonMessage skeletonMessage)
         {
-            GCPointBag gcPointBag = (GCPointBag)SerializationEngine.ByteArrayToObject(skeletonMessage.Body);
-            string notes = gcPointBag.Notes;
+
+            //devicercare la folder con linq e metterlo nei gcpoints
+            byte[] bubblingContent = SerializationEngine.ObjectToByteArray(skeletonMessage.Body);
 
             string currentSyncFolder = DestinationConsolePointId == Configuration.PointId()
                                             ? Configuration.SyncDirectorySyncIn()
                                             : Configuration.SyncBuildSpecificDirectoryGcPointsIn("");
-            GrabCaster.Framework.Compression.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
-            //GrabCaster.Framework.Syncronization.Helpers.SyncFolders();
-
+            GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
             Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
 
         }
@@ -500,11 +506,24 @@ namespace GrabCasterUI
 
         private void LoadTreeview(TreeView treeView, GcPointsFoldersData gcPointsFoldersData)
         {
-            TreeNode treeNodePOINT = treeView.Nodes.Add(
-                                CONST_POINT_KEY,
-                                GetPointName(gcPointsFoldersData),
-                                CONST_POINT_KEY,
-                                CONST_POINT_KEY);
+            TreeNode treeNodePOINT = null;
+            if (gcPointsFoldersData.FolderName.Contains("Root_GrabCasterUI"))
+            {
+                treeNodePOINT = treeView.Nodes.Add(
+                    CONST_CONSOLE_KEY,
+                    GetPointName(gcPointsFoldersData),
+                    CONST_CONSOLE_KEY,
+                    CONST_CONSOLE_KEY);
+            }
+            else
+            {
+                treeNodePOINT = treeView.Nodes.Add(
+                    CONST_POINT_KEY,
+                    GetPointName(gcPointsFoldersData),
+                    CONST_POINT_KEY,
+                    CONST_POINT_KEY);
+            }
+
             LoadRooTreeViewNode(treeView, treeNodePOINT, gcPointsFoldersData);
         }
 
@@ -1325,15 +1344,127 @@ namespace GrabCasterUI
 
         private void toolStripMenuItemRootRefresh_Click(object sender, EventArgs e)
         {
-            foreach (TreeNode item in treeView1.SelectedNode.Nodes)
+            TreeNode treeNode = treeView1.SelectedNode;
+            while (treeNode.Nodes.Count != 0)
             {
-                item.Remove();
+                treeNode.Nodes[0].Remove();
             }
-            TreeviewBag treeviewBag = (TreeviewBag)treeView1.SelectedNode.Tag;
+            TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
             GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
-            LoadRooTreeViewNode(this.treeView1, treeView1.SelectedNode, gcPointsFoldersData);
+            LoadRooTreeViewNode(this.treeView1, treeNode, gcPointsFoldersData);
+            treeNode.Expand();
+        }
+
+        private void expandAllToolStripMenuItemRootExpandall_Click(object sender, EventArgs e)
+        {
+            treeView1.SelectedNode.ExpandAll();
+        }
+
+        private void contextMenuStripEventComponent_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void contextMenuStripEventConfigurationDelete_Click_1(object sender, EventArgs e)
+        {
+            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+        }
+
+        private void contextMenuStripTriggerConfigurationSend_Click(object sender, EventArgs e)
+        {
+            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
+        }
+
+        private void contextMenuStripTriggerComponentSend_Click(object sender, EventArgs e)
+        {
+            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
+        }
+        private void CopyAndSendFileComponent(GrabCasterComponentType grabCasterComponentType)
+        {
+            TreeNode treeNodeCurrent = treeView1.SelectedNode;
+            TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
+
+            FormGCPointsList FormGCPointsList = new FormGCPointsList();
+            FormGCPointsList.LoadList(gcPointsFoldersDataList);
+
+            string DirectoryBubblingFileSelected = string.Empty;
+            string message = string.Empty;
+
+            if (FormGCPointsList.ShowDialog() == DialogResult.OK)
+            {
+                GcPointsFoldersData gcPointsFoldersData = FormGCPointsList.gcPointsFoldersDataSelected;
+
+                switch (grabCasterComponentType)
+                {
+                    case GrabCasterComponentType.TriggerConfiguration:
+                        DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
+                                                        Configuration.DirectoryNameBubbling,
+                                                        Configuration.DirectoryNameTriggers);
+                        message ="Trigger configuration file assigned to the point/s, syncronize the points to send it to the point/s";
+                        break;
+                    case GrabCasterComponentType.Event:
+                        DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
+                                                        Configuration.DirectoryNameBubbling,
+                                                        Configuration.DirectoryNameEvents);
+                        message ="Event configuration file assigned to the point/s, syncronize the points to send it to the point/s";
+                        break;
+                    case GrabCasterComponentType.TriggerComponent:
+                        DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
+                                                        Configuration.DirectoryNameTriggers);
+                        message = "Trigger component file assigned to the point/s, syncronize the points to send it to the point/s";
+                        break;
+                    case GrabCasterComponentType.EventComponent:
+                        DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
+                                                        Configuration.DirectoryNameEvents);
+                        message = "Event component file assigned to the point/s, syncronize the points to send it to the point/s";
+                        break;
+                    default:
+                        break;
+                }
+                File.Copy(treeviewBagCurrent.File, Path.Combine(DirectoryBubblingFileSelected, Path.GetFileName(treeviewBagCurrent.File)));
+                Global.MessageBoxForm(message,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+
+        private void contextMenuStripEventComponentSend_Click(object sender, EventArgs e)
+        {
+            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
+        }
+
+        private void contextMenuStripEventConfiguration_Opening(object sender, CancelEventArgs e)
+        {
+            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
+        }
+
+        private void executeToolStripMenuItemTriggerConfigurationExecute_Click(object sender, EventArgs e)
+        {
+
+
+            
+            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            TreeviewBag treeviewBagRoot = (TreeviewBag)GetRootNode(this.treeView1.SelectedNode).Tag;
+            string folder = treeviewBagRoot.File;
+            if (!folder.Contains("Root_GrabCasterUI"))
+            {
+                Global.MessageBoxForm(
+                    "This functionality is avalable from the GrabCaster UI node.",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
+                return;
+            }
+            TriggerConfiguration triggerConfiguration = (TriggerConfiguration)treeviewBag.Component;
+
+            RestEventsEngine restEventsEngine = new RestEventsEngine();
+            restEventsEngine.ExecuteTrigger(triggerConfiguration.Trigger.IdConfiguration, triggerConfiguration.Trigger.IdComponent, null);
         }
     }
+
 
 
     public static class TypeExtension

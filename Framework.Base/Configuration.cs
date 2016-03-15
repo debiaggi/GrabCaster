@@ -141,8 +141,9 @@ namespace GrabCaster.Framework.Base
 
             Message,
 
-            ConsoleSendBubblingBag,
-            ConsoleSendBubblingBagFromPoint
+            //Any request correspond a response from the point
+            ConsoleRequestSendBubblingBag,
+            ConsoleResponseSendBubblingBag
 
         }
 
@@ -230,6 +231,7 @@ namespace GrabCaster.Framework.Base
 
         public static string BubblingOffExtension = @".off";
 
+        public static string configurationFile = string.Empty;
         //Methods
         public static void LoadConfiguration()
         {
@@ -238,7 +240,7 @@ namespace GrabCaster.Framework.Base
                 Path.GetFileNameWithoutExtension(Process.GetCurrentProcess().MainModule.FileName).Replace(".vshost", "");
 
             //Get the configuration file
-            var configurationFile = Path.Combine(
+            configurationFile = Path.Combine(
                 AppDomain.CurrentDomain.BaseDirectory,
                 string.Concat(filename.Replace(".vshost", ""), ConfigurationFileExtension));
             Debug.WriteLine("ConfigurationFile:", configurationFile);
@@ -306,7 +308,11 @@ namespace GrabCaster.Framework.Base
         {
             return ConfigurationStorage.SecondaryPersistProviderByteSize;
         }
-
+        public static bool IamConsole()
+        {
+            bool iamconsole = Path.GetFileName(configurationFile) == "GrabCasterUI.cfg";
+            return iamconsole;
+        }
         public static string PersistentProviderComponent()
         {
             return ConfigurationStorage.PersistentProviderComponent;
@@ -416,7 +422,7 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static string DirectoryLog()
         {
-            return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, "Log");
+            return Path.Combine(ConfigurationStorage.BaseDirectory, "Log");
         }
         /// <summary>
         ///     BUBBLING\Log\Concole directory
@@ -424,7 +430,7 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static string DirectoryLogConsole()
         {
-            return Path.Combine(ConfigurationStorage.DirectoryOperativeRootExeName, "Log\\Console");
+            return Path.Combine(ConfigurationStorage.BaseDirectory, "Log\\Console");
         }
         /// <summary>
         ///     ENDPOINTS directory
