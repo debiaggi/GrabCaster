@@ -411,9 +411,7 @@ namespace GrabCasterUI
             //devicercare la folder con linq e metterlo nei gcpoints
             byte[] bubblingContent = SerializationEngine.ObjectToByteArray(skeletonMessage.Body);
 
-            string currentSyncFolder = DestinationConsolePointId == Configuration.PointId()
-                                            ? Configuration.SyncDirectorySyncIn()
-                                            : Configuration.SyncBuildSpecificDirectoryGcPointsIn("");
+            string currentSyncFolder = Configuration.SyncBuildSpecificDirectoryGcPointsIn("");
             GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
             Console.WriteLine("---------------EVENT RECEIVED FROM EMBEDDED LIBRARY---------------");
 

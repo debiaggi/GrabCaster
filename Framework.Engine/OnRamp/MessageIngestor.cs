@@ -370,10 +370,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         if (!Configuration.IamConsole())
                         {
                             byte[] bubblingContent = SerializationEngine.ObjectToByteArray(skeletonMessage.Body);
-
-                            string currentSyncFolder = DestinationConsolePointId == Configuration.PointId()
-                                                            ? Configuration.SyncDirectorySyncIn()
-                                                            : Configuration.SyncBuildSpecificDirectoryGcPointsIn("");
+                            string currentSyncFolder = Configuration.SyncDirectorySyncIn();
                             GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromBytearray(skeletonMessage.Body, currentSyncFolder);
                         }
                         else
