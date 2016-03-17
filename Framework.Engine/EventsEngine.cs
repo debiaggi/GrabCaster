@@ -531,6 +531,9 @@ namespace GrabCaster.Framework.Engine
         {
             try
             {
+
+                GrabCaster.Framework.Syncronization.Helpers.ToBeSyncronized(Configuration.SyncBuildSpecificDirectoryGcPoints(Configuration.PointId()), Configuration.DirectoryOperativeRootExeName(),true);
+
                 // Load triggers bubbling path
                 var triggersDirectory = Configuration.DirectoryTriggers();
                 var regTriggers = new Regex(Configuration.TriggersUpdateExtension);

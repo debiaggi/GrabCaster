@@ -35,9 +35,9 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSyncronize = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSyncronizeOut = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMainHorrizzontal = new System.Windows.Forms.SplitContainer();
@@ -78,6 +78,7 @@
             this.toolStripMenuItemRootRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItemRootExpandall = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemRootSyncronize = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -111,11 +112,13 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1712, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,13 +127,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.closeToolStripMenuItem.Text = "Close";
             // 
             // toolStripMenu
@@ -138,12 +141,12 @@
             this.toolStripMenu.ImageScalingSize = new System.Drawing.Size(26, 26);
             this.toolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSyncronize,
+            this.toolStripButtonSyncronizeOut,
             this.toolStripButtonRefresh,
-            this.toolStripButtonSettings,
-            this.toolStripButton1});
-            this.toolStripMenu.Location = new System.Drawing.Point(0, 24);
+            this.toolStripButtonSettings});
+            this.toolStripMenu.Location = new System.Drawing.Point(0, 28);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Size = new System.Drawing.Size(1284, 33);
+            this.toolStripMenu.Size = new System.Drawing.Size(1712, 33);
             this.toolStripMenu.TabIndex = 1;
             this.toolStripMenu.Text = "toolStrip1";
             // 
@@ -156,6 +159,16 @@
             this.toolStripButtonSyncronize.Size = new System.Drawing.Size(30, 30);
             this.toolStripButtonSyncronize.Text = "toolStripButtonSyncronize";
             this.toolStripButtonSyncronize.Click += new System.EventHandler(this.toolStripButtonSyncronize_Click);
+            // 
+            // toolStripButtonSyncronizeOut
+            // 
+            this.toolStripButtonSyncronizeOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSyncronizeOut.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOut.Image")));
+            this.toolStripButtonSyncronizeOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSyncronizeOut.Name = "toolStripButtonSyncronizeOut";
+            this.toolStripButtonSyncronizeOut.Size = new System.Drawing.Size(30, 30);
+            this.toolStripButtonSyncronizeOut.Text = "toolStripButtonSyncronizeOut";
+            this.toolStripButtonSyncronizeOut.Click += new System.EventHandler(this.toolStripButtonSyncronizeOut_Click);
             // 
             // toolStripButtonRefresh
             // 
@@ -176,36 +189,30 @@
             this.toolStripButtonSettings.Size = new System.Drawing.Size(30, 30);
             this.toolStripButtonSettings.Text = "toolStripButtonSettings";
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 742);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 915);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1284, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1712, 25);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabelMessage
             // 
             this.toolStripStatusLabelMessage.Name = "toolStripStatusLabelMessage";
-            this.toolStripStatusLabelMessage.Size = new System.Drawing.Size(158, 17);
+            this.toolStripStatusLabelMessage.Size = new System.Drawing.Size(201, 20);
             this.toolStripStatusLabelMessage.Text = "toolStripStatusLabelMessage";
             this.toolStripStatusLabelMessage.Click += new System.EventHandler(this.toolStripStatusLabelMessage_Click);
             // 
             // splitContainerMainHorrizzontal
             // 
             this.splitContainerMainHorrizzontal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMainHorrizzontal.Location = new System.Drawing.Point(0, 57);
+            this.splitContainerMainHorrizzontal.Location = new System.Drawing.Point(0, 61);
+            this.splitContainerMainHorrizzontal.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerMainHorrizzontal.Name = "splitContainerMainHorrizzontal";
             this.splitContainerMainHorrizzontal.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -216,8 +223,9 @@
             // splitContainerMainHorrizzontal.Panel2
             // 
             this.splitContainerMainHorrizzontal.Panel2.Controls.Add(this.textBoxConsole);
-            this.splitContainerMainHorrizzontal.Size = new System.Drawing.Size(1284, 685);
-            this.splitContainerMainHorrizzontal.SplitterDistance = 611;
+            this.splitContainerMainHorrizzontal.Size = new System.Drawing.Size(1712, 854);
+            this.splitContainerMainHorrizzontal.SplitterDistance = 761;
+            this.splitContainerMainHorrizzontal.SplitterWidth = 5;
             this.splitContainerMainHorrizzontal.TabIndex = 3;
             // 
             // splitContainerMainVertical
@@ -225,6 +233,7 @@
             this.splitContainerMainVertical.BackColor = System.Drawing.Color.Black;
             this.splitContainerMainVertical.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMainVertical.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerMainVertical.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerMainVertical.Name = "splitContainerMainVertical";
             // 
             // splitContainerMainVertical.Panel1
@@ -236,16 +245,17 @@
             // 
             this.splitContainerMainVertical.Panel2.Controls.Add(this.splitContainerOrizRight);
             this.splitContainerMainVertical.Panel2.Controls.Add(this.panel2);
-            this.splitContainerMainVertical.Size = new System.Drawing.Size(1284, 611);
-            this.splitContainerMainVertical.SplitterDistance = 692;
-            this.splitContainerMainVertical.SplitterWidth = 6;
+            this.splitContainerMainVertical.Size = new System.Drawing.Size(1712, 761);
+            this.splitContainerMainVertical.SplitterDistance = 922;
+            this.splitContainerMainVertical.SplitterWidth = 8;
             this.splitContainerMainVertical.TabIndex = 0;
             // 
             // splitContainerOrizLeft
             // 
             this.splitContainerOrizLeft.BackColor = System.Drawing.Color.Black;
             this.splitContainerOrizLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerOrizLeft.Location = new System.Drawing.Point(0, 22);
+            this.splitContainerOrizLeft.Location = new System.Drawing.Point(0, 27);
+            this.splitContainerOrizLeft.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerOrizLeft.Name = "splitContainerOrizLeft";
             this.splitContainerOrizLeft.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -256,9 +266,9 @@
             // splitContainerOrizLeft.Panel2
             // 
             this.splitContainerOrizLeft.Panel2.Controls.Add(this.panelUCContainer1);
-            this.splitContainerOrizLeft.Size = new System.Drawing.Size(692, 589);
-            this.splitContainerOrizLeft.SplitterDistance = 331;
-            this.splitContainerOrizLeft.SplitterWidth = 10;
+            this.splitContainerOrizLeft.Size = new System.Drawing.Size(922, 734);
+            this.splitContainerOrizLeft.SplitterDistance = 412;
+            this.splitContainerOrizLeft.SplitterWidth = 12;
             this.splitContainerOrizLeft.TabIndex = 3;
             // 
             // treeView1
@@ -269,9 +279,10 @@
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageListTreeview;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(692, 331);
+            this.treeView1.Size = new System.Drawing.Size(922, 412);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -303,8 +314,9 @@
             this.panelUCContainer1.Controls.Add(this.userControlComponent1);
             this.panelUCContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUCContainer1.Location = new System.Drawing.Point(0, 0);
+            this.panelUCContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer1.Name = "panelUCContainer1";
-            this.panelUCContainer1.Size = new System.Drawing.Size(692, 248);
+            this.panelUCContainer1.Size = new System.Drawing.Size(922, 310);
             this.panelUCContainer1.TabIndex = 0;
             // 
             // userControlComponent1
@@ -312,8 +324,9 @@
             this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
             this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
             this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(692, 248);
+            this.userControlComponent1.Size = new System.Drawing.Size(922, 310);
             this.userControlComponent1.TabIndex = 0;
             this.userControlComponent1.TreeNodeSide = null;
             this.userControlComponent1.TreeViewSide = null;
@@ -323,8 +336,9 @@
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(692, 22);
+            this.panel1.Size = new System.Drawing.Size(922, 27);
             this.panel1.TabIndex = 2;
             // 
             // comboBox1
@@ -333,8 +347,9 @@
             this.comboBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(692, 24);
+            this.comboBox1.Size = new System.Drawing.Size(922, 26);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -342,7 +357,8 @@
             // 
             this.splitContainerOrizRight.BackColor = System.Drawing.Color.Black;
             this.splitContainerOrizRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerOrizRight.Location = new System.Drawing.Point(0, 22);
+            this.splitContainerOrizRight.Location = new System.Drawing.Point(0, 27);
+            this.splitContainerOrizRight.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerOrizRight.Name = "splitContainerOrizRight";
             this.splitContainerOrizRight.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -353,9 +369,9 @@
             // splitContainerOrizRight.Panel2
             // 
             this.splitContainerOrizRight.Panel2.Controls.Add(this.panelUCContainer2);
-            this.splitContainerOrizRight.Size = new System.Drawing.Size(586, 589);
-            this.splitContainerOrizRight.SplitterDistance = 334;
-            this.splitContainerOrizRight.SplitterWidth = 10;
+            this.splitContainerOrizRight.Size = new System.Drawing.Size(782, 734);
+            this.splitContainerOrizRight.SplitterDistance = 416;
+            this.splitContainerOrizRight.SplitterWidth = 12;
             this.splitContainerOrizRight.TabIndex = 1;
             // 
             // treeView2
@@ -366,9 +382,10 @@
             this.treeView2.ImageIndex = 0;
             this.treeView2.ImageList = this.imageListTreeview;
             this.treeView2.Location = new System.Drawing.Point(0, 0);
+            this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
             this.treeView2.SelectedImageIndex = 0;
-            this.treeView2.Size = new System.Drawing.Size(586, 334);
+            this.treeView2.Size = new System.Drawing.Size(782, 416);
             this.treeView2.TabIndex = 1;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             // 
@@ -377,8 +394,9 @@
             this.panelUCContainer2.Controls.Add(this.userControlComponent2);
             this.panelUCContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUCContainer2.Location = new System.Drawing.Point(0, 0);
+            this.panelUCContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer2.Name = "panelUCContainer2";
-            this.panelUCContainer2.Size = new System.Drawing.Size(586, 245);
+            this.panelUCContainer2.Size = new System.Drawing.Size(782, 306);
             this.panelUCContainer2.TabIndex = 0;
             // 
             // userControlComponent2
@@ -386,8 +404,9 @@
             this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
             this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
             this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(586, 245);
+            this.userControlComponent2.Size = new System.Drawing.Size(782, 306);
             this.userControlComponent2.TabIndex = 1;
             this.userControlComponent2.TreeNodeSide = null;
             this.userControlComponent2.TreeViewSide = null;
@@ -397,8 +416,9 @@
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(586, 22);
+            this.panel2.Size = new System.Drawing.Size(782, 27);
             this.panel2.TabIndex = 0;
             // 
             // comboBox2
@@ -407,8 +427,9 @@
             this.comboBox2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(0, 0);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(586, 24);
+            this.comboBox2.Size = new System.Drawing.Size(782, 26);
             this.comboBox2.TabIndex = 2;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -419,10 +440,11 @@
             this.textBoxConsole.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxConsole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBoxConsole.Location = new System.Drawing.Point(0, 0);
+            this.textBoxConsole.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxConsole.Multiline = true;
             this.textBoxConsole.Name = "textBoxConsole";
             this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxConsole.Size = new System.Drawing.Size(1284, 70);
+            this.textBoxConsole.Size = new System.Drawing.Size(1712, 88);
             this.textBoxConsole.TabIndex = 0;
             this.textBoxConsole.Text = "test message";
             // 
@@ -436,172 +458,189 @@
             // 
             // contextMenuStripTriggerComponent
             // 
+            this.contextMenuStripTriggerComponent.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripTriggerComponent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contextMenuStripTriggerComponentNew,
             this.contextMenuStripTriggerComponentDelete,
             this.contextMenuStripTriggerComponentSend});
             this.contextMenuStripTriggerComponent.Name = "contextMenuStripTriggers";
-            this.contextMenuStripTriggerComponent.Size = new System.Drawing.Size(216, 70);
+            this.contextMenuStripTriggerComponent.Size = new System.Drawing.Size(261, 82);
             this.contextMenuStripTriggerComponent.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripTriggerComponent_Opening);
             // 
             // contextMenuStripTriggerComponentNew
             // 
             this.contextMenuStripTriggerComponentNew.Name = "contextMenuStripTriggerComponentNew";
-            this.contextMenuStripTriggerComponentNew.Size = new System.Drawing.Size(215, 22);
+            this.contextMenuStripTriggerComponentNew.Size = new System.Drawing.Size(260, 26);
             this.contextMenuStripTriggerComponentNew.Text = "New Configuration Trigger";
             this.contextMenuStripTriggerComponentNew.Click += new System.EventHandler(this.toolStripMenuItemNew_Click);
             // 
             // contextMenuStripTriggerComponentDelete
             // 
             this.contextMenuStripTriggerComponentDelete.Name = "contextMenuStripTriggerComponentDelete";
-            this.contextMenuStripTriggerComponentDelete.Size = new System.Drawing.Size(215, 22);
+            this.contextMenuStripTriggerComponentDelete.Size = new System.Drawing.Size(260, 26);
             this.contextMenuStripTriggerComponentDelete.Text = "Delete";
             this.contextMenuStripTriggerComponentDelete.Click += new System.EventHandler(this.contextMenuStripTriggerComponentDelete_Click);
             // 
             // contextMenuStripTriggerComponentSend
             // 
             this.contextMenuStripTriggerComponentSend.Name = "contextMenuStripTriggerComponentSend";
-            this.contextMenuStripTriggerComponentSend.Size = new System.Drawing.Size(215, 22);
+            this.contextMenuStripTriggerComponentSend.Size = new System.Drawing.Size(260, 26);
             this.contextMenuStripTriggerComponentSend.Text = "Send to Point";
             this.contextMenuStripTriggerComponentSend.Click += new System.EventHandler(this.contextMenuStripTriggerComponentSend_Click);
             // 
             // contextMenuStripEventComponent
             // 
+            this.contextMenuStripEventComponent.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripEventComponent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contextMenuStripEventComponentNew,
             this.contextMenuStripEventComponentDelete,
             this.contextMenuStripEventComponentSend});
             this.contextMenuStripEventComponent.Name = "contextMenuStripTriggers";
-            this.contextMenuStripEventComponent.Size = new System.Drawing.Size(208, 70);
+            this.contextMenuStripEventComponent.Size = new System.Drawing.Size(250, 82);
             this.contextMenuStripEventComponent.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripEventComponent_Opening);
             // 
             // contextMenuStripEventComponentNew
             // 
             this.contextMenuStripEventComponentNew.Name = "contextMenuStripEventComponentNew";
-            this.contextMenuStripEventComponentNew.Size = new System.Drawing.Size(207, 22);
+            this.contextMenuStripEventComponentNew.Size = new System.Drawing.Size(249, 26);
             this.contextMenuStripEventComponentNew.Text = "New Configuration Event";
             this.contextMenuStripEventComponentNew.Click += new System.EventHandler(this.contextMenuStripEventComponentNew_Click);
             // 
             // contextMenuStripEventComponentDelete
             // 
             this.contextMenuStripEventComponentDelete.Name = "contextMenuStripEventComponentDelete";
-            this.contextMenuStripEventComponentDelete.Size = new System.Drawing.Size(207, 22);
+            this.contextMenuStripEventComponentDelete.Size = new System.Drawing.Size(249, 26);
             this.contextMenuStripEventComponentDelete.Text = "Delete";
             this.contextMenuStripEventComponentDelete.Click += new System.EventHandler(this.contextMenuStripEventComponentDelete_Click);
             // 
             // contextMenuStripEventComponentSend
             // 
             this.contextMenuStripEventComponentSend.Name = "contextMenuStripEventComponentSend";
-            this.contextMenuStripEventComponentSend.Size = new System.Drawing.Size(207, 22);
+            this.contextMenuStripEventComponentSend.Size = new System.Drawing.Size(249, 26);
             this.contextMenuStripEventComponentSend.Text = "Send to Point";
             this.contextMenuStripEventComponentSend.Click += new System.EventHandler(this.contextMenuStripEventComponentSend_Click);
             // 
             // contextMenuStripTriggerConfiguration
             // 
+            this.contextMenuStripTriggerConfiguration.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripTriggerConfiguration.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contextMenuStripTriggerConfigurationDelete,
             this.contextMenuStripTriggerConfigurationSend,
             this.executeToolStripMenuItemTriggerConfigurationExecute});
             this.contextMenuStripTriggerConfiguration.Name = "contextMenuStripTriggers";
-            this.contextMenuStripTriggerConfiguration.Size = new System.Drawing.Size(146, 70);
+            this.contextMenuStripTriggerConfiguration.Size = new System.Drawing.Size(173, 82);
+            this.contextMenuStripTriggerConfiguration.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripTriggerConfiguration_Opening);
             // 
             // contextMenuStripTriggerConfigurationDelete
             // 
             this.contextMenuStripTriggerConfigurationDelete.Name = "contextMenuStripTriggerConfigurationDelete";
-            this.contextMenuStripTriggerConfigurationDelete.Size = new System.Drawing.Size(145, 22);
+            this.contextMenuStripTriggerConfigurationDelete.Size = new System.Drawing.Size(172, 26);
             this.contextMenuStripTriggerConfigurationDelete.Text = "Delete";
             this.contextMenuStripTriggerConfigurationDelete.Click += new System.EventHandler(this.contextMenuStripTriggerConfigurationDelete_Click);
             // 
             // contextMenuStripTriggerConfigurationSend
             // 
             this.contextMenuStripTriggerConfigurationSend.Name = "contextMenuStripTriggerConfigurationSend";
-            this.contextMenuStripTriggerConfigurationSend.Size = new System.Drawing.Size(145, 22);
+            this.contextMenuStripTriggerConfigurationSend.Size = new System.Drawing.Size(172, 26);
             this.contextMenuStripTriggerConfigurationSend.Text = "Send to Point";
             this.contextMenuStripTriggerConfigurationSend.Click += new System.EventHandler(this.contextMenuStripTriggerConfigurationSend_Click);
             // 
             // executeToolStripMenuItemTriggerConfigurationExecute
             // 
             this.executeToolStripMenuItemTriggerConfigurationExecute.Name = "executeToolStripMenuItemTriggerConfigurationExecute";
-            this.executeToolStripMenuItemTriggerConfigurationExecute.Size = new System.Drawing.Size(145, 22);
+            this.executeToolStripMenuItemTriggerConfigurationExecute.Size = new System.Drawing.Size(172, 26);
             this.executeToolStripMenuItemTriggerConfigurationExecute.Text = "Execute!";
             this.executeToolStripMenuItemTriggerConfigurationExecute.Click += new System.EventHandler(this.executeToolStripMenuItemTriggerConfigurationExecute_Click);
             // 
             // contextMenuStripEventConfiguration
             // 
+            this.contextMenuStripEventConfiguration.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripEventConfiguration.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contextMenuStripEventConfigurationDelete,
             this.contextMenuStripEventConfigurationSend});
             this.contextMenuStripEventConfiguration.Name = "contextMenuStripTriggers";
-            this.contextMenuStripEventConfiguration.Size = new System.Drawing.Size(146, 48);
+            this.contextMenuStripEventConfiguration.Size = new System.Drawing.Size(173, 56);
             this.contextMenuStripEventConfiguration.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripEventConfiguration_Opening);
             // 
             // contextMenuStripEventConfigurationDelete
             // 
             this.contextMenuStripEventConfigurationDelete.Name = "contextMenuStripEventConfigurationDelete";
-            this.contextMenuStripEventConfigurationDelete.Size = new System.Drawing.Size(145, 22);
+            this.contextMenuStripEventConfigurationDelete.Size = new System.Drawing.Size(172, 26);
             this.contextMenuStripEventConfigurationDelete.Text = "Delete";
             this.contextMenuStripEventConfigurationDelete.Click += new System.EventHandler(this.contextMenuStripEventConfigurationDelete_Click_1);
             // 
             // contextMenuStripEventConfigurationSend
             // 
             this.contextMenuStripEventConfigurationSend.Name = "contextMenuStripEventConfigurationSend";
-            this.contextMenuStripEventConfigurationSend.Size = new System.Drawing.Size(145, 22);
+            this.contextMenuStripEventConfigurationSend.Size = new System.Drawing.Size(172, 26);
             this.contextMenuStripEventConfigurationSend.Text = "Send to Point";
+            this.contextMenuStripEventConfigurationSend.Click += new System.EventHandler(this.contextMenuStripEventConfigurationSend_Click);
             // 
             // contextMenuStripCorrelation
             // 
+            this.contextMenuStripCorrelation.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripCorrelation.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemCorrelationDelete});
             this.contextMenuStripCorrelation.Name = "contextMenuStripTriggers";
-            this.contextMenuStripCorrelation.Size = new System.Drawing.Size(108, 26);
+            this.contextMenuStripCorrelation.Size = new System.Drawing.Size(129, 30);
             // 
             // toolStripMenuItemCorrelationDelete
             // 
             this.toolStripMenuItemCorrelationDelete.Name = "toolStripMenuItemCorrelationDelete";
-            this.toolStripMenuItemCorrelationDelete.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItemCorrelationDelete.Size = new System.Drawing.Size(128, 26);
             this.toolStripMenuItemCorrelationDelete.Text = "Delete";
             this.toolStripMenuItemCorrelationDelete.Click += new System.EventHandler(this.toolStripMenuItemCorrelationDelete_Click);
             // 
             // contextMenuStripRoot
             // 
+            this.contextMenuStripRoot.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripRoot.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemRootRefresh,
             this.toolStripMenuItemRootRemove,
-            this.expandAllToolStripMenuItemRootExpandall});
+            this.expandAllToolStripMenuItemRootExpandall,
+            this.toolStripMenuItemRootSyncronize});
             this.contextMenuStripRoot.Name = "contextMenuStripTriggers";
-            this.contextMenuStripRoot.Size = new System.Drawing.Size(130, 70);
+            this.contextMenuStripRoot.Size = new System.Drawing.Size(197, 108);
             // 
             // toolStripMenuItemRootRefresh
             // 
             this.toolStripMenuItemRootRefresh.Name = "toolStripMenuItemRootRefresh";
-            this.toolStripMenuItemRootRefresh.Size = new System.Drawing.Size(129, 22);
+            this.toolStripMenuItemRootRefresh.Size = new System.Drawing.Size(196, 26);
             this.toolStripMenuItemRootRefresh.Text = "Refresh";
             this.toolStripMenuItemRootRefresh.Click += new System.EventHandler(this.toolStripMenuItemRootRefresh_Click);
             // 
             // toolStripMenuItemRootRemove
             // 
             this.toolStripMenuItemRootRemove.Name = "toolStripMenuItemRootRemove";
-            this.toolStripMenuItemRootRemove.Size = new System.Drawing.Size(129, 22);
+            this.toolStripMenuItemRootRemove.Size = new System.Drawing.Size(196, 26);
             this.toolStripMenuItemRootRemove.Text = "Remove";
             this.toolStripMenuItemRootRemove.Click += new System.EventHandler(this.toolStripMenuItemRootRemove_Click);
             // 
             // expandAllToolStripMenuItemRootExpandall
             // 
             this.expandAllToolStripMenuItemRootExpandall.Name = "expandAllToolStripMenuItemRootExpandall";
-            this.expandAllToolStripMenuItemRootExpandall.Size = new System.Drawing.Size(129, 22);
+            this.expandAllToolStripMenuItemRootExpandall.Size = new System.Drawing.Size(196, 26);
             this.expandAllToolStripMenuItemRootExpandall.Text = "Expand All";
             this.expandAllToolStripMenuItemRootExpandall.Click += new System.EventHandler(this.expandAllToolStripMenuItemRootExpandall_Click);
             // 
+            // toolStripMenuItemRootSyncronize
+            // 
+            this.toolStripMenuItemRootSyncronize.Name = "toolStripMenuItemRootSyncronize";
+            this.toolStripMenuItemRootSyncronize.Size = new System.Drawing.Size(196, 26);
+            this.toolStripMenuItemRootSyncronize.Text = "Syncronize Point!";
+            this.toolStripMenuItemRootSyncronize.Click += new System.EventHandler(this.toolStripMenuItemRootSyncronize_Click);
+            // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 764);
+            this.ClientSize = new System.Drawing.Size(1712, 940);
             this.Controls.Add(this.splitContainerMainHorrizzontal);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStripMenu);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "GrabCaster";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -670,7 +709,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonSyncronize;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSyncronizeOut;
         private System.Windows.Forms.Panel panelUCContainer2;
         private UserControlComponent userControlComponent1;
         private UserControlComponent userControlComponent2;
@@ -695,6 +734,7 @@
         private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItemRootExpandall;
         private System.Windows.Forms.ToolStripMenuItem contextMenuStripEventConfigurationDelete;
         private System.Windows.Forms.ToolStripMenuItem executeToolStripMenuItemTriggerConfigurationExecute;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRootSyncronize;
     }
 }
 

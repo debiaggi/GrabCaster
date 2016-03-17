@@ -340,7 +340,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                         {
                             OffRampEngineSending.SendMessageOnRamp(
                                           EventsEngine.bubblingBag,
-                                          Configuration.MessageDataProperty.ConsoleResponseSendBubblingBag,
+                                          Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize,
                                           skeletonMessage.Properties[Configuration.MessageDataProperty.ChannelId.ToString()].ToString(),
                                           skeletonMessage.Properties[Configuration.MessageDataProperty.SenderId.ToString()].ToString(),
                                           null,
@@ -360,7 +360,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                     }
                 }
                 //Receive the request to send the bubbling
-                if (OperationTypRequested == Configuration.MessageDataProperty.ConsoleResponseSendBubblingBag.ToString())
+                if (OperationTypRequested == Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize.ToString())
                 {
 
                     if (!Configuration.DisableExternalEventsStreamEngine())
@@ -390,6 +390,7 @@ namespace GrabCaster.Framework.Engine.OnRamp
                             EventLogEntryType.Warning);
                     }
                 }
+
 
             }
             catch (Exception ex)

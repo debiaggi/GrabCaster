@@ -98,7 +98,7 @@ namespace GrabCaster.Framework.Engine
         {
             try
             {
-
+                
                 var current = AppDomain.CurrentDomain;
                 current.AssemblyResolve += HandleAssemblyResolve;
 

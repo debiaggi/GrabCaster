@@ -34,7 +34,7 @@ namespace GrabCasterUI
     using GrabCaster.Framework.Serialization.Xml;
 
     using Newtonsoft.Json;
-
+    using GrabCaster.Framework.Syncronization;
     /// <summary>
     /// Main console form
     /// Everything using 1 like combobox1 treeeview1 and so on is on the left
@@ -466,6 +466,17 @@ namespace GrabCasterUI
                                                         string.Empty,
                                                         string.Empty,
                                                         CurrentPointId);
+
+        }
+
+        private void SendPointBagToSyncronize(byte[] content, string DestinationChannelId, string DestinationPointId, string CurrentPointId, Configuration.MessageDataProperty messageDataProperty)
+        {
+            OffRampEngineSending.SendMessageOnRamp(content,
+                                                        messageDataProperty,
+                                                        DestinationChannelId,
+                                                        DestinationPointId,
+                                                        null,
+                                                        string.Empty);
 
         }
 
@@ -1240,6 +1251,8 @@ namespace GrabCasterUI
             TreeNode treeNodeTriggers = treeNodeRoot.Nodes[0].Nodes[0];
 
             CreateTriggerConfigurationNode(treeviewBagRoot, treeNodeTriggers, triggerConfigurationsFile);
+            Helpers.CreateSyncronizationFile(gcPointsFoldersData.FolderName);
+
 
         }
 
@@ -1293,6 +1306,7 @@ namespace GrabCasterUI
             TreeNode treeNodeEvents = treeNodeRoot.Nodes[0].Nodes[1];
 
             this.CreateEventConfigurationNode(treeviewBagRoot, treeNodeEvents, eventConfigurationsFile);
+            Helpers.CreateSyncronizationFile(Path.GetFullPath(gcPointsFoldersData.FolderName));
         }
 
         private void contextMenuStripTriggerComponentDelete_Click(object sender, EventArgs e)
@@ -1307,7 +1321,9 @@ namespace GrabCasterUI
             {
                 File.Delete(treeviewBagCurrent.File);
                 this.treeView1.SelectedNode.Remove();
+                Helpers.CreateSyncronizationFile(Path.GetFullPath(treeviewBagCurrent.File));
             }
+
             catch (Exception ex)
             {
                 Global.MessageBoxForm($"Error {ex.Message}", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1422,6 +1438,7 @@ namespace GrabCasterUI
                         break;
                 }
                 File.Copy(treeviewBagCurrent.File, Path.Combine(DirectoryBubblingFileSelected, Path.GetFileName(treeviewBagCurrent.File)));
+                Helpers.CreateSyncronizationFile(Path.GetFullPath(treeviewBagCurrent.File));
                 Global.MessageBoxForm(message,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -1460,6 +1477,47 @@ namespace GrabCasterUI
 
             RestEventsEngine restEventsEngine = new RestEventsEngine();
             restEventsEngine.ExecuteTrigger(triggerConfiguration.Trigger.IdConfiguration, triggerConfiguration.Trigger.IdComponent, null);
+        }
+
+        private void contextMenuStripEventConfigurationSend_Click(object sender, EventArgs e)
+        {
+            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
+        }
+
+        private void contextMenuStripTriggerConfiguration_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemRootSyncronize_Click(object sender, EventArgs e)
+        {
+            TreeNode treeNode = treeView1.SelectedNode;
+            TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
+
+
+            byte[] content = GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromDirectory(gcPointsFoldersData.FolderName);
+            SendPointBagToSyncronize(content,
+                                        gcPointsFoldersData.ConfigurationStorage.ChannelId, 
+                                        gcPointsFoldersData.ConfigurationStorage.PointId, 
+                                        Configuration.PointId(), Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize);
+        }
+
+        private void toolStripButtonSyncronizeOut_Click(object sender, EventArgs e)
+        {
+            foreach (TreeNode treeNode in treeView1.Nodes)
+            {
+                TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
+                GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
+
+
+                byte[] content = GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromDirectory(gcPointsFoldersData.FolderName);
+                SendPointBagToSyncronize(content,
+                                            gcPointsFoldersData.ConfigurationStorage.ChannelId,
+                                            gcPointsFoldersData.ConfigurationStorage.PointId,
+                                            Configuration.PointId(), Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize);
+            }
         }
     }
 

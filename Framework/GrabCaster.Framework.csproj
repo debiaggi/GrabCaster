@@ -614,7 +614,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>signTool sign /f grabcaster.pfx /p 4r@bc@st3r /v grabcaster.exe</PostBuildEvent>
+    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\10\bin\x86\signTool.exe" sign /f grabcaster.pfx /p 4r@bc@st3r /v grabcaster.exe</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

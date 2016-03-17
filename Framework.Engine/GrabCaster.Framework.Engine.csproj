@@ -173,6 +173,10 @@
       <Project>{AC98C92E-9D9B-4B31-9FE3-7980C856C2F7}</Project>
       <Name>GrabCaster.Framework.Storage</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Framework.Syncronization\GrabCaster.Framework.Syncronization.csproj">
+      <Project>{f1857105-026c-46f3-ba98-4d62c5cc6faf}</Project>
+      <Name>GrabCaster.Framework.Syncronization</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -119,6 +119,7 @@ namespace GrabCaster.Framework.Base
             //Send request bubbling, the receiver send the bubbling configuration, the point will put in gcpoints
 
             SyncSendFileBubblingConfiguration,
+
             //Send a file trg or evn to update, te reiver will update the conf file in bubbling trg or evn
 
             SyncSendRequestConfiguration, //Send the request for all the configuration 
@@ -143,7 +144,7 @@ namespace GrabCaster.Framework.Base
 
             //Any request correspond a response from the point
             ConsoleRequestSendBubblingBag,
-            ConsoleResponseSendBubblingBag
+            ConsoleBubblingBagToSyncronize
 
         }
 

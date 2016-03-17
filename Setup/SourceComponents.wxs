@@ -113,6 +113,15 @@
             <Component Id="cmpB196EB4C55C07FD3F70C4514542D7E10" Guid="*">
                 <File Id="fil88C61C64F4548189C0F695178795F57D" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.vshost.exe" />
             </Component>
+            <Component Id="cmpCF6E9B0D3814DBDAD0EFDCCD4B3D769D" Guid="*">
+                <File Id="fil9D152D03E185A10ECC6B98F702186FED" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.exe" />
+            </Component>
+            <Component Id="cmpCA841882C876DE8D7CE2FE052F608604" Guid="*">
+                <File Id="filCF6D03F03FFB86E01E5973E9F1A3E492" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.pdb" />
+            </Component>
+            <Component Id="cmpAD83E36AB3DBC18BBCB71E921E0ABE74" Guid="*">
+                <File Id="fil98EC5180F9A001B94CF874B058212D09" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.vshost.exe" />
+            </Component>
             <Component Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" Guid="*">
                 <File Id="fil82A7F5F9679E1DCE9DFE4F04EAF765FC" KeyPath="yes" Source="$(var.SourcePath)\license.rtf" />
             </Component>
@@ -344,6 +353,16 @@
                 <Component Id="cmp4F43A08EDDA73CA4F7EABA693DA809A3" Guid="*">
                     <File Id="fil69E735574FFAF04FB8107BD157E5A056" KeyPath="yes" Source="$(var.SourcePath)\Documentation\GrabCaster v1.0- Technical Manual.pdf" />
                 </Component>
+            </Directory>
+            <Directory Id="dirFE0543AC04BF6A02DC7597CA6A9152D9" Name="Log">
+                <Component Id="cmp25C309424EE750DAE1CE23D721E690EF" Guid="*">
+                    <File Id="fil4B7DAAEA9D49520468EDE96161A1DFF7" KeyPath="yes" Source="$(var.SourcePath)\Log\Readme" />
+                </Component>
+                <Directory Id="dir9709DC3394AB350E62F8B0EB0CA0927B" Name="Console">
+                    <Component Id="cmp4C7280D5BC3B2F457D9F353F9D1FC86C" Guid="*">
+                        <File Id="filC8AEC42293CA9A68E35642414BCFFE2F" KeyPath="yes" Source="$(var.SourcePath)\Log\Console\Readme" />
+                    </Component>
+                </Directory>
             </Directory>
             <Directory Id="dir3AA1F22BD0D3AB3906990407CF290E3A" Name="Root_GrabCaster">
                 <Component Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" Guid="*">
@@ -1698,6 +1717,9 @@
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
             <ComponentRef Id="cmpCD92A7C4ACAFADCC3F8CB18EF843A98A" />
             <ComponentRef Id="cmpB196EB4C55C07FD3F70C4514542D7E10" />
+            <ComponentRef Id="cmpCF6E9B0D3814DBDAD0EFDCCD4B3D769D" />
+            <ComponentRef Id="cmpCA841882C876DE8D7CE2FE052F608604" />
+            <ComponentRef Id="cmpAD83E36AB3DBC18BBCB71E921E0ABE74" />
             <ComponentRef Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" />
             <ComponentRef Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" />
             <ComponentRef Id="cmpDC80D04183687DA26988FB1B2C414D61" />
@@ -1768,6 +1790,8 @@
             <ComponentRef Id="cmp39C7133F4437F9619A4A3F3466F0C298" />
             <ComponentRef Id="cmp6405DAECE45786C1A5470B0B6306253F" />
             <ComponentRef Id="cmp4F43A08EDDA73CA4F7EABA693DA809A3" />
+            <ComponentRef Id="cmp25C309424EE750DAE1CE23D721E690EF" />
+            <ComponentRef Id="cmp4C7280D5BC3B2F457D9F353F9D1FC86C" />
             <ComponentRef Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" />
             <ComponentRef Id="cmpC5158289DC6BBDAA47FE54339681FF98" />
             <ComponentRef Id="cmp01B17B199619965D97DAE9DAFFFD4042" />
