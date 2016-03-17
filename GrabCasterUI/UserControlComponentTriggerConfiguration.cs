@@ -62,7 +62,7 @@ namespace GrabCasterUI
         {
             if (Global.MessageBoxForm("Save the Trigger?", MessageBoxButtons.YesNo, MessageBoxIcon.Information) ==
                 DialogResult.No) return;
-            triggerConfiguration = (TriggerConfiguration)objectToUpdate;
+
             triggerConfiguration.Trigger.IdConfiguration = this.textBoxIdConfiguration.Text;
             triggerConfiguration.Trigger.IdComponent = this.textBoxIdComponent.Text;
             triggerConfiguration.Trigger.Name = this.textBoxName.Text;
@@ -89,7 +89,7 @@ namespace GrabCasterUI
             }
             var serializedMessage = JsonConvert.SerializeObject(triggerConfiguration,Formatting.Indented,new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             File.WriteAllText(treeviewBagUsed.File, serializedMessage);
-            Global.MessageBoxForm("Trigger saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Global.MessageBoxForm("Trigger saved.", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void setDataGridColumnsWidth()
         {

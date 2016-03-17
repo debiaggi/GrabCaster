@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace GrabCasterUI
 {
@@ -26,8 +28,9 @@ namespace GrabCasterUI
 
         public List<Channel> ChannelsIn { get; set; }
         public List<Channel> ChannelsOut { get; set; }
-
+        private TreeviewBag treeviewBagUsed = null;
         private Event eventInTrigger = null;
+        private TriggerConfiguration triggerConfigurationUsed = null;
 
         public TreeView TreeViewSide { get; set; }
         public TreeNode TreeNodeSide { get; set; }
@@ -39,6 +42,9 @@ namespace GrabCasterUI
 
         public void LoadComponentData(TreeviewBag treeviewBag)
         {
+            treeviewBagUsed = treeviewBag;
+            string content = File.ReadAllText(treeviewBag.File);
+            triggerConfigurationUsed = JsonConvert.DeserializeObject<TriggerConfiguration>(content);
             grabCasterComponentType = treeviewBag.GrabCasterComponentType;
 
             objectToUpdate = treeviewBag.Component;
@@ -56,7 +62,49 @@ namespace GrabCasterUI
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (Global.MessageBoxForm("Save the Event?", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No) return;
 
+            eventInTrigger.IdConfiguration = this.textBoxIdConfiguration.Text;
+            eventInTrigger.IdComponent = this.textBoxIdComponent.Text;
+            eventInTrigger.Name = this.textBoxName.Text;
+            eventInTrigger.Description = this.textBoxDescription.Text;
+            foreach (DataGridViewRow row in dataGridViewProperties.Rows)
+            {
+                string propertyToSet = row.Cells[0].Value.ToString();
+                try
+                {
+                    EventProperty eventProperty = (from proptoset in eventInTrigger.EventProperties
+                                                   where proptoset.Name == propertyToSet
+                                                   select proptoset).First();
+                    eventProperty.Value = row.Cells[1].Value.ToString();
+                }
+                catch (Exception ex)
+                {
+
+                    Global.MessageBoxForm($"Error finding property {propertyToSet} or wrong data type.\r{ex.Message}", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+                }
+
+
+            }
+            var eventTriggers = from eventUsed in triggerConfigurationUsed.Events
+                where eventUsed.IdComponent == eventInTrigger.IdComponent &&
+                    eventUsed.IdConfiguration == eventInTrigger.IdConfiguration
+                select eventUsed;
+            for (int i = 0; i < triggerConfigurationUsed.Events.Count; i++)
+            {
+                if (triggerConfigurationUsed.Events[i].IdConfiguration == eventInTrigger.IdConfiguration
+                    && triggerConfigurationUsed.Events[i].IdComponent == eventInTrigger.IdComponent)
+                {
+                    triggerConfigurationUsed.Events[i] = eventInTrigger;
+                }
+            }
+
+
+            var serializedMessage = JsonConvert.SerializeObject(triggerConfigurationUsed, Formatting.Indented, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+            File.WriteAllText(treeviewBagUsed.File, serializedMessage);
+            Global.MessageBoxForm("Event saved.", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void FillListBoxChannels(Event eventInTrigger)

@@ -43,7 +43,7 @@ namespace GrabCasterUI
     public partial class FormMain : Form
     {
         List<GcPointsFoldersData> gcPointsFoldersDataList = null;
-
+        private TreeView treeViewActive = null;
         public FormMain()
         {
             InitializeComponent();
@@ -1029,12 +1029,12 @@ namespace GrabCasterUI
                 expandoDict.Add(propertyName, propertyValue);
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void treeView_AfterSelect(TreeView treeView, Panel panelUCContainer)
         {
 
-            if (this.treeView1.SelectedNode?.Tag != null)
+            if (treeView.SelectedNode?.Tag != null)
             {
-                TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+                TreeviewBag treeviewBag = (TreeviewBag)treeView.SelectedNode.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
 
                 switch (treeviewBag.GrabCasterComponentType)
@@ -1043,79 +1043,79 @@ namespace GrabCasterUI
                         UserControlComponentTriggerConfiguration userControlComponentConfigurationTrg = new UserControlComponentTriggerConfiguration();
                         userControlComponentConfigurationTrg.Visible = false;
                         userControlComponentConfigurationTrg.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlComponentConfigurationTrg.Dock = DockStyle.Fill;
-                        userControlComponentConfigurationTrg.TreeViewSide = this.treeView1;
-                        userControlComponentConfigurationTrg.TreeNodeSide = this.treeView1.SelectedNode;
-                        this.panelUCContainer1.Controls.Add(userControlComponentConfigurationTrg);
+                        userControlComponentConfigurationTrg.TreeViewSide = treeView;
+                        userControlComponentConfigurationTrg.TreeNodeSide = treeView.SelectedNode;
+                        panelUCContainer.Controls.Add(userControlComponentConfigurationTrg);
                         userControlComponentConfigurationTrg.Visible = true;
                         break;
                     case GrabCasterComponentType.Event:
                         UserControlComponentEventTrigger userControlComponentConfigurationEvtTrg = new UserControlComponentEventTrigger();
                         userControlComponentConfigurationEvtTrg.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlComponentConfigurationEvtTrg.Dock = DockStyle.Fill;
-                        userControlComponentConfigurationEvtTrg.TreeViewSide = this.treeView1;
-                        userControlComponentConfigurationEvtTrg.TreeNodeSide = this.treeView1.SelectedNode;
+                        userControlComponentConfigurationEvtTrg.TreeViewSide = treeView;
+                        userControlComponentConfigurationEvtTrg.TreeNodeSide = treeView.SelectedNode;
                         userControlComponentConfigurationEvtTrg.ChannelsIn = Channels;
-                        this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvtTrg);
+                        panelUCContainer.Controls.Add(userControlComponentConfigurationEvtTrg);
                         userControlComponentConfigurationEvtTrg.Visible = true;
                         break;
                     case GrabCasterComponentType.EventConfiguration:
                         UserControlComponentEventConfiguration userControlComponentConfigurationEvt = new UserControlComponentEventConfiguration();
                         userControlComponentConfigurationEvt.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlComponentConfigurationEvt.Dock = DockStyle.Fill;
-                        userControlComponentConfigurationEvt.TreeViewSide = this.treeView1;
-                        userControlComponentConfigurationEvt.TreeNodeSide = this.treeView1.SelectedNode;
-                        this.panelUCContainer1.Controls.Add(userControlComponentConfigurationEvt);
+                        userControlComponentConfigurationEvt.TreeViewSide = treeView;
+                        userControlComponentConfigurationEvt.TreeNodeSide = treeView.SelectedNode;
+                        panelUCContainer.Controls.Add(userControlComponentConfigurationEvt);
                         userControlComponentConfigurationEvt.Visible = true;
                         break;
                     case GrabCasterComponentType.TriggerComponent:
                         UserControlComponent userControlComponentTrg = new UserControlComponent();
                         userControlComponentTrg.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlComponentTrg.Dock = DockStyle.Fill;
-                        userControlComponentTrg.TreeViewSide = this.treeView1;
-                        userControlComponentTrg.TreeNodeSide = this.treeView1.SelectedNode;
-                        this.panelUCContainer1.Controls.Add(userControlComponentTrg);
+                        userControlComponentTrg.TreeViewSide = treeView;
+                        userControlComponentTrg.TreeNodeSide = treeView.SelectedNode;
+                        panelUCContainer.Controls.Add(userControlComponentTrg);
                         userControlComponentTrg.Visible = true;
                         break;
                     case GrabCasterComponentType.EventComponent:
                         UserControlComponent userControlComponentEvt = new UserControlComponent();
                         userControlComponentEvt.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlComponentEvt.Dock = DockStyle.Fill;
-                        userControlComponentEvt.TreeViewSide = this.treeView1;
-                        userControlComponentEvt.TreeNodeSide = this.treeView1.SelectedNode;
-                        this.panelUCContainer1.Controls.Add(userControlComponentEvt);
+                        userControlComponentEvt.TreeViewSide = treeView;
+                        userControlComponentEvt.TreeNodeSide = treeView.SelectedNode;
+                        panelUCContainer.Controls.Add(userControlComponentEvt);
                         userControlComponentEvt.Visible = true;
                         break;
                     case GrabCasterComponentType.Correlation:
                         UserControlComponent userControlComponentCorrelation = new UserControlComponent();
                         userControlComponentCorrelation.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlComponentCorrelation.Dock = DockStyle.Fill;
-                        userControlComponentCorrelation.TreeViewSide = this.treeView1;
-                        userControlComponentCorrelation.TreeNodeSide = this.treeView1.SelectedNode;
-                        this.panelUCContainer1.Controls.Add(userControlComponentCorrelation);
+                        userControlComponentCorrelation.TreeViewSide = treeView;
+                        userControlComponentCorrelation.TreeNodeSide = treeView.SelectedNode;
+                        panelUCContainer.Controls.Add(userControlComponentCorrelation);
                         userControlComponentCorrelation.Visible = true;
                         break;
                     case GrabCasterComponentType.Root:
                         UserControlConfiguration userControlConfiguration = new UserControlConfiguration();
                         userControlConfiguration.LoadComponentData(treeviewBag);
-                        this.panelUCContainer1.Controls.Clear();
-                        this.panelUCContainer1.BackColor = SystemColors.Control;
+                        panelUCContainer.Controls.Clear();
+                        panelUCContainer.BackColor = SystemColors.Control;
                         userControlConfiguration.Dock = DockStyle.Fill;
-                        userControlConfiguration.TreeViewSide = this.treeView1;
-                        userControlConfiguration.TreeNodeSide = this.treeView1.SelectedNode;
-                        this.panelUCContainer1.Controls.Add(userControlConfiguration);
+                        userControlConfiguration.TreeViewSide = treeView;
+                        userControlConfiguration.TreeNodeSide = treeView.SelectedNode;
+                        panelUCContainer.Controls.Add(userControlConfiguration);
                         userControlConfiguration.Visible = true;
                         break;
                     default:
@@ -1125,16 +1125,14 @@ namespace GrabCasterUI
 
             }
         }
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            treeView_AfterSelect(treeView1, this.panelUCContainer1);
+        }
 
         private void treeView2_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (this.treeView2.SelectedNode?.Tag != null)
-            {
-                TreeviewBag treeviewBag = (TreeviewBag)this.treeView2.SelectedNode.Tag;
-                this.toolStripStatusLabelMessage.Text = treeviewBag.File;
-              //  this.propertyGrid2.SelectedObject = treeviewBag.DataBag;
-
-            }
+            treeView_AfterSelect(treeView2, this.panelUCContainer2);
         }
 
 
@@ -1157,49 +1155,49 @@ namespace GrabCasterUI
 
         private TreeNode treeNodeCurrent = null;
 
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void treeView_NodeMouseClick(TreeView treeView, TreeNodeMouseClickEventArgs e)
         {
-            if (this.treeView1.SelectedNode?.Tag != null && e.Button == MouseButtons.Right)
+            if (treeView.SelectedNode?.Tag != null && e.Button == MouseButtons.Right)
             {
-                this.treeView1.SelectedNode = e.Node;
-                treeNodeCurrent = this.treeView1.SelectedNode;
+                treeView.SelectedNode = e.Node;
+                treeNodeCurrent = treeView.SelectedNode;
                 TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
 
                 switch (treeviewBag.GrabCasterComponentType)
                 {
                     case GrabCasterComponentType.TriggerConfigurationRoot:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
                         break;
                     case GrabCasterComponentType.TriggerConfiguration:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
                         break;
                     case GrabCasterComponentType.EventConfigurationRoot:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.Event:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.TriggerComponent:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
                         break;
                     case GrabCasterComponentType.TriggerComponentRoot:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
                         break;
                     case GrabCasterComponentType.EventComponent:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
                         break;
                     case GrabCasterComponentType.EventComponentRoot:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
                         break;
 
 
                     case GrabCasterComponentType.Correlation:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripCorrelation;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripCorrelation;
 
                         break;
                     case GrabCasterComponentType.Root:
-                        this.treeView1.SelectedNode.ContextMenuStrip = this.contextMenuStripRoot;
+                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripRoot;
 
                         break;
                     default:
@@ -1208,6 +1206,13 @@ namespace GrabCasterUI
 
 
             }
+        }
+
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            treeViewActive = treeView1;
+            treeView_NodeMouseClick(treeView1,e);
         }
 
         private void contextMenuStripTriggerComponent_Opening(object sender, CancelEventArgs e)
@@ -1226,8 +1231,8 @@ namespace GrabCasterUI
             string fileName = formTextInput.textBox1.Text;
             
             //Prepare the bags
-            TreeNode treeNodeCurrent = this.treeView1.SelectedNode;
-            TreeNode treeNodeRoot = GetRootNode(this.treeView1.SelectedNode);
+            TreeNode treeNodeCurrent = treeViewActive.SelectedNode;
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
             TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
             TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
 
@@ -1281,8 +1286,8 @@ namespace GrabCasterUI
             string fileName = formTextInput.textBox1.Text;
 
             //Prepare the bags
-            TreeNode treeNodeCurrent = this.treeView1.SelectedNode;
-            TreeNode treeNodeRoot = GetRootNode(this.treeView1.SelectedNode);
+            TreeNode treeNodeCurrent = treeViewActive.SelectedNode;
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
             TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
             TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
 
@@ -1311,7 +1316,7 @@ namespace GrabCasterUI
 
         private void contextMenuStripTriggerComponentDelete_Click(object sender, EventArgs e)
         {
-            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+            DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void DeleteTreeNodeComponent(TreeNode treeNodeCurrent)
@@ -1320,7 +1325,7 @@ namespace GrabCasterUI
             try
             {
                 File.Delete(treeviewBagCurrent.File);
-                this.treeView1.SelectedNode.Remove();
+                treeViewActive.SelectedNode.Remove();
                 Helpers.CreateSyncronizationFile(Path.GetFullPath(treeviewBagCurrent.File));
             }
 
@@ -1333,45 +1338,45 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventComponentDelete_Click(object sender, EventArgs e)
         {
-            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+            DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void contextMenuStripTriggerConfigurationDelete_Click(object sender, EventArgs e)
         {
-            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+            DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void contextMenuStripEventConfigurationDelete_Click(object sender, EventArgs e)
         {
-            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+            DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void toolStripMenuItemCorrelationDelete_Click(object sender, EventArgs e)
         {
-            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+            DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void toolStripMenuItemRootRemove_Click(object sender, EventArgs e)
         {
-            this.treeView1.SelectedNode.Remove();
+            treeViewActive.SelectedNode.Remove();
         }
 
         private void toolStripMenuItemRootRefresh_Click(object sender, EventArgs e)
         {
-            TreeNode treeNode = treeView1.SelectedNode;
+            TreeNode treeNode = treeViewActive.SelectedNode;
             while (treeNode.Nodes.Count != 0)
             {
                 treeNode.Nodes[0].Remove();
             }
             TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
             GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
-            LoadRooTreeViewNode(this.treeView1, treeNode, gcPointsFoldersData);
+            LoadRooTreeViewNode(treeViewActive, treeNode, gcPointsFoldersData);
             treeNode.Expand();
         }
 
         private void expandAllToolStripMenuItemRootExpandall_Click(object sender, EventArgs e)
         {
-            treeView1.SelectedNode.ExpandAll();
+            treeViewActive.SelectedNode.ExpandAll();
         }
 
         private void contextMenuStripEventComponent_Opening(object sender, CancelEventArgs e)
@@ -1381,18 +1386,18 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventConfigurationDelete_Click_1(object sender, EventArgs e)
         {
-            DeleteTreeNodeComponent(this.treeView1.SelectedNode);
+            DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void contextMenuStripTriggerConfigurationSend_Click(object sender, EventArgs e)
         {
-            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            TreeviewBag treeviewBag = (TreeviewBag)treeViewActive.SelectedNode.Tag;
             CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
         }
 
         private void contextMenuStripTriggerComponentSend_Click(object sender, EventArgs e)
         {
-            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            TreeviewBag treeviewBag = (TreeviewBag)treeViewActive.SelectedNode.Tag;
             CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
         }
         private void CopyAndSendFileComponent(GrabCasterComponentType grabCasterComponentType)
@@ -1447,7 +1452,7 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventComponentSend_Click(object sender, EventArgs e)
         {
-            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            TreeviewBag treeviewBag = (TreeviewBag)treeViewActive.SelectedNode.Tag;
             CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
         }
 
@@ -1462,8 +1467,8 @@ namespace GrabCasterUI
 
 
             
-            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
-            TreeviewBag treeviewBagRoot = (TreeviewBag)GetRootNode(this.treeView1.SelectedNode).Tag;
+            TreeviewBag treeviewBag = (TreeviewBag)treeViewActive.SelectedNode.Tag;
+            TreeviewBag treeviewBagRoot = (TreeviewBag)GetRootNode(treeViewActive.SelectedNode).Tag;
             string folder = treeviewBagRoot.File;
             if (!folder.Contains("Root_GrabCasterUI"))
             {
@@ -1481,7 +1486,7 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventConfigurationSend_Click(object sender, EventArgs e)
         {
-            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+            TreeviewBag treeviewBag = (TreeviewBag)treeViewActive.SelectedNode.Tag;
             CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
         }
 
@@ -1492,7 +1497,7 @@ namespace GrabCasterUI
 
         private void toolStripMenuItemRootSyncronize_Click(object sender, EventArgs e)
         {
-            TreeNode treeNode = treeView1.SelectedNode;
+            TreeNode treeNode = treeViewActive.SelectedNode;
             TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
             GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
 
@@ -1518,6 +1523,17 @@ namespace GrabCasterUI
                                             gcPointsFoldersData.ConfigurationStorage.PointId,
                                             Configuration.PointId(), Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize);
             }
+        }
+
+        private void treeView2_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            treeViewActive = treeView1;
+            treeView_NodeMouseClick(treeView2,e);
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

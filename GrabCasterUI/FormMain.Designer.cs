@@ -46,13 +46,11 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
             this.panelUCContainer1 = new System.Windows.Forms.Panel();
-            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.panelUCContainer2 = new System.Windows.Forms.Panel();
-            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
@@ -79,6 +77,8 @@
             this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItemRootExpandall = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRootSyncronize = new System.Windows.Forms.ToolStripMenuItem();
+            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
+            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -135,6 +135,7 @@
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // toolStripMenu
             // 
@@ -246,7 +247,7 @@
             this.splitContainerMainVertical.Panel2.Controls.Add(this.splitContainerOrizRight);
             this.splitContainerMainVertical.Panel2.Controls.Add(this.panel2);
             this.splitContainerMainVertical.Size = new System.Drawing.Size(1712, 761);
-            this.splitContainerMainVertical.SplitterDistance = 922;
+            this.splitContainerMainVertical.SplitterDistance = 729;
             this.splitContainerMainVertical.SplitterWidth = 8;
             this.splitContainerMainVertical.TabIndex = 0;
             // 
@@ -266,7 +267,7 @@
             // splitContainerOrizLeft.Panel2
             // 
             this.splitContainerOrizLeft.Panel2.Controls.Add(this.panelUCContainer1);
-            this.splitContainerOrizLeft.Size = new System.Drawing.Size(922, 734);
+            this.splitContainerOrizLeft.Size = new System.Drawing.Size(729, 734);
             this.splitContainerOrizLeft.SplitterDistance = 412;
             this.splitContainerOrizLeft.SplitterWidth = 12;
             this.splitContainerOrizLeft.TabIndex = 3;
@@ -282,7 +283,7 @@
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(922, 412);
+            this.treeView1.Size = new System.Drawing.Size(729, 412);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -316,20 +317,8 @@
             this.panelUCContainer1.Location = new System.Drawing.Point(0, 0);
             this.panelUCContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer1.Name = "panelUCContainer1";
-            this.panelUCContainer1.Size = new System.Drawing.Size(922, 310);
+            this.panelUCContainer1.Size = new System.Drawing.Size(729, 310);
             this.panelUCContainer1.TabIndex = 0;
-            // 
-            // userControlComponent1
-            // 
-            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(922, 310);
-            this.userControlComponent1.TabIndex = 0;
-            this.userControlComponent1.TreeNodeSide = null;
-            this.userControlComponent1.TreeViewSide = null;
             // 
             // panel1
             // 
@@ -338,7 +327,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(922, 27);
+            this.panel1.Size = new System.Drawing.Size(729, 27);
             this.panel1.TabIndex = 2;
             // 
             // comboBox1
@@ -349,7 +338,7 @@
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(922, 26);
+            this.comboBox1.Size = new System.Drawing.Size(729, 26);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -369,7 +358,7 @@
             // splitContainerOrizRight.Panel2
             // 
             this.splitContainerOrizRight.Panel2.Controls.Add(this.panelUCContainer2);
-            this.splitContainerOrizRight.Size = new System.Drawing.Size(782, 734);
+            this.splitContainerOrizRight.Size = new System.Drawing.Size(975, 734);
             this.splitContainerOrizRight.SplitterDistance = 416;
             this.splitContainerOrizRight.SplitterWidth = 12;
             this.splitContainerOrizRight.TabIndex = 1;
@@ -385,9 +374,10 @@
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
             this.treeView2.SelectedImageIndex = 0;
-            this.treeView2.Size = new System.Drawing.Size(782, 416);
+            this.treeView2.Size = new System.Drawing.Size(975, 416);
             this.treeView2.TabIndex = 1;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
+            this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
             // 
             // panelUCContainer2
             // 
@@ -396,20 +386,8 @@
             this.panelUCContainer2.Location = new System.Drawing.Point(0, 0);
             this.panelUCContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer2.Name = "panelUCContainer2";
-            this.panelUCContainer2.Size = new System.Drawing.Size(782, 306);
+            this.panelUCContainer2.Size = new System.Drawing.Size(975, 306);
             this.panelUCContainer2.TabIndex = 0;
-            // 
-            // userControlComponent2
-            // 
-            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(782, 306);
-            this.userControlComponent2.TabIndex = 1;
-            this.userControlComponent2.TreeNodeSide = null;
-            this.userControlComponent2.TreeViewSide = null;
             // 
             // panel2
             // 
@@ -418,7 +396,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(782, 27);
+            this.panel2.Size = new System.Drawing.Size(975, 27);
             this.panel2.TabIndex = 0;
             // 
             // comboBox2
@@ -429,7 +407,7 @@
             this.comboBox2.Location = new System.Drawing.Point(0, 0);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(782, 26);
+            this.comboBox2.Size = new System.Drawing.Size(975, 26);
             this.comboBox2.TabIndex = 2;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -464,7 +442,7 @@
             this.contextMenuStripTriggerComponentDelete,
             this.contextMenuStripTriggerComponentSend});
             this.contextMenuStripTriggerComponent.Name = "contextMenuStripTriggers";
-            this.contextMenuStripTriggerComponent.Size = new System.Drawing.Size(261, 82);
+            this.contextMenuStripTriggerComponent.Size = new System.Drawing.Size(261, 110);
             this.contextMenuStripTriggerComponent.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripTriggerComponent_Opening);
             // 
             // contextMenuStripTriggerComponentNew
@@ -600,35 +578,59 @@
             this.expandAllToolStripMenuItemRootExpandall,
             this.toolStripMenuItemRootSyncronize});
             this.contextMenuStripRoot.Name = "contextMenuStripTriggers";
-            this.contextMenuStripRoot.Size = new System.Drawing.Size(197, 108);
+            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 108);
             // 
             // toolStripMenuItemRootRefresh
             // 
             this.toolStripMenuItemRootRefresh.Name = "toolStripMenuItemRootRefresh";
-            this.toolStripMenuItemRootRefresh.Size = new System.Drawing.Size(196, 26);
+            this.toolStripMenuItemRootRefresh.Size = new System.Drawing.Size(192, 26);
             this.toolStripMenuItemRootRefresh.Text = "Refresh";
             this.toolStripMenuItemRootRefresh.Click += new System.EventHandler(this.toolStripMenuItemRootRefresh_Click);
             // 
             // toolStripMenuItemRootRemove
             // 
             this.toolStripMenuItemRootRemove.Name = "toolStripMenuItemRootRemove";
-            this.toolStripMenuItemRootRemove.Size = new System.Drawing.Size(196, 26);
+            this.toolStripMenuItemRootRemove.Size = new System.Drawing.Size(192, 26);
             this.toolStripMenuItemRootRemove.Text = "Remove";
             this.toolStripMenuItemRootRemove.Click += new System.EventHandler(this.toolStripMenuItemRootRemove_Click);
             // 
             // expandAllToolStripMenuItemRootExpandall
             // 
             this.expandAllToolStripMenuItemRootExpandall.Name = "expandAllToolStripMenuItemRootExpandall";
-            this.expandAllToolStripMenuItemRootExpandall.Size = new System.Drawing.Size(196, 26);
+            this.expandAllToolStripMenuItemRootExpandall.Size = new System.Drawing.Size(192, 26);
             this.expandAllToolStripMenuItemRootExpandall.Text = "Expand All";
             this.expandAllToolStripMenuItemRootExpandall.Click += new System.EventHandler(this.expandAllToolStripMenuItemRootExpandall_Click);
             // 
             // toolStripMenuItemRootSyncronize
             // 
             this.toolStripMenuItemRootSyncronize.Name = "toolStripMenuItemRootSyncronize";
-            this.toolStripMenuItemRootSyncronize.Size = new System.Drawing.Size(196, 26);
-            this.toolStripMenuItemRootSyncronize.Text = "Syncronize Point!";
+            this.toolStripMenuItemRootSyncronize.Size = new System.Drawing.Size(192, 26);
+            this.toolStripMenuItemRootSyncronize.Text = "Syncronize Point";
             this.toolStripMenuItemRootSyncronize.Click += new System.EventHandler(this.toolStripMenuItemRootSyncronize_Click);
+            // 
+            // userControlComponent1
+            // 
+            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent1.Name = "userControlComponent1";
+            this.userControlComponent1.Size = new System.Drawing.Size(729, 310);
+            this.userControlComponent1.TabIndex = 0;
+            this.userControlComponent1.TreeNodeSide = null;
+            this.userControlComponent1.TreeViewSide = null;
+            // 
+            // userControlComponent2
+            // 
+            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent2.Name = "userControlComponent2";
+            this.userControlComponent2.Size = new System.Drawing.Size(975, 306);
+            this.userControlComponent2.TabIndex = 1;
+            this.userControlComponent2.TreeNodeSide = null;
+            this.userControlComponent2.TreeViewSide = null;
             // 
             // FormMain
             // 
