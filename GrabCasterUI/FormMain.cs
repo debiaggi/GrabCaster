@@ -924,10 +924,18 @@ namespace GrabCasterUI
             //Check if event is created
             if (triggerConfiguration.Events.Count != 0)
             {
+
+                TreeviewBag treeviewBagtreeNodeEvents = new TreeviewBag("Events Configuration Group.",
+                                            GrabCasterComponentType.TriggerEventConfigurationRoot,
+                                            "",
+                                            "",
+                                            null, null, null);
+
                 TreeNode treeNodeEventsInTrigger = treeNodeTrigger.Nodes.Add(CONST_EVENTS,
                                                                     CONST_EVENTS,
                                                                     CONST_EVENTS_KEY,
                                                                     CONST_EVENTS_KEY);
+                treeNodeEventsInTrigger.Tag = treeviewBagtreeNodeEvents;
                 foreach (var item in triggerConfiguration.Events)
                 {
 
@@ -1144,7 +1152,7 @@ namespace GrabCasterUI
 
         private void SaveJob()
         {
-            var TriggersToUpdate = from trg in treeView1.Nodes.OfType<TreeNode>() where ((TreeviewBag)trg.Tag).GrabCasterComponentType == GrabCasterComponentType.TriggerComponent select trg.Tag;
+            var TriggersToUpdate = from trg in treeViewActive.Nodes.OfType<TreeNode>() where ((TreeviewBag)trg.Tag).GrabCasterComponentType == GrabCasterComponentType.TriggerComponent select trg.Tag;
 
         }
 
@@ -1161,7 +1169,7 @@ namespace GrabCasterUI
             {
                 treeView.SelectedNode = e.Node;
                 treeNodeCurrent = treeView.SelectedNode;
-                TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
+                TreeviewBag treeviewBag = (TreeviewBag)treeNodeCurrent.Tag;
                 this.toolStripStatusLabelMessage.Text = treeviewBag.File;
 
                 switch (treeviewBag.GrabCasterComponentType)
@@ -1172,7 +1180,7 @@ namespace GrabCasterUI
                     case GrabCasterComponentType.TriggerConfiguration:
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
                         break;
-                    case GrabCasterComponentType.EventConfigurationRoot:
+                    case GrabCasterComponentType.EventConfiguration:
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.Event:
@@ -1261,6 +1269,7 @@ namespace GrabCasterUI
 
         }
 
+        
         private void contextMenuStripTriggerConfigurationNew_Click(object sender, EventArgs e)
         {
  
@@ -1316,6 +1325,8 @@ namespace GrabCasterUI
 
         private void contextMenuStripTriggerComponentDelete_Click(object sender, EventArgs e)
         {
+            if (Global.MessageBoxForm("Delete the Trigger?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
@@ -1338,11 +1349,15 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventComponentDelete_Click(object sender, EventArgs e)
         {
+            if (Global.MessageBoxForm("Delete the Event?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                            DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
         private void contextMenuStripTriggerConfigurationDelete_Click(object sender, EventArgs e)
         {
+            if (Global.MessageBoxForm("Delete the Trigger Component?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                                            DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
@@ -1353,6 +1368,8 @@ namespace GrabCasterUI
 
         private void toolStripMenuItemCorrelationDelete_Click(object sender, EventArgs e)
         {
+            if (Global.MessageBoxForm("Delete the Correlation?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                                        DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
@@ -1386,6 +1403,8 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventConfigurationDelete_Click_1(object sender, EventArgs e)
         {
+            if (Global.MessageBoxForm("Delete the Event Component?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                                    DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
 
@@ -1402,7 +1421,7 @@ namespace GrabCasterUI
         }
         private void CopyAndSendFileComponent(GrabCasterComponentType grabCasterComponentType)
         {
-            TreeNode treeNodeCurrent = treeView1.SelectedNode;
+            TreeNode treeNodeCurrent = treeViewActive.SelectedNode;
             TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
 
             FormGCPointsList FormGCPointsList = new FormGCPointsList();
@@ -1458,8 +1477,7 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventConfiguration_Opening(object sender, CancelEventArgs e)
         {
-            TreeviewBag treeviewBag = (TreeviewBag)this.treeView1.SelectedNode.Tag;
-            CopyAndSendFileComponent(treeviewBag.GrabCasterComponentType);
+
         }
 
         private void executeToolStripMenuItemTriggerConfigurationExecute_Click(object sender, EventArgs e)
@@ -1511,7 +1529,9 @@ namespace GrabCasterUI
 
         private void toolStripButtonSyncronizeOut_Click(object sender, EventArgs e)
         {
-            foreach (TreeNode treeNode in treeView1.Nodes)
+            if (Global.MessageBoxForm("Send the syncronization to all the points?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                                    DialogResult.No) return;
+            foreach (TreeNode treeNode in treeViewActive.Nodes)
             {
                 TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
                 GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
@@ -1527,13 +1547,182 @@ namespace GrabCasterUI
 
         private void treeView2_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            treeViewActive = treeView1;
+            //This event is used for treeview menus
+            treeViewActive = treeView2;
             treeView_NodeMouseClick(treeView2,e);
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        //Nodes operations
+
+            /// <summary>
+            /// Create a trigger from a node, drag and drop
+            /// </summary>
+        private void CreateTriggerConfigurationFromNode(TreeNode treeNodeDestination, TreeNode treeNodeSource)
+        {
+            if (Global.MessageBoxForm("Copy the trigger in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                return;
+
+            //Filename
+
+            //Prepare the bags
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag TreeviewBagNodeDestination = (TreeviewBag)treeNodeDestination.Tag;
+            TreeviewBag TreeviewBagNodeSource = (TreeviewBag)treeNodeSource.Tag;
+
+
+            //Get the bubbling event
+            BubblingEvent bubblingEvent = EventsEngine.CreateBubblingTrigger(TreeviewBagNodeDestination.componentTrigger.triggerClass,
+                                                                                TreeviewBagNodeDestination.componentTrigger.assembly,
+                                                                                TreeviewBagNodeDestination.File);
+
+            var jsonSerialization = SerializationHelper.CreteJsonTriggerConfigurationTemplate(bubblingEvent);
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            string DirectoryBubblingTriggers = Path.Combine(gcPointsFoldersData.FolderName,
+                                                            Configuration.DirectoryNameBubbling,
+                                                            Configuration.DirectoryNameTriggers);
+
+            string triggerConfigurationsFile = Path.Combine(DirectoryBubblingTriggers, TreeviewBagNodeSource.File + ".off");
+
+            File.WriteAllText(triggerConfigurationsFile, jsonSerialization);
+
+            TreeNode treeNodeTriggers = treeNodeRoot.Nodes[0].Nodes[0];
+
+            CreateTriggerConfigurationNode(treeviewBagRoot, treeNodeTriggers, triggerConfigurationsFile);
+            Helpers.CreateSyncronizationFile(gcPointsFoldersData.FolderName);
+
+        }
+
+
+        private void CreateTriggerEventConfigurationFromNode(TreeNode treeNodeDestination, TreeNode treeNodeSource)
+        {
+            if (Global.MessageBoxForm("Assign this event to the current trigger in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                return;
+
+            //Filename
+
+            //Prepare the bags
+
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
+            TreeNode treeNodeTriggerParent  = treeNodeDestination.Parent;
+
+
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagTriggerParent = (TreeviewBag)treeNodeTriggerParent.Tag;
+            TreeviewBag treeviewBagDestination = (TreeviewBag)treeNodeDestination.Tag;
+            TreeviewBag treeviewBagSource = (TreeviewBag)treeNodeSource.Tag;
+
+
+
+            //Get the bubbling event
+            BubblingEvent bubblingEvent = EventsEngine.CreateBubblingEvent(treeviewBagDestination.componentEvent.eventClass,
+                                                                                treeviewBagDestination.componentEvent.assembly,
+                                                                                treeviewBagDestination.File);
+
+            var jsonSerialization = SerializationHelper.CreteJsonEventConfigurationTemplate(bubblingEvent);
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            string DirectoryBubblingEvents = Path.Combine(gcPointsFoldersData.FolderName,
+                                                            Configuration.DirectoryNameBubbling,
+                                                            Configuration.DirectoryNameEvents);
+
+            string eventConfigurationsFile = Path.Combine(DirectoryBubblingEvents, treeviewBagSource.File + ".off");
+
+            File.WriteAllText(eventConfigurationsFile, jsonSerialization);
+
+            TreeNode treeNodeEvents = treeNodeRoot.Nodes[0].Nodes[1];
+
+            this.CreateEventConfigurationNode(treeviewBagRoot, treeNodeEvents, eventConfigurationsFile);
+            Helpers.CreateSyncronizationFile(Path.GetFullPath(gcPointsFoldersData.FolderName));
+        }
+
+        private void CreateEventConfigurationFromNode(TreeNode treeNodeDestination, TreeNode treeNodeSource)
+        {
+            if (Global.MessageBoxForm("Assign this event to the current trigger in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                return;
+
+            //Filename
+
+            //Prepare the bags
+
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagDestination = (TreeviewBag)treeNodeDestination.Tag;
+            TreeviewBag treeviewBagSource = (TreeviewBag)treeNodeSource.Tag;
+
+
+            //Get the bubbling event
+            BubblingEvent bubblingEvent = EventsEngine.CreateBubblingEvent(treeviewBagDestination.componentEvent.eventClass,
+                                                                                treeviewBagDestination.componentEvent.assembly,
+                                                                                treeviewBagDestination.File);
+
+            var jsonSerialization = SerializationHelper.CreteJsonEventConfigurationTemplate(bubblingEvent);
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            string DirectoryBubblingEvents = Path.Combine(gcPointsFoldersData.FolderName,
+                                                            Configuration.DirectoryNameBubbling,
+                                                            Configuration.DirectoryNameEvents);
+
+            string eventConfigurationsFile = Path.Combine(DirectoryBubblingEvents, treeviewBagSource.File + ".off");
+
+            File.WriteAllText(eventConfigurationsFile, jsonSerialization);
+
+            TreeNode treeNodeEvents = treeNodeRoot.Nodes[0].Nodes[1];
+
+            this.CreateEventConfigurationNode(treeviewBagRoot, treeNodeEvents, eventConfigurationsFile);
+            Helpers.CreateSyncronizationFile(Path.GetFullPath(gcPointsFoldersData.FolderName));
+        }
+
+
+        private void CreateTriggerComponent(TreeNode treeNodeDestination, TreeNode treeNodeSource)
+        {
+            if (Global.MessageBoxForm("Copy the trigger component in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                return;
+
+            //Filename
+
+            //Prepare the bags
+
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagDestination = (TreeviewBag)treeNodeDestination.Tag;
+            TreeviewBag treeviewBagSource = (TreeviewBag)treeNodeSource.Tag;
+
+            File.Copy(treeviewBagSource.File, treeviewBagDestination.File,true);
+            treeNodeDestination.Parent.Nodes.Add(treeNodeSource);
+
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            Helpers.CreateSyncronizationFile(Path.GetFullPath(gcPointsFoldersData.FolderName));
+        }
+
+        private void CreateEventComponent(TreeNode treeNodeDestination, TreeNode treeNodeSource)
+        {
+            if (Global.MessageBoxForm("Copy the trigger component in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+                return;
+
+            //Filename
+
+            //Prepare the bags
+
+            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
+            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagDestination = (TreeviewBag)treeNodeDestination.Tag;
+            TreeviewBag treeviewBagSource = (TreeviewBag)treeNodeSource.Tag;
+
+            File.Copy(treeviewBagSource.File, treeviewBagDestination.File, true);
+            treeNodeDestination.Parent.Nodes.Add(treeNodeSource);
+
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+
+            Helpers.CreateSyncronizationFile(Path.GetFullPath(gcPointsFoldersData.FolderName));
         }
     }
 

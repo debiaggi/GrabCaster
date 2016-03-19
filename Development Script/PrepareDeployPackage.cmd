@@ -35,6 +35,10 @@ xcopy Framework\bin\Release\*.exe Setup\bin\Release\Deploy\*  /y
 
 xcopy DefaultFiles\BubblingDeploy Setup\bin\Debug\Deploy\Root_GrabCaster\Bubbling\ /s /y /e
 xcopy DefaultFiles\BubblingDeploy Setup\bin\Release\Deploy\Root_GrabCaster\Bubbling\ /s /y /e
+
+
+
+
 xcopy SDK Setup\bin\Debug\Deploy\SDK\ /s /y /e
 xcopy SDK Setup\bin\Release\Deploy\SDK\ /s /y /e
 
@@ -71,6 +75,18 @@ xcopy GrabCasterAdapter\Runtime\bin\Debug\GrabCaster.Framework.BizTalk.Adapter.D
 xcopy GrabCasterAdapter\GrabCaster.reg Setup\bin\Debug\Deploy\*  /y
 xcopy "GrabCasterAdapter\Register BizTalk Adapter.txt" Setup\bin\Debug\Deploy\*  /y
 copy DefaultFiles\BTSNTSvc.cfg Setup\bin\Debug\Deploy\BTSNTSvc.cfg  /y
+
+echo Console area, just replicate the bubbling and copy files.
+xcopy DefaultFiles\GCPoints Setup\bin\Debug\Deploy\GCPoints\ /s /y /e
+xcopy DefaultFiles\GCPoints Setup\bin\Release\Deploy\GCPoints\ /s /y /e
+copy DefaultFiles\DeployDefault.cfg Setup\bin\Debug\Deploy\GrabCasterUI.cfg  /y
+copy DefaultFiles\DeployDefault.cfg Setup\bin\Release\Deploy\GrabCasterUI.cfg  /y
+
+xcopy Setup\bin\Debug\Deploy\Root_GrabCaster Setup\bin\Debug\Deploy\Root_GrabCasterUI\ /s /y /e
+xcopy Setup\bin\Release\Deploy\Root_GrabCaster Setup\bin\Release\Deploy\Root_GrabCasterUI\ /s /y /e
+
+xcopy GrabCasterUI\bin\Debug\GrabCasterUI.exe Setup\bin\Debug\Deploy\*  /y
+xcopy GrabCasterUI\bin\Release\GrabCasterUI.exe Release\bin\Debug\Deploy\*  /y
 
 cd %~dp0
 echo Deployment pachage ready to go.

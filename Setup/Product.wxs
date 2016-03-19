@@ -47,7 +47,6 @@
 
 
     <DirectoryRef Id="INSTALLDIR_GRABCASTER">
-
       <Component Id="ApplicationShortcut" Guid="8D9CF214-E87C-441D-9B2C-8466E2505C82">
         <Shortcut Id="ApplicationStartMenuShortcut"
                   Name="GrabCaster"
@@ -57,6 +56,15 @@
                   Icon="GrabCaster.exe"
                   WorkingDirectory="INSTALLDIR_GRABCASTER">
           <Icon Id="GrabCaster.exe" SourceFile="$(var.SourcePath)\GrabCaster.exe" />
+        </Shortcut>
+        <Shortcut Id="ApplicationStartMenuShortcutUI"
+                  Name="GrabCaster Console"
+                  Description="Just in Time Gate"
+                  Target="[INSTALLDIR_GRABCASTER]GrabCasterUI.exe"
+                  Directory="DesktopFolder"
+                  Icon="GrabCasterUI.exe"
+                  WorkingDirectory="INSTALLDIR_GRABCASTER">
+          <Icon Id="GrabCasterUI.exe" SourceFile="$(var.SourcePath)\GrabCasterUI.exe" />
         </Shortcut>
         <RemoveFolder Id="INSTALLDIR_GRABCASTER" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\Microsoft\GrabCaster" Name="installed" Type="integer" Value="1"

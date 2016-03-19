@@ -15,7 +15,7 @@ namespace GrabCasterUI
     public enum GrabCasterComponentType
     {
         TriggerConfiguration,Event, EventConfiguration, TriggerComponent,EventComponent,Correlation,Root,
-        TriggerConfigurationRoot, EventConfigurationRoot, TriggerComponentRoot, EventComponentRoot,none
+        TriggerConfigurationRoot, TriggerEventConfigurationRoot, EventConfigurationRoot, TriggerComponentRoot, EventComponentRoot,none
     }
 
     public static class Global

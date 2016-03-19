@@ -46,11 +46,13 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
             this.panelUCContainer1 = new System.Windows.Forms.Panel();
+            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.panelUCContainer2 = new System.Windows.Forms.Panel();
+            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
@@ -77,8 +79,6 @@
             this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItemRootExpandall = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRootSyncronize = new System.Windows.Forms.ToolStripMenuItem();
-            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
-            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -320,6 +320,18 @@
             this.panelUCContainer1.Size = new System.Drawing.Size(729, 310);
             this.panelUCContainer1.TabIndex = 0;
             // 
+            // userControlComponent1
+            // 
+            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent1.Name = "userControlComponent1";
+            this.userControlComponent1.Size = new System.Drawing.Size(729, 310);
+            this.userControlComponent1.TabIndex = 0;
+            this.userControlComponent1.TreeNodeSide = null;
+            this.userControlComponent1.TreeViewSide = null;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.comboBox1);
@@ -388,6 +400,18 @@
             this.panelUCContainer2.Name = "panelUCContainer2";
             this.panelUCContainer2.Size = new System.Drawing.Size(975, 306);
             this.panelUCContainer2.TabIndex = 0;
+            // 
+            // userControlComponent2
+            // 
+            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent2.Name = "userControlComponent2";
+            this.userControlComponent2.Size = new System.Drawing.Size(975, 306);
+            this.userControlComponent2.TabIndex = 1;
+            this.userControlComponent2.TreeNodeSide = null;
+            this.userControlComponent2.TreeViewSide = null;
             // 
             // panel2
             // 
@@ -607,30 +631,6 @@
             this.toolStripMenuItemRootSyncronize.Size = new System.Drawing.Size(192, 26);
             this.toolStripMenuItemRootSyncronize.Text = "Syncronize Point";
             this.toolStripMenuItemRootSyncronize.Click += new System.EventHandler(this.toolStripMenuItemRootSyncronize_Click);
-            // 
-            // userControlComponent1
-            // 
-            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(729, 310);
-            this.userControlComponent1.TabIndex = 0;
-            this.userControlComponent1.TreeNodeSide = null;
-            this.userControlComponent1.TreeViewSide = null;
-            // 
-            // userControlComponent2
-            // 
-            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(975, 306);
-            this.userControlComponent2.TabIndex = 1;
-            this.userControlComponent2.TreeNodeSide = null;
-            this.userControlComponent2.TreeViewSide = null;
             // 
             // FormMain
             // 

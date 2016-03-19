@@ -113,14 +113,11 @@
             <Component Id="cmpB196EB4C55C07FD3F70C4514542D7E10" Guid="*">
                 <File Id="fil88C61C64F4548189C0F695178795F57D" KeyPath="yes" Source="$(var.SourcePath)\GrabCaster.vshost.exe" />
             </Component>
+            <Component Id="cmpF66436A8898692EB9C9714654F279A09" Guid="*">
+                <File Id="fil0CFCB9A6ED6AFF77BCCD293421278B13" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.cfg" />
+            </Component>
             <Component Id="cmpCF6E9B0D3814DBDAD0EFDCCD4B3D769D" Guid="*">
                 <File Id="fil9D152D03E185A10ECC6B98F702186FED" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.exe" />
-            </Component>
-            <Component Id="cmpCA841882C876DE8D7CE2FE052F608604" Guid="*">
-                <File Id="filCF6D03F03FFB86E01E5973E9F1A3E492" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.pdb" />
-            </Component>
-            <Component Id="cmpAD83E36AB3DBC18BBCB71E921E0ABE74" Guid="*">
-                <File Id="fil98EC5180F9A001B94CF874B058212D09" KeyPath="yes" Source="$(var.SourcePath)\GrabCasterUI.vshost.exe" />
             </Component>
             <Component Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" Guid="*">
                 <File Id="fil82A7F5F9679E1DCE9DFE4F04EAF765FC" KeyPath="yes" Source="$(var.SourcePath)\license.rtf" />
@@ -187,15 +184,6 @@
             </Component>
             <Component Id="cmp55826525D8A83C653AF2361B1FD57478" Guid="*">
                 <File Id="fil15BAAE93FF1FFDD5B00A59D7FD85D433" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.ServiceBus.Messaging.EventProcessorHost.dll" />
-            </Component>
-            <Component Id="cmp8AF0E841E3E64A02D45D5E9BA198646B" Guid="*">
-                <File Id="filE31CB23B18603E9AAA7F354FD5B04C74" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Synchronization.dll" />
-            </Component>
-            <Component Id="cmp41EE098402772DAE49CD84C4A67CE414" Guid="*">
-                <File Id="filD755F598E9EB797323862213B42465E8" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Synchronization.Files.dll" />
-            </Component>
-            <Component Id="cmp6392BED1EF865EA0A011DE3E06A37F5E" Guid="*">
-                <File Id="fil737FED54A0082F7B96EFD9633DC6012C" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.Synchronization.MetadataStorage.dll" />
             </Component>
             <Component Id="cmpC3A492BC3022419519CAA57894548489" Guid="*">
                 <File Id="fil67D346FA2408532A2AA3ADF91C1A03B6" KeyPath="yes" Source="$(var.SourcePath)\Microsoft.WindowsAzure.Configuration.dll" />
@@ -352,6 +340,11 @@
             <Directory Id="dir16732E347DFC8B6E07311C6AE43BCEB0" Name="Documentation">
                 <Component Id="cmp4F43A08EDDA73CA4F7EABA693DA809A3" Guid="*">
                     <File Id="fil69E735574FFAF04FB8107BD157E5A056" KeyPath="yes" Source="$(var.SourcePath)\Documentation\GrabCaster v1.0- Technical Manual.pdf" />
+                </Component>
+            </Directory>
+            <Directory Id="dir9807CD5D8CC08D69AD1B238DAB555F94" Name="GCPoints">
+                <Component Id="cmp4A5121010FF69FB141CAF00CC02CCB88" Guid="*">
+                    <File Id="fil66D288E386C90110DB157993738EE7AF" KeyPath="yes" Source="$(var.SourcePath)\GCPoints\Readme" />
                 </Component>
             </Directory>
             <Directory Id="dirFE0543AC04BF6A02DC7597CA6A9152D9" Name="Log">
@@ -534,16 +527,6 @@
                         <File Id="fil1196B9303471DC0744AE91775178500C" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Events\GrabCaster.Framework.TwilioEvent.dll" />
                     </Component>
                 </Directory>
-                <Directory Id="dir9BEAEC04B1CEF5E49AE3EBFAA7892D0A" Name="Log">
-                    <Component Id="cmp9013F8627ADD262C80286A1AF348E884" Guid="*">
-                        <File Id="filD935C3512D6CA0327ACD3FA1F3450742" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Log\Readme" />
-                    </Component>
-                    <Directory Id="dir86672CA95723206A764249FE1BEABF04" Name="Console">
-                        <Component Id="cmp5BBAA05EBE870174BF7339B0C5A01F4C" Guid="*">
-                            <File Id="fil5E31EF819C29B134A9AB30D286A8C969" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Log\Console\Readme" />
-                        </Component>
-                    </Directory>
-                </Directory>
                 <Directory Id="dir1D2B51FE42F0170B472D0C90631A1CFB" Name="Triggers">
                     <Component Id="cmp677FCE8E844AD7C97958A1D0D2FA224D" Guid="*">
                         <File Id="fil8858AF7A46560A7704B9D1CD0652A920" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Triggers\GrabCaster.Framework.AzureBlobTrigger.dll" />
@@ -589,6 +572,224 @@
                     </Component>
                     <Component Id="cmp7E06BC6CFEC524824A585B7C2461A4D8" Guid="*">
                         <File Id="fil21CF9E7E13827E80EB029B8E2C47A39D" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCaster\Triggers\GrabCaster.Framework.SqlServerTrigger.dll" />
+                    </Component>
+                </Directory>
+            </Directory>
+            <Directory Id="dir868A61A9065FC74E3FAF19F81DF19A5C" Name="Root_GrabCasterUI">
+                <Component Id="cmp567194C9CAA8A76BBA67ABC8838ED6A8" Guid="*">
+                    <File Id="fil058BBEB3BED118EEF0D63C4524478A95" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Dcp.Azure.dll" />
+                </Component>
+                <Component Id="cmp19570C436399289F5403528509BA37AF" Guid="*">
+                    <File Id="fil767A91E2AF5D625AB94AFB4F209E1A4F" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Dcp.Redis.dll" />
+                </Component>
+                <Component Id="cmp979BEBC38747754EE8FF1FA19FF1D778" Guid="*">
+                    <File Id="fil86B844E59FCBE63B05103B139277C673" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Dpp.Azure.dll" />
+                </Component>
+                <Component Id="cmp2057F2FA8ECCDB0BB8C0D791FCDF83E3" Guid="*">
+                    <File Id="fil2116DFBC084562F876597A0ABD81A10D" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Log.EventHubs.dll" />
+                </Component>
+                <Component Id="cmpF00B5748BE0F557B6A20718E8A80AD82" Guid="*">
+                    <File Id="filCDB53786E8D1CB7D47321807991A43FC" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Log.EventHubs.pdb" />
+                </Component>
+                <Component Id="cmpDE74E1EB49ECC5FDFB76AB8AEBD7CA50" Guid="*">
+                    <File Id="fil572A4DA017FA12F70D0E075BEA397D25" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Log.File.dll" />
+                </Component>
+                <Component Id="cmp4A70293EEAD0E68991A49907D008058E" Guid="*">
+                    <File Id="fil99ED92A7317B8490D22FC45BE83E0893" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\GrabCaster.Framework.Log.File.pdb" />
+                </Component>
+                <Directory Id="dirE96813A8B808F11C46AAD24EB1AA8FC4" Name="Bubbling">
+                    <Directory Id="dir1D7C2C498EFB7C8E4153669ACA946FE4" Name="Events">
+                        <Component Id="cmp5AAE8519A4E5F678EC802B8352A19533" Guid="*">
+                            <File Id="fil038465872178A548C9B30EAB0A1FD3C9" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo AzureBlob.off" />
+                        </Component>
+                        <Component Id="cmpA4837720E99A3932F0D8E7A8DD6A3677" Guid="*">
+                            <File Id="fil36F84C92E5620F920BCCA07F5290D61D" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo Chat.off" />
+                        </Component>
+                        <Component Id="cmp7F9082005F2AFBE2626A052D5EC927B2" Guid="*">
+                            <File Id="fil16B2DB4FB2F04149A32A37371240E245" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo CSharp.off" />
+                        </Component>
+                        <Component Id="cmp33E08CC1334A21EC7D0F1AA9EB90F141" Guid="*">
+                            <File Id="filFCBB1CF52B9A3F13D048F2D1DCB02BAF" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo DialogBox.off" />
+                        </Component>
+                        <Component Id="cmp08216CACD2D29A805F716D1E6ACD7DFF" Guid="*">
+                            <File Id="filCE8802EA4240B97EEE88C8172BB49646" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo Embedded Event.off" />
+                        </Component>
+                        <Component Id="cmpA4A48A29CEC716C3E4976AA5225E05A1" Guid="*">
+                            <File Id="fil5BEFC2132377B4FFB6F814CA549563A5" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo EventHub.off" />
+                        </Component>
+                        <Component Id="cmp0B2F3FDFA9C3C7310AA8D7629C5A50D7" Guid="*">
+                            <File Id="fil4948A45956377CC42F434156D1DBF91A" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo File Out.off" />
+                        </Component>
+                        <Component Id="cmp9D566F887646A51A460B7A373876815C" Guid="*">
+                            <File Id="filAB279F5DDBFB70E8F3A1E9D11A1CA3B7" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo MessageBox.off" />
+                        </Component>
+                        <Component Id="cmp25AC0F3161DE36C7D786973B47C2BE0C" Guid="*">
+                            <File Id="filD79B377B91BF5E138C5EA65FB6B18233" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo PowerShell Backup.off" />
+                        </Component>
+                        <Component Id="cmp4CBBE0889C2FB8F0F8FF436183997C25" Guid="*">
+                            <File Id="fil4C43426622D59A2009BAF9D67A2BCA01" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo Queue.off" />
+                        </Component>
+                        <Component Id="cmpF0B007E41518C9813F08F9E8FBE8D98E" Guid="*">
+                            <File Id="fil92900431822273620A29DF37F325C9D6" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo SQL Bulk Insert.off" />
+                        </Component>
+                        <Component Id="cmpDFA7B245EA3FA87898034BA0D2D1F048" Guid="*">
+                            <File Id="fil50AB392E0501203FD1C14AF11E0A60F8" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo Topic.off" />
+                        </Component>
+                        <Component Id="cmp6F1EC59B6FE307422E17F6F5CBC81E25" Guid="*">
+                            <File Id="filF69E6548A58F1EC4ABD2496A004ADBAC" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Events\Demo Twilio.off" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir441729942A26206CFA5D2D244E298F86" Name="Log">
+                        <Component Id="cmp9A8C0BE8C46E079718E687CAFB256E84" Guid="*">
+                            <File Id="filD767E246B11385319B2CF3C161FD89E7" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Log\Readme" />
+                        </Component>
+                    </Directory>
+                    <Directory Id="dir61D7601BD61FC0901D666A7EDE8894FC" Name="Triggers">
+                        <Component Id="cmp9C7FADC7F886A21FB1A3F822804F1C06" Guid="*">
+                            <File Id="filB57B7C4CA4577080D626E58C22AD6866" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo Azure Topic 2 Out.off" />
+                        </Component>
+                        <Component Id="cmp49E22DFADF533C14047FCE577A8EAFA5" Guid="*">
+                            <File Id="filF58A95179EFE8EC86BA31A8D959A5F3B" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo EventViewer 2 BizTalk Adapter.off" />
+                        </Component>
+                        <Component Id="cmpD48D04695C21003BCA6B8EC1BA8ED4BA" Guid="*">
+                            <File Id="fil2B61ED11A10A3187E0D9C1B95F7C5793" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo EventViewer 2 EventHub.off" />
+                        </Component>
+                        <Component Id="cmp0F9DF389471A68A9C07E5C7B7F16DB43" Guid="*">
+                            <File Id="filDF3A5A2E49AE612B1C5C3B29A5BE5F84" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo EventViewer 2 Local Notepad.off" />
+                        </Component>
+                        <Component Id="cmpD08A8A6E151996BAA9EB59F9F26C2973" Guid="*">
+                            <File Id="fil2191863524E29878E1745000D0F96023" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo EventViewer 2 TopicBlobQueue.off" />
+                        </Component>
+                        <Component Id="cmp0008474D0379566668A01CF83130D151" Guid="*">
+                            <File Id="filE27871B28B11433C80A216C8CBA61656" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo File In_Local 2 Out_Local.off" />
+                        </Component>
+                        <Component Id="cmp4551CF452C5D9E11461DF443A4AB8196" Guid="*">
+                            <File Id="fil72C84E52DBBD47CE495B3F3323464240" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo File In_LocalOverride 2 Out Override Properties.off" />
+                        </Component>
+                        <Component Id="cmp88FEDD248B638BCED5EE9DD2209FC7B5" Guid="*">
+                            <File Id="fil69674AB4A0D2015373428E171467CBD8" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo File In_LocalRemote 2 Out.off" />
+                        </Component>
+                        <Component Id="cmp7E111EF351D834CC6B7393BB01043341" Guid="*">
+                            <File Id="filF17CF9D5581EE11C5963CC73549FC411" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo File In_LocalRemoteAll 2 Out All Channels All Points.off" />
+                        </Component>
+                        <Component Id="cmpFFA9B92E559CC6F25AB575EC91DA9EB5" Guid="*">
+                            <File Id="fil425E735E48A1BAEC27E3C4066D3A0BEC" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo File In_LocalRemoteSingle 2 Out All Channels single Point.off" />
+                        </Component>
+                        <Component Id="cmp8E752FA58DFF65B2754055C977B61327" Guid="*">
+                            <File Id="fil4520E91F30EA905DC15DCA279FA1DE49" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo Notepad Chat.off" />
+                        </Component>
+                        <Component Id="cmpD5AA28BD9041FA837CF0B8663A84E22A" Guid="*">
+                            <File Id="fil74EBA7B295EAF328EA5EBDFF2A85CFEA" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo PowerShell EventViewer 2 Local Notepad.off" />
+                        </Component>
+                        <Component Id="cmp3C5933109F50E2E123D9835442F5A1E4" Guid="*">
+                            <File Id="fil52DE06BB7822FE1DAA81B3A9F91ED8AA" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo PowerShell EventViewer 2 PowerShell Job.off" />
+                        </Component>
+                        <Component Id="cmp2503BE58E233758C4F9F3D66AC086DEC" Guid="*">
+                            <File Id="fil55FBCC920F100BF9ED0392BAE898352A" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo PowerShell EventViewer 2 TextMessage.off" />
+                        </Component>
+                        <Component Id="cmpD22BE8BAF555AAE1C809F7049CE416D1" Guid="*">
+                            <File Id="fil4E88A558A0F7EEA4A7EBFD5D4B06F7CA" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo PowerShell Get File 2 Out.off" />
+                        </Component>
+                        <Component Id="cmp7B53955FA7181CD30CAA78BB10E69CD7" Guid="*">
+                            <File Id="filB1F04E9D22C2BE2B550167114FC0765C" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo RFID 2 Local Notepad.off" />
+                        </Component>
+                        <Component Id="cmpE932A218CF510F96F500CAAE4EF6659D" Guid="*">
+                            <File Id="fil3629E1B79115820117CE8ACD111CFE82" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo SQL Bulk Select 2 SQL Bulk Insert.off" />
+                        </Component>
+                        <Component Id="cmp47B9D38519D19A203656A519EFCA4F22" Guid="*">
+                            <File Id="fil11BFF7289D9128D7547623B24FAC193F" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Bubbling\Triggers\Demo SQL Select 2 Local Notepad.off" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dirAC8887C125404C5C265CC4BA559C402D" Name="Events">
+                    <Component Id="cmp61488E238BBEA0D60A8ADD3B7682B715" Guid="*">
+                        <File Id="fil9AC97129AB70C59A800B029B485658D4" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.AzureBlobEvent.dll" />
+                    </Component>
+                    <Component Id="cmp0F070EFAB0C05A5D01F002F63D143ACC" Guid="*">
+                        <File Id="filBA0815732AB62DADA668A40453FA3F1B" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.AzureQueueEvent.dll" />
+                    </Component>
+                    <Component Id="cmp216A116FB9683F6B879776F9A1BA52DF" Guid="*">
+                        <File Id="fil51423D3B9C7F0B5BA4A0BDA6643BF5B8" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.AzureTopicEvent.dll" />
+                    </Component>
+                    <Component Id="cmp83D27B95D62D5A723BE3A980D453A19C" Guid="*">
+                        <File Id="fil0E6714838B714B4CEFFC687C53E007E1" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.BulksqlServerEvent.dll" />
+                    </Component>
+                    <Component Id="cmp8C7D3CD0F11336461CCE59735962B0D0" Guid="*">
+                        <File Id="fil2C50295758F0D597C7B2601E2B458593" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.ChatEvent.dll" />
+                    </Component>
+                    <Component Id="cmpB8FF35D5AC383B7DB94108319BD94027" Guid="*">
+                        <File Id="fil1521C0AE1FA1F319AB447D0BA17C10EE" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.CSharpEvent.dll" />
+                    </Component>
+                    <Component Id="cmpDB9C66660D2AFA8FC66299AED3F27059" Guid="*">
+                        <File Id="filE297360DAB2D23C8313ACC543CD8932C" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.DialogBoxEvent.dll" />
+                    </Component>
+                    <Component Id="cmpCADDD51EDF65AD9F739E63D209453DA9" Guid="*">
+                        <File Id="filBCABC401F23A1D52E859C03F58A8EA59" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.EmbeddedEvent.dll" />
+                    </Component>
+                    <Component Id="cmp3B5AF20E2686B7629833ED3DEC5D4593" Guid="*">
+                        <File Id="fil0222B152C9FABDF9BDF4940BB5B0C37E" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.EventHubEvent.dll" />
+                    </Component>
+                    <Component Id="cmpAC421AD282E128F6E1A1BF8762E892F8" Guid="*">
+                        <File Id="fil7BA61E432F5790B72E2410102F9DCC5A" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.FileEvent.dll" />
+                    </Component>
+                    <Component Id="cmpA26E06B534C3459E012B15B09A4A7D38" Guid="*">
+                        <File Id="fil4ED52FE94DD87E864968DA001108BE96" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.MessageBoxEvent.dll" />
+                    </Component>
+                    <Component Id="cmpCA01BF24E5112AC4E20BEF8E01298CCA" Guid="*">
+                        <File Id="filA246B07622A94F820038397D273D9FB3" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.NopEvent.dll" />
+                    </Component>
+                    <Component Id="cmp85DB13B74669DDCC9C66033078B70CEB" Guid="*">
+                        <File Id="fil00109BE64B879BAC82525FD7B1991F6E" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.PowershellEvent.dll" />
+                    </Component>
+                    <Component Id="cmpF56C7C692C96AC04293E6D6B00D50B53" Guid="*">
+                        <File Id="filA59C2ADA20F4172058FF2955618082D1" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Events\GrabCaster.Framework.TwilioEvent.dll" />
+                    </Component>
+                </Directory>
+                <Directory Id="dir911263D1FB5CBD4B0BBFC1C607C67E1A" Name="Triggers">
+                    <Component Id="cmp82D0F0774FD82EDF1053C61F536000E1" Guid="*">
+                        <File Id="fil33A27D722D997E2C525C08264158C93D" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.AzureBlobTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp736BB4F29DD9775ADCB563B20A2BE2BA" Guid="*">
+                        <File Id="fil59BCDD0638BCFB717921FEBD0549045F" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.AzureQueueTrigger.dll" />
+                    </Component>
+                    <Component Id="cmpE268FC5DFDC926F4880B8AD05319F314" Guid="*">
+                        <File Id="fil74FFA5E9601E3CAF0C598798253A7B26" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.AzureTopicTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp33677CF284C58D2B75EC3DD167481F19" Guid="*">
+                        <File Id="fil826FD75A3876D13D41E4A32AE69FFC95" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.BulkSqlServerTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp36370961242F00143A97A8B8B7A910C6" Guid="*">
+                        <File Id="fil89FB211A3AF37C29E6C241E42967EFE0" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.ChatTrigger.dll" />
+                    </Component>
+                    <Component Id="cmpF28577605AB0215F7824EDB52BF56CFF" Guid="*">
+                        <File Id="filB6926A11C46F836622C4368893EDE9A7" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.CSharpTrigger.dll" />
+                    </Component>
+                    <Component Id="cmpCE7D993195344ABFDE7837BE8220B6FF" Guid="*">
+                        <File Id="filB6C73FB5E5D8E25743F4EE7F057DCA94" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.EmbeddedTrigger.dll" />
+                    </Component>
+                    <Component Id="cmpD6A086AA38EDC2E293B51DDE8320966D" Guid="*">
+                        <File Id="filCF6F8F615D564909C5ECCDD8ABFE9AF2" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.EtwTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp121877C5986EBE10A7605BF192A51033" Guid="*">
+                        <File Id="filF3CC13A8E36172E121B4E0D5AC5FE022" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.EventHubsTrigger.dll" />
+                    </Component>
+                    <Component Id="cmpDA03BCC898A3A5FF4B5CA76933D48C3D" Guid="*">
+                        <File Id="fil09F9A084C26B2AE352CCFFED13C36193" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.EventViewerTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp9EE9AFAD845AFEFD59CD2D2F401E1F96" Guid="*">
+                        <File Id="fil14222088DAE2F3178A1DC89B3D2D6F7C" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.FileTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp4859702D2E917B27EC8246813DA64EC0" Guid="*">
+                        <File Id="fil6F3BC7689450B3BCC752E892C25CBA7E" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.NopTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp4DC24A5B8E7CAE6E0DE18DA346FAA946" Guid="*">
+                        <File Id="filE7093007F861A44A21143E31A7F4FD93" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.PowerShellTrigger.dll" />
+                    </Component>
+                    <Component Id="cmp820184D49D000E411F7323841A10209B" Guid="*">
+                        <File Id="fil81935DDC77FCE4C2D7548B55EED53DD9" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.RfidTrigger.dll" />
+                    </Component>
+                    <Component Id="cmpC3E1155AD09A11555B2EB5879F74736F" Guid="*">
+                        <File Id="filAE4E72898FE0C66066A344C0F1A87A63" KeyPath="yes" Source="$(var.SourcePath)\Root_GrabCasterUI\Triggers\GrabCaster.Framework.SqlServerTrigger.dll" />
                     </Component>
                 </Directory>
             </Directory>
@@ -1061,22 +1262,6 @@
                         <Directory Id="dirFC2861835362E061CB6048E655B19FA9" Name="Properties">
                             <Component Id="cmp6AD8FFF10C7F21B56194F46B5DEB75D6" Guid="*">
                                 <File Id="filE6112635D6CC27DDC95247E3BEB9FC6F" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\PowershellEvent\Properties\AssemblyInfo.cs" />
-                            </Component>
-                        </Directory>
-                    </Directory>
-                    <Directory Id="dir1366A70CB75ED4E6467E2B92088ABBE5" Name="RunProcessEvent">
-                        <Component Id="cmp628AF1C114BD87E8036ED732B4A037B5" Guid="*">
-                            <File Id="filAC8E2898141C4EB847A2444E6268C8D1" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\app.config" />
-                        </Component>
-                        <Component Id="cmpA8D9E14DD763245B45E9E8979ECA1644" Guid="*">
-                            <File Id="fil4C5116CD7219277876A5DAA847D0E996" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\FileEvent.cs" />
-                        </Component>
-                        <Component Id="cmpBF9855A07530AF872CF13E267B458EA1" Guid="*">
-                            <File Id="fil927FDE2A462399958B5D0655F1DBF339" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\RunProcessEvent.csproj" />
-                        </Component>
-                        <Directory Id="dir9C6B41F7CC0329044D0959240A350BF2" Name="Properties">
-                            <Component Id="cmp308CAEEAE4EB3C140E37364972D696B6" Guid="*">
-                                <File Id="fil94DF9F1C85B72020D6EE88F75C6AC011" KeyPath="yes" Source="$(var.SourcePath)\SDK\Events\RunProcessEvent\Properties\AssemblyInfo.cs" />
                             </Component>
                         </Directory>
                     </Directory>
@@ -1717,9 +1902,8 @@
             <ComponentRef Id="cmp6018A6C0BBA27AF01E1E0FA31A9F7897" />
             <ComponentRef Id="cmpCD92A7C4ACAFADCC3F8CB18EF843A98A" />
             <ComponentRef Id="cmpB196EB4C55C07FD3F70C4514542D7E10" />
+            <ComponentRef Id="cmpF66436A8898692EB9C9714654F279A09" />
             <ComponentRef Id="cmpCF6E9B0D3814DBDAD0EFDCCD4B3D769D" />
-            <ComponentRef Id="cmpCA841882C876DE8D7CE2FE052F608604" />
-            <ComponentRef Id="cmpAD83E36AB3DBC18BBCB71E921E0ABE74" />
             <ComponentRef Id="cmp1C9F14AD7DA8BF0596964D1DFE3B9E86" />
             <ComponentRef Id="cmp7C116D0D4F17AE998D7C1375C3C75A11" />
             <ComponentRef Id="cmpDC80D04183687DA26988FB1B2C414D61" />
@@ -1742,9 +1926,6 @@
             <ComponentRef Id="cmpC3F592EAF1C48F3136FAEDEB84365E02" />
             <ComponentRef Id="cmp9EEAE4B71DE6869A5E47126FAB47D0C5" />
             <ComponentRef Id="cmp55826525D8A83C653AF2361B1FD57478" />
-            <ComponentRef Id="cmp8AF0E841E3E64A02D45D5E9BA198646B" />
-            <ComponentRef Id="cmp41EE098402772DAE49CD84C4A67CE414" />
-            <ComponentRef Id="cmp6392BED1EF865EA0A011DE3E06A37F5E" />
             <ComponentRef Id="cmpC3A492BC3022419519CAA57894548489" />
             <ComponentRef Id="cmpDE8441C6632EA7485D1D4120A2ECCFBC" />
             <ComponentRef Id="cmp412348C80DE4B276CD42DAA49CF7F7DD" />
@@ -1790,6 +1971,7 @@
             <ComponentRef Id="cmp39C7133F4437F9619A4A3F3466F0C298" />
             <ComponentRef Id="cmp6405DAECE45786C1A5470B0B6306253F" />
             <ComponentRef Id="cmp4F43A08EDDA73CA4F7EABA693DA809A3" />
+            <ComponentRef Id="cmp4A5121010FF69FB141CAF00CC02CCB88" />
             <ComponentRef Id="cmp25C309424EE750DAE1CE23D721E690EF" />
             <ComponentRef Id="cmp4C7280D5BC3B2F457D9F353F9D1FC86C" />
             <ComponentRef Id="cmp8840765D1A3B5913F44A30D8BDE7A8D6" />
@@ -1845,8 +2027,6 @@
             <ComponentRef Id="cmp7119A7AB3487EBE1AC3437521753E6C0" />
             <ComponentRef Id="cmpD829267C74CD824FBD274D4403077995" />
             <ComponentRef Id="cmpCB0562807A16710E2B9CE170E9217BD7" />
-            <ComponentRef Id="cmp9013F8627ADD262C80286A1AF348E884" />
-            <ComponentRef Id="cmp5BBAA05EBE870174BF7339B0C5A01F4C" />
             <ComponentRef Id="cmp677FCE8E844AD7C97958A1D0D2FA224D" />
             <ComponentRef Id="cmpD6A2899660F68703DDBD5C845DDF1636" />
             <ComponentRef Id="cmp423F1EB7869F69B3810B7ACA48B15C1B" />
@@ -1862,6 +2042,74 @@
             <ComponentRef Id="cmp6C9F4546DA63A071C2AF9A64EE05AB88" />
             <ComponentRef Id="cmp46D51DE54D2E980C60DB31BCF2B1A36D" />
             <ComponentRef Id="cmp7E06BC6CFEC524824A585B7C2461A4D8" />
+            <ComponentRef Id="cmp567194C9CAA8A76BBA67ABC8838ED6A8" />
+            <ComponentRef Id="cmp19570C436399289F5403528509BA37AF" />
+            <ComponentRef Id="cmp979BEBC38747754EE8FF1FA19FF1D778" />
+            <ComponentRef Id="cmp2057F2FA8ECCDB0BB8C0D791FCDF83E3" />
+            <ComponentRef Id="cmpF00B5748BE0F557B6A20718E8A80AD82" />
+            <ComponentRef Id="cmpDE74E1EB49ECC5FDFB76AB8AEBD7CA50" />
+            <ComponentRef Id="cmp4A70293EEAD0E68991A49907D008058E" />
+            <ComponentRef Id="cmp5AAE8519A4E5F678EC802B8352A19533" />
+            <ComponentRef Id="cmpA4837720E99A3932F0D8E7A8DD6A3677" />
+            <ComponentRef Id="cmp7F9082005F2AFBE2626A052D5EC927B2" />
+            <ComponentRef Id="cmp33E08CC1334A21EC7D0F1AA9EB90F141" />
+            <ComponentRef Id="cmp08216CACD2D29A805F716D1E6ACD7DFF" />
+            <ComponentRef Id="cmpA4A48A29CEC716C3E4976AA5225E05A1" />
+            <ComponentRef Id="cmp0B2F3FDFA9C3C7310AA8D7629C5A50D7" />
+            <ComponentRef Id="cmp9D566F887646A51A460B7A373876815C" />
+            <ComponentRef Id="cmp25AC0F3161DE36C7D786973B47C2BE0C" />
+            <ComponentRef Id="cmp4CBBE0889C2FB8F0F8FF436183997C25" />
+            <ComponentRef Id="cmpF0B007E41518C9813F08F9E8FBE8D98E" />
+            <ComponentRef Id="cmpDFA7B245EA3FA87898034BA0D2D1F048" />
+            <ComponentRef Id="cmp6F1EC59B6FE307422E17F6F5CBC81E25" />
+            <ComponentRef Id="cmp9A8C0BE8C46E079718E687CAFB256E84" />
+            <ComponentRef Id="cmp9C7FADC7F886A21FB1A3F822804F1C06" />
+            <ComponentRef Id="cmp49E22DFADF533C14047FCE577A8EAFA5" />
+            <ComponentRef Id="cmpD48D04695C21003BCA6B8EC1BA8ED4BA" />
+            <ComponentRef Id="cmp0F9DF389471A68A9C07E5C7B7F16DB43" />
+            <ComponentRef Id="cmpD08A8A6E151996BAA9EB59F9F26C2973" />
+            <ComponentRef Id="cmp0008474D0379566668A01CF83130D151" />
+            <ComponentRef Id="cmp4551CF452C5D9E11461DF443A4AB8196" />
+            <ComponentRef Id="cmp88FEDD248B638BCED5EE9DD2209FC7B5" />
+            <ComponentRef Id="cmp7E111EF351D834CC6B7393BB01043341" />
+            <ComponentRef Id="cmpFFA9B92E559CC6F25AB575EC91DA9EB5" />
+            <ComponentRef Id="cmp8E752FA58DFF65B2754055C977B61327" />
+            <ComponentRef Id="cmpD5AA28BD9041FA837CF0B8663A84E22A" />
+            <ComponentRef Id="cmp3C5933109F50E2E123D9835442F5A1E4" />
+            <ComponentRef Id="cmp2503BE58E233758C4F9F3D66AC086DEC" />
+            <ComponentRef Id="cmpD22BE8BAF555AAE1C809F7049CE416D1" />
+            <ComponentRef Id="cmp7B53955FA7181CD30CAA78BB10E69CD7" />
+            <ComponentRef Id="cmpE932A218CF510F96F500CAAE4EF6659D" />
+            <ComponentRef Id="cmp47B9D38519D19A203656A519EFCA4F22" />
+            <ComponentRef Id="cmp61488E238BBEA0D60A8ADD3B7682B715" />
+            <ComponentRef Id="cmp0F070EFAB0C05A5D01F002F63D143ACC" />
+            <ComponentRef Id="cmp216A116FB9683F6B879776F9A1BA52DF" />
+            <ComponentRef Id="cmp83D27B95D62D5A723BE3A980D453A19C" />
+            <ComponentRef Id="cmp8C7D3CD0F11336461CCE59735962B0D0" />
+            <ComponentRef Id="cmpB8FF35D5AC383B7DB94108319BD94027" />
+            <ComponentRef Id="cmpDB9C66660D2AFA8FC66299AED3F27059" />
+            <ComponentRef Id="cmpCADDD51EDF65AD9F739E63D209453DA9" />
+            <ComponentRef Id="cmp3B5AF20E2686B7629833ED3DEC5D4593" />
+            <ComponentRef Id="cmpAC421AD282E128F6E1A1BF8762E892F8" />
+            <ComponentRef Id="cmpA26E06B534C3459E012B15B09A4A7D38" />
+            <ComponentRef Id="cmpCA01BF24E5112AC4E20BEF8E01298CCA" />
+            <ComponentRef Id="cmp85DB13B74669DDCC9C66033078B70CEB" />
+            <ComponentRef Id="cmpF56C7C692C96AC04293E6D6B00D50B53" />
+            <ComponentRef Id="cmp82D0F0774FD82EDF1053C61F536000E1" />
+            <ComponentRef Id="cmp736BB4F29DD9775ADCB563B20A2BE2BA" />
+            <ComponentRef Id="cmpE268FC5DFDC926F4880B8AD05319F314" />
+            <ComponentRef Id="cmp33677CF284C58D2B75EC3DD167481F19" />
+            <ComponentRef Id="cmp36370961242F00143A97A8B8B7A910C6" />
+            <ComponentRef Id="cmpF28577605AB0215F7824EDB52BF56CFF" />
+            <ComponentRef Id="cmpCE7D993195344ABFDE7837BE8220B6FF" />
+            <ComponentRef Id="cmpD6A086AA38EDC2E293B51DDE8320966D" />
+            <ComponentRef Id="cmp121877C5986EBE10A7605BF192A51033" />
+            <ComponentRef Id="cmpDA03BCC898A3A5FF4B5CA76933D48C3D" />
+            <ComponentRef Id="cmp9EE9AFAD845AFEFD59CD2D2F401E1F96" />
+            <ComponentRef Id="cmp4859702D2E917B27EC8246813DA64EC0" />
+            <ComponentRef Id="cmp4DC24A5B8E7CAE6E0DE18DA346FAA946" />
+            <ComponentRef Id="cmp820184D49D000E411F7323841A10209B" />
+            <ComponentRef Id="cmpC3E1155AD09A11555B2EB5879F74736F" />
             <ComponentRef Id="cmp3369E32ABC4BD18F97162EFD6A925DD1" />
             <ComponentRef Id="cmp1F09BD6F6EFA54080ED3ACC7A6D7DBEB" />
             <ComponentRef Id="cmpF86169493AF0895C7381DDF79139F54E" />
@@ -1984,10 +2232,6 @@
             <ComponentRef Id="cmpCA02C02C6B5475572113720AA33C7A3E" />
             <ComponentRef Id="cmp55EFA6B4309DB946CEC3B7B30999479A" />
             <ComponentRef Id="cmp6AD8FFF10C7F21B56194F46B5DEB75D6" />
-            <ComponentRef Id="cmp628AF1C114BD87E8036ED732B4A037B5" />
-            <ComponentRef Id="cmpA8D9E14DD763245B45E9E8979ECA1644" />
-            <ComponentRef Id="cmpBF9855A07530AF872CF13E267B458EA1" />
-            <ComponentRef Id="cmp308CAEEAE4EB3C140E37364972D696B6" />
             <ComponentRef Id="cmp4CE1514D8F39455FC50DBF5A321F1425" />
             <ComponentRef Id="cmp833260D53753A4A82B3C92754364D2B3" />
             <ComponentRef Id="cmp1E1799577127781C95875064E89F83DA" />
