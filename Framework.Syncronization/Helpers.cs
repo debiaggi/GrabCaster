@@ -20,7 +20,7 @@ namespace GrabCaster.Framework.Syncronization
     /// </summary>
     public static class Helpers
     {
-        private static string syncFile = "SyncronizationStatus.gc";
+        public static string syncFile = "SyncronizationStatus.gc";
         /// <summary>
         /// Syncronize 2 folders
         /// </summary>
@@ -36,11 +36,6 @@ namespace GrabCaster.Framework.Syncronization
             syncOrchestrator.Synchronize();
         }
         
-        public static void CreateSyncronizationFile(string folder)
-        {
-            string fileName = Path.Combine(folder, syncFile);
-            File.WriteAllText(fileName,DateTime.UtcNow.ToString());
-        }
 
         //Less than zero t1 is earlier than t2.
         //Zero t1 is the same as t2.
