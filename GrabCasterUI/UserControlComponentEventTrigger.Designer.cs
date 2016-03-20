@@ -76,9 +76,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxIdConfiguration.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIdConfiguration.Location = new System.Drawing.Point(151, 4);
-            this.textBoxIdConfiguration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxIdConfiguration.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxIdConfiguration.Name = "textBoxIdConfiguration";
-            this.textBoxIdConfiguration.Size = new System.Drawing.Size(1073, 23);
+            this.textBoxIdConfiguration.Size = new System.Drawing.Size(1030, 23);
             this.textBoxIdConfiguration.TabIndex = 1;
             // 
             // textBoxIdComponent
@@ -87,9 +87,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxIdComponent.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxIdComponent.Location = new System.Drawing.Point(151, 36);
-            this.textBoxIdComponent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxIdComponent.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxIdComponent.Name = "textBoxIdComponent";
-            this.textBoxIdComponent.Size = new System.Drawing.Size(1073, 23);
+            this.textBoxIdComponent.Size = new System.Drawing.Size(1030, 23);
             this.textBoxIdComponent.TabIndex = 3;
             // 
             // labelIdComponent
@@ -109,9 +109,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxName.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxName.Location = new System.Drawing.Point(151, 68);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(1073, 23);
+            this.textBoxName.Size = new System.Drawing.Size(1030, 23);
             this.textBoxName.TabIndex = 5;
             // 
             // labelName
@@ -131,11 +131,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescription.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDescription.Location = new System.Drawing.Point(151, 100);
-            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDescription.Size = new System.Drawing.Size(1073, 48);
+            this.textBoxDescription.Size = new System.Drawing.Size(1030, 48);
             this.textBoxDescription.TabIndex = 7;
             // 
             // labelDescription
@@ -156,9 +156,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewProperties.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProperties.Location = new System.Drawing.Point(7, 421);
-            this.dataGridViewProperties.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewProperties.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewProperties.Name = "dataGridViewProperties";
-            this.dataGridViewProperties.Size = new System.Drawing.Size(1184, 281);
+            this.dataGridViewProperties.Size = new System.Drawing.Size(1141, 152);
             this.dataGridViewProperties.TabIndex = 8;
             this.dataGridViewProperties.Resize += new System.EventHandler(this.dataGridViewProperties_Resize);
             // 
@@ -177,8 +177,8 @@
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(1091, 709);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Location = new System.Drawing.Point(1048, 580);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(100, 28);
             this.buttonSave.TabIndex = 10;
@@ -190,8 +190,8 @@
             // 
             this.buttonDelProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelProperty.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelProperty.Image")));
-            this.buttonDelProperty.Location = new System.Drawing.Point(1199, 459);
-            this.buttonDelProperty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelProperty.Location = new System.Drawing.Point(1156, 459);
+            this.buttonDelProperty.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelProperty.Name = "buttonDelProperty";
             this.buttonDelProperty.Size = new System.Drawing.Size(33, 31);
             this.buttonDelProperty.TabIndex = 26;
@@ -202,8 +202,8 @@
             // 
             this.buttonAddProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddProperty.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddProperty.Image")));
-            this.buttonAddProperty.Location = new System.Drawing.Point(1199, 421);
-            this.buttonAddProperty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddProperty.Location = new System.Drawing.Point(1156, 421);
+            this.buttonAddProperty.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddProperty.Name = "buttonAddProperty";
             this.buttonAddProperty.Size = new System.Drawing.Size(33, 31);
             this.buttonAddProperty.TabIndex = 25;
@@ -214,8 +214,8 @@
             // 
             this.buttonDelPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelPoint.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelPoint.Image")));
-            this.buttonDelPoint.Location = new System.Drawing.Point(1199, 336);
-            this.buttonDelPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelPoint.Location = new System.Drawing.Point(1156, 336);
+            this.buttonDelPoint.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelPoint.Name = "buttonDelPoint";
             this.buttonDelPoint.Size = new System.Drawing.Size(33, 31);
             this.buttonDelPoint.TabIndex = 20;
@@ -226,8 +226,8 @@
             // 
             this.buttonAddPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddPoints.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddPoints.Image")));
-            this.buttonAddPoints.Location = new System.Drawing.Point(1199, 298);
-            this.buttonAddPoints.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddPoints.Location = new System.Drawing.Point(1156, 298);
+            this.buttonAddPoints.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddPoints.Name = "buttonAddPoints";
             this.buttonAddPoints.Size = new System.Drawing.Size(33, 31);
             this.buttonAddPoints.TabIndex = 19;
@@ -238,8 +238,8 @@
             // 
             this.buttonDelChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDelChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonDelChannel.Image")));
-            this.buttonDelChannel.Location = new System.Drawing.Point(1164, 223);
-            this.buttonDelChannel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDelChannel.Location = new System.Drawing.Point(1121, 223);
+            this.buttonDelChannel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelChannel.Name = "buttonDelChannel";
             this.buttonDelChannel.Size = new System.Drawing.Size(33, 31);
             this.buttonDelChannel.TabIndex = 22;
@@ -250,8 +250,8 @@
             // 
             this.buttonAddChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddChannel.Image = ((System.Drawing.Image)(resources.GetObject("buttonAddChannel.Image")));
-            this.buttonAddChannel.Location = new System.Drawing.Point(1164, 186);
-            this.buttonAddChannel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddChannel.Location = new System.Drawing.Point(1121, 186);
+            this.buttonAddChannel.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddChannel.Name = "buttonAddChannel";
             this.buttonAddChannel.Size = new System.Drawing.Size(33, 31);
             this.buttonAddChannel.TabIndex = 21;
@@ -262,7 +262,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pictureBox2.Location = new System.Drawing.Point(9, 215);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(13, 108);
             this.pictureBox2.TabIndex = 17;
@@ -272,7 +272,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pictureBox1.Location = new System.Drawing.Point(9, 209);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(29, 12);
             this.pictureBox1.TabIndex = 16;
@@ -297,9 +297,9 @@
             this.listBoxChannels.FormattingEnabled = true;
             this.listBoxChannels.ItemHeight = 17;
             this.listBoxChannels.Location = new System.Drawing.Point(39, 185);
-            this.listBoxChannels.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxChannels.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxChannels.Name = "listBoxChannels";
-            this.listBoxChannels.Size = new System.Drawing.Size(1116, 89);
+            this.listBoxChannels.Size = new System.Drawing.Size(1073, 89);
             this.listBoxChannels.TabIndex = 23;
             this.listBoxChannels.SelectedIndexChanged += new System.EventHandler(this.listBoxChannels_SelectedIndexChanged);
             // 
@@ -318,7 +318,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.pictureBox3.Location = new System.Drawing.Point(9, 320);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(77, 14);
             this.pictureBox3.TabIndex = 18;
@@ -332,9 +332,9 @@
             this.listBoxPoints.FormattingEnabled = true;
             this.listBoxPoints.ItemHeight = 17;
             this.listBoxPoints.Location = new System.Drawing.Point(73, 298);
-            this.listBoxPoints.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBoxPoints.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxPoints.Name = "listBoxPoints";
-            this.listBoxPoints.Size = new System.Drawing.Size(1116, 89);
+            this.listBoxPoints.Size = new System.Drawing.Size(1073, 89);
             this.listBoxPoints.TabIndex = 24;
             // 
             // UserControlComponentEventTrigger
@@ -352,9 +352,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelChannelPoints);
-            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelProperties);
-            this.Controls.Add(this.dataGridViewProperties);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxName);
@@ -365,9 +363,11 @@
             this.Controls.Add(this.labelIdConfiguration);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Controls.Add(this.dataGridViewProperties);
+            this.Controls.Add(this.buttonSave);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UserControlComponentEventTrigger";
-            this.Size = new System.Drawing.Size(1236, 756);
+            this.Size = new System.Drawing.Size(1193, 627);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

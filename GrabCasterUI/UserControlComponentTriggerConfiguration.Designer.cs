@@ -45,9 +45,10 @@
             // labelIdConfiguration
             // 
             this.labelIdConfiguration.AutoSize = true;
-            this.labelIdConfiguration.Location = new System.Drawing.Point(2, 6);
+            this.labelIdConfiguration.Location = new System.Drawing.Point(3, 7);
+            this.labelIdConfiguration.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelIdConfiguration.Name = "labelIdConfiguration";
-            this.labelIdConfiguration.Size = new System.Drawing.Size(78, 13);
+            this.labelIdConfiguration.Size = new System.Drawing.Size(103, 17);
             this.labelIdConfiguration.TabIndex = 0;
             this.labelIdConfiguration.Text = "IdConfiguration";
             // 
@@ -55,26 +56,29 @@
             // 
             this.textBoxIdConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIdConfiguration.Location = new System.Drawing.Point(86, 3);
+            this.textBoxIdConfiguration.Location = new System.Drawing.Point(115, 4);
+            this.textBoxIdConfiguration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxIdConfiguration.Name = "textBoxIdConfiguration";
-            this.textBoxIdConfiguration.Size = new System.Drawing.Size(490, 20);
+            this.textBoxIdConfiguration.Size = new System.Drawing.Size(692, 22);
             this.textBoxIdConfiguration.TabIndex = 1;
             // 
             // textBoxIdComponent
             // 
             this.textBoxIdComponent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIdComponent.Location = new System.Drawing.Point(86, 29);
+            this.textBoxIdComponent.Location = new System.Drawing.Point(115, 36);
+            this.textBoxIdComponent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxIdComponent.Name = "textBoxIdComponent";
-            this.textBoxIdComponent.Size = new System.Drawing.Size(490, 20);
+            this.textBoxIdComponent.Size = new System.Drawing.Size(692, 22);
             this.textBoxIdComponent.TabIndex = 3;
             // 
             // labelIdComponent
             // 
             this.labelIdComponent.AutoSize = true;
-            this.labelIdComponent.Location = new System.Drawing.Point(2, 32);
+            this.labelIdComponent.Location = new System.Drawing.Point(3, 39);
+            this.labelIdComponent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelIdComponent.Name = "labelIdComponent";
-            this.labelIdComponent.Size = new System.Drawing.Size(70, 13);
+            this.labelIdComponent.Size = new System.Drawing.Size(91, 17);
             this.labelIdComponent.TabIndex = 2;
             this.labelIdComponent.Text = "IdComponent";
             // 
@@ -82,17 +86,19 @@
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.Location = new System.Drawing.Point(86, 55);
+            this.textBoxName.Location = new System.Drawing.Point(115, 68);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(490, 20);
+            this.textBoxName.Size = new System.Drawing.Size(692, 22);
             this.textBoxName.TabIndex = 5;
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(2, 58);
+            this.labelName.Location = new System.Drawing.Point(3, 71);
+            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(35, 13);
+            this.labelName.Size = new System.Drawing.Size(45, 17);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "Name";
             // 
@@ -100,19 +106,21 @@
             // 
             this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDescription.Location = new System.Drawing.Point(86, 81);
+            this.textBoxDescription.Location = new System.Drawing.Point(115, 100);
+            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDescription.Size = new System.Drawing.Size(490, 40);
+            this.textBoxDescription.Size = new System.Drawing.Size(692, 48);
             this.textBoxDescription.TabIndex = 7;
             // 
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(2, 84);
+            this.labelDescription.Location = new System.Drawing.Point(3, 103);
+            this.labelDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(60, 13);
+            this.labelDescription.Size = new System.Drawing.Size(79, 17);
             this.labelDescription.TabIndex = 6;
             this.labelDescription.Text = "Description";
             // 
@@ -122,27 +130,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewProperties.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProperties.Location = new System.Drawing.Point(5, 147);
+            this.dataGridViewProperties.Location = new System.Drawing.Point(7, 181);
+            this.dataGridViewProperties.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewProperties.Name = "dataGridViewProperties";
-            this.dataGridViewProperties.Size = new System.Drawing.Size(571, 219);
+            this.dataGridViewProperties.Size = new System.Drawing.Size(801, 181);
             this.dataGridViewProperties.TabIndex = 8;
             this.dataGridViewProperties.Resize += new System.EventHandler(this.dataGridViewProperties_Resize);
             // 
             // labelProperties
             // 
             this.labelProperties.AutoSize = true;
-            this.labelProperties.Location = new System.Drawing.Point(3, 131);
+            this.labelProperties.Location = new System.Drawing.Point(4, 161);
+            this.labelProperties.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProperties.Name = "labelProperties";
-            this.labelProperties.Size = new System.Drawing.Size(54, 13);
+            this.labelProperties.Size = new System.Drawing.Size(73, 17);
             this.labelProperties.TabIndex = 9;
             this.labelProperties.Text = "Properties";
             // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(501, 372);
+            this.buttonSave.Location = new System.Drawing.Point(708, 369);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(100, 28);
             this.buttonSave.TabIndex = 10;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -150,11 +161,9 @@
             // 
             // UserControlComponentTriggerConfiguration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelProperties);
-            this.Controls.Add(this.dataGridViewProperties);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxName);
@@ -163,8 +172,11 @@
             this.Controls.Add(this.labelIdComponent);
             this.Controls.Add(this.textBoxIdConfiguration);
             this.Controls.Add(this.labelIdConfiguration);
+            this.Controls.Add(this.dataGridViewProperties);
+            this.Controls.Add(this.buttonSave);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UserControlComponentTriggerConfiguration";
-            this.Size = new System.Drawing.Size(584, 410);
+            this.Size = new System.Drawing.Size(819, 416);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProperties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

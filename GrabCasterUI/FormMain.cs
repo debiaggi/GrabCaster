@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -172,7 +173,7 @@ namespace GrabCasterUI
         /// </summary>
         private void SyncGCPointsFolder()
         {
-
+            ConcoleMessage("Syncronize all Points.");
             //Ask folder to all the points
             AskPointBag("*", "*", Configuration.PointId(), Configuration.MessageDataProperty.ConsoleRequestSendBubblingBag);
         }
@@ -428,6 +429,7 @@ namespace GrabCasterUI
         /// <param name="messageDataProperty"></param>
         private void AskPointBag(string DestinationChannelId, string DestinationPointId, string CurrentPointId, Configuration.MessageDataProperty messageDataProperty)
         {
+            ConcoleMessage("Syncronize all Points - OffRampEngineSending.SendNullMessageOnRamp.");
             OffRampEngineSending.SendNullMessageOnRamp(messageDataProperty,
                                                         DestinationChannelId,
                                                         DestinationPointId,
@@ -1142,37 +1144,29 @@ namespace GrabCasterUI
 
                 switch (treeviewBag.GrabCasterComponentType)
                 {
-                    case GrabCasterComponentType.TriggerConfigurationRoot:
-                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
-                        break;
                     case GrabCasterComponentType.TriggerConfiguration:
                         contextMenuStripTriggerConfiguration.Items[3].Text = TreeNodeTextEnableDisable(treeNodeCurrent);
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerConfiguration;
                         break;
                     case GrabCasterComponentType.EventConfiguration:
                         contextMenuStripEventConfiguration.Items[2].Text = TreeNodeTextEnableDisable(treeNodeCurrent);
+                        contextMenuStripEventConfiguration.Items[1].Visible = true;
+                        contextMenuStripEventConfiguration.Items[2].Visible = true;
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.Event:
+                        contextMenuStripEventConfiguration.Items[1].Visible = false;
+                        contextMenuStripEventConfiguration.Items[2].Visible = false;
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventConfiguration;
                         break;
                     case GrabCasterComponentType.TriggerComponent:
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
                         break;
-                    case GrabCasterComponentType.TriggerComponentRoot:
-                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripTriggerComponent;
-                        break;
                     case GrabCasterComponentType.EventComponent:
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
                         break;
-                    case GrabCasterComponentType.EventComponentRoot:
-                        treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripEventComponent;
-                        break;
-
-
                     case GrabCasterComponentType.Correlation:
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripCorrelation;
-
                         break;
                     case GrabCasterComponentType.Root:
                         treeView.SelectedNode.ContextMenuStrip = this.contextMenuStripRoot;
@@ -1314,12 +1308,27 @@ namespace GrabCasterUI
 
         private void DeleteTreeNodeComponent(TreeNode treeNodeCurrent)
         {
-            TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
             try
             {
-                File.Delete(treeviewBagCurrent.File);
-                treeViewActive.SelectedNode.Remove();
-                CreateSyncronizationFile(treeNodeCurrent, "");
+                TreeviewBag treeviewBagCurrent = (TreeviewBag)treeNodeCurrent.Tag;
+
+                if (treeviewBagCurrent.GrabCasterComponentType == GrabCasterComponentType.Event)
+                {
+                    Event eventTrg = (Event)treeviewBagCurrent.Component;
+                    TriggerConfiguration triggerConfiguration = JsonConvert.DeserializeObject<TriggerConfiguration>(File.ReadAllText(treeviewBagCurrent.File));
+                    triggerConfiguration.Events.RemoveAll(
+                        x => x.IdComponent == eventTrg.IdComponent && x.IdConfiguration == eventTrg.IdConfiguration);
+                    string trgSerialized = JsonConvert.SerializeObject(triggerConfiguration);
+                    File.WriteAllText(treeviewBagCurrent.File, trgSerialized);
+                    treeViewActive.SelectedNode.Remove();
+                }
+                else
+                {
+                    File.Delete(treeviewBagCurrent.File);
+                    treeViewActive.SelectedNode.Remove();
+                }
+
+            CreateSyncronizationFile(treeNodeCurrent, "");
             }
 
             catch (Exception ex)
@@ -1338,7 +1347,7 @@ namespace GrabCasterUI
 
         private void contextMenuStripTriggerConfigurationDelete_Click(object sender, EventArgs e)
         {
-            if (Global.MessageBoxForm("Delete the Trigger Component?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+            if (Global.MessageBoxForm("Delete the Trigger?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                                             DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
@@ -1385,7 +1394,7 @@ namespace GrabCasterUI
 
         private void contextMenuStripEventConfigurationDelete_Click_1(object sender, EventArgs e)
         {
-            if (Global.MessageBoxForm("Delete the Event Component?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+            if (Global.MessageBoxForm("Delete the Event from trigger?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                                     DialogResult.No) return;
             DeleteTreeNodeComponent(treeViewActive.SelectedNode);
         }
@@ -1422,28 +1431,28 @@ namespace GrabCasterUI
                         DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
                                                         Configuration.DirectoryNameBubbling,
                                                         Configuration.DirectoryNameTriggers);
-                        message ="Trigger configuration file assigned to the point/s, syncronize the points to send it to the point/s";
+                        message ="Trigger configuration file assigned, syncronize the points to commit the changes.";
                         break;
-                    case GrabCasterComponentType.Event:
+                    case GrabCasterComponentType.EventConfiguration:
                         DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
                                                         Configuration.DirectoryNameBubbling,
                                                         Configuration.DirectoryNameEvents);
-                        message ="Event configuration file assigned to the point/s, syncronize the points to send it to the point/s";
+                        message = "Event configuration file assigned, syncronize the points to commit the changes.";
                         break;
                     case GrabCasterComponentType.TriggerComponent:
                         DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
                                                         Configuration.DirectoryNameTriggers);
-                        message = "Trigger component file assigned to the point/s, syncronize the points to send it to the point/s";
+                        message = "Trigger component file assigned, syncronize the points to commit the changes.";
                         break;
                     case GrabCasterComponentType.EventComponent:
                         DirectoryBubblingFileSelected = Path.Combine(gcPointsFoldersData.FolderName,
                                                         Configuration.DirectoryNameEvents);
-                        message = "Event component file assigned to the point/s, syncronize the points to send it to the point/s";
+                        message = "Event component file assigned, syncronize the points to commit the changes.";
                         break;
                     default:
                         break;
                 }
-                File.Copy(treeviewBagCurrent.File, Path.Combine(DirectoryBubblingFileSelected, Path.GetFileName(treeviewBagCurrent.File)));
+                File.Copy(treeviewBagCurrent.File, Path.Combine(DirectoryBubblingFileSelected, Path.GetFileName(treeviewBagCurrent.File)),true);
                 CreateSyncronizationFile(treeNodeCurrent, gcPointsFoldersData.FolderName);
                 Global.MessageBoxForm(message,
                     MessageBoxButtons.OK,
@@ -1585,7 +1594,7 @@ namespace GrabCasterUI
 
         private void CreateTriggerEventConfigurationFromNode(TreeNode treeNodeDestination, TreeNode treeNodeSource)
         {
-            if (Global.MessageBoxForm("Assign this event to the current trigger in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.No)
+            if (Global.MessageBoxForm("Assign this event to the current trigger in this point?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
             //Filename
@@ -1735,7 +1744,8 @@ namespace GrabCasterUI
             {
                 string OnOff = IsComponentEnabled(treeviewBag) ? CONST_TRIGGEROFF_KEY : CONST_TRIGGERON_KEY;
                 string extension = IsComponentEnabled(treeviewBag) ? ".off" :".trg";
-                Path.ChangeExtension(treeviewBag.File, extension);
+                string newName = Path.ChangeExtension(treeviewBag.File, extension);
+                File.Move(treeviewBag.File, newName);
                 CreateSyncronizationFile(treeNode,"");
                 treeNode.ImageKey = OnOff;
                 treeNode.SelectedImageKey = OnOff;
@@ -1744,8 +1754,9 @@ namespace GrabCasterUI
             if (treeviewBag.GrabCasterComponentType == GrabCasterComponentType.EventConfiguration)
             {
                 string OnOff = IsComponentEnabled(treeviewBag) ? CONST_EVENTOFF_KEY : CONST_EVENTON_KEY;
-                string extension = IsComponentEnabled(treeviewBag) ? ".off" : ".evt";
-                Path.ChangeExtension(treeviewBag.File, extension);
+                string extension = IsComponentEnabled(treeviewBag) ? ".off" : ".evn";
+                string newName = Path.ChangeExtension(treeviewBag.File, extension);
+                File.Move(treeviewBag.File,newName);
                 treeNode.ImageKey = OnOff;
                 treeNode.SelectedImageKey = OnOff;
             }

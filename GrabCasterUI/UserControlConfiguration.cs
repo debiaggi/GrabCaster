@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace GrabCasterUI
 {
@@ -19,6 +20,7 @@ namespace GrabCasterUI
     public partial class UserControlConfiguration : UserControl
     {
         private const string DefaultMessage = "Configuration area.";
+
         private GrabCasterComponentType grabCasterComponentType { get; set; }
 
         private object objectToUpdate { get; set; }
@@ -33,9 +35,10 @@ namespace GrabCasterUI
 
         public void LoadComponentData(TreeviewBag treeviewBag)
         {
-            this.textBoxFile.Text = treeviewBag.File;
 
             GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
+            this.textBoxFile.Text = gcPointsFoldersData.ConfigurationFileName;
+
             PropertyInfo[] propertyInfos = gcPointsFoldersData.ConfigurationStorage.GetType().GetProperties();
             List<propertyConfiguration> propertyConfigurations = new List<propertyConfiguration>();
 
@@ -71,9 +74,18 @@ namespace GrabCasterUI
             setDataGridColumnsWidth();
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+
+
+        private void dataGridViewProperties_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            FormEditor formEditor = new FormEditor();
+            formEditor.filename = textBoxFile.Text;
+            formEditor.ShowDialog();
         }
     }
 }

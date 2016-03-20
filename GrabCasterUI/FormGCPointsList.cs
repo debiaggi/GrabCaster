@@ -30,6 +30,7 @@ namespace GrabCasterUI
 
         public void LoadList(List<GcPointsFoldersData> gcPointsFoldersDataList)
         {
+          
             this.listView1.Columns.Add("Channel Name"); //column 1 heading
             listView1.Columns.Add("Channel Description"); //column 2 heading
             listView1.Columns.Add("Channel Id"); //column 2 heading
@@ -54,6 +55,15 @@ namespace GrabCasterUI
 
 
             }
+            ResizeColumns();
+        }
+
+        private void ResizeColumns()
+        {
+            foreach (ColumnHeader item in this.listView1.Columns)
+            {
+                item.Width = this.listView1.Width/this.listView1.Columns.Count;
+            }
         }
         private void FormGCPointsList_Load(object sender, EventArgs e)
         {
@@ -70,7 +80,11 @@ namespace GrabCasterUI
             this.Close();
             
         }
-    
+
+        private void FormGCPointsList_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeColumns();
+        }
     }
 
 
