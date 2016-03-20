@@ -33,11 +33,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSyncronize = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSyncronizeOut = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSyncronizeOutLeft = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSyncronizeOutRight = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMainHorrizzontal = new System.Windows.Forms.SplitContainer();
@@ -46,11 +47,13 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
             this.panelUCContainer1 = new System.Windows.Forms.Panel();
+            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.panelUCContainer2 = new System.Windows.Forms.Panel();
+            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
@@ -79,8 +82,6 @@
             this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItemRootExpandall = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRootSyncronize = new System.Windows.Forms.ToolStripMenuItem();
-            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
-            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -116,7 +117,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -139,14 +141,21 @@
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // toolStripMenu
             // 
             this.toolStripMenu.ImageScalingSize = new System.Drawing.Size(26, 26);
             this.toolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonSyncronize,
-            this.toolStripButtonSyncronizeOut,
-            this.toolStripButtonRefresh,
-            this.toolStripButtonSettings});
+            this.toolStripButtonSyncronizeOutLeft,
+            this.toolStripButtonSyncronizeOutRight,
+            this.toolStripButtonRefresh});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 28);
             this.toolStripMenu.Name = "toolStripMenu";
             this.toolStripMenu.Size = new System.Drawing.Size(1712, 33);
@@ -163,15 +172,25 @@
             this.toolStripButtonSyncronize.Text = "toolStripButtonSyncronize";
             this.toolStripButtonSyncronize.Click += new System.EventHandler(this.toolStripButtonSyncronize_Click);
             // 
-            // toolStripButtonSyncronizeOut
+            // toolStripButtonSyncronizeOutLeft
             // 
-            this.toolStripButtonSyncronizeOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSyncronizeOut.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOut.Image")));
-            this.toolStripButtonSyncronizeOut.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSyncronizeOut.Name = "toolStripButtonSyncronizeOut";
-            this.toolStripButtonSyncronizeOut.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButtonSyncronizeOut.Text = "toolStripButtonSyncronizeOut";
-            this.toolStripButtonSyncronizeOut.Click += new System.EventHandler(this.toolStripButtonSyncronizeOut_Click);
+            this.toolStripButtonSyncronizeOutLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSyncronizeOutLeft.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOutLeft.Image")));
+            this.toolStripButtonSyncronizeOutLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSyncronizeOutLeft.Name = "toolStripButtonSyncronizeOutLeft";
+            this.toolStripButtonSyncronizeOutLeft.Size = new System.Drawing.Size(30, 30);
+            this.toolStripButtonSyncronizeOutLeft.Text = "toolStripButtonSyncronizeOut";
+            this.toolStripButtonSyncronizeOutLeft.Click += new System.EventHandler(this.toolStripButtonSyncronizeOut_Click);
+            // 
+            // toolStripButtonSyncronizeOutRight
+            // 
+            this.toolStripButtonSyncronizeOutRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSyncronizeOutRight.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOutRight.Image")));
+            this.toolStripButtonSyncronizeOutRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSyncronizeOutRight.Name = "toolStripButtonSyncronizeOutRight";
+            this.toolStripButtonSyncronizeOutRight.Size = new System.Drawing.Size(30, 30);
+            this.toolStripButtonSyncronizeOutRight.Text = "toolStripButton1";
+            this.toolStripButtonSyncronizeOutRight.Click += new System.EventHandler(this.toolStripButtonSyncronizeOutRight_Click);
             // 
             // toolStripButtonRefresh
             // 
@@ -182,15 +201,6 @@
             this.toolStripButtonRefresh.Size = new System.Drawing.Size(30, 30);
             this.toolStripButtonRefresh.Text = "toolStripButton1";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
-            // 
-            // toolStripButtonSettings
-            // 
-            this.toolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSettings.Image")));
-            this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButtonSettings.Text = "toolStripButtonSettings";
             // 
             // statusStrip1
             // 
@@ -249,7 +259,7 @@
             this.splitContainerMainVertical.Panel2.Controls.Add(this.splitContainerOrizRight);
             this.splitContainerMainVertical.Panel2.Controls.Add(this.panel2);
             this.splitContainerMainVertical.Size = new System.Drawing.Size(1712, 761);
-            this.splitContainerMainVertical.SplitterDistance = 729;
+            this.splitContainerMainVertical.SplitterDistance = 914;
             this.splitContainerMainVertical.SplitterWidth = 8;
             this.splitContainerMainVertical.TabIndex = 0;
             // 
@@ -269,7 +279,7 @@
             // splitContainerOrizLeft.Panel2
             // 
             this.splitContainerOrizLeft.Panel2.Controls.Add(this.panelUCContainer1);
-            this.splitContainerOrizLeft.Size = new System.Drawing.Size(729, 734);
+            this.splitContainerOrizLeft.Size = new System.Drawing.Size(914, 734);
             this.splitContainerOrizLeft.SplitterDistance = 412;
             this.splitContainerOrizLeft.SplitterWidth = 12;
             this.splitContainerOrizLeft.TabIndex = 3;
@@ -285,7 +295,7 @@
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(729, 412);
+            this.treeView1.Size = new System.Drawing.Size(914, 412);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -319,8 +329,20 @@
             this.panelUCContainer1.Location = new System.Drawing.Point(0, 0);
             this.panelUCContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer1.Name = "panelUCContainer1";
-            this.panelUCContainer1.Size = new System.Drawing.Size(729, 310);
+            this.panelUCContainer1.Size = new System.Drawing.Size(914, 310);
             this.panelUCContainer1.TabIndex = 0;
+            // 
+            // userControlComponent1
+            // 
+            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent1.Name = "userControlComponent1";
+            this.userControlComponent1.Size = new System.Drawing.Size(914, 310);
+            this.userControlComponent1.TabIndex = 0;
+            this.userControlComponent1.TreeNodeSide = null;
+            this.userControlComponent1.TreeViewSide = null;
             // 
             // panel1
             // 
@@ -329,7 +351,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(729, 27);
+            this.panel1.Size = new System.Drawing.Size(914, 27);
             this.panel1.TabIndex = 2;
             // 
             // comboBox1
@@ -341,7 +363,7 @@
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(729, 26);
+            this.comboBox1.Size = new System.Drawing.Size(914, 26);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -361,7 +383,7 @@
             // splitContainerOrizRight.Panel2
             // 
             this.splitContainerOrizRight.Panel2.Controls.Add(this.panelUCContainer2);
-            this.splitContainerOrizRight.Size = new System.Drawing.Size(975, 734);
+            this.splitContainerOrizRight.Size = new System.Drawing.Size(790, 734);
             this.splitContainerOrizRight.SplitterDistance = 416;
             this.splitContainerOrizRight.SplitterWidth = 12;
             this.splitContainerOrizRight.TabIndex = 1;
@@ -377,7 +399,7 @@
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
             this.treeView2.SelectedImageIndex = 0;
-            this.treeView2.Size = new System.Drawing.Size(975, 416);
+            this.treeView2.Size = new System.Drawing.Size(790, 416);
             this.treeView2.TabIndex = 1;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
@@ -389,8 +411,20 @@
             this.panelUCContainer2.Location = new System.Drawing.Point(0, 0);
             this.panelUCContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer2.Name = "panelUCContainer2";
-            this.panelUCContainer2.Size = new System.Drawing.Size(975, 306);
+            this.panelUCContainer2.Size = new System.Drawing.Size(790, 306);
             this.panelUCContainer2.TabIndex = 0;
+            // 
+            // userControlComponent2
+            // 
+            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent2.Name = "userControlComponent2";
+            this.userControlComponent2.Size = new System.Drawing.Size(790, 306);
+            this.userControlComponent2.TabIndex = 1;
+            this.userControlComponent2.TreeNodeSide = null;
+            this.userControlComponent2.TreeViewSide = null;
             // 
             // panel2
             // 
@@ -399,7 +433,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(975, 27);
+            this.panel2.Size = new System.Drawing.Size(790, 27);
             this.panel2.TabIndex = 0;
             // 
             // comboBox2
@@ -411,7 +445,7 @@
             this.comboBox2.Location = new System.Drawing.Point(0, 0);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(975, 26);
+            this.comboBox2.Size = new System.Drawing.Size(790, 26);
             this.comboBox2.TabIndex = 2;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -598,7 +632,7 @@
             this.expandAllToolStripMenuItemRootExpandall,
             this.toolStripMenuItemRootSyncronize});
             this.contextMenuStripRoot.Name = "contextMenuStripTriggers";
-            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 136);
+            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 108);
             // 
             // toolStripMenuItemRootRefresh
             // 
@@ -628,30 +662,6 @@
             this.toolStripMenuItemRootSyncronize.Text = "Syncronize Point";
             this.toolStripMenuItemRootSyncronize.Click += new System.EventHandler(this.toolStripMenuItemRootSyncronize_Click);
             // 
-            // userControlComponent1
-            // 
-            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(729, 310);
-            this.userControlComponent1.TabIndex = 0;
-            this.userControlComponent1.TreeNodeSide = null;
-            this.userControlComponent1.TreeViewSide = null;
-            // 
-            // userControlComponent2
-            // 
-            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(975, 306);
-            this.userControlComponent2.TabIndex = 1;
-            this.userControlComponent2.TreeNodeSide = null;
-            this.userControlComponent2.TreeViewSide = null;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -661,10 +671,11 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStripMenu);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
-            this.Text = "GrabCaster";
+            this.Text = "GrabCaster Console";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -720,7 +731,6 @@
         private System.Windows.Forms.TextBox textBoxConsole;
         private System.Windows.Forms.ImageList imageListMainToolbar;
         private System.Windows.Forms.ImageList imageListTreeview;
-        private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.SplitContainer splitContainerOrizLeft;
         private System.Windows.Forms.Panel panelUCContainer1;
         private System.Windows.Forms.Panel panel1;
@@ -731,7 +741,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonSyncronize;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.TreeView treeView2;
-        private System.Windows.Forms.ToolStripButton toolStripButtonSyncronizeOut;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSyncronizeOutLeft;
         private System.Windows.Forms.Panel panelUCContainer2;
         private UserControlComponent userControlComponent1;
         private UserControlComponent userControlComponent2;
@@ -759,6 +769,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRootSyncronize;
         private System.Windows.Forms.ToolStripMenuItem statusTriggerEnableDisable;
         private System.Windows.Forms.ToolStripMenuItem statusEventEnableDisable;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSyncronizeOutRight;
     }
 }
 

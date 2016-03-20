@@ -1137,6 +1137,7 @@ namespace GrabCasterUI
         {
             if (treeView.SelectedNode?.Tag != null && e.Button == MouseButtons.Right)
             {
+                if (treeView.SelectedNode.Tag == null) return;
                 treeView.SelectedNode = e.Node;
                 treeNodeCurrent = treeView.SelectedNode;
                 TreeviewBag treeviewBag = (TreeviewBag)treeNodeCurrent.Tag;
@@ -1520,9 +1521,14 @@ namespace GrabCasterUI
 
         private void toolStripButtonSyncronizeOut_Click(object sender, EventArgs e)
         {
+            if (treeView1.Nodes == null)
+            {
+                Global.MessageBoxForm($"No nodes present in the treeview on the left", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (Global.MessageBoxForm("Send the syncronization to all the points?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
                                     DialogResult.No) return;
-            foreach (TreeNode treeNode in treeViewActive.Nodes)
+            foreach (TreeNode treeNode in treeView1.Nodes)
             {
                 TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
                 GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
@@ -1601,36 +1607,38 @@ namespace GrabCasterUI
 
             //Prepare the bags
 
-            TreeNode treeNodeRoot = GetRootNode(treeViewActive.SelectedNode);
+            TreeNode treeNodeRoot = GetRootNode(treeNodeDestination);
             TreeNode treeNodeTriggerParent  = treeNodeDestination.Parent;
 
 
-            TreeviewBag treeviewBagRoot = (TreeviewBag)treeNodeRoot.Tag;
+            TreeviewBag treeviewBagRootSource = (TreeviewBag)treeNodeRoot.Tag;
+            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData) treeviewBagRootSource.Component;
+
+            ConfigurationStorage configurationStorage = gcPointsFoldersData.ConfigurationStorage;
             TreeviewBag treeviewBagTriggerParent = (TreeviewBag)treeNodeTriggerParent.Tag;
             TreeviewBag treeviewBagDestination = (TreeviewBag)treeNodeDestination.Tag;
             TreeviewBag treeviewBagSource = (TreeviewBag)treeNodeSource.Tag;
 
+            EventConfiguration eventConfiguration = JsonConvert.DeserializeObject<EventConfiguration>(File.ReadAllText(treeviewBagSource.File));
+            Event eventTrigger = new Event(eventConfiguration.Event.IdComponent, eventConfiguration.Event.IdConfiguration, eventConfiguration.Event.Name, eventConfiguration.Event.Description);
+
+            List<GrabCaster.Framework.Contracts.Points.Point> points = new List<GrabCaster.Framework.Contracts.Points.Point>();
+            points.Add(new GrabCaster.Framework.Contracts.Points.Point(configurationStorage.PointId, configurationStorage.PointName, configurationStorage.PointDescription));
+            eventTrigger.Channels = new List<Channel>();
+            eventTrigger.Channels.Add(new Channel(configurationStorage.ChannelId, configurationStorage.ChannelName, configurationStorage.ChannelDescription, points));
 
 
-            //Get the bubbling event
-            BubblingEvent bubblingEvent = EventsEngine.CreateBubblingEvent(treeviewBagDestination.componentEvent.eventClass,
-                                                                                treeviewBagDestination.componentEvent.assembly,
-                                                                                treeviewBagDestination.File);
+            eventTrigger.EventProperties = new List<EventProperty>();
 
-            var jsonSerialization = SerializationHelper.CreteJsonEventConfigurationTemplate(bubblingEvent);
-            GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBagRoot.Component;
+            TriggerConfiguration triggerConfiguration = JsonConvert.DeserializeObject<TriggerConfiguration>(File.ReadAllText(treeviewBagTriggerParent.File));
+            triggerConfiguration.Events.Add(eventTrigger);
 
-            string DirectoryBubblingEvents = Path.Combine(gcPointsFoldersData.FolderName,
-                                                            Configuration.DirectoryNameBubbling,
-                                                            Configuration.DirectoryNameEvents);
+            string triggeFile = JsonConvert.SerializeObject(triggerConfiguration);
 
-            string eventConfigurationsFile = Path.Combine(DirectoryBubblingEvents, treeviewBagSource.File + ".off");
+            File.WriteAllText(treeviewBagTriggerParent.File, triggeFile);
 
-            File.WriteAllText(eventConfigurationsFile, jsonSerialization);
-
-            TreeNode treeNodeEvents = treeNodeRoot.Nodes[0].Nodes[1];
-
-            this.CreateEventConfigurationNode(treeviewBagRoot, treeNodeEvents, eventConfigurationsFile);
+            TreeNode treenodeClone = (TreeNode) treeNodeSource.Clone();
+            treeNodeDestination.Nodes.Add(treenodeClone);
             CreateSyncronizationFile(treeNodeDestination, "");
         }
 
@@ -1767,6 +1775,35 @@ namespace GrabCasterUI
         private void statusEventEnableDisable_Click(object sender, EventArgs e)
         {
             EnableDisableTriggerEvent(treeViewActive.SelectedNode);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
+        }
+
+        private void toolStripButtonSyncronizeOutRight_Click(object sender, EventArgs e)
+        {
+            if (treeView1.Nodes == null)
+            {
+                Global.MessageBoxForm($"No nodes present in the treeview on the right", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (Global.MessageBoxForm("Send the syncronization to all the points?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) ==
+                                    DialogResult.No) return;
+            foreach (TreeNode treeNode in treeView2.Nodes)
+            {
+                TreeviewBag treeviewBag = (TreeviewBag)treeNode.Tag;
+                GcPointsFoldersData gcPointsFoldersData = (GcPointsFoldersData)treeviewBag.Component;
+
+
+                byte[] content = GrabCaster.Framework.CompressionLibrary.Helpers.CreateFromDirectory(gcPointsFoldersData.FolderName);
+                SendPointBagToSyncronize(content,
+                                            gcPointsFoldersData.ConfigurationStorage.ChannelId,
+                                            gcPointsFoldersData.ConfigurationStorage.PointId,
+                                            Configuration.PointId(), Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize);
+            }
         }
     }
 
