@@ -33,12 +33,19 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncronizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pullFromPointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pushLeftTreeviewPointsBagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pushRightTreeviewPointsBagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonSyncronize = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSyncronizeOutLeft = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSyncronizeOutRight = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonSyncronizeOutLeft = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSyncronize = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSyncronizeOutRight = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainerMainHorrizzontal = new System.Windows.Forms.SplitContainer();
@@ -118,11 +125,13 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.syncronizationToolStripMenuItem,
+            this.refreshToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1712, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1694, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -141,6 +150,44 @@
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
+            // syncronizationToolStripMenuItem
+            // 
+            this.syncronizationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pullFromPointsToolStripMenuItem,
+            this.pushLeftTreeviewPointsBagToolStripMenuItem,
+            this.pushRightTreeviewPointsBagToolStripMenuItem});
+            this.syncronizationToolStripMenuItem.Name = "syncronizationToolStripMenuItem";
+            this.syncronizationToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
+            this.syncronizationToolStripMenuItem.Text = "Syncronization";
+            // 
+            // pullFromPointsToolStripMenuItem
+            // 
+            this.pullFromPointsToolStripMenuItem.Name = "pullFromPointsToolStripMenuItem";
+            this.pullFromPointsToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
+            this.pullFromPointsToolStripMenuItem.Text = "Pull bag from points";
+            this.pullFromPointsToolStripMenuItem.Click += new System.EventHandler(this.pullFromPointsToolStripMenuItem_Click);
+            // 
+            // pushLeftTreeviewPointsBagToolStripMenuItem
+            // 
+            this.pushLeftTreeviewPointsBagToolStripMenuItem.Name = "pushLeftTreeviewPointsBagToolStripMenuItem";
+            this.pushLeftTreeviewPointsBagToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
+            this.pushLeftTreeviewPointsBagToolStripMenuItem.Text = "Push Left Treeview Points Bag";
+            this.pushLeftTreeviewPointsBagToolStripMenuItem.Click += new System.EventHandler(this.pushLeftTreeviewPointsBagToolStripMenuItem_Click);
+            // 
+            // pushRightTreeviewPointsBagToolStripMenuItem
+            // 
+            this.pushRightTreeviewPointsBagToolStripMenuItem.Name = "pushRightTreeviewPointsBagToolStripMenuItem";
+            this.pushRightTreeviewPointsBagToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
+            this.pushRightTreeviewPointsBagToolStripMenuItem.Text = "Push Right Treeview Points Bag";
+            this.pushRightTreeviewPointsBagToolStripMenuItem.Click += new System.EventHandler(this.pushRightTreeviewPointsBagToolStripMenuItem_Click);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -152,45 +199,18 @@
             // 
             this.toolStripMenu.ImageScalingSize = new System.Drawing.Size(26, 26);
             this.toolStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonSyncronize,
+            this.toolStripButtonRefresh,
+            this.toolStripSeparator1,
             this.toolStripButtonSyncronizeOutLeft,
+            this.toolStripButtonSyncronize,
             this.toolStripButtonSyncronizeOutRight,
-            this.toolStripButtonRefresh});
+            this.toolStripSeparator2});
             this.toolStripMenu.Location = new System.Drawing.Point(0, 28);
             this.toolStripMenu.Name = "toolStripMenu";
-            this.toolStripMenu.Size = new System.Drawing.Size(1712, 33);
+            this.toolStripMenu.Size = new System.Drawing.Size(1694, 33);
             this.toolStripMenu.TabIndex = 1;
             this.toolStripMenu.Text = "toolStrip1";
-            // 
-            // toolStripButtonSyncronize
-            // 
-            this.toolStripButtonSyncronize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSyncronize.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronize.Image")));
-            this.toolStripButtonSyncronize.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSyncronize.Name = "toolStripButtonSyncronize";
-            this.toolStripButtonSyncronize.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButtonSyncronize.Text = "toolStripButtonSyncronize";
-            this.toolStripButtonSyncronize.Click += new System.EventHandler(this.toolStripButtonSyncronize_Click);
-            // 
-            // toolStripButtonSyncronizeOutLeft
-            // 
-            this.toolStripButtonSyncronizeOutLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSyncronizeOutLeft.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOutLeft.Image")));
-            this.toolStripButtonSyncronizeOutLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSyncronizeOutLeft.Name = "toolStripButtonSyncronizeOutLeft";
-            this.toolStripButtonSyncronizeOutLeft.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButtonSyncronizeOutLeft.Text = "toolStripButtonSyncronizeOut";
-            this.toolStripButtonSyncronizeOutLeft.Click += new System.EventHandler(this.toolStripButtonSyncronizeOut_Click);
-            // 
-            // toolStripButtonSyncronizeOutRight
-            // 
-            this.toolStripButtonSyncronizeOutRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSyncronizeOutRight.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOutRight.Image")));
-            this.toolStripButtonSyncronizeOutRight.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSyncronizeOutRight.Name = "toolStripButtonSyncronizeOutRight";
-            this.toolStripButtonSyncronizeOutRight.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButtonSyncronizeOutRight.Text = "toolStripButton1";
-            this.toolStripButtonSyncronizeOutRight.Click += new System.EventHandler(this.toolStripButtonSyncronizeOutRight_Click);
+            this.toolStripMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMenu_ItemClicked);
             // 
             // toolStripButtonRefresh
             // 
@@ -199,18 +219,58 @@
             this.toolStripButtonRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRefresh.Name = "toolStripButtonRefresh";
             this.toolStripButtonRefresh.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButtonRefresh.Text = "toolStripButton1";
+            this.toolStripButtonRefresh.Text = "Refresh the two combobox with the last syncronization status";
             this.toolStripButtonRefresh.Click += new System.EventHandler(this.toolStripButtonRefresh_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
+            // 
+            // toolStripButtonSyncronizeOutLeft
+            // 
+            this.toolStripButtonSyncronizeOutLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSyncronizeOutLeft.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOutLeft.Image")));
+            this.toolStripButtonSyncronizeOutLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSyncronizeOutLeft.Name = "toolStripButtonSyncronizeOutLeft";
+            this.toolStripButtonSyncronizeOutLeft.Size = new System.Drawing.Size(30, 30);
+            this.toolStripButtonSyncronizeOutLeft.Text = "Push Left Treeview Points Bag";
+            this.toolStripButtonSyncronizeOutLeft.Click += new System.EventHandler(this.toolStripButtonSyncronizeOut_Click);
+            // 
+            // toolStripButtonSyncronize
+            // 
+            this.toolStripButtonSyncronize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSyncronize.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronize.Image")));
+            this.toolStripButtonSyncronize.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSyncronize.Name = "toolStripButtonSyncronize";
+            this.toolStripButtonSyncronize.Size = new System.Drawing.Size(30, 30);
+            this.toolStripButtonSyncronize.Text = "Pull the syncronization points bag";
+            this.toolStripButtonSyncronize.Click += new System.EventHandler(this.toolStripButtonSyncronize_Click);
+            // 
+            // toolStripButtonSyncronizeOutRight
+            // 
+            this.toolStripButtonSyncronizeOutRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSyncronizeOutRight.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSyncronizeOutRight.Image")));
+            this.toolStripButtonSyncronizeOutRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSyncronizeOutRight.Name = "toolStripButtonSyncronizeOutRight";
+            this.toolStripButtonSyncronizeOutRight.Size = new System.Drawing.Size(30, 30);
+            this.toolStripButtonSyncronizeOutRight.Text = "Push Right Treeview Points Bag";
+            this.toolStripButtonSyncronizeOutRight.Click += new System.EventHandler(this.toolStripButtonSyncronizeOutRight_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 915);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 805);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1712, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1694, 25);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -236,8 +296,8 @@
             // splitContainerMainHorrizzontal.Panel2
             // 
             this.splitContainerMainHorrizzontal.Panel2.Controls.Add(this.textBoxConsole);
-            this.splitContainerMainHorrizzontal.Size = new System.Drawing.Size(1712, 854);
-            this.splitContainerMainHorrizzontal.SplitterDistance = 761;
+            this.splitContainerMainHorrizzontal.Size = new System.Drawing.Size(1694, 744);
+            this.splitContainerMainHorrizzontal.SplitterDistance = 662;
             this.splitContainerMainHorrizzontal.SplitterWidth = 5;
             this.splitContainerMainHorrizzontal.TabIndex = 3;
             // 
@@ -258,8 +318,8 @@
             // 
             this.splitContainerMainVertical.Panel2.Controls.Add(this.splitContainerOrizRight);
             this.splitContainerMainVertical.Panel2.Controls.Add(this.panel2);
-            this.splitContainerMainVertical.Size = new System.Drawing.Size(1712, 761);
-            this.splitContainerMainVertical.SplitterDistance = 914;
+            this.splitContainerMainVertical.Size = new System.Drawing.Size(1694, 662);
+            this.splitContainerMainVertical.SplitterDistance = 903;
             this.splitContainerMainVertical.SplitterWidth = 8;
             this.splitContainerMainVertical.TabIndex = 0;
             // 
@@ -279,8 +339,8 @@
             // splitContainerOrizLeft.Panel2
             // 
             this.splitContainerOrizLeft.Panel2.Controls.Add(this.panelUCContainer1);
-            this.splitContainerOrizLeft.Size = new System.Drawing.Size(914, 734);
-            this.splitContainerOrizLeft.SplitterDistance = 412;
+            this.splitContainerOrizLeft.Size = new System.Drawing.Size(903, 635);
+            this.splitContainerOrizLeft.SplitterDistance = 356;
             this.splitContainerOrizLeft.SplitterWidth = 12;
             this.splitContainerOrizLeft.TabIndex = 3;
             // 
@@ -295,7 +355,7 @@
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(914, 412);
+            this.treeView1.Size = new System.Drawing.Size(903, 356);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -329,7 +389,7 @@
             this.panelUCContainer1.Location = new System.Drawing.Point(0, 0);
             this.panelUCContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer1.Name = "panelUCContainer1";
-            this.panelUCContainer1.Size = new System.Drawing.Size(914, 310);
+            this.panelUCContainer1.Size = new System.Drawing.Size(903, 267);
             this.panelUCContainer1.TabIndex = 0;
             // 
             // userControlComponent1
@@ -339,7 +399,7 @@
             this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
             this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
             this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(914, 310);
+            this.userControlComponent1.Size = new System.Drawing.Size(903, 267);
             this.userControlComponent1.TabIndex = 0;
             this.userControlComponent1.TreeNodeSide = null;
             this.userControlComponent1.TreeViewSide = null;
@@ -351,7 +411,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(914, 27);
+            this.panel1.Size = new System.Drawing.Size(903, 27);
             this.panel1.TabIndex = 2;
             // 
             // comboBox1
@@ -363,7 +423,7 @@
             this.comboBox1.Location = new System.Drawing.Point(0, 0);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(914, 26);
+            this.comboBox1.Size = new System.Drawing.Size(903, 26);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -383,8 +443,8 @@
             // splitContainerOrizRight.Panel2
             // 
             this.splitContainerOrizRight.Panel2.Controls.Add(this.panelUCContainer2);
-            this.splitContainerOrizRight.Size = new System.Drawing.Size(790, 734);
-            this.splitContainerOrizRight.SplitterDistance = 416;
+            this.splitContainerOrizRight.Size = new System.Drawing.Size(783, 635);
+            this.splitContainerOrizRight.SplitterDistance = 359;
             this.splitContainerOrizRight.SplitterWidth = 12;
             this.splitContainerOrizRight.TabIndex = 1;
             // 
@@ -399,7 +459,7 @@
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
             this.treeView2.SelectedImageIndex = 0;
-            this.treeView2.Size = new System.Drawing.Size(790, 416);
+            this.treeView2.Size = new System.Drawing.Size(783, 359);
             this.treeView2.TabIndex = 1;
             this.treeView2.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterSelect);
             this.treeView2.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView2_NodeMouseClick);
@@ -411,7 +471,7 @@
             this.panelUCContainer2.Location = new System.Drawing.Point(0, 0);
             this.panelUCContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.panelUCContainer2.Name = "panelUCContainer2";
-            this.panelUCContainer2.Size = new System.Drawing.Size(790, 306);
+            this.panelUCContainer2.Size = new System.Drawing.Size(783, 264);
             this.panelUCContainer2.TabIndex = 0;
             // 
             // userControlComponent2
@@ -421,7 +481,7 @@
             this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
             this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
             this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(790, 306);
+            this.userControlComponent2.Size = new System.Drawing.Size(783, 264);
             this.userControlComponent2.TabIndex = 1;
             this.userControlComponent2.TreeNodeSide = null;
             this.userControlComponent2.TreeViewSide = null;
@@ -433,7 +493,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(790, 27);
+            this.panel2.Size = new System.Drawing.Size(783, 27);
             this.panel2.TabIndex = 0;
             // 
             // comboBox2
@@ -445,7 +505,7 @@
             this.comboBox2.Location = new System.Drawing.Point(0, 0);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(790, 26);
+            this.comboBox2.Size = new System.Drawing.Size(783, 26);
             this.comboBox2.TabIndex = 2;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -460,7 +520,7 @@
             this.textBoxConsole.Multiline = true;
             this.textBoxConsole.Name = "textBoxConsole";
             this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxConsole.Size = new System.Drawing.Size(1712, 88);
+            this.textBoxConsole.Size = new System.Drawing.Size(1694, 77);
             this.textBoxConsole.TabIndex = 0;
             this.textBoxConsole.Text = "test message";
             // 
@@ -632,7 +692,7 @@
             this.expandAllToolStripMenuItemRootExpandall,
             this.toolStripMenuItemRootSyncronize});
             this.contextMenuStripRoot.Name = "contextMenuStripTriggers";
-            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 108);
+            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 136);
             // 
             // toolStripMenuItemRootRefresh
             // 
@@ -666,7 +726,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1712, 940);
+            this.ClientSize = new System.Drawing.Size(1694, 830);
             this.Controls.Add(this.splitContainerMainHorrizzontal);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStripMenu);
@@ -771,6 +831,13 @@
         private System.Windows.Forms.ToolStripMenuItem statusEventEnableDisable;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSyncronizeOutRight;
+        private System.Windows.Forms.ToolStripMenuItem syncronizationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pullFromPointsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pushLeftTreeviewPointsBagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pushRightTreeviewPointsBagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

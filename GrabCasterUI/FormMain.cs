@@ -409,6 +409,10 @@ namespace GrabCasterUI
         /// <param name="e"></param>
         private void toolStripButtonRefresh_Click(object sender, EventArgs e)
         {
+            toolStripButtonRefresh_Click();
+        }
+        private void toolStripButtonRefresh_Click()
+        {
             var gcPointsFoldersDataList = this.GcPointsFoldersDataList;
             if (gcPointsFoldersDataList != null)
             {
@@ -456,13 +460,17 @@ namespace GrabCasterUI
 
 
 
-        private void toolStripButtonSyncronize_Click(object sender, EventArgs e)
+        private void toolStripButtonSyncronize_Click()
         {
             if (Global.MessageBoxForm("Send the syncronization request?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes)
             {
                 SyncGCPointsFolder();
             }
+        }
+        private void toolStripButtonSyncronize_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSyncronize_Click();
         }
 
         /// <summary>
@@ -1521,6 +1529,10 @@ namespace GrabCasterUI
 
         private void toolStripButtonSyncronizeOut_Click(object sender, EventArgs e)
         {
+            toolStripButtonSyncronizeOut_Click();
+        }
+        private void toolStripButtonSyncronizeOut_Click()
+        {
             if (treeView1.Nodes == null)
             {
                 Global.MessageBoxForm($"No nodes present in the treeview on the left", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1638,7 +1650,29 @@ namespace GrabCasterUI
             File.WriteAllText(treeviewBagTriggerParent.File, triggeFile);
 
             TreeNode treenodeClone = (TreeNode) treeNodeSource.Clone();
-            treeNodeDestination.Nodes.Add(treenodeClone);
+
+            var objTriigerEventConfiguration = new CustomObjectType();
+            objTriigerEventConfiguration.Properties.Clear();
+
+            objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Name", DefaultValue = eventTrigger.Name, Type = typeof(string), Desc = "Specify the trigger name." });
+            objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Description", DefaultValue = eventTrigger.Description, Type = typeof(string), Desc = "Specify the trigger description." });
+            objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdComponent", DefaultValue = eventTrigger.IdComponent, Type = typeof(string), Desc = "Specify the Id Componet to use." });
+            objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "IdConfiguration", DefaultValue = eventTrigger.IdConfiguration, Type = typeof(string), Desc = "Specify the Id group Configuration to use." });
+            objTriigerEventConfiguration.Properties.Add(new CustomProperty { Category = "Main Properties", Name = "Channels", DefaultValue = eventTrigger.Channels, Type = typeof(List<>), Desc = "Specify the Channels to use." });
+
+
+            TreeviewBag treeviewBag = new TreeviewBag(treeviewBagTriggerParent.File,
+                             GrabCasterComponentType.Event,
+                             eventTrigger,
+                             eventTrigger.EventProperties,
+                            objTriigerEventConfiguration, null, null);
+
+            TreeNode treeNodeEvent = treeNodeDestination.Nodes.Add(
+                            CONST_EVENT,
+                            eventTrigger.Name,
+                            CONST_EVENT_KEY,
+                            CONST_EVENT_KEY);
+            treeNodeEvent.Tag = treeviewBag;
             CreateSyncronizationFile(treeNodeDestination, "");
         }
 
@@ -1785,6 +1819,10 @@ namespace GrabCasterUI
 
         private void toolStripButtonSyncronizeOutRight_Click(object sender, EventArgs e)
         {
+            toolStripButtonSyncronizeOutRight_Click();
+        }
+        private void toolStripButtonSyncronizeOutRight_Click()
+        {
             if (treeView1.Nodes == null)
             {
                 Global.MessageBoxForm($"No nodes present in the treeview on the right", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1804,6 +1842,31 @@ namespace GrabCasterUI
                                             gcPointsFoldersData.ConfigurationStorage.PointId,
                                             Configuration.PointId(), Configuration.MessageDataProperty.ConsoleBubblingBagToSyncronize);
             }
+        }
+
+        private void pullFromPointsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSyncronize_Click();
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonRefresh_Click();
+        }
+
+        private void pushLeftTreeviewPointsBagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSyncronizeOut_Click();
+        }
+
+        private void toolStripMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void pushRightTreeviewPointsBagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSyncronizeOutRight_Click();
         }
     }
 
