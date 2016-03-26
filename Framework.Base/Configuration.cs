@@ -418,6 +418,15 @@ namespace GrabCaster.Framework.Base
         }
 
         /// <summary>
+        ///     Base Directory
+        /// </summary>
+        /// <returns></returns>
+        public static string BaseDirectory()
+        {
+            return ConfigurationStorage.BaseDirectory;
+        }
+
+        /// <summary>
         ///     BUBBLING\Log directory
         /// </summary>
         /// <returns></returns>

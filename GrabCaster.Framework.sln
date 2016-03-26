@@ -189,6 +189,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Compre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Syncronization", "Framework.Syncronization\GrabCaster.Framework.Syncronization.csproj", "{F1857105-026C-46F3-BA98-4D62C5CC6FAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrabCaster.Framework.Security", "Framework.Security\GrabCaster.Framework.Security.csproj", "{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -643,6 +645,14 @@ Global
 		{F1857105-026C-46F3-BA98-4D62C5CC6FAF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1857105-026C-46F3-BA98-4D62C5CC6FAF}.Release|x86.ActiveCfg = Release|Any CPU
 		{F1857105-026C-46F3-BA98-4D62C5CC6FAF}.Release|x86.Build.0 = Release|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Debug|x86.Build.0 = Debug|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Release|x86.ActiveCfg = Release|Any CPU
+		{16CE1C28-6F46-4C34-A265-F1FB99FD20A6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

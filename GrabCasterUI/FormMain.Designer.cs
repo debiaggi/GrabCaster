@@ -692,7 +692,7 @@
             this.expandAllToolStripMenuItemRootExpandall,
             this.toolStripMenuItemRootSyncronize});
             this.contextMenuStripRoot.Name = "contextMenuStripTriggers";
-            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 136);
+            this.contextMenuStripRoot.Size = new System.Drawing.Size(193, 108);
             // 
             // toolStripMenuItemRootRefresh
             // 
