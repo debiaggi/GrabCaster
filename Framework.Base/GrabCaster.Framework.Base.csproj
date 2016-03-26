@@ -91,6 +91,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AESEncryption.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="InternalSignature.cs" />

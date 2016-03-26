@@ -9,7 +9,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GrabCaster.Framework.Security;
 
 namespace GrabCaster.InternalLaboratory
 {

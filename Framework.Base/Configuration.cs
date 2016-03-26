@@ -245,6 +245,12 @@ namespace GrabCaster.Framework.Base
                 AppDomain.CurrentDomain.BaseDirectory,
                 string.Concat(filename.Replace(".vshost", ""), ConfigurationFileExtension));
             Debug.WriteLine("ConfigurationFile:", configurationFile);
+
+            //byte[] contentClear = null;
+            //if (AESEncryption.SecurityOn_Aes())
+            //{
+            //    byte[] content = File.ReadAllBytes(configurationFile);
+            //}
             ConfigurationStorage =
                 JsonConvert.DeserializeObject<ConfigurationStorage>(
                     Encoding.UTF8.GetString(File.ReadAllBytes(configurationFile)));

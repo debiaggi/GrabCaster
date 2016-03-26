@@ -1868,6 +1868,49 @@ namespace GrabCasterUI
         {
             toolStripButtonSyncronizeOutRight_Click();
         }
+
+        private void createSecurityKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (
+                Global.MessageBoxForm("Create and activate the internal security framework?\rThe console will be closed to refresh the new configuration.", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (GrabCaster.Framework.Base.AESEncryption.CreateSecurityKey_Aes())
+                {
+                    Global.MessageBoxForm("Internal security framework activated for this GrabCaster point, provide the security key file to the other points in order to receive and send messages.",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    Global.MessageBoxForm("Error creating internal security framework for this GrabCaster point, check the event viewer machine.",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void deleteSecurityKeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Global.MessageBoxForm("Delete and deactivate the internal security framework?\rThe console will be closed to refresh the new configuration.", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (GrabCaster.Framework.Base.AESEncryption.CreateSecurityKey_Aes())
+                {
+                    Global.MessageBoxForm("Internal security framework activated for this GrabCaster point, provide the security key file to the other points in order to receive and send messages.",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    Global.MessageBoxForm("Error creating internal security framework for this GrabCaster point, check the event viewer machine.",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Information);
+                }
+            }
+        }
     }
 
 

@@ -6,9 +6,8 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using GrabCaster.Framework.Base;
-using GrabCaster.Framework.Log;
 
-namespace GrabCaster.Framework.Security
+namespace GrabCaster.Framework.Base
 {
     public class AESEncryption
     {
@@ -19,8 +18,6 @@ namespace GrabCaster.Framework.Security
             byte[] IV = new byte[16];
             bool ret = false;
 
-            try
-            {
                 // Create an AesManaged object
                 // with the specified key and IV.
                 using (AesManaged aesAlg = new AesManaged())
@@ -36,20 +33,6 @@ namespace GrabCaster.Framework.Security
                     }
                 }
                 ret = true;
-            }
-            catch (Exception ex)
-            {
-
-
-                LogEngine.WriteLog(Configuration.EngineName,
-                              $"Error in {MethodBase.GetCurrentMethod().Name}",
-                              Constant.DefconOne,
-                              Constant.TaskCategoriesError,
-                              ex,
-                              EventLogEntryType.Error);
-                ret = false;
-
-            }
 
 
             return ret;
@@ -62,8 +45,7 @@ namespace GrabCaster.Framework.Security
             byte[] IV = new byte[16];
             bool ret = false;
 
-            try
-            {
+
                 // Create an AesManaged object
                 // with the specified key and IV.
                 using (AesManaged aesAlg = new AesManaged())
@@ -79,20 +61,7 @@ namespace GrabCaster.Framework.Security
                     }
                 }
                 ret = true;
-            }
-            catch (Exception ex)
-            {
 
-
-                LogEngine.WriteLog(Configuration.EngineName,
-                              $"Error in {MethodBase.GetCurrentMethod().Name}",
-                              Constant.DefconOne,
-                              Constant.TaskCategoriesError,
-                              ex,
-                              EventLogEntryType.Error);
-                ret = false;
-
-            }
 
 
             return ret;
@@ -123,8 +92,7 @@ namespace GrabCaster.Framework.Security
 
             // Create an AesManaged object
             // with the specified key and IV.
-            try
-            {
+
                 using (AesManaged aesAlg = new AesManaged())
                 {
                     byte[] Key = new byte[32];
@@ -157,20 +125,7 @@ namespace GrabCaster.Framework.Security
                 }
                 // Return the encrypted bytes from the memory stream.
                 return encrypted;
-            }
-            catch (Exception ex)
-            {
 
-                LogEngine.WriteLog(Configuration.EngineName,
-                              $"Error in {MethodBase.GetCurrentMethod().Name}",
-                              Constant.DefconOne,
-                              Constant.TaskCategoriesError,
-                              ex,
-                              EventLogEntryType.Error);
-
-
-                throw ex;
-            }
 
 
 
@@ -186,8 +141,7 @@ namespace GrabCaster.Framework.Security
 
             // Create an AesManaged object
             // with the specified key and IV.
-            try
-            {
+
                 using (AesManaged aesAlg = new AesManaged())
                 {
                     byte[] Key = new byte[32];
@@ -214,20 +168,7 @@ namespace GrabCaster.Framework.Security
                     }
                 }
                 return deCipherText;
-            }
-            catch (Exception ex)
-            {
 
-                LogEngine.WriteLog(Configuration.EngineName,
-                              $"Error in {MethodBase.GetCurrentMethod().Name}",
-                              Constant.DefconOne,
-                              Constant.TaskCategoriesError,
-                              ex,
-                              EventLogEntryType.Error);
-
-
-                throw ex;
-            }
 
  
         }
