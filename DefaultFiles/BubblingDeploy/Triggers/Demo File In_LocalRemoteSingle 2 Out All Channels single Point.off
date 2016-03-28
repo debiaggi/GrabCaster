@@ -1,8 +1,9 @@
 {
   "Trigger": {
+	"IdConfiguration": "",
     "IdComponent": "{3C62B951-C353-4899-8670-C6687B6EAEFC}",
-    "Name": "FileTrigger Remote Single To Out",
-    "Description": "Get file from disc",
+    "Name": "Sample File Trigger to all channell and specific point.",
+    "Description": "Get file from In_LocalRmoteSingle folder and execute the event to write the file in the Out folder in all channel for the specific point id {B0A46E60-443C-4E8A-A6ED-7F2CB34CF9E6}",
     "TriggerProperties": [{
 			"Name": "RegexFilePattern",
 			"Value": ".(txt|a)"
@@ -29,13 +30,13 @@
 	"Channels": [
         {
           "ChannelId": "*",
-          "ChannelName": "Channel Name",
+          "ChannelName": "All Channels",
           "ChannelDescription": "Channel Description",
           "Points": [
             {
               "PointId": "{B0A46E60-443C-4E8A-A6ED-7F2CB34CF9E6}",
-              "Name": "Point Name",
-              "Description": "Point Description"
+              "Name": "NY Point",
+              "Description": "Point Located in NY"
             }
           ]
         }

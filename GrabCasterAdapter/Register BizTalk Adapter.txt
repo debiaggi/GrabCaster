@@ -2,3 +2,4 @@ Double click on GrabCaster.reg
 
 In the Windows search put %windir%\SysWoW64\cmd.exe and press enter
 Execute GrabCaster.reg
+Enter in then BizTalk Administration Console and register the new adapter.

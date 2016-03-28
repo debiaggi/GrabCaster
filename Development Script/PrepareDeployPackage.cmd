@@ -46,6 +46,7 @@ xcopy DefaultFiles\Log Setup\bin\Debug\Deploy\Log\* /s /y /e
 xcopy DefaultFiles\Log Setup\bin\Release\Deploy\Log\* /s /y /e
 
 xcopy DefaultFiles\Demo Setup\bin\Debug\Deploy\Demo\* /s /y /e
+xcopy DefaultFiles\Samples Setup\bin\Debug\Deploy\Samples\* /s /y /e
 xcopy DefaultFiles\PersistentStorage Setup\bin\Debug\Deploy\PersistentStorage\* /s /y /e
 
 copy Framework.Log.EventHubs\bin\Debug\GrabCaster.Framework.Log.EventHubs.dll Setup\bin\Debug\Deploy\Root_GrabCaster\* /y

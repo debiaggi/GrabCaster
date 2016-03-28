@@ -34,7 +34,6 @@
 
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
-
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLDIR_GRABCASTER" Name="GrabCaster">
           <Directory Id="DesktopFolder" Name="Desktop">
@@ -74,5 +73,39 @@
     </DirectoryRef>
   </Fragment>
 
-
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="cmp5C53951D02216637445C5646F185D556" Guid="3CD95411-15D9-4107-93E2-D6344F5500A1" KeyPath="yes">
+        <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{62018D08-281A-415b-A6D3-6172E3762867}\Implemented Categories\{7F46FC3E-3C2C-405B-A47F-8D17942BA8F9}" Root="HKCR" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="cmp856FD50BA5CEB57A4F131AB1CA31868B" Guid="2631FA0E-94AF-412F-8DC5-36AC0907B7D3" KeyPath="yes">
+        <RegistryKey Key="CLSID\{62018D08-281A-415b-A6D3-6172E3762867}" Root="HKCR">
+          <RegistryValue Value="GrabCaster Adapter" Type="string" />
+          <RegistryValue Name="AppID" Value="{12A6EBAA-CF68-4B58-B36E-A5A19B22C04E}" Type="string" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="cmpCD5CA8B929AAEFF8D3D71BF373AE5644" Guid="031DE80B-AB01-46AD-8AF6-7FCDA1572D62" KeyPath="yes">
+        <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{62018D08-281A-415b-A6D3-6172E3762867}\Implemented Categories" Root="HKCR" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="cmpED0C191AE97ECA68229AE3D847A1479A" Guid="189A6CA6-42E4-42FC-826D-B295679AD1CA" KeyPath="yes">
+        <RegistryKey Key="CLSID\{62018D08-281A-415b-A6D3-6172E3762867}\BizTalk" Root="HKCR">
+          <RegistryValue Value="BizTalk" Type="string" />
+          <RegistryValue Name="TransportType" Value="GrabCaster-Messaging" Type="string" />
+          <RegistryValue Name="Constraints" Value="15371" Type="integer" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
 </Wix>

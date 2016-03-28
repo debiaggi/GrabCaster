@@ -1,29 +1,23 @@
-//---------------------------------------------------------------------
-// File: ReceiverEndpoints.cs
+// -----------------------------------------------------------------------------------
 // 
-// Summary: Implementation of an adapter framework sample adapter. 
-// This class constitutes one of the BaseAdapter classes, which, are
-// a set of generic re-usable set of classes to help adapter writers.
-//
-// Sample: Base Adapter Class Library v1.0.2
-//
-// Description: Base implementation for a receive adapter
-//
-//---------------------------------------------------------------------
-// This file is part of the Microsoft BizTalk Server SDK
-//
-// Copyright (c) Microsoft Corporation. All rights reserved.
-//
-// This source code is intended only as a supplement to Microsoft BizTalk
-// Server release and/or on-line documentation. See these other
-// materials for detailed information regarding Microsoft code samples.
-//
-// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
-// KIND, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
-// PURPOSE.
-//---------------------------------------------------------------------
-
+// GRABCASTER LTD CONFIDENTIAL
+// ___________________________
+// 
+// Copyright © 2013 - 2016 GrabCaster Ltd. All rights reserved.
+// This work is registered with the UK Copyright Service: Registration No:284701085
+// 
+// 
+// NOTICE:  All information contained herein is, and remains
+// the property of GrabCaster Ltd and its suppliers,
+// if any.  The intellectual and technical concepts contained
+// herein are proprietary to GrabCaster Ltd
+// and its suppliers and may be covered by UK and Foreign Patents,
+// patents in process, and are protected by trade secret or copyright law.
+// Dissemination of this information or reproduction of this material
+// is strictly forbidden unless prior written permission is obtained
+// from GrabCaster Ltd.
+// 
+// -----------------------------------------------------------------------------------
 using System;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.TransportProxy.Interop;

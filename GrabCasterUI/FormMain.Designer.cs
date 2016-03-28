@@ -54,13 +54,11 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageListTreeview = new System.Windows.Forms.ImageList(this.components);
             this.panelUCContainer1 = new System.Windows.Forms.Panel();
-            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.splitContainerOrizRight = new System.Windows.Forms.SplitContainer();
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.panelUCContainer2 = new System.Windows.Forms.Panel();
-            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBoxConsole = new System.Windows.Forms.TextBox();
@@ -89,6 +87,11 @@
             this.toolStripMenuItemRootRemove = new System.Windows.Forms.ToolStripMenuItem();
             this.expandAllToolStripMenuItemRootExpandall = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRootSyncronize = new System.Windows.Forms.ToolStripMenuItem();
+            this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
+            this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
+            this.createSecurityKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSecurityKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.securityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -127,7 +130,8 @@
             this.fileToolStripMenuItem,
             this.syncronizationToolStripMenuItem,
             this.refreshToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.securityToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -146,7 +150,7 @@
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -392,18 +396,6 @@
             this.panelUCContainer1.Size = new System.Drawing.Size(903, 267);
             this.panelUCContainer1.TabIndex = 0;
             // 
-            // userControlComponent1
-            // 
-            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent1.Name = "userControlComponent1";
-            this.userControlComponent1.Size = new System.Drawing.Size(903, 267);
-            this.userControlComponent1.TabIndex = 0;
-            this.userControlComponent1.TreeNodeSide = null;
-            this.userControlComponent1.TreeViewSide = null;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.comboBox1);
@@ -473,18 +465,6 @@
             this.panelUCContainer2.Name = "panelUCContainer2";
             this.panelUCContainer2.Size = new System.Drawing.Size(783, 264);
             this.panelUCContainer2.TabIndex = 0;
-            // 
-            // userControlComponent2
-            // 
-            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
-            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
-            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
-            this.userControlComponent2.Name = "userControlComponent2";
-            this.userControlComponent2.Size = new System.Drawing.Size(783, 264);
-            this.userControlComponent2.TabIndex = 1;
-            this.userControlComponent2.TreeNodeSide = null;
-            this.userControlComponent2.TreeViewSide = null;
             // 
             // panel2
             // 
@@ -722,6 +702,54 @@
             this.toolStripMenuItemRootSyncronize.Text = "Syncronize Point";
             this.toolStripMenuItemRootSyncronize.Click += new System.EventHandler(this.toolStripMenuItemRootSyncronize_Click);
             // 
+            // userControlComponent1
+            // 
+            this.userControlComponent1.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent1.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent1.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent1.Name = "userControlComponent1";
+            this.userControlComponent1.Size = new System.Drawing.Size(903, 267);
+            this.userControlComponent1.TabIndex = 0;
+            this.userControlComponent1.TreeNodeSide = null;
+            this.userControlComponent1.TreeViewSide = null;
+            // 
+            // userControlComponent2
+            // 
+            this.userControlComponent2.BackColor = System.Drawing.SystemColors.Control;
+            this.userControlComponent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControlComponent2.Location = new System.Drawing.Point(0, 0);
+            this.userControlComponent2.Margin = new System.Windows.Forms.Padding(5);
+            this.userControlComponent2.Name = "userControlComponent2";
+            this.userControlComponent2.Size = new System.Drawing.Size(783, 264);
+            this.userControlComponent2.TabIndex = 1;
+            this.userControlComponent2.TreeNodeSide = null;
+            this.userControlComponent2.TreeViewSide = null;
+            // 
+            // createSecurityKeyToolStripMenuItem
+            // 
+            this.createSecurityKeyToolStripMenuItem.Name = "createSecurityKeyToolStripMenuItem";
+            this.createSecurityKeyToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.createSecurityKeyToolStripMenuItem.Text = "Create Security Key";
+            this.createSecurityKeyToolStripMenuItem.Click += new System.EventHandler(this.createSecurityKeyToolStripMenuItem_Click);
+            // 
+            // deleteSecurityKeyToolStripMenuItem
+            // 
+            this.deleteSecurityKeyToolStripMenuItem.Name = "deleteSecurityKeyToolStripMenuItem";
+            this.deleteSecurityKeyToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.deleteSecurityKeyToolStripMenuItem.Text = "Delete Security Key";
+            this.deleteSecurityKeyToolStripMenuItem.Click += new System.EventHandler(this.deleteSecurityKeyToolStripMenuItem_Click);
+            // 
+            // securityToolStripMenuItem
+            // 
+            this.securityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createSecurityKeyToolStripMenuItem,
+            this.deleteSecurityKeyToolStripMenuItem});
+            this.securityToolStripMenuItem.Name = "securityToolStripMenuItem";
+            this.securityToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.securityToolStripMenuItem.Text = "Security";
+            this.securityToolStripMenuItem.Visible = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -838,6 +866,9 @@
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem securityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createSecurityKeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSecurityKeyToolStripMenuItem;
     }
 }
 
