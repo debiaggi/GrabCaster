@@ -152,6 +152,17 @@ namespace GrabCasterUI
         /// </summary>
         static void start()
         {
+            if (!Licensing.EvaluateLicense(LicenseFeatures.WindowsNt, false) &&
+                !Licensing.EvaluateLicense(LicenseFeatures.BizTalk, false) &&
+                !Licensing.EvaluateLicense(LicenseFeatures.Embedded, false))
+            {
+                Global.MessageBoxForm(
+                    "Licensing missing, execute GrabCaster in console mode and enter a valid license key.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(0);
+            }
+
+
             GrabCaster.Framework.Library.Embedded.StartEngine();
         }
 

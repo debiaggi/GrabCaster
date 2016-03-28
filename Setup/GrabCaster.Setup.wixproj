@@ -7,7 +7,7 @@
     <ProjectGuid>87fa5d66-ee9f-4200-ad36-16e53cff5a00</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>GrabCaster</OutputName>
-    <OutputType>Bundle</OutputType>
+    <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <SccProjectName>
@@ -52,7 +52,7 @@
 "%25WIX%25\bin\heat.exe" reg "$(Solutiondir)Setup\bin\$(Configuration)\Deploy\GrabCaster.reg" -out "$(SolutionDir).\Setup\GrabCasterRegistry.wxs"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\10\bin\x86\signTool.exe" sign /f grabcaster.pfx /p 4r%40bc%40st3r /v grabcaster.exe</PostBuildEvent>
+    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\10\bin\x86\signTool.exe" sign /f grabcaster.pfx /p 4r%40bc%40st3r /v grabcaster.msi</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
