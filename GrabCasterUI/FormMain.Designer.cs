@@ -39,6 +39,9 @@
             this.pushRightTreeviewPointsBagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.securityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createSecurityKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSecurityKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -89,9 +92,6 @@
             this.toolStripMenuItemRootSyncronize = new System.Windows.Forms.ToolStripMenuItem();
             this.userControlComponent1 = new GrabCasterUI.UserControlComponent();
             this.userControlComponent2 = new GrabCasterUI.UserControlComponent();
-            this.createSecurityKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteSecurityKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.securityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStripMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -199,6 +199,30 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // securityToolStripMenuItem
+            // 
+            this.securityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createSecurityKeyToolStripMenuItem,
+            this.deleteSecurityKeyToolStripMenuItem});
+            this.securityToolStripMenuItem.Name = "securityToolStripMenuItem";
+            this.securityToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.securityToolStripMenuItem.Text = "Security";
+            this.securityToolStripMenuItem.Visible = false;
+            // 
+            // createSecurityKeyToolStripMenuItem
+            // 
+            this.createSecurityKeyToolStripMenuItem.Name = "createSecurityKeyToolStripMenuItem";
+            this.createSecurityKeyToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.createSecurityKeyToolStripMenuItem.Text = "Create Security Key";
+            this.createSecurityKeyToolStripMenuItem.Click += new System.EventHandler(this.createSecurityKeyToolStripMenuItem_Click);
+            // 
+            // deleteSecurityKeyToolStripMenuItem
+            // 
+            this.deleteSecurityKeyToolStripMenuItem.Name = "deleteSecurityKeyToolStripMenuItem";
+            this.deleteSecurityKeyToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.deleteSecurityKeyToolStripMenuItem.Text = "Delete Security Key";
+            this.deleteSecurityKeyToolStripMenuItem.Click += new System.EventHandler(this.deleteSecurityKeyToolStripMenuItem_Click);
+            // 
             // toolStripMenu
             // 
             this.toolStripMenu.ImageScalingSize = new System.Drawing.Size(26, 26);
@@ -281,8 +305,8 @@
             // toolStripStatusLabelMessage
             // 
             this.toolStripStatusLabelMessage.Name = "toolStripStatusLabelMessage";
-            this.toolStripStatusLabelMessage.Size = new System.Drawing.Size(201, 20);
-            this.toolStripStatusLabelMessage.Text = "toolStripStatusLabelMessage";
+            this.toolStripStatusLabelMessage.Size = new System.Drawing.Size(162, 20);
+            this.toolStripStatusLabelMessage.Text = "Selected Item Message";
             this.toolStripStatusLabelMessage.Click += new System.EventHandler(this.toolStripStatusLabelMessage_Click);
             // 
             // splitContainerMainHorrizzontal
@@ -502,7 +526,7 @@
             this.textBoxConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxConsole.Size = new System.Drawing.Size(1694, 77);
             this.textBoxConsole.TabIndex = 0;
-            this.textBoxConsole.Text = "test message";
+            this.textBoxConsole.Text = "Console log message";
             // 
             // imageListMainToolbar
             // 
@@ -725,30 +749,6 @@
             this.userControlComponent2.TabIndex = 1;
             this.userControlComponent2.TreeNodeSide = null;
             this.userControlComponent2.TreeViewSide = null;
-            // 
-            // createSecurityKeyToolStripMenuItem
-            // 
-            this.createSecurityKeyToolStripMenuItem.Name = "createSecurityKeyToolStripMenuItem";
-            this.createSecurityKeyToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
-            this.createSecurityKeyToolStripMenuItem.Text = "Create Security Key";
-            this.createSecurityKeyToolStripMenuItem.Click += new System.EventHandler(this.createSecurityKeyToolStripMenuItem_Click);
-            // 
-            // deleteSecurityKeyToolStripMenuItem
-            // 
-            this.deleteSecurityKeyToolStripMenuItem.Name = "deleteSecurityKeyToolStripMenuItem";
-            this.deleteSecurityKeyToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
-            this.deleteSecurityKeyToolStripMenuItem.Text = "Delete Security Key";
-            this.deleteSecurityKeyToolStripMenuItem.Click += new System.EventHandler(this.deleteSecurityKeyToolStripMenuItem_Click);
-            // 
-            // securityToolStripMenuItem
-            // 
-            this.securityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createSecurityKeyToolStripMenuItem,
-            this.deleteSecurityKeyToolStripMenuItem});
-            this.securityToolStripMenuItem.Name = "securityToolStripMenuItem";
-            this.securityToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
-            this.securityToolStripMenuItem.Text = "Security";
-            this.securityToolStripMenuItem.Visible = false;
             // 
             // FormMain
             // 
