@@ -52,7 +52,7 @@
 "%25WIX%25\bin\heat.exe" reg "$(Solutiondir)Setup\bin\$(Configuration)\Deploy\GrabCaster.reg" -out "$(SolutionDir).\Setup\GrabCasterRegistry.wxs"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\10\bin\x86\signTool.exe" sign /f grabcaster.pfx /p 4r%40bc%40st3r /v grabcaster.msi</PostBuildEvent>
+    <PostBuildEvent>C:\Users\Nino\Documents\GrabCaster\Certification\signmsi.cmd $(Configuration)</PostBuildEvent>
   </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
