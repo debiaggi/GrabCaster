@@ -90,5 +90,5 @@ xcopy GrabCasterUI\bin\Debug\GrabCasterUI.exe Setup\bin\Debug\Deploy\*  /y
 xcopy GrabCasterUI\bin\Release\GrabCasterUI.exe Release\bin\Debug\Deploy\*  /y
 
 cd %~dp0
-echo Deployment pachage ready to go.
+echo Deployment package ready to go.
 

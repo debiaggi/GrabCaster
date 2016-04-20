@@ -82,11 +82,6 @@ namespace GrabCaster.Framework
 
                 if (!Environment.UserInteractive)
                 {
-                    //Licensing area
-                    //****************************************************************
-                    Licensing.EvaluateLicense(LicenseFeatures.WindowsNt,true);
-                    //****************************************************************
-
                     Debug.WriteLine("GrabCaster-servicesToRun procedure initialization.");
                     ServiceBase[] servicesToRun = { new NTWindowsService() };
                     Debug.WriteLine("GrabCaster-servicesToRun procedure starting.");
@@ -94,20 +89,6 @@ namespace GrabCaster.Framework
                 }
                 else
                 {
-                    //Licensing area
-                    //****************************************************************
-                    if (!Licensing.EvaluateLicense(LicenseFeatures.WindowsNt, false))
-                    {
-                        LogEngine.ConsoleWriteLineNoLog("License key not valid, check the event viewer for more information.", ConsoleColor.Red);
-                        MessageBox.Show("License key not valid, check the event viewer for more information.",
-                            "GrabCaster",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                        LicenseForm licenseForm = new LicenseForm();
-                        licenseForm.ShowDialog();
-                        Licensing.EvaluateLicense(LicenseFeatures.WindowsNt, true);
-                    }
-                    //****************************************************************
 
                     if (args.Length == 0)
                     {

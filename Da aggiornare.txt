@@ -1,5 +1,0 @@
-documentare tutto per EventsUpStreamComponent nel config ecc
-aggiunta lo specificare idconfiguration e idcomponent nel REST per eseguire il trigger e nell embedded
-se Configuration.EnginePollingTime= 0 il polling interno e disabilitato
-se webapipoint = vuoto allora non crea il web api 
-documentatare adapte e logicapp

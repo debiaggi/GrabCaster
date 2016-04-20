@@ -1,9 +1,0 @@
-
-@{triggers().outputs.body}
-@{triggers().outputs.body.body}
-Endpoint=sb://grabcasterns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=EEx0vSMspRhXuxNdrBhhWFrRPnETOUQ69G2nAW6qe2E=
-grabcastereh
-grabcastersa
-Xmq9EjpObhOkzETSxFphF/diQFxb2RMGEAUwWvRvEAraCPFzZ+Alr4mHnwGbBAEYAYWQZ91yq5bLREUg9MImAA==
-{697D045A-711A-4FCD-9141-4F3440613CA9\}
-{9D13A0AB-F757-4B7E-91F2-284B4D2B3C3E\}

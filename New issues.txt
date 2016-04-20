@@ -1,3 +1,0 @@
-GrabCaster.Laboratory.Console
-GrabCaster.Framework.Library
-l' event engine contiene i delegate, io li ho resi public, prima esegui il CoreEngine e starti tutto dopo ti agganci ai delegate di eventengine 

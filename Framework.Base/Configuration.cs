@@ -677,18 +677,7 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingOnRampIncomingRateNumber()
         {
-            //  if(Throttling)
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingOnRampIncomingRateNumber;
-            }
-            //****************************************************************
+            return ConfigurationStorage.ThrottlingOnRampIncomingRateNumber;
         }
 
         /// <summary>
@@ -697,17 +686,7 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingOnRampIncomingRateSeconds()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingOnRampIncomingRateSeconds;
-            }
-            //****************************************************************
+            return ConfigurationStorage.ThrottlingOnRampIncomingRateSeconds;
 
         }
 
@@ -717,17 +696,7 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingOffRampIncomingRateNumber()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingOffRampIncomingRateNumber;
-            }
-            //****************************************************************
+            return ConfigurationStorage.ThrottlingOffRampIncomingRateNumber;
         }
 
         /// <summary>
@@ -736,17 +705,9 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingOffRampIncomingRateSeconds()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingOffRampIncomingRateSeconds;
-            }
-            //****************************************************************
+
+            return ConfigurationStorage.ThrottlingOffRampIncomingRateSeconds;
+
         }
 
         /// <summary>
@@ -755,17 +716,9 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingConsoleLogIncomingRateNumber()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingConsoleLogIncomingRateNumber;
-            }
-            //****************************************************************
+
+            return ConfigurationStorage.ThrottlingConsoleLogIncomingRateNumber;
+
         }
 
         /// <summary>
@@ -774,17 +727,9 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingConsoleLogIncomingRateSeconds()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingConsoleLogIncomingRateSeconds;
-            }
-            //****************************************************************
+
+            return ConfigurationStorage.ThrottlingConsoleLogIncomingRateSeconds;
+
         }
 
         /// <summary>
@@ -793,17 +738,9 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingLsiLogIncomingRateNumber()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingLsiLogIncomingRateNumber;
-            }
-            //****************************************************************
+
+            return ConfigurationStorage.ThrottlingLsiLogIncomingRateNumber;
+
         }
 
         /// <summary>
@@ -812,17 +749,9 @@ namespace GrabCaster.Framework.Base
         /// <returns></returns>
         public static int ThrottlingLsiLogIncomingRateSeconds()
         {
-            //Licensing area
-            //****************************************************************
-            if (!Licensing.EvaluateLicense(LicenseFeatures.Throttling, false))
-            {
-                return 1;
-            }
-            else
-            {
-                return ConfigurationStorage.ThrottlingLsiLogIncomingRateSeconds;
-            }
-            //****************************************************************
+
+            return ConfigurationStorage.ThrottlingLsiLogIncomingRateSeconds;
+
         }
 
         /// <summary>

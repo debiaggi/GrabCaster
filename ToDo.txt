@@ -1,0 +1,10 @@
+3 licenses
+	Community
+	Commercial 
+		Logic App
+		BizTalk Adapter
+		UI
+		Triggers
+		Events
+
+Fix the license header using RPL
